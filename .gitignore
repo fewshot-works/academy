@@ -1,0 +1,30 @@
+# Node / Docusaurus
+site/node_modules/
+site/build/
+site/.docusaurus/
+site/.cache-loader/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+labs/**/__pycache__/
+labs/**/*.pyc
+labs/**/.venv/
+labs/**/venv/
+labs/**/env/
+labs/**/chroma_db/
+labs/**/*.egg-info/
+
+# Secrets
+.env
+labs/**/.env
+!.env.example
+!labs/**/.env.example
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
