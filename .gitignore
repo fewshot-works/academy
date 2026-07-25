@@ -15,6 +15,7 @@ labs/**/venv/
 labs/**/env/
 labs/**/chroma_db/
 labs/**/*.egg-info/
+labs/**/embeddings_plot.png
 
 # Secrets
 .env
