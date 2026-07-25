@@ -4,27 +4,38 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/*
+ * Primary color: indigo, not Docusaurus's stock green — distinct from the
+ * default every unmodified Docusaurus site ships with, and reads as
+ * "technical/trustworthy" rather than the generic "docs site" green.
+ * Both base colors below are contrast-checked against their background
+ * (WCAG AA requires >=4.5:1 for normal text):
+ *   light mode #4f46e5 on #fff  -> ~6.3:1
+ *   dark mode  #818cf8 on #1b1b1d -> ~5.8:1
+ * Admonition colors (info/tip/warning/danger) are left as Infima defaults —
+ * they already follow conventional blue/green/yellow/red icon-language and
+ * changing them would just add inconsistency.
+ */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #4f46e5;
+  --ifm-color-primary-dark: #4338ca;
+  --ifm-color-primary-darker: #3730a3;
+  --ifm-color-primary-darkest: #312e81;
+  --ifm-color-primary-light: #6366f1;
+  --ifm-color-primary-lighter: #818cf8;
+  --ifm-color-primary-lightest: #a5b4fc;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Lighter/brighter primary in dark mode so it still reads at >=4.5:1 against the near-black background. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #818cf8;
+  --ifm-color-primary-dark: #6366f1;
+  --ifm-color-primary-darker: #4f46e5;
+  --ifm-color-primary-darkest: #4338ca;
+  --ifm-color-primary-light: #a5b4fc;
+  --ifm-color-primary-lighter: #c7d2fe;
+  --ifm-color-primary-lightest: #e0e7ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
