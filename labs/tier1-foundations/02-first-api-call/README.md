@@ -1,17 +1,17 @@
 # Lab 2: Your First LLM Call
 
-Companion lab for [Chapter 2: What Is a Large Language Model?](https://mangatrai.github.io/zero-to-agent/docs/tier-1-foundations/what-is-an-llm) — you'll send one prompt to an AI model and print what it generates.
+Companion lab for [Chapter 2: What Is a Large Language Model?](https://fewshot-works.github.io/zero-to-agent/docs/tier-1-foundations/what-is-an-llm) — you'll send one prompt to an AI model and print what it generates.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://mangatrai.github.io/zero-to-agent/docs/tier-1-foundations/setup) — this lab assumes uv is installed, and either Ollama or an API key are already working.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/zero-to-agent/docs/tier-1-foundations/setup) — this lab assumes uv is installed, and either Ollama or an API key are already working.
 
 ## Steps
 
 1. **Get the code.** If you haven't already, clone the repo once — you'll reuse this same copy for every lab in the course:
 
    ```bash
-   git clone https://github.com/mangatrai/zero-to-agent.git
+   git clone https://github.com/fewshot-works/zero-to-agent.git
    cd zero-to-agent/labs/tier1-foundations/02-first-api-call
    ```
 

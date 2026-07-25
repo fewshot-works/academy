@@ -2,7 +2,7 @@
 
 **Status:** Approved for build (decisions locked in §14)
 **Owner:** (you)
-**Repo:** github.com/mangatrai/zero-to-agent
+**Repo:** github.com/fewshot-works/zero-to-agent
 **Last updated:** 2026-07-25
 
 ---
@@ -157,7 +157,7 @@ zero-to-agent/
 
 ## 10. Repo & Project Naming
 
-**Decided:** `zero-to-agent` — public GitHub repo under `mangatrai`. The name reflects the curriculum's actual arc: it starts at zero prior knowledge and ends with the learner having built an agent (the Tier 2/3 capstones).
+**Decided:** `zero-to-agent` — public GitHub repo under the `fewshot-works` org. The name reflects the curriculum's actual arc: it starts at zero prior knowledge and ends with the learner having built an agent (the Tier 2/3 capstones).
 
 ## 11. Success Metrics (v1, no accounts = proxy metrics only)
 
@@ -190,7 +190,7 @@ zero-to-agent/
 1. **Project name:** `zero-to-agent`.
 2. **Site framework:** Docusaurus (MIT-licensed, free).
 3. **Ollama/local-LLM path:** first-class in Tier 1–2, alongside BYOK OpenAI/Anthropic.
-4. **Repo:** public, `github.com/mangatrai/zero-to-agent`, created and scaffolded as part of this same work session.
+4. **Repo:** public, `github.com/fewshot-works/zero-to-agent`, created and scaffolded as part of this same work session.
 
 ## 15. Next Steps After Scaffold
 

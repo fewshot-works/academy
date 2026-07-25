@@ -53,7 +53,7 @@ Context windows vary by model — some hold a few thousand tokens, some hold hun
 
 Time to see the loop from Step 2 actually run. In this lab you'll write a tiny script that sends one prompt to an AI model and prints back what it generated — using either your free local Ollama model from Chapter 0, or a hosted OpenAI/Anthropic key if you set one up.
 
-Full instructions: [`labs/tier1-foundations/02-first-api-call`](https://github.com/mangatrai/zero-to-agent/tree/main/labs/tier1-foundations/02-first-api-call)
+Full instructions: [`labs/tier1-foundations/02-first-api-call`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/tier1-foundations/02-first-api-call)
 
 Here's what you should see (with Ollama — exact wording will vary, since the model is generating text one token at a time, not reciting a fixed answer):
 

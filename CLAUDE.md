@@ -78,7 +78,7 @@ you're done testing a lab against Ollama**, in the same turn/session, not "later
 
 - Hosted on **GitHub Pages**, deployed via GitHub Actions (`.github/workflows/deploy.yml`) on
   every push to `main` that touches `site/**`. No manual `npm run deploy` — just push.
-- Live at https://mangatrai.github.io/zero-to-agent/
+- Live at https://fewshot-works.github.io/zero-to-agent/
 - After any change under `site/`, you can verify deployment landed with:
   `gh run list --workflow=deploy.yml --limit 3` and `gh run view <id> --json status,conclusion`.
 

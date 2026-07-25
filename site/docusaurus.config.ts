@@ -20,10 +20,10 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
 
   // GitHub Pages project-site URL. Update if a custom domain is added later.
-  url: 'https://mangatrai.github.io',
+  url: 'https://fewshot-works.github.io',
   baseUrl: '/zero-to-agent/',
 
-  organizationName: 'mangatrai', // GitHub org/user name
+  organizationName: 'fewshot-works', // GitHub org/user name
   projectName: 'zero-to-agent', // GitHub repo name
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
@@ -44,7 +44,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/mangatrai/zero-to-agent/tree/main/site/',
+          editUrl: 'https://github.com/fewshot-works/zero-to-agent/tree/main/site/',
         },
         blog: false,
         theme: {
@@ -74,7 +74,7 @@ const config: Config = {
           label: 'Curriculum',
         },
         {
-          href: 'https://github.com/mangatrai/zero-to-agent',
+          href: 'https://github.com/fewshot-works/zero-to-agent',
           label: 'GitHub',
           position: 'right',
         },
@@ -105,11 +105,11 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/mangatrai/zero-to-agent',
+              href: 'https://github.com/fewshot-works/zero-to-agent',
             },
             {
               label: 'Hands-on labs',
-              href: 'https://github.com/mangatrai/zero-to-agent/tree/main/labs',
+              href: 'https://github.com/fewshot-works/zero-to-agent/tree/main/labs',
             },
           ],
         },
