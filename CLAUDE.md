@@ -82,6 +82,17 @@ you're done testing a lab against Ollama**, in the same turn/session, not "later
 - After any change under `site/`, you can verify deployment landed with:
   `gh run list --workflow=deploy.yml --limit 3` and `gh run view <id> --json status,conclusion`.
 
+## Tracking deferred decisions and bugs — use GitHub issues
+
+Whenever we agree on something we want to do **later** (not right now), or find a **bug**
+while working on something else, file a GitHub issue for it (`gh issue create --repo
+fewshot-works/zero-to-agent ...`) instead of just leaving it in conversation. Conversations
+don't persist context reliably across sessions — an issue does. Do this proactively, without
+waiting to be asked each time, whenever a "we should do X eventually" or "found a bug, not
+fixing now" moment comes up. Example: issue #1 tracks offering lab downloads as a zip
+alternative to `git clone`, raised during the org-migration discussion but deliberately not
+acted on immediately.
+
 ## Current state
 
 Tier 1 Chapters 0–2 are written and live. Chapters 3–8 (Prompting, Embeddings, Vector DB, RAG,
