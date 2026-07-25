@@ -14,6 +14,11 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   // GitHub Pages project-site URL. Update if a custom domain is added later.
   url: 'https://mangatrai.github.io',
   baseUrl: '/zero-to-agent/',
