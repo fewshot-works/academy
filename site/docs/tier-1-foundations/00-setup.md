@@ -15,8 +15,7 @@ You don't need to know how to code yet. You just need to follow each step in ord
 
 | Tool | Why you need it |
 |---|---|
-| **Python** | The programming language every lab in this course uses. It's free, and it's the language most AI tooling is built around. |
-| **A virtual environment** | Not a separate download — a built-in Python feature. It creates a private, isolated folder for this course's packages so they can't clash with anything else on your computer (or get clashed *by* anything else). |
+| **uv** | A free tool that manages Python for you — including Python itself, if you don't already have it, plus a private, isolated folder for each lab's packages so they can't clash with anything else on your computer. Every lab in this course uses Python, the language most AI tooling is built around, and uv is how you'll run it. |
 | **VS Code** | A free code editor. You'll use it to open and run the lab files. |
 | **Ollama** | Lets you run an AI model directly on your own computer — free, no account, no internet needed once it's downloaded. This is how you'll do almost every lab in Tiers 1 and 2 at zero cost. |
 | **(Optional) An OpenAI or Anthropic API key** | If you'd rather use a hosted model instead of (or alongside) Ollama, this is how. Optional because Ollama alone gets you through the free path. |
@@ -32,45 +31,38 @@ flowchart LR
 
 You can install both and switch per lab — nothing below locks you into one path.
 
-## Step 1: Install Python
+## Step 1: Install uv
 
-First, check whether you already have it. Open your terminal (Mac/Linux: the **Terminal** app; Windows: **PowerShell**) and run:
+Open your terminal (Mac/Linux: the **Terminal** app; Windows: **PowerShell**) and check if you already have it:
 
 ```bash
-python3 --version
+uv --version
 ```
 
-If you see `Python 3.10` or higher, skip to Step 2. If not, or if you got an error:
+If that printed a version number, skip to Step 2. If not:
 
 <Tabs groupId="operating-systems">
-<TabItem value="mac" label="macOS">
-
-Download the installer from [python.org/downloads](https://www.python.org/downloads/) and run it. Or, if you use [Homebrew](https://brew.sh/):
+<TabItem value="mac" label="macOS / Linux">
 
 ```bash
-brew install python
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 </TabItem>
 <TabItem value="windows" label="Windows">
 
-Download the installer from [python.org/downloads](https://www.python.org/downloads/). **Important:** on the first install screen, check the box that says **"Add python.exe to PATH"** before clicking Install — this is the single most common setup mistake, and skipping it means your terminal won't be able to find Python afterward.
-
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-Most distributions ship with Python already. If `python3 --version` didn't work, install it via your package manager, e.g. on Ubuntu/Debian:
-
-```bash
-sudo apt update && sudo apt install python3 python3-venv
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 </TabItem>
 </Tabs>
 
-Close and reopen your terminal, then re-run `python3 --version` to confirm it worked.
+Close and reopen your terminal, then re-run `uv --version` to confirm it worked.
 
-## Step 2: Create a project folder and a virtual environment
+**Why uv instead of installing Python by hand?** Normally you'd need to separately install Python, then learn a second tool (`venv`) to keep each project's packages from clashing with each other, then remember to "activate" that environment every time you open a new terminal. uv folds all three of those into one tool: if you don't have Python, uv downloads the right version for you the first time a lab needs it; and for isolation, it automatically creates a private `.venv` folder per lab the first time you run something in it — no separate command, nothing to activate by hand.
+
+## Step 2: Create a project folder
 
 Pick a spot for this course's code — your Desktop or home folder is fine — and create a folder:
 
@@ -79,34 +71,7 @@ mkdir zero-to-agent-labs
 cd zero-to-agent-labs
 ```
 
-Now create a virtual environment inside it:
-
-```bash
-python3 -m venv venv
-```
-
-This creates a subfolder called `venv` — a self-contained, empty Python installation just for this project. **Why bother?** Without it, every Python package you install goes into one giant shared pile on your computer. Six months from now, some unrelated project might need a different version of the same package, and things break in confusing ways. A virtual environment keeps this course's packages in their own box.
-
-Now turn it on ("activate" it):
-
-<Tabs groupId="operating-systems">
-<TabItem value="mac" label="macOS / Linux">
-
-```bash
-source venv/bin/activate
-```
-
-</TabItem>
-<TabItem value="windows" label="Windows">
-
-```powershell
-venv\Scripts\activate
-```
-
-</TabItem>
-</Tabs>
-
-You'll know it worked because your terminal prompt now starts with `(venv)`. You'll run this activate command every time you come back to work on a lab in a new terminal window — it only stays on for that one window/session.
+That's it — no environment to create yet. Each lab folder in this course ships with its own `pyproject.toml` file that lists exactly which packages that lab needs. The first time you run `uv run <script>.py` inside a lab folder, uv reads that file, quietly creates an isolated `.venv` just for that lab, installs the packages into it, and runs your script — all in one step. Run it again later and it skips straight to running, since everything's already there.
 
 ## Step 3: Install VS Code
 
@@ -147,9 +112,9 @@ Either way, you'll be asked to add a payment method on *their* site before the k
 ## Checkpoint
 
 <details>
-<summary>Why do we use a virtual environment instead of just installing packages normally?</summary>
+<summary>Why does each lab have its own isolated environment instead of just installing packages normally?</summary>
 
-So this course's packages stay isolated in their own folder and can't conflict with other Python projects on your computer (or be broken by them later).
+So this course's packages stay isolated in their own folder and can't conflict with other Python projects on your computer (or be broken by them later). uv creates and manages that isolation for you automatically — no separate command to remember.
 </details>
 
 <details>
@@ -159,9 +124,9 @@ Ollama runs a model directly on your computer — free, private, no account need
 </details>
 
 <details>
-<summary>If your terminal doesn't show `(venv)` at the start of the line, what does that mean?</summary>
+<summary>Do you need to "activate" anything before running a lab, like you might have heard about with Python virtual environments?</summary>
 
-Your virtual environment isn't activated. Run the activate command from Step 2 again in that terminal window.
+No — that's the whole point of uv. Just run `uv run <script>.py` inside the lab's folder, and it handles creating/activating the isolated environment for you behind the scenes.
 </details>
 
 **Time:** 15–30 minutes, mostly download time. **Cost:** $0 if you stick with Ollama, which is enough for all of Tier 1.

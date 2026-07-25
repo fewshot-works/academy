@@ -4,7 +4,7 @@ Companion lab for [Chapter 2: What Is a Large Language Model?](https://mangatrai
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://mangatrai.github.io/zero-to-agent/docs/tier-1-foundations/setup) — this lab assumes Python, a virtual environment, and either Ollama or an API key are already working.
+You should have already completed [Chapter 0: Set Up Your Machine](https://mangatrai.github.io/zero-to-agent/docs/tier-1-foundations/setup) — this lab assumes uv is installed, and either Ollama or an API key are already working.
 
 ## Steps
 
@@ -15,23 +15,7 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://manga
    cd zero-to-agent/labs/tier1-foundations/02-first-api-call
    ```
 
-2. **Activate your virtual environment** (the one you created in Chapter 0):
-
-   ```bash
-   source ../../../../zero-to-agent-labs/venv/bin/activate   # macOS/Linux
-   ```
-
-   (On Windows: `..\..\..\..\zero-to-agent-labs\venv\Scripts\activate`)
-
-   If that path doesn't match where you created your `venv` in Chapter 0, just activate whichever one you made — the folder name matters, not its exact location.
-
-3. **Install this lab's dependencies:**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Set up your `.env` file** — this is where you tell the script which AI provider to use, and holds your API key if you're using one. It's never committed to git (it's in `.gitignore`), so your key stays on your machine only.
+2. **Set up your `.env` file** — this is where you tell the script which AI provider to use, and holds your API key if you're using one. It's never committed to git (it's in `.gitignore`), so your key stays on your machine only.
 
    ```bash
    cp .env.example .env
@@ -39,17 +23,19 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://manga
 
    Open `.env` in your editor. By default `PROVIDER=ollama` — leave it as-is if you're using the free local model from Chapter 0. If you'd rather use a hosted model, change it to `openai` or `anthropic` and uncomment/fill in the matching API key line.
 
-5. **Make sure Ollama is running** (skip this step if you're using `openai` or `anthropic`). Ollama usually starts automatically after installation; if not, open a separate terminal and run:
+3. **Make sure Ollama is running** (skip this step if you're using `openai` or `anthropic`). Ollama usually starts automatically after installation; if not, open a separate terminal and run:
 
    ```bash
    ollama serve
    ```
 
-6. **Run the script:**
+4. **Run the script:**
 
    ```bash
-   python first_call.py
+   uv run first_call.py
    ```
+
+   The first time you run this in a lab folder, uv reads `pyproject.toml`, creates an isolated `.venv` just for this lab, and installs its dependencies — you'll see a bit of extra output as that happens. Every run after that skips straight to executing the script.
 
 ## What you should see
 
@@ -80,4 +66,4 @@ That's the entire lab — one prompt in, one generated reply out. Every later la
 
 - **`ConnectionError` with `PROVIDER=ollama`** — Ollama isn't running. Run `ollama serve` in another terminal, or just reopen the Ollama app.
 - **`AuthenticationError` with `openai` or `anthropic`** — double check you pasted the full key into `.env`, with no extra quotes or spaces, and that the line isn't still commented out with a `#`.
-- **`ModuleNotFoundError`** — you likely forgot to activate your virtual environment before running `pip install`, or before running the script. Re-check step 2.
+- **`ModuleNotFoundError`** — make sure you ran the script with `uv run first_call.py`, not plain `python first_call.py`. `uv run` is what installs the dependencies and points Python at them; running the script directly skips that.
