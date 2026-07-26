@@ -56,6 +56,14 @@ An LLM can only look at a limited number of tokens at once, this limit is called
 
 Context windows vary by model: some hold a few thousand tokens, some hold hundreds of thousands. Bigger isn't automatically better for every task, but it does mean the model can consider more of your conversation, or a longer document, at once.
 
+## Before you hit send: a word on privacy
+
+Talking to a friend standing next to you and mailing a sealed letter across the country are both "sending a message," but only one of them puts your words in someone else's hands along the way. Using a hosted AI model works like the letter: whatever you type travels over the internet to that company's own computers to be processed, then the reply travels back. Ollama, the free option from Chapter 0, is the "friend in the room" version instead, nothing you type ever leaves your machine.
+
+That matters because a hosted provider handles your prompt under *their* privacy and data-retention policy, not this course's. So before you paste something into a hosted model: don't include passwords, other people's personal details, or confidential work documents, unless you've actually read that provider's policy yourself. It's the same instinct as not reading your diary out loud to a stranger on a train: once it's out, you don't control where it goes.
+
+Combine that with what you just learned about hallucination, confidently wrong answers, plus content that leaves your machine, and one habit covers both: treat anything you send to or get back from a hosted AI tool the way you'd treat a conversation with a helpful stranger, often right, but worth checking before you hand over anything sensitive or act on anything important.
+
 ## Hands-on lab: make your first LLM call
 
 Time to see the loop from Step 2 actually run. In this lab you'll write a tiny script that sends one prompt to an AI model and prints back what it generated, using either your free local Ollama model from Chapter 0, or a hosted OpenAI/Anthropic key if you set one up.
@@ -93,6 +101,12 @@ It calculates a probability for every possible next token, given everything writ
 <summary>Why can an LLM confidently state something that's factually wrong?</summary>
 
 It's generating the most statistically plausible-sounding next words based on patterns in its training data, not looking facts up in a database. There's no built-in fact-checking step: plausible-sounding and true usually overlap, but not always.
+</details>
+
+<details>
+<summary>Why shouldn't you paste a password or a confidential work document into a hosted AI chatbot?</summary>
+
+Because a hosted model runs on that provider's own computers, so your prompt travels there under their privacy and data-retention policy, not this course's. Ollama is the exception: it runs entirely on your own machine, so nothing you type into it ever leaves your computer.
 </details>
 
 ## Check Your Knowledge

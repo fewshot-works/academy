@@ -30,7 +30,9 @@ function DisclaimerBanner() {
         Some labs use a paid API (OpenAI or Anthropic) that bills you
         directly, at your own risk — this project never sees your key or
         your money. Content is provided as-is, with no guarantee of
-        accuracy. <Link to="/disclaimer">Full disclaimer</Link>.
+        accuracy. Anything you send to a hosted API leaves your machine —
+        don't paste passwords or anyone's sensitive personal or work data
+        into a prompt. <Link to="/disclaimer">Full disclaimer</Link>.
       </p>
       <button className={styles.button} onClick={dismiss} type="button">
         Got it

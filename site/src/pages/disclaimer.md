@@ -15,6 +15,14 @@ create your own account, get your own key, and pay the provider directly.
 Check the pricing page for the model you're using before you run a lab, and
 keep an eye on your usage if you're cost-conscious.
 
+Some labs also send your prompts and documents to a third-party API (OpenAI
+or Anthropic) for processing. Those providers handle your data under their
+own privacy and retention policies, not this project's — don't paste
+passwords, confidential work material, or anyone's personal, health, or
+financial information into a prompt unless you've checked that policy
+yourself. Ollama runs entirely on your own machine, so nothing you type into
+an Ollama-backed lab ever leaves it.
+
 Content is provided as-is, with no guarantee of accuracy. This is a learning
 resource written and maintained by one person — if you spot something wrong
 or out of date, [let us know](https://docs.google.com/forms/d/e/1FAIpQLSeM7Q-VVE6zoJoMQgq4-B4wagm4c9UCKfNFyCmsnsqDA_C_Rg/viewform).
