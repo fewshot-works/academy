@@ -1,0 +1,110 @@
+.tracks {
+  padding: 3rem 0;
+}
+
+.sectionHead {
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem;
+}
+
+.sectionSub {
+  color: var(--zta-ink-muted);
+  margin: 0 0 2rem;
+  max-width: 60ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  position: relative;
+}
+
+/* A gradient line ties the cards together, growing bolder toward the final
+   track — the course gets harder as you go, so the cards climb like the
+   elevation the contour graphic hints at. */
+.grid::before {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 2.6rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--zta-border), var(--ifm-color-primary));
+  z-index: -1;
+}
+
+.grid > :nth-child(1) {
+  transform: translateY(1.4rem);
+}
+
+.grid > :nth-child(2) {
+  transform: translateY(0.7rem);
+}
+
+.grid > :nth-child(3) {
+  transform: translateY(0);
+  border-color: var(--ifm-color-primary);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 10px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--ifm-color-primary);
+  color: inherit;
+  text-decoration: none;
+}
+
+.status {
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-ink-muted);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+@media screen and (max-width: 996px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid::before {
+    display: none;
+  }
+
+  .grid > :nth-child(1),
+  .grid > :nth-child(2),
+  .grid > :nth-child(3) {
+    transform: none;
+  }
+}

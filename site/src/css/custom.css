@@ -5,37 +5,55 @@
  */
 
 /*
- * Primary color: indigo, not Docusaurus's stock green — distinct from the
- * default every unmodified Docusaurus site ships with, and reads as
- * "technical/trustworthy" rather than the generic "docs site" green.
- * Both base colors below are contrast-checked against their background
- * (WCAG AA requires >=4.5:1 for normal text):
- *   light mode #4f46e5 on #fff  -> ~6.3:1
- *   dark mode  #818cf8 on #1b1b1d -> ~5.8:1
- * Admonition colors (info/tip/warning/danger) are left as Infima defaults —
+ * "Basecamp" palette: pine green primary, warm-stone background, amber
+ * accent for homepage-only decorative use. Contrast-checked against their
+ * background (WCAG AA requires >=4.5:1 for normal text):
+ *   light mode #1f5d4c on #f6f4ef -> ~7.0:1
+ *   dark mode  #78c8a6 on #131a17 -> ~8.9:1
+ * Admonition colors (info/tip/warning/danger) are left as Infima defaults;
  * they already follow conventional blue/green/yellow/red icon-language and
  * changing them would just add inconsistency.
  */
 :root {
-  --ifm-color-primary: #4f46e5;
-  --ifm-color-primary-dark: #4338ca;
-  --ifm-color-primary-darker: #3730a3;
-  --ifm-color-primary-darkest: #312e81;
-  --ifm-color-primary-light: #6366f1;
-  --ifm-color-primary-lighter: #818cf8;
-  --ifm-color-primary-lightest: #a5b4fc;
+  --ifm-color-primary: #1f5d4c;
+  --ifm-color-primary-dark: #1a4f41;
+  --ifm-color-primary-darker: #184a3c;
+  --ifm-color-primary-darkest: #123a2e;
+  --ifm-color-primary-light: #246b58;
+  --ifm-color-primary-lighter: #2f8069;
+  --ifm-color-primary-lightest: #4d9c84;
+  --ifm-background-color: #f6f4ef;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-heading-font-family: ui-serif, Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Homepage-only decorative tokens: Infima has no secondary-accent slot. */
+  --zta-accent: #a85a1c;
+  --zta-ink: #1c2622;
+  --zta-ink-muted: #55625b;
+  --zta-border: #ddd8cb;
+  --zta-contour: rgba(31, 93, 76, 0.14);
+  --zta-chip-bg: #eae6da;
 }
 
 /* Lighter/brighter primary in dark mode so it still reads at >=4.5:1 against the near-black background. */
 [data-theme='dark'] {
-  --ifm-color-primary: #818cf8;
-  --ifm-color-primary-dark: #6366f1;
-  --ifm-color-primary-darker: #4f46e5;
-  --ifm-color-primary-darkest: #4338ca;
-  --ifm-color-primary-light: #a5b4fc;
-  --ifm-color-primary-lighter: #c7d2fe;
-  --ifm-color-primary-lightest: #e0e7ff;
+  --ifm-color-primary: #78c8a6;
+  --ifm-color-primary-dark: #5cb692;
+  --ifm-color-primary-darker: #4aa483;
+  --ifm-color-primary-darkest: #2f8069;
+  --ifm-color-primary-light: #93d4b7;
+  --ifm-color-primary-lighter: #a6e2c5;
+  --ifm-color-primary-lightest: #c3ecdb;
+  --ifm-background-color: #131a17;
+  --ifm-background-surface-color: #1a2320;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --zta-accent: #e0a458;
+  --zta-ink: #e8eee9;
+  --zta-ink-muted: #9db1a7;
+  --zta-border: #2a3530;
+  --zta-contour: rgba(120, 200, 166, 0.18);
+  --zta-chip-bg: #202b26;
 }

@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'zero-to-agent',
   tagline: 'From zero to your first AI agent — free, local-first, hands-on.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -99,23 +99,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Curriculum',
-          items: [
-            {
-              label: 'Foundations',
-              to: '/docs/foundations/setup',
-            },
-            {
-              label: 'Intermediate',
-              to: '/docs/intermediate/overview',
-            },
-            {
-              label: 'Advanced',
-              to: '/docs/advanced/overview',
-            },
-          ],
-        },
         {
           title: 'Project',
           items: [

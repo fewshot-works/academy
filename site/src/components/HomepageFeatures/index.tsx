@@ -5,14 +5,12 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Zero to Agent, One Coherent Arc',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
         Start with "what is a token?" and end with a working, evaluated
@@ -22,7 +20,6 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Free and Local-First',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
         Every Foundations/Intermediate lab runs with a free local Ollama model and a local
@@ -32,7 +29,6 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Hands-On at Every Step',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         Every lesson links to runnable Python code you execute on your own
@@ -42,16 +38,11 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
+    <div className={clsx('col col--4', styles.feature)}>
+      <Heading as="h3">{title}</Heading>
+      <p>{description}</p>
     </div>
   );
 }

@@ -1,11 +1,14 @@
 .features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
+  padding: 3rem 0;
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.feature h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--zta-ink-muted);
 }

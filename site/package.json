@@ -31,6 +31,7 @@
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
     "@types/react": "^19.0.0",
+    "sharp": "^0.33.5",
     "typescript": "~6.0.2"
   },
   "browserslist": {
