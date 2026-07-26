@@ -10,18 +10,21 @@
 }
 
 .question {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   border: 1px solid var(--zta-border);
   border-radius: 8px;
-  background: var(--zta-chip-bg);
-  padding: 1rem 1.25rem;
+  background: var(--ifm-background-surface-color);
+  padding: 1.25rem;
   margin: 0 0 1rem;
 }
 
 .questionText {
   padding: 0;
+  margin: 0 0 0.75rem;
   font-weight: 600;
   color: var(--zta-ink);
-  margin-bottom: 0.6rem;
 }
 
 .options {
@@ -32,7 +35,7 @@
 
 .option {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.6rem;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
@@ -47,6 +50,7 @@
 
 .option input {
   flex-shrink: 0;
+  margin-top: 0.3rem;
   accent-color: var(--ifm-color-primary);
 }
 

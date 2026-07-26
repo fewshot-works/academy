@@ -78,7 +78,12 @@ It would need two separate pieces of live, personal information, your specific f
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch7" questions={ch7Questions} />
+
+</details>
 
 **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 

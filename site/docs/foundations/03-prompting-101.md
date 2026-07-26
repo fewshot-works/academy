@@ -107,7 +107,12 @@ When the output needs a specific, consistent shape (like a fixed label, a JSON s
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch3" questions={ch3Questions} />
+
+</details>
 
 ## What's next
 

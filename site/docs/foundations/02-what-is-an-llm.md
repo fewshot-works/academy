@@ -95,7 +95,12 @@ It's generating the most statistically plausible-sounding next words based on pa
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch2" questions={ch2Questions} />
+
+</details>
 
 ## What's next
 

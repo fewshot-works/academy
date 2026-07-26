@@ -97,7 +97,12 @@ Nothing in the code. Just replace the files inside the `docs/` folder with your 
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch8" questions={ch8Questions} />
+
+</details>
 
 **Time:** ~15-20 minutes. **Cost:** $0 with Ollama.
 

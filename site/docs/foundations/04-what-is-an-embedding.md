@@ -106,7 +106,12 @@ Euclidean (L2) distance measures straight-line distance and is sensitive to a ve
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch4" questions={ch4Questions} />
+
+</details>
 
 ## What's next
 

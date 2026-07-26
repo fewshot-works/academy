@@ -89,7 +89,12 @@ Embed the question, search a vector database for the closest matching chunks, ad
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch6" questions={ch6Questions} />
+
+</details>
 
 ## Bonus: build this without code, in Langflow
 

@@ -91,7 +91,12 @@ In traditional programming, a human writes exact rules for every situation. In m
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch1" questions={ch1Questions} />
+
+</details>
 
 **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 

@@ -93,7 +93,12 @@ Given a new vector, return the k stored vectors that are closest to it in meanin
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch5" questions={ch5Questions} />
+
+</details>
 
 ## What's next
 

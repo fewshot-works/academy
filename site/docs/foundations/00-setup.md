@@ -133,7 +133,12 @@ No, that's the whole point of uv. Just run `uv run <script>.py` inside the lab's
 
 ## Check Your Knowledge
 
+<details>
+<summary>Click to start the quiz</summary>
+
 <Quiz chapterId="ch0" questions={ch0Questions} />
+
+</details>
 
 **Time:** 15–30 minutes, mostly download time. **Cost:** $0 if you stick with Ollama, which is enough for all of Foundations.
 
