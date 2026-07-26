@@ -108,6 +108,19 @@ const config: Config = {
             },
           ],
         },
+        {
+          title: 'Get in touch',
+          items: [
+            {
+              label: 'Contact us',
+              href: 'https://docs.google.com/forms/d/e/1FAIpQLSeM7Q-VVE6zoJoMQgq4-B4wagm4c9UCKfNFyCmsnsqDA_C_Rg/viewform',
+            },
+            {
+              label: 'Give feedback',
+              href: 'https://docs.google.com/forms/d/e/1FAIpQLSeK059EZXmPf5NK7c3AR63DDJb5cG7lEr-IA-Gdgh0GYJmGqw/viewform',
+            },
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} zero-to-agent. Code under MIT, content under CC BY 4.0.`,
     },
