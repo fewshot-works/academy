@@ -81,6 +81,33 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    mermaid: {
+      // Mermaid computes derived shades internally (khroma), so it needs real
+      // hex values, not CSS var() refs — and Docusaurus shares one
+      // `themeVariables` set across light/dark, so these are picked to read
+      // clearly against both the warm-stone light bg and near-black dark bg:
+      // a pine/amber "card" look, matching Basecamp, same in either mode.
+      theme: {light: 'base', dark: 'base'},
+      options: {
+        themeVariables: {
+          primaryColor: '#eae6da',
+          primaryTextColor: '#1c2622',
+          primaryBorderColor: '#1f5d4c',
+          lineColor: '#c17c3a',
+          secondaryColor: '#eae6da',
+          tertiaryColor: '#ffffff',
+          background: '#f6f4ef',
+          mainBkg: '#eae6da',
+          nodeBorder: '#1f5d4c',
+          clusterBkg: '#ffffff',
+          clusterBorder: '#ddd8cb',
+          edgeLabelBackground: '#eae6da',
+          textColor: '#1c2622',
+          arrowheadColor: '#c17c3a',
+          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+        },
+      },
+    },
     navbar: {
       title: 'zero-to-agent',
       logo: {
