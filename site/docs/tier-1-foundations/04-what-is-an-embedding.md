@@ -38,6 +38,16 @@ flowchart LR
 
 On that map, the two dog sentences land close together. The pasta sentence lands far from both.
 
+## Cosine similarity isn't the only option
+
+Cosine similarity is the most common way to measure "close" for text embeddings, but two other metrics show up constantly once you start working with vector databases in Chapter 5, so it's worth knowing what they do.
+
+**Euclidean distance** (also called **L2 distance**) measures straight-line distance, the way a ruler laid between two dots on a map would. It takes both direction and length into account. Two sentences with similar meaning but embeddings of noticeably different length can end up looking farther apart than they really are.
+
+**Dot product** multiplies each matching pair of numbers from the two vectors and adds up the results. It's the cheapest of the three to compute, which matters when a database is scanning millions of vectors per query. If every vector is scaled to the same length first (called normalizing), dot product produces the exact same ranking as cosine similarity, just faster, so a lot of production systems normalize once up front and use dot product from then on.
+
+**Which one should you use?** For text embeddings, cosine similarity is the safest default, it's the scale most embedding models are actually tuned for, and it's what this course uses throughout. The catch is that vector databases don't always default to it. Chroma, the database you'll use starting in Chapter 5, defaults to Euclidean distance unless you explicitly ask for cosine when you create a collection, which is exactly what that chapter's lab does.
+
 ## The same word can land in different places
 
 One more thing worth knowing before the lab: an embedding isn't a fixed lookup table of one vector per word. The word "bank" gets embedded differently in "I deposited a check at the bank" versus "we sat on the river bank," because the model is embedding the meaning of the whole sentence, not just looking up isolated words. You don't need to do anything special to get this. It's just how the models work.
@@ -81,6 +91,12 @@ The angle between two vectors. A score near 1 means very similar meaning, near 0
 <summary>Why can't you compare an embedding from one model against an embedding from a different model?</summary>
 
 Each model builds its own "map," with its own layout and its own number of dimensions. Two different models can place the exact same sentence in completely different coordinates, so a distance calculated between vectors from two different models is meaningless.
+</details>
+
+<details>
+<summary>Besides cosine similarity, what's another common way to measure distance between vectors, and how is it different?</summary>
+
+Euclidean (L2) distance measures straight-line distance and is sensitive to a vector's length, not just its direction. Dot product is a cheaper calculation that matches cosine similarity's ranking exactly once vectors are normalized to the same length.
 </details>
 
 ## What's next

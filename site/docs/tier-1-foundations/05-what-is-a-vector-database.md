@@ -28,6 +28,8 @@ At its core, a vector database holds records that look like this:
 
 You can add as many of these records as you want. Then, when you have a new piece of text, you embed it the same way, hand that new vector to the database, and ask for the **top-k nearest matches**, meaning "give me the k records whose embeddings are closest to this one." The database returns them fast, using an index built for exactly this kind of search, instead of comparing against every record one by one.
 
+"Closest" has to mean something specific, and that's where the distance metric from Chapter 4 comes back in. Most vector databases default to Euclidean distance rather than cosine similarity, so when you create a collection, you tell it which one to use. The lab below explicitly asks for cosine, to match the similarity scores you already saw in Chapter 4.
+
 That optional metadata is also worth knowing about: most vector databases let you filter by it alongside the similarity search, for example "only search records where `topic` is `pets`." You won't need this yet, but it's a useful thing to know exists. Tier 2 covers it in more depth.
 
 ```mermaid
