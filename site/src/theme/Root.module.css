@@ -22,6 +22,11 @@
   color: var(--zta-ink-muted);
 }
 
+.text a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
 .button {
   flex-shrink: 0;
   font-family: inherit;

@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import {useEffect, useState} from 'react';
+import Link from '@docusaurus/Link';
 import styles from './Root.module.css';
 
 const STORAGE_KEY = 'zta-disclaimer-dismissed';
@@ -29,7 +30,7 @@ function DisclaimerBanner() {
         Some labs use a paid API (OpenAI or Anthropic) that bills you
         directly, at your own risk — this project never sees your key or
         your money. Content is provided as-is, with no guarantee of
-        accuracy.
+        accuracy. <Link to="/disclaimer">Full disclaimer</Link>.
       </p>
       <button className={styles.button} onClick={dismiss} type="button">
         Got it

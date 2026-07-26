@@ -1,0 +1,20 @@
+---
+title: Disclaimer
+description: What zero-to-agent is, what it isn't, and what you're responsible for when you run the labs.
+---
+
+# Disclaimer
+
+zero-to-agent is a free, open-source course. It's not professional advice — not
+legal, financial, security, or otherwise. Use what you learn here at your own
+judgment.
+
+Some labs call a paid API (OpenAI or Anthropic) that bills you directly, at
+your own risk. This project never sees your API key or your money — you
+create your own account, get your own key, and pay the provider directly.
+Check the pricing page for the model you're using before you run a lab, and
+keep an eye on your usage if you're cost-conscious.
+
+Content is provided as-is, with no guarantee of accuracy. This is a learning
+resource written and maintained by one person — if you spot something wrong
+or out of date, [let us know](https://docs.google.com/forms/d/e/1FAIpQLSeM7Q-VVE6zoJoMQgq4-B4wagm4c9UCKfNFyCmsnsqDA_C_Rg/viewform).

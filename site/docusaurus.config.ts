@@ -133,6 +133,10 @@ const config: Config = {
               label: 'Hands-on labs',
               href: 'https://github.com/fewshot-works/zero-to-agent/tree/main/labs',
             },
+            {
+              label: 'Disclaimer',
+              to: '/disclaimer',
+            },
           ],
         },
         {
