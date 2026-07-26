@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'site/**'
+      - 'labs/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -38,6 +39,14 @@ jobs:
       - name: Build website
         working-directory: site
         run: npm run build
+
+      - name: Build per-track labs zips
+        run: |
+          mkdir -p site/build/downloads
+          for dir in labs/*/; do
+            track=$(basename "$dir")
+            git archive --format=zip --prefix="labs/$track/" -o "site/build/downloads/zero-to-agent-labs-$track.zip" "HEAD:labs/$track"
+          done
 
       - uses: actions/configure-pages@v5
 

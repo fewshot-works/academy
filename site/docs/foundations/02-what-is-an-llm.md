@@ -46,6 +46,8 @@ flowchart LR
 
 That's it. That loop, run thousands of times per response, is how an LLM writes an entire email, poem, or piece of code. It's never planning the whole thing in advance, just repeatedly guessing "what token most plausibly comes next" based on patterns learned from enormous amounts of text during training.
 
+This live, one-token-at-a-time generation process has a name: **inference**. It's the counterpart to training. Training happens once, ahead of time (done by a company like OpenAI or Anthropic, using enormous amounts of computing power), and is where the model learns those token probabilities from huge amounts of text. Inference is what happens every time you send it a prompt afterward: the already-trained model just runs the Step 2 loop to generate a reply. When people talk about the cost or speed of "running" an LLM, inference is almost always what they mean, training already happened long before you typed anything.
+
 This also explains **why LLMs sometimes confidently say things that are wrong** (often called "hallucinating"). The model isn't looking facts up in a database, it's generating the statistically most plausible-*sounding* next words. Usually that lines up with the truth, because true statements are common in its training data. But it has no built-in "is this actually true?" check, it's playing an extremely good game of "what word most likely comes next," not consulting an encyclopedia.
 
 ## Step 3: the "context window" (its short-term memory)

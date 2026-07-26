@@ -21,6 +21,8 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd zero-to-agent/labs/foundations/06-first-rag-bot
    ```
 
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/06-first-rag-bot` in your terminal.
+
 2. **If you're using Ollama, make sure you've pulled the embedding model.** Same model used in Chapters 4 and 5, skip this if you already have it:
 
    ```bash

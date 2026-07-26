@@ -27,6 +27,9 @@ labs/**/.env
 /PRD.md
 /CLAUDE.md
 
+# Claude Code local settings (machine-specific, may include local env/proxy config)
+.claude/
+
 # OS
 .DS_Store
 

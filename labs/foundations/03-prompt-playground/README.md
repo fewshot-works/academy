@@ -21,6 +21,8 @@ You should have already completed [Lab 2](../02-first-api-call) at least once, s
    cd zero-to-agent/labs/foundations/03-prompt-playground
    ```
 
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/03-prompt-playground` in your terminal.
+
 2. **Set up your `.env` file:**
 
    ```bash

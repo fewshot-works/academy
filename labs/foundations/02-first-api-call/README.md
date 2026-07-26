@@ -15,6 +15,8 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd zero-to-agent/labs/foundations/02-first-api-call
    ```
 
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/02-first-api-call` in your terminal.
+
 2. **Set up your `.env` file.** This is where you tell the script which AI provider to use, and it holds your API key if you're using one. It's never committed to git (it's in `.gitignore`), so your key stays on your machine only.
 
    ```bash

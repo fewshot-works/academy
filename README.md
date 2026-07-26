@@ -5,7 +5,7 @@ A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Dat
 Everything runs on your own laptop. No servers, no accounts, no required cloud spend:
 
 - **Content site** (`site/`) — a static [Docusaurus](https://docusaurus.io/) site with the lessons, diagrams, and explanations. Live at [fewshot-works.github.io/zero-to-agent](https://fewshot-works.github.io/zero-to-agent/), deployed via GitHub Pages.
-- **Hands-on labs** (`labs/`) — runnable Python code, one folder per track, that you clone and run locally against either a free local [Ollama](https://ollama.com) model or your own OpenAI/Anthropic API key. Vector storage uses a local, file-based [ChromaDB](https://www.trychroma.com/) — no server required.
+- **Hands-on labs** (`labs/`) — runnable Python code, one folder per track, that you clone and run locally against either a free local [Ollama](https://ollama.com) model or your own OpenAI/Anthropic API key. Vector storage uses a local, file-based [ChromaDB](https://www.trychroma.com/) — no server required. No git? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead (Intermediate/Advanced zips will be linked here once those tracks ship).
 
 ## Structure
 

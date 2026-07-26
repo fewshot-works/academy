@@ -21,6 +21,8 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd zero-to-agent/labs/foundations/08-capstone-qa-bot
    ```
 
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/08-capstone-qa-bot` in your terminal.
+
 2. **If you're using Ollama, make sure you've pulled the embedding model.** Same model used since Chapter 4, skip this if you already have it:
 
    ```bash

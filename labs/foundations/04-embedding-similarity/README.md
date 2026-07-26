@@ -23,6 +23,8 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd zero-to-agent/labs/foundations/04-embedding-similarity
    ```
 
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/04-embedding-similarity` in your terminal.
+
 2. **If you're using Ollama, pull the embedding model.** The chat model from earlier chapters (`llama3.2`) doesn't do embeddings; you need a separate model built for it:
 
    ```bash
