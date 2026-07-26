@@ -2,6 +2,9 @@
 sidebar_position: 7
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch6Questions} from '@site/src/data/quizzes/ch6';
+
 # Chapter 6: What Is RAG?
 
 Imagine two students taking the same exam. One studies for weeks, memorizes everything, and walks in with nothing but what's in their head, a closed-book exam. If they misremember a fact, they'll still write it down confidently. The other student gets to bring the textbook in with them, an open-book exam. Before answering, they flip to the relevant page and check it, then answer using what's actually written there.
@@ -83,6 +86,10 @@ Because the model is now working from real, retrieved text instead of only its m
 
 Embed the question, search a vector database for the closest matching chunks, add those chunks to the prompt as context, then send the whole thing to the LLM to generate an answer.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch6" questions={ch6Questions} />
 
 ## Bonus: build this without code, in Langflow
 

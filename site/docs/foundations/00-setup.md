@@ -4,6 +4,8 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch0Questions} from '@site/src/data/quizzes/ch0';
 
 # Chapter 0: Set Up Your Machine
 
@@ -128,6 +130,10 @@ Ollama runs a model directly on your computer: free, private, no account needed,
 
 No, that's the whole point of uv. Just run `uv run <script>.py` inside the lab's folder, and it handles creating/activating the isolated environment for you behind the scenes.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch0" questions={ch0Questions} />
 
 **Time:** 15–30 minutes, mostly download time. **Cost:** $0 if you stick with Ollama, which is enough for all of Foundations.
 

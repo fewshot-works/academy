@@ -2,6 +2,9 @@
 sidebar_position: 4
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch3Questions} from '@site/src/data/quizzes/ch3';
+
 # Chapter 3: Prompting 101
 
 Imagine you just hired someone new and told them: "handle the customer complaints." That's it, no more detail. You'll get answers, but every one will look different. One reply is three paragraphs long and apologetic. Another is one clipped sentence. A third offers a refund when your policy actually calls for store credit.
@@ -101,6 +104,10 @@ Most chat APIs keep the system prompt in its own field or role, separate from th
 
 When the output needs a specific, consistent shape (like a fixed label, a JSON structure, or a particular tone) that's easier to demonstrate with a couple of examples than to describe accurately in words.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch3" questions={ch3Questions} />
 
 ## What's next
 

@@ -2,6 +2,9 @@
 sidebar_position: 2
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch1Questions} from '@site/src/data/quizzes/ch1';
+
 # Chapter 1: What Is AI, Really?
 
 Someone tells you "the AI wrote my email." Someone else says "my thermostat uses AI to save energy." A news article says a hospital is "using AI to detect cancer earlier." A movie has a robot villain called "the AI."
@@ -85,6 +88,10 @@ All four at once. It's a specific example of generative AI, which is built using
 
 In traditional programming, a human writes exact rules for every situation. In machine learning, the human instead provides a large set of examples, and the computer works out the pattern on its own.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch1" questions={ch1Questions} />
 
 **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 

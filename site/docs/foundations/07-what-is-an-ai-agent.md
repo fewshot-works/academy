@@ -2,6 +2,9 @@
 sidebar_position: 8
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch7Questions} from '@site/src/data/quizzes/ch7';
+
 # Chapter 7: What Is an AI Agent?
 
 A vending machine and a personal assistant can both get you a snack. Press a button on the vending machine and you get exactly what's behind that button, nothing more. Ask a personal assistant to "grab me something to eat" and they'll check what you like, notice the good bakery closed early today, decide to try the place next door instead, and come back with a decision they made along the way.
@@ -72,6 +75,10 @@ Tools it's allowed to use (like a search function, a calculator, or an API call)
 
 It would need two separate pieces of live, personal information, your specific flight's destination and tomorrow's weather there, and it would need to look up the second one *using the result of* the first. A RAG bot only retrieves once, before answering; it can't make a decision partway through and go look something else up.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch7" questions={ch7Questions} />
 
 **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 

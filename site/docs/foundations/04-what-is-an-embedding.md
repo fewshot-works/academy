@@ -2,6 +2,9 @@
 sidebar_position: 5
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch4Questions} from '@site/src/data/quizzes/ch4';
+
 # Chapter 4: What Is an Embedding?
 
 Picture a giant map of every food on earth, laid out so that similar tastes sit near each other. Mango sits close to peach. Chili sits close to wasabi. Both sit far away from vanilla. You didn't build this map by measuring sugar content or spice levels by hand. You built it by noticing which foods taste alike.
@@ -100,6 +103,10 @@ Each model builds its own "map," with its own layout and its own number of dimen
 
 Euclidean (L2) distance measures straight-line distance and is sensitive to a vector's length, not just its direction. Dot product is a cheaper calculation that matches cosine similarity's ranking exactly once vectors are normalized to the same length.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch4" questions={ch4Questions} />
 
 ## What's next
 

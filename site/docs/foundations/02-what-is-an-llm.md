@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch2Questions} from '@site/src/data/quizzes/ch2';
+
 # Chapter 2: What Is a Large Language Model?
 
 Your phone's keyboard already does something like this: you type "I'll be there in", and it suggests "5", "10", "a bit". It's not reading your mind, it's guessing the next word based on patterns from millions of texts people have typed before.
@@ -89,6 +92,10 @@ It calculates a probability for every possible next token, given everything writ
 
 It's generating the most statistically plausible-sounding next words based on patterns in its training data, not looking facts up in a database. There's no built-in fact-checking step: plausible-sounding and true usually overlap, but not always.
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch2" questions={ch2Questions} />
 
 ## What's next
 

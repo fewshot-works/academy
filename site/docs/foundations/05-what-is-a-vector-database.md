@@ -2,6 +2,9 @@
 sidebar_position: 6
 ---
 
+import Quiz from '@site/src/components/Quiz';
+import {questions as ch5Questions} from '@site/src/data/quizzes/ch5';
+
 # Chapter 5: What Is a Vector Database, and Why?
 
 Imagine a librarian who shelves books not alphabetically by title, but by what they're actually *about*, so that two books on similar topics end up right next to each other on the shelf, even if their titles have nothing in common. Hand her a brand-new book, and she doesn't scan every title in the building. She already knows roughly where it belongs, and walks straight there.
@@ -87,6 +90,10 @@ At minimum, an embedding and the original text it came from. Often also optional
 
 Given a new vector, return the k stored vectors that are closest to it in meaning (k being however many results you asked for, like the top 3).
 </details>
+
+## Check Your Knowledge
+
+<Quiz chapterId="ch5" questions={ch5Questions} />
 
 ## What's next
 
