@@ -75,6 +75,20 @@ It would need two separate pieces of live, personal information, your specific f
 
 **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 
+## Bonus: build this without code, in Langflow
+
+The reasoning loop from this chapter can be wired up visually too, in [Langflow](https://www.langflow.org), the same free no-code tool from Chapter 6's bonus section. If you haven't installed it yet, follow the setup steps there first.
+
+**Build the flow:**
+
+1. Click **New Flow**, then pick the **Simple Agent** template. Unlike Chapter 6's template, this one needs no swapping, it already comes with a calculator tool and a URL-fetching tool wired straight into an Agent component.
+2. Plug in a model: add your OpenAI or Anthropic API key, or point it at your local Ollama server the same way you configured Ollama Embeddings in Chapter 6's bonus.
+3. Open **Playground** and ask something that needs both tools in a single question, for example: *"What's 15% of 340, and what does the top Wikipedia result for the Eiffel Tower say about when it was built?"*
+
+Langflow shows you which tool the agent picked and what it got back at each step, so you can literally watch the reason, act, observe loop from earlier in this chapter happen in front of you, instead of imagining it.
+
+Smaller local models are sometimes less reliable at picking the right tool than a larger hosted one. If the agent ignores a tool or answers from memory instead, that's not a bug, it's the exact "agents aren't magic" point from earlier in this chapter, showing up live. As a side note, Langflow can also expose any flow as an MCP server, letting other AI tools call it directly, that's beyond what this course covers, but good to know it's there if you go looking.
+
 ## What's next
 
 You now know the vocabulary for everything this course has been building toward: embeddings (Chapter 4), vector databases (Chapter 5), retrieval-augmented generation (Chapter 6), and now agents that can reason, act, and loop. Chapter 8 pulls all of it together into a capstone project: a Q&A bot over your own documents, built from the pieces you've already used.

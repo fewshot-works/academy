@@ -84,6 +84,32 @@ Because the model is now working from real, retrieved text instead of only its m
 Embed the question, search a vector database for the closest matching chunks, add those chunks to the prompt as context, then send the whole thing to the LLM to generate an answer.
 </details>
 
+## Bonus: build this without code, in Langflow
+
+Everything you just built, embed, store, retrieve, prompt, can also be wired together by dragging boxes around instead of writing Python. That's what [Langflow](https://www.langflow.org) is: a free, open-source, visual tool for building these pipelines. It's entirely optional, the required path for this course stays plain Python, but it's a good way to *see* the RAG loop as a literal diagram instead of a script.
+
+**Setting up Langflow** (skip this if you already have it running):
+
+```bash
+uv venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+uv pip install langflow
+uv run langflow run
+```
+
+Open `http://127.0.0.1:7860` in your browser once it starts.
+
+**Build the flow:**
+
+1. Click **New Flow**, then pick the **Vector Store RAG** template. It comes with two flows already wired up: one that loads a document into a vector database, one that answers questions from it.
+2. That template defaults to Astra DB. Swap both Astra DB components for **Chroma DB**, the same local vector database from Chapter 5.
+3. Swap both embedding components for **Ollama Embeddings**, and set the model to `nomic-embed-text`, the exact model you've used since Chapter 4. (If you've been using OpenAI in the labs instead, use OpenAI Embeddings here with the same key.)
+4. On the Load Data flow, open the Read File component and upload `sample_facts.txt` from this chapter's lab folder.
+5. Run that flow to embed and store the file.
+6. Switch to the Retriever flow, click **Playground**, and ask the same question from the lab: "What is Fernwood Coffee Co.'s most popular drink?"
+
+The chat panel should answer using the retrieved text, and you can open each component's logs to see the exact chunks it pulled back, the same information the Python script printed to your terminal. Same four steps, same result, just built with a mouse instead of a keyboard.
+
 ## What's next
 
 You've now seen retrieval and generation work together. Chapter 7 introduces the next idea: an **AI agent**, which takes this further by letting the model decide *which* tool to use and *when*, instead of always following the same fixed retrieve-then-answer steps.
