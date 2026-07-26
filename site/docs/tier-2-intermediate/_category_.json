@@ -1,8 +1,0 @@
-{
-  "label": "Tier 2 — Intermediate",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "For learners who've finished Tier 1, or already have basic LLM/API experience."
-  }
-}

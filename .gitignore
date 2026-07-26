@@ -23,6 +23,10 @@ labs/**/.env
 !.env.example
 !labs/**/.env.example
 
+# Internal-only docs (kept on disk, not published to the public repo)
+/PRD.md
+/CLAUDE.md
+
 # OS
 .DS_Store
 

@@ -30,6 +30,27 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        createRedirects(existingPath: string) {
+          const map: Record<string, string> = {
+            '/docs/foundations/': '/docs/tier-1-foundations/',
+            '/docs/intermediate/': '/docs/tier-2-intermediate/',
+            '/docs/advanced/': '/docs/tier-3-advanced/',
+          };
+          for (const [next, old] of Object.entries(map)) {
+            if (existingPath.startsWith(next)) {
+              return [existingPath.replace(next, old)];
+            }
+          }
+          return undefined;
+        },
+      },
+    ],
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -73,11 +94,6 @@ const config: Config = {
           position: 'left',
           label: 'Curriculum',
         },
-        {
-          href: 'https://github.com/fewshot-works/zero-to-agent',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -87,26 +103,22 @@ const config: Config = {
           title: 'Curriculum',
           items: [
             {
-              label: 'Tier 1 — Foundations',
-              to: '/docs/tier-1-foundations/setup',
+              label: 'Foundations',
+              to: '/docs/foundations/setup',
             },
             {
-              label: 'Tier 2 — Intermediate',
-              to: '/docs/tier-2-intermediate/overview',
+              label: 'Intermediate',
+              to: '/docs/intermediate/overview',
             },
             {
-              label: 'Tier 3 — Advanced',
-              to: '/docs/tier-3-advanced/overview',
+              label: 'Advanced',
+              to: '/docs/advanced/overview',
             },
           ],
         },
         {
           title: 'Project',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/fewshot-works/zero-to-agent',
-            },
             {
               label: 'Hands-on labs',
               href: 'https://github.com/fewshot-works/zero-to-agent/tree/main/labs',

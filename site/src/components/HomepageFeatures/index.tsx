@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Start with "what is a token?" and end with a working, evaluated
-        agentic RAG system — three tiers, each building on the last.
+        agentic RAG system — three tracks, each building on the last.
       </>
     ),
   },
@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Every Tier 1–2 lab runs with a free local Ollama model and a local
+        Every Foundations/Intermediate lab runs with a free local Ollama model and a local
         ChromaDB — no credit card, no cloud account, no server required.
       </>
     ),
