@@ -7,6 +7,8 @@ import {questions as ch7Questions} from '@site/src/data/quizzes/ch7';
 
 # Chapter 7: What Is an AI Agent?
 
+> **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
+
 A vending machine and a personal assistant can both get you a snack. Press a button on the vending machine and you get exactly what's behind that button, nothing more. Ask a personal assistant to "grab me something to eat" and they'll check what you like, notice the good bakery closed early today, decide to try the place next door instead, and come back with a decision they made along the way.
 
 Everything you've built so far in this course, the plain chatbot in Chapter 2, the RAG bot in Chapter 6, works like the vending machine: one input goes in, one output comes out, following the same fixed steps every time. An **AI agent** works more like the assistant: it can decide what to do next based on what it learns, take multiple steps on its own, and use different tools along the way. This chapter is concept-only, no lab, just enough to recognize an agent when you see one before Intermediate has you build one.
@@ -84,8 +86,6 @@ It would need two separate pieces of live, personal information, your specific f
 <Quiz chapterId="ch7" questions={ch7Questions} />
 
 </details>
-
-**Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 
 ## Bonus: build this without code, in Langflow
 

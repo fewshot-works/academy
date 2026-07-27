@@ -7,6 +7,8 @@ import {questions as ch1Questions} from '@site/src/data/quizzes/ch1';
 
 # Chapter 1: What Is AI, Really?
 
+> **Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
+
 Someone tells you "the AI wrote my email." Someone else says "my thermostat uses AI to save energy." A news article says a hospital is "using AI to detect cancer earlier." A movie has a robot villain called "the AI."
 
 Are these all the same thing? Not really, but they all get called "AI," and that's exactly why the word is confusing. This chapter untangles four terms you'll hear constantly: **AI, machine learning, deep learning,** and **generative AI**, and shows how they relate to each other. You won't write any code in this chapter. You just need to leave it knowing which word means what.
@@ -97,8 +99,6 @@ In traditional programming, a human writes exact rules for every situation. In m
 <Quiz chapterId="ch1" questions={ch1Questions} />
 
 </details>
-
-**Time:** ~10 minutes reading, no lab in this chapter. **Cost:** $0.
 
 ## What's next
 

@@ -9,6 +9,8 @@ import {questions as ch0Questions} from '@site/src/data/quizzes/ch0';
 
 # Chapter 0: Set Up Your Machine
 
+> **Time:** 15–30 minutes, mostly download time. **Cost:** $0 if you stick with Ollama, which is enough for all of Foundations.
+
 Before you go on a road trip, you pack the car first: snacks, a phone charger, a map. You don't figure that out while you're already driving. This chapter is the packing part. It's not exciting, but skipping it means every later chapter stops to fix a setup problem instead of teaching you something new. Do this once, carefully, and you won't think about it again.
 
 You don't need to know how to code yet. You just need to follow each step in order.
@@ -139,8 +141,6 @@ No, that's the whole point of uv. Just run `uv run <script>.py` inside the lab's
 <Quiz chapterId="ch0" questions={ch0Questions} />
 
 </details>
-
-**Time:** 15–30 minutes, mostly download time. **Cost:** $0 if you stick with Ollama, which is enough for all of Foundations.
 
 ## What's next
 

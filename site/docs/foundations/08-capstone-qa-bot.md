@@ -7,6 +7,8 @@ import {questions as ch8Questions} from '@site/src/data/quizzes/ch8';
 
 # Chapter 8: Capstone: A Q&A Bot Over Your Own Documents
 
+> **Time:** ~15-20 minutes. **Cost:** $0 with Ollama.
+
 This is the Foundations capstone. You've already built every piece of this, just not all at once. Chapter 2 sent a question to an LLM. Chapter 4 turned text into embeddings. Chapter 5 stored those embeddings in a vector database and searched them. Chapter 6 wired retrieval and generation together into a RAG bot. This chapter wires all of it into one bot, pointed at documents that are actually yours, that you can keep asking questions for as long as you want.
 
 ## What you already know, put together
@@ -103,8 +105,6 @@ Nothing in the code. Just replace the files inside the `docs/` folder with your 
 <Quiz chapterId="ch8" questions={ch8Questions} />
 
 </details>
-
-**Time:** ~15-20 minutes. **Cost:** $0 with Ollama.
 
 ## What's next
 

@@ -7,6 +7,8 @@ import {questions as ch5Questions} from '@site/src/data/quizzes/ch5';
 
 # Chapter 5: What Is a Vector Database, and Why?
 
+> **Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI.
+
 Imagine a librarian who shelves books not alphabetically by title, but by what they're actually *about*, so that two books on similar topics end up right next to each other on the shelf, even if their titles have nothing in common. Hand her a brand-new book, and she doesn't scan every title in the building. She already knows roughly where it belongs, and walks straight there.
 
 A **vector database** does exactly this with embeddings. It's a place to store the vectors you learned about in Chapter 4, built specifically so that finding "what's closest in meaning to this new thing" is fast, even when you're searching millions of them.
@@ -68,8 +70,6 @@ Top 3 closest matches:
 ```
 
 **One thing to know before you run it:** just like Chapter 4, this lab needs an embedding model, and Anthropic doesn't offer one. If your `.env` still has `PROVIDER=anthropic`, switch it to `ollama` or `openai` for this lab.
-
-**Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI.
 
 ## Checkpoint
 

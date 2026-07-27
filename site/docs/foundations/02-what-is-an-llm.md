@@ -7,6 +7,8 @@ import {questions as ch2Questions} from '@site/src/data/quizzes/ch2';
 
 # Chapter 2: What Is a Large Language Model?
 
+> **Time:** 10 minutes. **Cost:** $0 with Ollama, or roughly $0.001 (a tenth of a cent) per run with a hosted API key.
+
 Your phone's keyboard already does something like this: you type "I'll be there in", and it suggests "5", "10", "a bit". It's not reading your mind, it's guessing the next word based on patterns from millions of texts people have typed before.
 
 A large language model (LLM), the technology behind ChatGPT, Claude, and similar tools, does the exact same trick. It's just wildly bigger, and it does it one step at a time, over and over, to write whole paragraphs. That's genuinely most of the magic trick. Let's take it apart.
@@ -80,8 +82,6 @@ Waiting for a reply...
 AI replied:
 A large language model is like a computer that has read a huge number of books and websites, so it can guess what word should come next when you ask it a question!
 ```
-
-**Time:** 10 minutes. **Cost:** $0 with Ollama, or roughly $0.001 (a tenth of a cent) per run with a hosted API key.
 
 ## Checkpoint
 

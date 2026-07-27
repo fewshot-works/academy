@@ -7,6 +7,8 @@ import {questions as ch4Questions} from '@site/src/data/quizzes/ch4';
 
 # Chapter 4: What Is an Embedding?
 
+> **Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent total with OpenAI (embeddings are one of the cheapest things you can call an API for).
+
 Picture a giant map of every food on earth, laid out so that similar tastes sit near each other. Mango sits close to peach. Chili sits close to wasabi. Both sit far away from vanilla. You didn't build this map by measuring sugar content or spice levels by hand. You built it by noticing which foods taste alike.
 
 An **embedding** does the same thing for meaning. It takes a piece of text and turns it into a list of numbers, called a **vector**, that acts like coordinates on a giant map of meaning. Put two sentences with similar meaning through the same embedding model, and their coordinates land close together, even if the sentences don't share a single word in common. Put two unrelated sentences through it, and their coordinates land far apart.
@@ -75,8 +77,6 @@ Saved plot to embeddings_plot.png
 Open `embeddings_plot.png` afterward. You'll see the pet sentences grouped together, the cooking sentences grouped together, and everything else spread out, without you ever telling the script which sentences belonged together.
 
 **One thing to know before you run it:** this lab needs an embedding model, and Anthropic doesn't currently offer one. If your `.env` still has `PROVIDER=anthropic` from an earlier chapter, switch it to `ollama` or `openai` for this lab.
-
-**Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent total with OpenAI (embeddings are one of the cheapest things you can call an API for).
 
 ## Checkpoint
 

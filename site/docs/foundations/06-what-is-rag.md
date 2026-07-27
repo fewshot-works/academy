@@ -7,6 +7,8 @@ import {questions as ch6Questions} from '@site/src/data/quizzes/ch6';
 
 # Chapter 6: What Is RAG?
 
+> **Time:** 15 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI.
+
 Imagine two students taking the same exam. One studies for weeks, memorizes everything, and walks in with nothing but what's in their head, a closed-book exam. If they misremember a fact, they'll still write it down confidently. The other student gets to bring the textbook in with them, an open-book exam. Before answering, they flip to the relevant page and check it, then answer using what's actually written there.
 
 An LLM answering a question purely from what it learned during training is the closed-book student. It's fast and often right, but it can also confidently state something wrong, because it's working from memory alone. **RAG**, short for **Retrieval-Augmented Generation**, turns the same LLM into the open-book student: before it answers, it goes and finds the relevant text first, then answers using that text as a reference.
@@ -64,8 +66,6 @@ Fernwood Coffee Co.'s most popular drink is the Depot Latte.
 ```
 
 **One thing to know before you run it:** this lab needs one provider that can do both embeddings and chat, so it only supports `PROVIDER=ollama` or `PROVIDER=openai`, same restriction as Chapters 4 and 5.
-
-**Time:** 15 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI.
 
 ## Checkpoint
 
