@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Advanced Overview
 
-*Content coming soon.*
+Advanced picks up once you've finished Intermediate: taking a working multi-tool agent and shaping it the way a real production system would look, with evaluation, guardrails, and observability built in rather than bolted on.
 
-Planned Advanced chapters:
+The chapters ahead:
 
 1. Multi-agent patterns
 2. Advanced RAG
