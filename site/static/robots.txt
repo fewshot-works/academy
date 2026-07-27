@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fewshot-works.github.io/zero-to-agent/sitemap.xml
+Sitemap: https://fewshot-works.github.io/academy/sitemap.xml

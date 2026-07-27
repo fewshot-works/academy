@@ -1,27 +1,27 @@
 # Lab 8: Capstone: Your Own Q&A Bot
 
-Companion lab for [Chapter 8: Capstone: A Q&A Bot Over Your Own Documents](https://fewshot-works.github.io/zero-to-agent/docs/foundations/capstone-qa-bot). This is the Foundations capstone: a reusable bot that answers questions about a whole folder of documents, saved to disk so it doesn't have to redo the embedding work every time you run it.
+Companion lab for [Chapter 8: Capstone: A Q&A Bot Over Your Own Documents](https://fewshot-works.github.io/academy/docs/foundations/capstone-qa-bot). This is the Foundations capstone: a reusable bot that answers questions about a whole folder of documents, saved to disk so it doesn't have to redo the embedding work every time you run it.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/zero-to-agent/docs/foundations/setup) and the [Chapter 6 lab](../06-first-rag-bot). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup) and the [Chapter 6 lab](../06-first-rag-bot). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
 
 ## Steps
 
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/foundations/08-capstone-qa-bot
+   cd academy/labs/foundations/08-capstone-qa-bot
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/foundations/08-capstone-qa-bot
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/foundations/08-capstone-qa-bot
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/08-capstone-qa-bot` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/08-capstone-qa-bot` in your terminal.
 
 2. **If you're using Ollama, make sure you've pulled the embedding model.** Same model used since Chapter 4, skip this if you already have it:
 

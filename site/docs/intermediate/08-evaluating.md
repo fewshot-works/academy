@@ -75,7 +75,7 @@ flowchart TD
 
 ## Hands-on lab: measuring both
 
-Full instructions: [`labs/intermediate/08-evaluating`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/08-evaluating)
+Full instructions: [`labs/intermediate/08-evaluating`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/08-evaluating)
 
 Both scripts reuse Chapter 3's exact 12-document corpus (three fictional coffee companies) and a 5-question eval set, some questions have one relevant document, some have several, on purpose, so precision and recall actually diverge instead of moving together.
 

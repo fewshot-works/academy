@@ -42,7 +42,7 @@ flowchart TD
 
 The lab reuses Fernwood Coffee Co. from Foundations Chapter 6, now alongside two more fictional coffee companies, Harbor Bean Roasters and Whistlepost Coffee, whose facts were deliberately written to sound similar. Twelve short documents in total, run through the same question four different ways.
 
-Full instructions: [`labs/intermediate/03-better-retrieval`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/03-better-retrieval)
+Full instructions: [`labs/intermediate/03-better-retrieval`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/03-better-retrieval)
 
 Here's what you should see (with Ollama):
 

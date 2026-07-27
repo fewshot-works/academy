@@ -51,7 +51,7 @@ But it's not a guarantee. The model can still misread the retrieved text, blend 
 
 In this lab you'll build a tiny RAG bot over a short, made-up document, made-up on purpose, so you can be certain any correct answer came from retrieval, not from something the model already knew.
 
-Full instructions: [`labs/foundations/06-first-rag-bot`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/06-first-rag-bot)
+Full instructions: [`labs/foundations/06-first-rag-bot`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/06-first-rag-bot)
 
 Here's what you should see:
 

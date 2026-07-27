@@ -1,11 +1,11 @@
 ---
 title: Disclaimer
-description: What zero-to-agent is, what it isn't, and what you're responsible for when you run the labs.
+description: What Few-Shot Academy is, what it isn't, and what you're responsible for when you run the labs.
 ---
 
 # Disclaimer
 
-zero-to-agent is a free, open-source course. It's not professional advice — not
+Few-Shot Academy is a free, open-source course. It's not professional advice — not
 legal, financial, security, or otherwise. Use what you learn here at your own
 judgment.
 

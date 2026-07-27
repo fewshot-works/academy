@@ -1,10 +1,10 @@
 # Lab 4: Prompt Patterns
 
-Companion lab for [Intermediate Chapter 4: Prompt Patterns](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/prompt-patterns). Three techniques, three failure modes: chain-of-thought (wrong shortcut answers), structured/JSON output (replies you can't parse), and function calling (no way for the model to act on what it decided).
+Companion lab for [Intermediate Chapter 4: Prompt Patterns](https://fewshot-works.github.io/academy/docs/intermediate/prompt-patterns). Three techniques, three failure modes: chain-of-thought (wrong shortcut answers), structured/JSON output (replies you can't parse), and function calling (no way for the model to act on what it decided).
 
 ## Before you start
 
-You should already have Foundations done, at least [Chapter 3: Prompting 101](https://fewshot-works.github.io/zero-to-agent/docs/foundations/prompting-101) — this lab assumes you already know zero-shot, few-shot, and system prompts, and builds on top of them.
+You should already have Foundations done, at least [Chapter 3: Prompting 101](https://fewshot-works.github.io/academy/docs/foundations/prompting-101) — this lab assumes you already know zero-shot, few-shot, and system prompts, and builds on top of them.
 
 This lab is chat-only, no embeddings involved, so it's the first Intermediate lab that supports all three providers: Ollama, OpenAI, and Anthropic.
 
@@ -13,17 +13,17 @@ This lab is chat-only, no embeddings involved, so it's the first Intermediate la
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/intermediate/04-prompt-patterns
+   cd academy/labs/intermediate/04-prompt-patterns
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/intermediate/04-prompt-patterns
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/intermediate/04-prompt-patterns
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/04-prompt-patterns` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/04-prompt-patterns` in a terminal.
 
 2. **If you're using Ollama, make sure the model is pulled:**
 

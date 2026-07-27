@@ -67,7 +67,7 @@ flowchart TB
 
 Time to see all three techniques answer the exact same question, side by side, so you can compare them yourself.
 
-Full instructions: [`labs/foundations/03-prompt-playground`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/03-prompt-playground)
+Full instructions: [`labs/foundations/03-prompt-playground`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/03-prompt-playground)
 
 Here's what you should see (with Ollama, exact wording will vary):
 

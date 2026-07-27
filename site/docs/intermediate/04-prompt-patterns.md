@@ -38,7 +38,7 @@ Notably, structured output and function calling aren't as separate as they sound
 
 The lab reuses the same `ask()` pattern from Foundations Chapter 3, run through three sections back to back: a word problem that trips up a direct answer but not a step-by-step one, an event blurb extracted into JSON both the freeform way and the native way, and a mock order-status tool the model chooses to call.
 
-Full instructions: [`labs/intermediate/04-prompt-patterns`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/04-prompt-patterns)
+Full instructions: [`labs/intermediate/04-prompt-patterns`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/04-prompt-patterns)
 
 Here's what you should see (with Ollama):
 

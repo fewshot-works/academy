@@ -71,7 +71,7 @@ Combine that with what you just learned about hallucination, confidently wrong a
 
 Time to see the loop from Step 2 actually run. In this lab you'll write a tiny script that sends one prompt to an AI model and prints back what it generated, using either your free local Ollama model from Chapter 0, or a hosted OpenAI/Anthropic key if you set one up.
 
-Full instructions: [`labs/foundations/02-first-api-call`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/02-first-api-call)
+Full instructions: [`labs/foundations/02-first-api-call`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/02-first-api-call)
 
 Here's what you should see (with Ollama; exact wording will vary, since the model is generating text one token at a time, not reciting a fixed answer):
 

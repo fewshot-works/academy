@@ -1,10 +1,10 @@
 # Lab 1: Chunking Strategies
 
-Companion lab for [Intermediate Chapter 1: Chunking Strategies](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/chunking-strategies). You'll cut the same short document three different ways, fixed-size, recursive, and semantic, and compare what each one actually produces.
+Companion lab for [Intermediate Chapter 1: Chunking Strategies](https://fewshot-works.github.io/academy/docs/intermediate/chunking-strategies). You'll cut the same short document three different ways, fixed-size, recursive, and semantic, and compare what each one actually produces.
 
 ## Before you start
 
-You should have already completed Foundations, or at least [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-an-embedding) — this lab reuses the same `embed()` and `cosine_similarity()` building blocks from that lab's `embed_similarity.py`.
+You should have already completed Foundations, or at least [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-embedding) — this lab reuses the same `embed()` and `cosine_similarity()` building blocks from that lab's `embed_similarity.py`.
 
 **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** Semantic chunking needs an embedding model, and Anthropic doesn't offer one, so if your `.env` from an earlier lab still has `PROVIDER=anthropic`, you'll need to change it here.
 
@@ -13,17 +13,17 @@ You should have already completed Foundations, or at least [Chapter 4: What Is a
 1. **Move into this lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/intermediate/01-chunking-strategies
+   cd academy/labs/intermediate/01-chunking-strategies
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/intermediate/01-chunking-strategies
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/intermediate/01-chunking-strategies
    ```
 
-   Don't know git yet? [Download the Intermediate labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/01-chunking-strategies` in your terminal.
+   Don't know git yet? [Download the Intermediate labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/01-chunking-strategies` in your terminal.
 
 2. **If you're using Ollama, pull the embedding model** (skip if you already did this for a Foundations lab):
 

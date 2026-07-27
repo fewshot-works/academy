@@ -55,7 +55,7 @@ flowchart LR
 
 In this lab you'll store around ten sentences in a local vector database, then send in one new sentence and watch the database instantly return the closest matches, without ever comparing it to every sentence by hand.
 
-Full instructions: [`labs/foundations/05-vector-db-basics`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/05-vector-db-basics)
+Full instructions: [`labs/foundations/05-vector-db-basics`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/05-vector-db-basics)
 
 Here's what you should see:
 

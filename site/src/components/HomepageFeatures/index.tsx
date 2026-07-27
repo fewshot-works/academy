@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Zero to Agent, One Coherent Arc',
+    title: 'One Coherent Arc, Start to Finish',
     description: (
       <>
         Start with "what is a token?" and end with a working, evaluated

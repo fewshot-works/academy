@@ -1,4 +1,4 @@
-# zero-to-agent
+# Few-Shot Academy
 
 > A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG,
 > and Agents. Starts from zero prior AI knowledge and ends with a working, evaluated agentic RAG
@@ -8,24 +8,24 @@
 
 ## Foundations (complete — 9 chapters, about 2 hours total)
 
-- [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/zero-to-agent/docs/foundations/setup): Install uv, VS Code, and Ollama so every later lab runs locally and free.
-- [Chapter 1: What Is AI, Really?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-ai): Untangles AI, machine learning, deep learning, and generative AI, and how they relate.
-- [Chapter 2: What Is a Large Language Model?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-an-llm): How LLMs like ChatGPT and Claude predict text one token at a time.
-- [Chapter 3: Prompting 101](https://fewshot-works.github.io/zero-to-agent/docs/foundations/prompting-101): Zero-shot, few-shot, and system prompts, the biggest lever you have over an LLM's output.
-- [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-an-embedding): Turning text into vectors that place similar meanings near each other.
-- [Chapter 5: What Is a Vector Database, and Why?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-a-vector-database): Storing and searching embeddings fast, even across millions of vectors.
-- [Chapter 6: What Is RAG?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-rag): Retrieval-Augmented Generation, turning an LLM into an open-book answerer.
-- [Chapter 7: What Is an AI Agent?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-an-ai-agent): How agents differ from a plain chatbot: deciding what to do next and calling tools.
-- [Chapter 8: Capstone — A Q&A Bot Over Your Own Documents](https://fewshot-works.github.io/zero-to-agent/docs/foundations/capstone-qa-bot): Combines embeddings, a vector database, and RAG into a working Q&A bot over your own files.
+- [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup): Install uv, VS Code, and Ollama so every later lab runs locally and free.
+- [Chapter 1: What Is AI, Really?](https://fewshot-works.github.io/academy/docs/foundations/what-is-ai): Untangles AI, machine learning, deep learning, and generative AI, and how they relate.
+- [Chapter 2: What Is a Large Language Model?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-llm): How LLMs like ChatGPT and Claude predict text one token at a time.
+- [Chapter 3: Prompting 101](https://fewshot-works.github.io/academy/docs/foundations/prompting-101): Zero-shot, few-shot, and system prompts, the biggest lever you have over an LLM's output.
+- [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-embedding): Turning text into vectors that place similar meanings near each other.
+- [Chapter 5: What Is a Vector Database, and Why?](https://fewshot-works.github.io/academy/docs/foundations/what-is-a-vector-database): Storing and searching embeddings fast, even across millions of vectors.
+- [Chapter 6: What Is RAG?](https://fewshot-works.github.io/academy/docs/foundations/what-is-rag): Retrieval-Augmented Generation, turning an LLM into an open-book answerer.
+- [Chapter 7: What Is an AI Agent?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-ai-agent): How agents differ from a plain chatbot: deciding what to do next and calling tools.
+- [Chapter 8: Capstone — A Q&A Bot Over Your Own Documents](https://fewshot-works.github.io/academy/docs/foundations/capstone-qa-bot): Combines embeddings, a vector database, and RAG into a working Q&A bot over your own files.
 
 ## Intermediate (in progress)
 
-- [Overview](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/overview): Planned — chunking strategies, choosing an embedding model, hybrid search and re-ranking, prompt patterns, tool use, a first agent, memory, evaluation, and a multi-tool agent capstone.
+- [Overview](https://fewshot-works.github.io/academy/docs/intermediate/overview): Planned — chunking strategies, choosing an embedding model, hybrid search and re-ranking, prompt patterns, tool use, a first agent, memory, evaluation, and a multi-tool agent capstone.
 
 ## Advanced (in progress)
 
-- [Overview](https://fewshot-works.github.io/zero-to-agent/docs/advanced/overview): Planned — multi-agent patterns, advanced RAG, fine-tuning vs. RAG vs. prompting, guardrails and safety, observability, production concerns, and an end-to-end agentic RAG system capstone.
+- [Overview](https://fewshot-works.github.io/academy/docs/advanced/overview): Planned — multi-agent patterns, advanced RAG, fine-tuning vs. RAG vs. prompting, guardrails and safety, observability, production concerns, and an end-to-end agentic RAG system capstone.
 
 ## Optional
 
-- [Disclaimer](https://fewshot-works.github.io/zero-to-agent/disclaimer): Data privacy and responsible-use notes for the hands-on labs.
+- [Disclaimer](https://fewshot-works.github.io/academy/disclaimer): Data privacy and responsible-use notes for the hands-on labs.

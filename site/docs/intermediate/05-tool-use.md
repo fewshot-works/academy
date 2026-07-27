@@ -51,7 +51,7 @@ The mechanics of "send a tool call, get a result back" aren't standardized acros
 
 ## Hands-on lab: build the loop
 
-Full instructions: [`labs/intermediate/05-tool-use`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/05-tool-use)
+Full instructions: [`labs/intermediate/05-tool-use`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/05-tool-use)
 
 Four questions run through the loop: one that needs only the calculator, one that needs only Wikipedia, one that (in theory) needs neither, and one that needs both. Here's a real run, with Ollama:
 

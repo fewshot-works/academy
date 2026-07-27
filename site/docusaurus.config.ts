@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'zero-to-agent',
+  title: 'Few-Shot Academy',
   tagline: 'From zero to your first AI agent — free, local-first, hands-on.',
   favicon: 'img/favicon.svg',
 
@@ -21,10 +21,10 @@ const config: Config = {
 
   // GitHub Pages project-site URL. Update if a custom domain is added later.
   url: 'https://fewshot-works.github.io',
-  baseUrl: '/zero-to-agent/',
+  baseUrl: '/academy/',
 
   organizationName: 'fewshot-works', // GitHub org/user name
-  projectName: 'zero-to-agent', // GitHub repo name
+  projectName: 'academy', // GitHub repo name
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -37,15 +37,15 @@ const config: Config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Course',
-        name: 'zero-to-agent',
+        name: 'Few-Shot Academy',
         description:
           'A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG, and Agents — from zero prior AI knowledge to a working, evaluated agentic RAG system. Every lesson is hands-on and runs locally for free via Ollama.',
-        url: 'https://fewshot-works.github.io/zero-to-agent/',
+        url: 'https://fewshot-works.github.io/academy/',
         isAccessibleForFree: true,
         provider: {
           '@type': 'Organization',
-          name: 'zero-to-agent',
-          url: 'https://fewshot-works.github.io/zero-to-agent/',
+          name: 'Few-Shot Academy',
+          url: 'https://fewshot-works.github.io/academy/',
         },
       }),
     },
@@ -86,7 +86,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/fewshot-works/zero-to-agent/tree/main/site/',
+          editUrl: 'https://github.com/fewshot-works/academy/tree/main/site/',
         },
         blog: false,
         theme: {
@@ -146,9 +146,9 @@ const config: Config = {
       },
     },
     navbar: {
-      title: 'zero-to-agent',
+      title: 'Few-Shot Academy',
       logo: {
-        alt: 'zero-to-agent logo',
+        alt: 'Few-Shot Academy logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -168,7 +168,7 @@ const config: Config = {
           items: [
             {
               label: 'Hands-on labs',
-              href: 'https://github.com/fewshot-works/zero-to-agent/tree/main/labs',
+              href: 'https://github.com/fewshot-works/academy/tree/main/labs',
             },
             {
               label: 'Disclaimer',
@@ -190,7 +190,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} zero-to-agent. Code under MIT, content under CC BY 4.0.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Few-Shot Academy. Code under MIT, content under CC BY 4.0.`,
     },
     prism: {
       theme: prismThemes.github,

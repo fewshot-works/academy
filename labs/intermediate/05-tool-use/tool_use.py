@@ -63,7 +63,7 @@ def search_wikipedia(query):
     response = requests.get(
         "https://en.wikipedia.org/w/api.php",
         params={"action": "query", "list": "search", "srsearch": query, "format": "json", "srlimit": 1},
-        headers={"User-Agent": "zero-to-agent-tutorial (https://github.com/fewshot-works/zero-to-agent)"},
+        headers={"User-Agent": "academy-tutorial (https://github.com/fewshot-works/academy)"},
     )
     results = response.json()["query"]["search"]
     if not results:

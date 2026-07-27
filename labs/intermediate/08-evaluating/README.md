@@ -1,6 +1,6 @@
 # Lab 8: Evaluating What You Built
 
-Companion lab for [Intermediate Chapter 8: Evaluating What You Built](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/08-evaluating). Two scripts: one measures retrieval quality with precision/recall, the other measures generated-answer quality with an LLM-as-judge.
+Companion lab for [Intermediate Chapter 8: Evaluating What You Built](https://fewshot-works.github.io/academy/docs/intermediate/08-evaluating). Two scripts: one measures retrieval quality with precision/recall, the other measures generated-answer quality with an LLM-as-judge.
 
 ## Before you start
 
@@ -13,17 +13,17 @@ You should already have done [Chapter 3: Better Retrieval](../03-better-retrieva
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/intermediate/08-evaluating
+   cd academy/labs/intermediate/08-evaluating
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/intermediate/08-evaluating
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/intermediate/08-evaluating
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/08-evaluating` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/08-evaluating` in a terminal.
 
 2. **If you're using Ollama, make sure both models are pulled:**
 

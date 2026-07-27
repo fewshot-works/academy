@@ -49,7 +49,7 @@ flowchart TD
 
 ## Hands-on lab: your own Q&A bot
 
-The lab code lives in [`labs/foundations/08-capstone-qa-bot`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/08-capstone-qa-bot) in the course repo. It ships with two short, made-up sample documents about two unrelated fictional topics, a coffee shop and a hiking club, so you can see the bot correctly pull from the *relevant* one instead of just the only one it has. Full setup steps are in that folder's `README.md`.
+The lab code lives in [`labs/foundations/08-capstone-qa-bot`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/08-capstone-qa-bot) in the course repo. It ships with two short, made-up sample documents about two unrelated fictional topics, a coffee shop and a hiking club, so you can see the bot correctly pull from the *relevant* one instead of just the only one it has. Full setup steps are in that folder's `README.md`.
 
 **What you should see**, after asking a couple of questions:
 

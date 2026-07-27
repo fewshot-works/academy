@@ -64,7 +64,7 @@ One more thing worth knowing before the lab: an embedding isn't a fixed lookup t
 
 In this lab you'll embed six sentences (two about pets, two about cooking, two that don't relate to either), compute how similar every pair is to every other pair, and save a picture that lets you actually see related sentences cluster together.
 
-Full instructions: [`labs/foundations/04-embedding-similarity`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/foundations/04-embedding-similarity)
+Full instructions: [`labs/foundations/04-embedding-similarity`](https://github.com/fewshot-works/academy/tree/main/labs/foundations/04-embedding-similarity)
 
 Here's what you should see (with Ollama; exact scores and pairing can shift a bit with a different embedding model):
 

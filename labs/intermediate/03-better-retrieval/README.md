@@ -1,10 +1,10 @@
 # Lab 3: Better Retrieval
 
-Companion lab for [Intermediate Chapter 3: Better Retrieval](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/better-retrieval). You'll retrieve from the same set of documents four different ways, plain vector search, metadata filtering, hybrid search, and LLM re-ranking, and see where each one helps.
+Companion lab for [Intermediate Chapter 3: Better Retrieval](https://fewshot-works.github.io/academy/docs/intermediate/better-retrieval). You'll retrieve from the same set of documents four different ways, plain vector search, metadata filtering, hybrid search, and LLM re-ranking, and see where each one helps.
 
 ## Before you start
 
-You should already have Foundations done, at least [Chapter 6: What Is RAG](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-rag) — this lab reuses that lab's `embed()` and `ask()` pattern, and its corpus starts with the same fictional company, Fernwood Coffee Co., now sharing a bigger, deliberately confusable set of documents with two other fictional coffee companies.
+You should already have Foundations done, at least [Chapter 6: What Is RAG](https://fewshot-works.github.io/academy/docs/foundations/what-is-rag) — this lab reuses that lab's `embed()` and `ask()` pattern, and its corpus starts with the same fictional company, Fernwood Coffee Co., now sharing a bigger, deliberately confusable set of documents with two other fictional coffee companies.
 
 **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can do both embeddings and chat, and Anthropic doesn't offer an embeddings API.
 
@@ -13,17 +13,17 @@ You should already have Foundations done, at least [Chapter 6: What Is RAG](http
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/intermediate/03-better-retrieval
+   cd academy/labs/intermediate/03-better-retrieval
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/intermediate/03-better-retrieval
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/intermediate/03-better-retrieval
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/03-better-retrieval` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/03-better-retrieval` in a terminal.
 
 2. **If you're using Ollama, make sure both models are pulled:**
 

@@ -1,27 +1,27 @@
 # Lab 6: Your First RAG Bot
 
-Companion lab for [Chapter 6: What Is RAG?](https://fewshot-works.github.io/zero-to-agent/docs/foundations/what-is-rag). You'll build a tiny bot that answers a question using a made-up document as its only source of truth.
+Companion lab for [Chapter 6: What Is RAG?](https://fewshot-works.github.io/academy/docs/foundations/what-is-rag). You'll build a tiny bot that answers a question using a made-up document as its only source of truth.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/zero-to-agent/docs/foundations/setup) and the [Chapter 5 lab](../05-vector-db-basics). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup) and the [Chapter 5 lab](../05-vector-db-basics). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
 
 ## Steps
 
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/foundations/06-first-rag-bot
+   cd academy/labs/foundations/06-first-rag-bot
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/foundations/06-first-rag-bot
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/foundations/06-first-rag-bot
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-foundations.zip) instead, unzip it, and open `labs/foundations/06-first-rag-bot` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/06-first-rag-bot` in your terminal.
 
 2. **If you're using Ollama, make sure you've pulled the embedding model.** Same model used in Chapters 4 and 5, skip this if you already have it:
 

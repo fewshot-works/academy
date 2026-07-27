@@ -26,7 +26,7 @@ function DisclaimerBanner() {
   return (
     <div className={styles.banner} role="note">
       <p className={styles.text}>
-        zero-to-agent is a free, open-source course, not professional advice.
+        Few-Shot Academy is a free, open-source course, not professional advice.
         Some labs use a paid API (OpenAI or Anthropic) that bills you
         directly, at your own risk — this project never sees your key or
         your money. Content is provided as-is, with no guarantee of

@@ -80,7 +80,7 @@ Neither is "correct" in general. A short support chat or a quick tool session is
 
 ## Hands-on lab: same conversation, two memories
 
-Full instructions: [`labs/intermediate/07-memory`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/07-memory)
+Full instructions: [`labs/intermediate/07-memory`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/07-memory)
 
 Two scripts, the identical six-turn conversation: a first message stating a name and a project, a few unrelated questions, then a final question that only a working memory can answer correctly. Here's a real run with Ollama, `chat_short_term.py`:
 

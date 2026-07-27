@@ -22,7 +22,7 @@ const svg = `
     <use href="#ring" transform="translate(880 300) scale(0.5) translate(-192 -210)" />
   </g>
   <circle cx="985" cy="185" r="10" fill="#a85a1c" />
-  <text x="90" y="280" font-family="Georgia, 'Iowan Old Style', serif" font-size="88" fill="#123a2e">zero-to-agent</text>
+  <text x="90" y="280" font-family="Georgia, 'Iowan Old Style', serif" font-size="72" fill="#123a2e">Few-Shot Academy</text>
   <text x="90" y="335" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="32" fill="#55625b">From zero to your first AI agent</text>
   <text x="90" y="378" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="32" fill="#55625b">free, local-first, hands-on.</text>
 </svg>

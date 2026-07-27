@@ -45,7 +45,7 @@ jobs:
           mkdir -p site/build/downloads
           for dir in labs/*/; do
             track=$(basename "$dir")
-            git archive --format=zip --prefix="labs/$track/" -o "site/build/downloads/zero-to-agent-labs-$track.zip" "HEAD:labs/$track"
+            git archive --format=zip --prefix="labs/$track/" -o "site/build/downloads/academy-labs-$track.zip" "HEAD:labs/$track"
           done
 
       - uses: actions/configure-pages@v5

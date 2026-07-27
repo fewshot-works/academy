@@ -41,7 +41,7 @@ None of the three is universally "best." Fixed-size is fine for uniform, boilerp
 
 In this lab you'll take the same short document, a small fictional town newsletter that mixes three completely unrelated stories (a library's hours, a coffee shop opening, a hiking club meetup), and chunk it with all three strategies, side by side.
 
-Full instructions: [`labs/intermediate/01-chunking-strategies`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/01-chunking-strategies)
+Full instructions: [`labs/intermediate/01-chunking-strategies`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/01-chunking-strategies)
 
 Here's what you should see (with Ollama; exact boundaries can shift slightly with a different embedding model):
 

@@ -72,8 +72,8 @@ Close and reopen your terminal, then re-run `uv --version` to confirm it worked.
 Pick a spot for this course's code (your Desktop or home folder is fine) and create a folder:
 
 ```bash
-mkdir zero-to-agent-labs
-cd zero-to-agent-labs
+mkdir academy-labs
+cd academy-labs
 ```
 
 That's it, no environment to create yet. Each lab folder in this course ships with its own `pyproject.toml` file that lists exactly which packages that lab needs. The first time you run `uv run <script>.py` inside a lab folder, uv reads that file, quietly creates an isolated `.venv` just for that lab, installs the packages into it, and runs your script, all in one step. Run it again later and it skips straight to running, since everything's already there.

@@ -67,7 +67,7 @@ flowchart TD
 
 ## Hands-on lab: one agent, three tools, real memory
 
-Full instructions: [`labs/intermediate/09-capstone`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/09-capstone)
+Full instructions: [`labs/intermediate/09-capstone`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/09-capstone)
 
 The lab loads two sample documents — the exact `fernwood_coffee.txt` and `mountain_view_hiking_club.txt` from Foundations' capstone — into an in-memory vector database at startup, then runs six scripted messages: a fact stated up front, a calculator question, a general-knowledge question, two questions about the loaded documents, and a final question answerable only by remembering the very first message. Real output:
 

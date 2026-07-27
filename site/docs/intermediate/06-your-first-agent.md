@@ -64,7 +64,7 @@ Neither side is "correct" in general. For a quick prototype or a project that al
 
 ## Hands-on lab: same agent, less code
 
-Full instructions: [`labs/intermediate/06-your-first-agent`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/06-your-first-agent)
+Full instructions: [`labs/intermediate/06-your-first-agent`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/06-your-first-agent)
 
 The exact same four questions from Chapter 5, run through `create_agent` instead of the hand-written loop. Here's a real run, with Ollama:
 

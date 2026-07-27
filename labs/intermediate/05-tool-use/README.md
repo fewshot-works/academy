@@ -1,10 +1,10 @@
 # Lab 5: Tool Use
 
-Companion lab for [Intermediate Chapter 5: Tool Use](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/tool-use). Chapter 4 ended with a model *choosing* a tool but never running it. This lab closes that gap: two real tools (a calculator, a Wikipedia search), a loop that actually calls them, and results that feed back into the conversation.
+Companion lab for [Intermediate Chapter 5: Tool Use](https://fewshot-works.github.io/academy/docs/intermediate/tool-use). Chapter 4 ended with a model *choosing* a tool but never running it. This lab closes that gap: two real tools (a calculator, a Wikipedia search), a loop that actually calls them, and results that feed back into the conversation.
 
 ## Before you start
 
-You should already have done [Chapter 4: Prompt Patterns](https://fewshot-works.github.io/zero-to-agent/docs/intermediate/04-prompt-patterns), specifically its function-calling section, this lab builds directly on it.
+You should already have done [Chapter 4: Prompt Patterns](https://fewshot-works.github.io/academy/docs/intermediate/04-prompt-patterns), specifically its function-calling section, this lab builds directly on it.
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic.
 
@@ -13,17 +13,17 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd zero-to-agent/labs/intermediate/05-tool-use
+   cd academy/labs/intermediate/05-tool-use
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
-   git clone https://github.com/fewshot-works/zero-to-agent.git
-   cd zero-to-agent/labs/intermediate/05-tool-use
+   git clone https://github.com/fewshot-works/academy.git
+   cd academy/labs/intermediate/05-tool-use
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/zero-to-agent/downloads/zero-to-agent-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/05-tool-use` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/05-tool-use` in a terminal.
 
 2. **If you're using Ollama, make sure the model is pulled:**
 

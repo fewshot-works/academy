@@ -37,7 +37,7 @@ flowchart TD
 
 In the lab, you'll take the same six sentences from Chapter 4's embedding lab, four pairs, two clearly about the same thing and two clearly not, and embed them with two different models: a smaller one and a larger one. The sentences aren't new. What's different is what you're asking of them.
 
-Full instructions: [`labs/intermediate/02-choosing-embedding-model`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/02-choosing-embedding-model)
+Full instructions: [`labs/intermediate/02-choosing-embedding-model`](https://github.com/fewshot-works/academy/tree/main/labs/intermediate/02-choosing-embedding-model)
 
 Here's what you should see (with Ollama; your exact numbers will shift a little run to run):
 
