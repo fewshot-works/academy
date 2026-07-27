@@ -72,7 +72,7 @@ Answer: So, to recap:
 * The construction of the Eiffel Tower finished in 1889.
 ```
 
-A few honest notes on this real run, not the tidy version:
+💡 A few honest notes on this real run, not the tidy version:
 
 - **Question 1 and 2 behave exactly as designed.** One calculator call, one Wikipedia call, each result folded correctly into the final answer.
 - **Question 3 is the interesting one.** It doesn't need any live data, "what's a good tip for staying focused" is an opinion question, so the plan was for the model to just answer directly. Instead, `llama3.2` reached for `search_wikipedia` anyway, and called it twice with the same query. This isn't a bug in the loop, it's the model being a little tool-happy. The loop doesn't care either way: it keeps running until the model stops asking for tools, however many calls that takes, up to `MAX_STEPS`. If you see this on your run too, that's a real small-model quirk, not something broken.

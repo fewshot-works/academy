@@ -37,7 +37,7 @@ flowchart TD
     A --> M
 ```
 
-That loop needs a limit. Nothing guarantees the model eventually stops asking for tools, so the lab caps it at `MAX_STEPS = 5`, the same "a reason to stop" idea Chapter 7 raised conceptually, now a literal line of code.
+That loop needs a limit. Nothing guarantees the model will eventually stop asking for tools, so the lab caps it at `MAX_STEPS = 5`, the same "a reason to stop" idea Chapter 7 raised conceptually, now a literal line of code.
 
 It also needs to survive a tool call that doesn't work. The model won't always fill in arguments that make sense, if it hands the calculator a sentence instead of an expression, that has to become an error message the model can see and react to, not a crash. More on that below, it's not hypothetical, it happened during testing.
 
@@ -87,7 +87,7 @@ The other honest surprise happened before this clean run: an earlier attempt at 
 <details>
 <summary>Why does the loop need a maximum step count?</summary>
 
-Nothing guarantees the model eventually stops asking for tools and gives a plain-text answer. Without a cap, a model that keeps calling tools (or keeps calling the same one) would loop forever. `MAX_STEPS` is the concrete version of Chapter 7's "a reason to stop," a beginner-obvious safety net, not a sophisticated planning mechanism.
+Nothing guarantees the model will eventually stop asking for tools and give a plain-text answer. Without a cap, a model that keeps calling tools (or keeps calling the same one) would loop forever. `MAX_STEPS` is the concrete version of Chapter 7's "a reason to stop," a beginner-obvious safety net, not a sophisticated planning mechanism.
 </details>
 
 <details>

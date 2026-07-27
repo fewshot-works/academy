@@ -123,7 +123,7 @@ Q: How many locations does Fernwood Coffee Co. have?
 Pass rate: 5/5 (100%)
 ```
 
-A few honest notes on these real runs:
+💡 A few honest notes on these real runs:
 
 - **Baseline and hybrid tied on this eval set** (precision@3: 0.47, recall@3: 0.90 for both). Looking at the per-question lines, both methods retrieve the exact same top-3 document set every time, only the *ranking order* within those three differs. This matches what Chapter 3 found for its one example: hybrid narrows the gap between the right and wrong document, but doesn't always change which documents actually make the top-k. A single example could have made hybrid look like a clean win or a clean tie by chance; running five questions and averaging is what turns "it felt better" into an actual, checkable claim, even when that claim turns out to be "no measurable difference here."
 - **Precision tops out at 0.33 whenever a question only has one relevant document**, because K=3 always returns 3 documents, and 1 relevant out of 3 retrieved is 0.33, no matter how good retrieval is. Question 4 (3 relevant documents, all 3 retrieved) is the only one that reaches precision@3 = 1.00. This is the concrete version of "precision and recall measure different things," not just a definition.

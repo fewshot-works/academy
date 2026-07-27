@@ -35,7 +35,7 @@ flowchart TD
 
 ## Hands-on lab: the same sentences, two different models
 
-In the lab, you'll take the same six sentences from Chapter 4's embedding lab, three pairs, two clearly about the same thing and one clearly not, and embed them with two different models: a smaller one and a larger one. The sentences aren't new. What's different is what you're asking of them.
+In the lab, you'll take the same six sentences from Chapter 4's embedding lab, four pairs, two clearly about the same thing and two clearly not, and embed them with two different models: a smaller one and a larger one. The sentences aren't new. What's different is what you're asking of them.
 
 Full instructions: [`labs/intermediate/02-choosing-embedding-model`](https://github.com/fewshot-works/zero-to-agent/tree/main/labs/intermediate/02-choosing-embedding-model)
 
@@ -65,7 +65,7 @@ mxbai-embed-large was faster. mxbai-embed-large had the bigger quality gap.
 
 With `PROVIDER=openai`, the picture sharpens. `text-embedding-3-small` and `text-embedding-3-large` are priced differently per token, and the script reads the real token count straight from each API response, so the dollar cost printed for that run is exact, not estimated. That's the clearest version of the tradeoff: a hosted API where you can see quality, latency, and cost as three numbers, side by side, for a single request.
 
-**One thing to know before you run it:** this lab only supports `PROVIDER=ollama` or `PROVIDER=openai`. Anthropic doesn't currently offer an embeddings API.
+💡 **One thing to know before you run it:** this lab only supports `PROVIDER=ollama` or `PROVIDER=openai`. Anthropic doesn't currently offer an embeddings API.
 
 ## Checkpoint
 

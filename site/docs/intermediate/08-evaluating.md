@@ -112,7 +112,7 @@ Pass rate: 5/5 (100%)
 
 Look closely at that verdict: the judge's own one-sentence reason says the answer "fails to provide accurate information about its location," half of what the question asked, and still writes `PASS` on the first line. This reproduced across two separate runs, it isn't a one-off glitch. That's the honest limit of LLM-as-judge, covered next.
 
-## What these numbers don't tell you
+## 💡 What these numbers don't tell you
 
 - **A 5-question eval set is tiny.** One question flipping from PASS to FAIL swings the pass rate by 20 points. Real evaluation sets run into the dozens or hundreds of questions specifically so one noisy result doesn't dominate the average.
 - **Recall@k is capped by k, not just by retrieval quality.** A question with 4 relevant documents can never reach recall@3 = 1.0, no matter how good the search is, because only 3 slots exist. Compare recall across questions with the same relevant-document count, not across all of them equally.

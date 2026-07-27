@@ -109,4 +109,19 @@ Nothing in the code. Just replace the files inside the `docs/` folder with your 
 
 ## What's next
 
-That's Foundations complete. You went from "what even is AI" to a working, reusable Q&A bot over your own documents, understanding every piece along the way instead of copy-pasting a tutorial you couldn't explain. Intermediate builds on all of it: better chunking strategies, choosing the right embedding model for the job, hybrid search and re-ranking, giving your bot proper tools to call, and a capstone of its own, a multi-tool agent that combines web search, a calculator, and RAG over your documents.
+That's Foundations complete. Here's the whole arc, one line per chapter:
+
+- **Chapter 1** showed you where AI, machine learning, deep learning, and generative AI nest inside each other, so the label soup finally made sense.
+- **Chapter 2** demystified the LLM itself: not magic, just very good next-token prediction, the same trick as your phone's autocomplete, scaled up enormously.
+- **Chapter 3** got you writing prompts that actually get you what you want, instead of guessing and hoping.
+- **Chapter 4** turned text into embeddings, numbers that capture meaning, so "the meeting is at 3pm" and "we meet at three" land in nearly the same spot to a computer.
+- **Chapter 5** gave those embeddings a home: a vector database that can find the closest matches out of thousands, in a blink.
+- **Chapter 6** wired retrieval and generation together into RAG, so answers come from your own material instead of only whatever the model happened to memorize during training.
+- **Chapter 7** introduced agents, models that decide what to do next instead of just answering once.
+- **Chapter 8**, this capstone, put every piece from Chapters 2 through 6 into one script you can point at documents that are actually yours.
+
+You went from "what even is AI" to a working, reusable Q&A bot over your own documents, understanding every piece along the way instead of copy-pasting a tutorial you couldn't explain. That's not a small thing. Plenty of people who "use AI" every day couldn't explain any of what you just built.
+
+💡 Want to keep playing before Intermediate? Swap the sample documents in Chapter 8's bot for something that actually matters to you: your class notes, a hobby you're deep into, the rules of a board game you keep forgetting. Or go the other way and just explore, feed it a public-domain book and ask it questions nobody's asked before. Ollama's model library has dozens of other open models worth trying beyond the ones used here, and Hugging Face hosts thousands of embedding models beyond the two Chapter 4 compared. None of it can break anything permanently, that's the nice part of running this locally.
+
+Intermediate builds on all of it: better chunking strategies, choosing the right embedding model for the job, hybrid search and re-ranking, giving your bot proper tools to call, and a capstone of its own, a multi-tool agent that combines web search, a calculator, and RAG over your documents.

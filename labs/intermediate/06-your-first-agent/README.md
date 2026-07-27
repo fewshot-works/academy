@@ -68,7 +68,7 @@ Question: What's 15% of 340, and what year did construction of the Eiffel Tower 
 Answer: The answer to the original question is 51.0, which represents 15% of 340. As for the second part of the question, according to Wikipedia, the construction of the Eiffel Tower finished in 1889, marking its completion on March 31, 1889.
 ```
 
-A few honest notes on this real run:
+💡 A few honest notes on this real run:
 
 - **`agent.py` is 123 lines. Chapter 5's `tool_use.py` is 270.** The gap is almost entirely the provider-branching logic: Chapter 5 wrote ~40 lines of message-shape handling per provider (120 lines total). Here, switching providers is 3 lines, an `if/elif` that only picks a model string. `create_agent` handles the rest, whichever provider it is.
 - **No `MAX_STEPS` loop, no `call_tool()` try/except, and it still didn't run away or crash.** `create_agent` has its own internal step limit (LangGraph's default `recursion_limit`, 25 by default) and its own handling of a tool call that errors out. We didn't write either by hand this time.

@@ -96,7 +96,7 @@ Question: Can you check the status of order A1234?
 Model chose to call: check_order_status({'order_id': 'A1234'})
 ```
 
-A few honest notes on this real run, not the tidy version:
+💡 A few honest notes on this real run, not the tidy version:
 
 - **Section 1 genuinely fails without the trick.** Forced to skip its reasoning and answer with just a number, `llama3.2` guessed 4, wrong. Appending "think step by step" reliably gets it to 6, the correct answer, because it's forced to actually work through "half of 24, then half of that" instead of pattern-matching straight to a number. This isn't cherry-picked, run it a few times yourself and you'll see the direct answer miss more often than not, while the step-by-step version holds up.
 - **Section 2's freeform prompt happened to parse fine on this run.** Small models don't always cooperate, sometimes they wrap the JSON in a ```` ```json ```` fence, or add a sentence before it, which breaks a plain `json.loads()` call (the script strips a code fence if it finds one, but not stray prose). Native structured-output mode (`"format": "json"` for Ollama, `response_format={"type": "json_object"}` for OpenAI) skips that risk entirely, the API guarantees valid JSON back. If you see the freeform attempt fail on your run, that's the point being made, not a bug.

@@ -69,7 +69,7 @@ Semantic (embedding similarity, threshold 0.55): 6 chunks
 
 Look closely at chunk 1 and chunk 2 of the fixed-size output: the cut lands mid-sentence, right in the middle of "so staff can reshelve." Recursive chunking never does that. And notice chunk 4 in the semantic output: it pulls together both sentences about Fernwood Coffee even though they come from two separate paragraphs, because the topic didn't actually change between them.
 
-**One thing to know before you run it:** semantic chunking needs an embedding model, and Anthropic doesn't currently offer one. This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.
+💡 **One thing to know before you run it:** semantic chunking needs an embedding model, and Anthropic doesn't currently offer one. This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.
 
 ## Checkpoint
 

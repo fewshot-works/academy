@@ -106,8 +106,9 @@ Agent: It seems like I found some relevant information on your project. To answe
   (thread now holds 6 messages)
 ```
 
-A few honest notes on these real runs:
+💡 A few honest notes on these real runs:
 
+- **One transcript above gets a date wrong.** The `chat_short_term.py` run says the tower "was officially opened on March 31, 1889" — that's actually the *completion* date; the public opening was May 15, 1889. Left in as captured, not corrected, because it's a genuine reminder that a small local model can misstate a well-known fact even when it gets the headline answer (1889) right.
 - **The message count tells the whole story.** `chat_short_term.py`'s thread grows every single turn: 4, 8, 12, 16, 20, 24. `chat_summarized.py`'s grows once, to 6, then stays at 6 for the rest of the conversation. Same six questions, same tools, same model, one script's memory keeps growing and the other doesn't.
 - **Both correctly answer the final recall question.** Even after `chat_summarized.py` collapsed the earlier turns into a summary, it still knew the name and project from turn one. That's the point of *summarizing* instead of just deleting old messages: the detail survives, compressed, instead of being thrown away.
 - **The summarization trigger here (`trigger=("tokens", 300)`) is set artificially low on purpose**, so this short, six-turn toy conversation actually crosses it and you get to see a real summarization event. A production app would set this much higher, in the thousands of tokens, so summarization only kicks in on genuinely long conversations, not every couple of turns.
