@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: Zero-shot, few-shot, and system prompts, the biggest lever you have over an LLM's output, with a runnable comparison.
 ---
 
 import Quiz from '@site/src/components/Quiz';

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: How large language models like ChatGPT and Claude predict text one token at a time, explained with a hands-on lab.
 ---
 
 import Quiz from '@site/src/components/Quiz';

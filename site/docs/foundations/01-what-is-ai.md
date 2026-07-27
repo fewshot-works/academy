@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: What AI, machine learning, deep learning, and generative AI actually mean, and how they relate to each other.
 ---
 
 import Quiz from '@site/src/components/Quiz';

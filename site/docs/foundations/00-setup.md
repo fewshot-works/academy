@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Install uv, VS Code, and Ollama so every hands-on lab in this Generative AI course runs locally and for free.
 ---
 
 import Tabs from '@theme/Tabs';

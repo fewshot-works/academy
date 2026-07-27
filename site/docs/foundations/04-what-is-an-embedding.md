@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+description: What an embedding is and how it turns text into vectors that place similar meanings near each other.
 ---
 
 import Quiz from '@site/src/components/Quiz';

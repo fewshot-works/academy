@@ -1,5 +1,6 @@
 ---
 sidebar_position: 7
+description: What Retrieval-Augmented Generation (RAG) is and how it turns an LLM into an open-book answerer.
 ---
 
 import Quiz from '@site/src/components/Quiz';

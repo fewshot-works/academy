@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+description: What a vector database is and why it makes searching millions of embeddings for the closest match fast.
 ---
 
 import Quiz from '@site/src/components/Quiz';

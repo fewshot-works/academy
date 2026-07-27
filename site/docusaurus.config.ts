@@ -30,6 +30,27 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        name: 'zero-to-agent',
+        description:
+          'A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG, and Agents — from zero prior AI knowledge to a working, evaluated agentic RAG system. Every lesson is hands-on and runs locally for free via Ollama.',
+        url: 'https://fewshot-works.github.io/zero-to-agent/',
+        isAccessibleForFree: true,
+        provider: {
+          '@type': 'Organization',
+          name: 'zero-to-agent',
+          url: 'https://fewshot-works.github.io/zero-to-agent/',
+        },
+      }),
+    },
+  ],
+
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
@@ -82,6 +103,18 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    metadata: [
+      {
+        name: 'description',
+        content:
+          'A free, open-source, hands-on curriculum for Generative AI: LLMs, embeddings, vector databases, RAG, and AI agents. Start from zero prior AI knowledge, run every lab locally for free with Ollama.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'generative AI course, learn generative AI, GenAI training, free LLM course, RAG tutorial, AI agents tutorial, vector database tutorial, learn AI for beginners',
+      },
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },

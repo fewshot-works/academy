@@ -1,5 +1,6 @@
 ---
 sidebar_position: 8
+description: What an AI agent is and how it differs from a plain chatbot, deciding what to do next and calling tools.
 ---
 
 import Quiz from '@site/src/components/Quiz';
