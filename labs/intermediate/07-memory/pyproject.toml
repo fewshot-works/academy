@@ -1,0 +1,13 @@
+[project]
+name = "memory"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv",
+    "requests",
+    "langchain",
+    "langchain-ollama",
+    "langchain-openai",
+    "langchain-anthropic",
+    "langgraph",
+]
