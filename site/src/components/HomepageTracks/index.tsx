@@ -13,7 +13,7 @@ type TrackItem = {
 // Same three destinations the docs sidebar already leads to. This section
 // exists so a first-time visitor sees the shape of the whole course before
 // they've clicked into any of it. Status reflects what's actually written
-// today: Foundations is complete, Intermediate/Advanced are not yet.
+// today: Foundations and Intermediate are complete, Advanced is not yet.
 const TrackList: TrackItem[] = [
   {
     status: 'Live now',
@@ -23,14 +23,14 @@ const TrackList: TrackItem[] = [
     to: '/docs/foundations/setup',
   },
   {
-    status: 'Coming next',
+    status: 'Live now',
     title: 'Intermediate',
     description:
       'Chunking, retrieval quality, tool use, memory, and your first real agent, ending in a multi-tool capstone.',
     to: '/docs/intermediate/overview',
   },
   {
-    status: 'Planned',
+    status: 'Coming soon',
     title: 'Advanced',
     description:
       'Multi-agent patterns, guardrails, observability, and shipping a traced, evaluated agentic RAG system.',
