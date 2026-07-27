@@ -1,0 +1,11 @@
+[project]
+name = "better-retrieval"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv",
+    "requests",
+    "openai",
+    "chromadb",
+    "rank-bm25",
+]
