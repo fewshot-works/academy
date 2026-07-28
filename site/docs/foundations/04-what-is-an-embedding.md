@@ -69,15 +69,15 @@ Full instructions: [`labs/foundations/04-embedding-similarity`](https://github.c
 Here's what you should see (with Ollama; exact scores and pairing can shift a bit with a different embedding model):
 
 ```
-Most similar pair (0.71): "my dog won't stop barking" <-> "our puppy barks at everything"
-Least similar pair (0.31): "our puppy barks at everything" <-> "the stock market dropped again"
+Most similar pair (0.91): "my dog won't stop barking" <-> "our puppy barks at everything"
+Least similar pair (0.08): "I'm making pasta for dinner" <-> "the stock market dropped again"
 
 Saved plot to embeddings_plot.png
 ```
 
 Open `embeddings_plot.png` afterward. You'll see the pet sentences grouped together, the cooking sentences grouped together, and everything else spread out, without you ever telling the script which sentences belonged together.
 
-**One thing to know before you run it:** this lab needs an embedding model, and Anthropic doesn't currently offer one. If your `.env` still has `PROVIDER=anthropic` from an earlier chapter, switch it to `ollama` or `openai` for this lab.
+💡 **One thing to know before you run it:** this lab needs an embedding model, and Anthropic doesn't currently offer one. If your `.env` still has `PROVIDER=anthropic` from an earlier chapter, switch it to `ollama` or `openai` for this lab.
 
 ## Checkpoint
 

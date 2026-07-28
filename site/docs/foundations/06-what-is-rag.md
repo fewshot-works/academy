@@ -66,7 +66,7 @@ Answer:
 Fernwood Coffee Co.'s most popular drink is the Depot Latte.
 ```
 
-**One thing to know before you run it:** this lab needs one provider that can do both embeddings and chat, so it only supports `PROVIDER=ollama` or `PROVIDER=openai`, same restriction as Chapters 4 and 5.
+💡 **One thing to know before you run it:** this lab needs one provider that can do both embeddings and chat, so it only supports `PROVIDER=ollama` or `PROVIDER=openai`, same restriction as Chapters 4 and 5.
 
 ## Checkpoint
 

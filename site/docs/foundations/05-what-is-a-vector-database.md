@@ -65,12 +65,12 @@ Adding 10 sentences to the vector database...
 Query: "my cat keeps meowing at 3am"
 
 Top 3 closest matches:
-1. (0.89) my dog won't stop barking
-2. (0.84) our puppy barks at everything
-3. (0.21) this recipe needs more garlic
+1. (0.63) my dog won't stop barking
+2. (0.52) our puppy barks at everything
+3. (0.46) I'm making pasta for dinner
 ```
 
-**One thing to know before you run it:** just like Chapter 4, this lab needs an embedding model, and Anthropic doesn't offer one. If your `.env` still has `PROVIDER=anthropic`, switch it to `ollama` or `openai` for this lab.
+💡 **One thing to know before you run it:** just like Chapter 4, this lab needs an embedding model, and Anthropic doesn't offer one. If your `.env` still has `PROVIDER=anthropic`, switch it to `ollama` or `openai` for this lab.
 
 ## Checkpoint
 
