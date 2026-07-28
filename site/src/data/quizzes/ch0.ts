@@ -2,36 +2,36 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'Why does each lab use uv instead of manually installing Python and venv?',
+    question: "When you set up a hosted OpenAI or Anthropic API key in Chapter 0's optional Step 5, who actually handles billing for your API requests?",
     options: [
-      'uv makes downloads faster than pip',
-      'uv replaces the need for a code editor',
-      "uv installs Python and creates an isolated environment automatically, so there's nothing to activate by hand",
-      'uv connects directly to Ollama',
-    ],
-    correctIndex: 2,
-    explanation: 'uv folds installing Python, isolating packages, and activating an environment into one step, run automatically the first time you use a lab folder.',
-  },
-  {
-    question: "What's the main difference between Ollama and a hosted API key (OpenAI/Anthropic)?",
-    options: [
-      "They're the same thing, just different names",
-      'Ollama runs a model on your own computer for free; an API key sends requests to a company’s servers and costs money per request',
-      'Ollama requires a credit card; the API key is free',
-      'The API key runs locally; Ollama needs the internet',
+      'This course, since it generates the key for you',
+      "The provider (OpenAI or Anthropic) bills you directly on their own site; this course never sees or handles your key or your money",
+      'Ollama, since it manages every provider behind the scenes',
+      'There is no billing, hosted keys are always free to use',
     ],
     correctIndex: 1,
-    explanation: "Ollama is local, free, and private but limited to your hardware. A hosted key is usually faster or more capable, but bills you per request.",
+    explanation: "The chapter is explicit: you add a payment method on the provider's own site, and this project never sees or handles your key or your money.",
   },
   {
-    question: 'Do you need to manually activate anything before running a lab with uv?',
+    question: "Step 4 has you run `ollama pull llama3.2`, a roughly 2GB download. What does that download actually buy you, according to the chapter?",
     options: [
-      'Yes, run `source .venv/bin/activate` before every lab',
-      'Yes, but only the first time you use a lab folder',
-      'Yes, you must manually activate Ollama first',
-      'No, running `uv run <script>.py` handles creating and activating the environment for you',
+      'A day pass, the model needs re-downloading every 24 hours',
+      'A one-time download, after which the model lives on your machine and runs with no internet connection needed',
+      'A decompression tool for running OpenAI models locally',
+      'Nothing changes until you also install VS Code',
     ],
-    correctIndex: 3,
-    explanation: "That's the whole point of uv over plain venv: one command does the creating, installing, and activating for you.",
+    correctIndex: 1,
+    explanation: 'The chapter says this directly: "This is a one-time download. After this, the model lives on your machine and needs no internet connection to run."',
+  },
+  {
+    question: "The first time you run `uv run <script>.py` inside a lab folder, what does uv do that a second run later skips straight past?",
+    options: [
+      'Nothing, it behaves identically on every run',
+      "Reads that lab's pyproject.toml, creates its isolated .venv, and installs its packages, before running the script",
+      'Downloads a fresh copy of Ollama',
+      "Deletes the previous lab's environment to free up space",
+    ],
+    correctIndex: 1,
+    explanation: 'The chapter notes that the first run does the creating, installing, and running all at once; "run it again later and it skips straight to running, since everything\'s already there."',
   },
 ];

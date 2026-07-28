@@ -2,36 +2,36 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'Why does the capstone bot use a persistent vector database instead of the in-memory one from Chapter 6?',
+    question: "Per the capstone's summary table, which chapter's piece is responsible for \"finding the chunks most related to a question, fast\"?",
     options: [
-      'Persistent storage makes the embeddings themselves more accurate',
-      'So documents only need to be embedded once, since an in-memory database disappears the moment the script ends',
-      'It is required because Ollama cannot work with in-memory databases',
-      'It is needed to support more than one document at a time',
-    ],
-    correctIndex: 1,
-    explanation: "Chapter 6's bot rebuilt the database from scratch every run; this one saves it to disk so later runs skip straight to answering.",
-  },
-  {
-    question: 'What happens if you ask the capstone bot a question that is not covered by either sample document?',
-    options: [
-      'The bot automatically searches the internet instead',
-      'The bot throws an error and refuses to answer',
-      'It still returns its top-k closest chunks, even though they are not relevant, so a well-behaved model should say it does not know rather than guess',
-      "The bot always replies 'I don't know' for any question that isn't an exact quote from the documents",
+      'Chapter 2',
+      'Chapter 4',
+      'Chapter 5',
+      'Chapter 6',
     ],
     correctIndex: 2,
-    explanation: 'Same "reduces but does not eliminate hallucination" point from Chapter 6. A weaker model may still guess anyway.',
+    explanation: 'The table lists "Storing and searching vectors" under Chapter 5, with "Finds the chunks most related to a question, fast" as what it does here.',
   },
   {
-    question: 'What is the one change needed to point this bot at your own notes instead of the sample documents?',
+    question: 'The chapter says two things are new in this capstone, and both are "small steps, not new concepts." One is persistent storage. What\'s the other?',
     options: [
-      'Rewrite the embedding logic to match your file format',
-      'Nothing in the code, just replace the files in the docs/ folder with your own .txt files',
-      'Retrain the LLM on your documents first',
-      'Change the PROVIDER setting in .env',
+      'A completely new embedding model',
+      'A real question loop that keeps asking until you tell it to quit, instead of one hardcoded question',
+      'A brand-new LLM provider not used in earlier chapters',
+      'A web interface instead of a terminal script',
     ],
     correctIndex: 1,
-    explanation: 'The script reads chunks from whatever .txt files it finds in that folder.',
+    explanation: 'The chapter states this exactly: "A real question loop instead of one hardcoded question... keeps asking \'what\'s your next question?\' until you tell it to quit."',
+  },
+  {
+    question: 'The closing 💡 bonus suggests ways to keep playing with the capstone bot before starting Intermediate. Which of these does it specifically suggest?',
+    options: [
+      'Deploying the bot to a cloud server',
+      'Feeding it a public-domain book and asking it questions nobody has asked before',
+      'Rewriting it in a different programming language',
+      'Connecting it to a paid vector database',
+    ],
+    correctIndex: 1,
+    explanation: 'The closing bonus paragraph suggests exactly this, alongside swapping in your own notes or exploring Ollama\'s and Hugging Face\'s other models.',
   },
 ];

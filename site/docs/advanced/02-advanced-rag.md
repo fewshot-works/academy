@@ -37,7 +37,7 @@ flowchart TD
     G -->|"good"| A["Answer"]
 ```
 
-None of these techniques are a strictly-better replacement for what Chapter 3 already covered, they solve *different* failure modes, and it matters which one you reach for.
+None of these techniques are a strictly-better replacement for what Chapter 3 already covered. They solve *different* failure modes, and it matters which one you reach for.
 
 ## Hands-on lab: four techniques, the same tricky corpus
 

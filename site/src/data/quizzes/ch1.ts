@@ -2,37 +2,37 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'How do AI, machine learning, deep learning, and generative AI relate to each other?',
+    question: "According to the chapter's history note, what happened in the decades between AI being named at Dartmouth in 1956 and the deep learning boom of the last decade?",
     options: [
-      "They're four separate, competing technologies",
-      "They're nested, each one a specific kind of the one before it, like Russian nesting dolls",
-      'Generative AI came first, and the others were built on top of it afterward',
-      "They're just four different marketing names for the same thing",
+      "Nothing, AI research didn't really begin until deep learning arrived",
+      'The field went through repeated cycles of excitement followed by funding cuts and skepticism, often called "AI winters," before progress eventually stuck',
+      "AI research paused entirely until Alan Turing's 1950 paper",
+      'Generative AI was invented first, and the other terms were defined afterward to describe it',
     ],
     correctIndex: 1,
-    explanation: 'Every generative AI system is also deep learning, which is also machine learning, which is also AI, but not every AI is generative.',
+    explanation: 'The chapter\'s history callout describes exactly this: repeated "AI winters" of excitement and funding cuts, each eventually giving way to real progress that stuck around.',
   },
   {
-    question: 'Is a thermostat that turns on the AC above 78°F an example of machine learning?',
+    question: "Per the chapter's example table, what's the difference between face unlock on your phone and ChatGPT writing you an email, even though both count as deep learning?",
     options: [
-      'Yes, because it reacts automatically to sensor data',
-      'Yes, any automated device counts as machine learning',
-      "No, it's AI in the broadest sense, but not machine learning, because a person wrote the rule directly instead of the computer learning it from examples",
-      "No, because thermostats don't count as AI at all",
-    ],
-    correctIndex: 2,
-    explanation: 'AI is a low bar (any computer behavior built to act smart); ML specifically means the pattern was learned from data, not hand-coded.',
-  },
-  {
-    question: 'What is the key shift from old-school programming to machine learning?',
-    options: [
-      'ML programs always run faster than hand-written ones',
-      'Instead of a programmer writing exact rules, the computer works out the pattern on its own from a large pile of examples',
-      'ML does not require a computer to run',
-      'ML always creates brand-new content, while old-school programming never does',
+      "Face unlock isn't real AI, but ChatGPT is",
+      "Face unlock recognizes and labels (is this the right face or not), while ChatGPT generates brand-new content that didn't exist before you asked",
+      'Face unlock is generative and ChatGPT is not',
+      'There is no difference, they use identical techniques for identical tasks',
     ],
     correctIndex: 1,
-    explanation: 'Like teaching a kid to recognize dogs from examples instead of handing them a rulebook.',
+    explanation: "The table marks face unlock as deep learning but not generative (\"it recognizes, doesn't create\"), while ChatGPT is marked generative.",
+  },
+  {
+    question: "The chapter's table marks the email spam filter example as Deep Learning: \"Sometimes.\" What does that \"sometimes\" actually mean?",
+    options: [
+      'That spam filters only correctly catch spam half the time',
+      'That not every ML technique used for spam filtering is a deep learning one; some spam filters use other ML methods, only some use deep neural networks',
+      'That deep learning is required before anything counts as AI at all',
+      'That the word is a typo and should say "always"',
+    ],
+    correctIndex: 1,
+    explanation: 'Deep learning is one specific technique inside the broader category of machine learning, not the whole category, so a spam filter can be ML without necessarily being built with deep learning.',
   },
   {
     question: 'What makes generative AI different from most earlier machine learning, like a spam filter or face unlock?',

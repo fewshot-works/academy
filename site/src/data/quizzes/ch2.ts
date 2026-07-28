@@ -2,37 +2,37 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'What is a "token"?',
+    question: 'As a rule of thumb, the chapter says 1 token is roughly ¾ of an English word. Using that rule, roughly how many tokens is a 100-word paragraph?',
     options: [
-      'Always exactly one whole word',
-      'The small chunk of text an LLM actually processes, often smaller than a whole word',
-      'A unit used to measure how much an API call costs, unrelated to the text itself',
-      'A special character marking the end of a sentence',
-    ],
-    correctIndex: 1,
-    explanation: 'A common short word is often one token, but longer or unusual words get split into smaller pieces.',
-  },
-  {
-    question: 'How does an LLM decide what to write next?',
-    options: [
-      'It looks up the answer in a built-in database of facts',
-      'It plans out the entire response in advance, then writes it',
-      'It calculates a probability for every possible next token and picks one, repeating that one token at a time',
-      'It copies the closest matching sentence from its training data word-for-word',
+      'About 75',
+      'About 100',
+      'About 130',
+      'About 400',
     ],
     correctIndex: 2,
-    explanation: 'That loop, run thousands of times per response, is the entire trick behind an LLM writing anything.',
+    explanation: 'The chapter states this directly: "a 100-word paragraph is roughly 130 tokens."',
   },
   {
-    question: 'Why can an LLM confidently state something that is factually wrong?',
+    question: "The chapter distinguishes \"training\" from \"inference.\" What's the actual difference?",
     options: [
-      "It's deliberately programmed to lie some percentage of the time",
-      'It generates the most statistically plausible-sounding next words, with no built-in fact-checking step',
-      'It only happens with older, cheaper models',
-      'It happens because the context window is set too large',
+      "They're two names for the exact same step",
+      'Training happens once, ahead of time, where the model learns token probabilities from huge amounts of text; inference is what happens every time you send it a prompt afterward, running the predict-one-token-at-a-time loop',
+      'Inference happens once; training happens on every request you send',
+      'Training only applies to hosted models, inference only applies to Ollama',
     ],
     correctIndex: 1,
-    explanation: 'Plausible-sounding and true usually overlap, since true statements are common in training data, but there is no guarantee.',
+    explanation: 'The chapter is explicit: training is a one-time, upfront process done by a company like OpenAI or Anthropic; inference is what runs every time you send a prompt to the already-trained model.',
+  },
+  {
+    question: "Per the chapter's privacy section, what's the practical difference between talking to Ollama and talking to a hosted model like OpenAI or Anthropic?",
+    options: [
+      "There's no real difference, both send your text to a company's servers",
+      "Ollama runs entirely on your own machine so nothing you type ever leaves it; a hosted model sends your prompt to that company's own computers, under their privacy and data-retention policy",
+      'Hosted models never actually process your prompt, only Ollama does',
+      'Ollama requires you to accept the same privacy policy as the hosted providers',
+    ],
+    correctIndex: 1,
+    explanation: 'The chapter uses a "friend in the room" (Ollama) vs. "sealed letter across the country" (hosted model) analogy to make exactly this point.',
   },
   {
     question: 'What is the "context window"?',

@@ -52,6 +52,13 @@ A large language model is like a computer that has read a huge number of books a
 
 Your exact wording will differ every time you run it, that's expected. The model is generating a new answer one token at a time (that's the whole subject of Chapter 2), not reciting a fixed, memorized sentence.
 
+💡 A few honest notes on this real run:
+
+- **Three runs against `llama3.2`, three different explanations**, and each one reached for its own comparison on the fly: a librarian who knows all the answers, a computer that's read a huge number of books, math that lets it learn from the internet. Nothing in the prompt asks for an analogy, that's just where the model's next-token guessing happened to land each time.
+- **"One short sentence" held up every time**, even across those different phrasings. A 3-billion-parameter model getting a simple length instruction right consistently is worth noting here, because later labs (Chapter 4's prompt patterns, for instance) show this same small model struggling with more demanding instructions.
+
+With `PROVIDER=openai` or `PROVIDER=anthropic`, expect the same one-sentence shape and similar run-to-run wording variation, just noticeably faster since there's no local GPU inference involved.
+
 ## What the script is actually doing
 
 Open `first_call.py` and follow along:

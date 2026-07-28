@@ -2,26 +2,26 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: "In the lab's real trace, the ollama.chat span's parent_id field matches the span_id of the ask_model.task span. What does that tell you?",
+    question: "OpenTelemetry produces two related concepts in this chapter's trace: a span and a trace. What's the actual difference between them?",
     options: [
-      "It's a coincidence, span IDs are random and unrelated",
-      "ollama.chat is a child span of ask_model.task -- the LLM call happened inside the traced task, and OpenTelemetry records that nesting via parent_id",
-      "The two spans failed and had to be retried under the same ID",
-      "parent_id only matters for spans exported to Jaeger, not the console",
+      "They're two names for the same thing",
+      "A span is one unit of work with a start time, end time, and attached details; a trace is a whole request's worth of spans strung together via parent_id, showing how they nest",
+      "A trace only exists once spans are exported to a UI like Jaeger",
+      "A span records timing only; a trace records prompt and completion content",
     ],
     correctIndex: 1,
-    explanation: "A span's parent_id pointing at another span's span_id is exactly how OpenTelemetry represents nesting -- it's what lets a trace be reconstructed as a tree (workflow contains task contains LLM call) instead of a flat list of unrelated events.",
+    explanation: "The chapter's real captured trace shows this directly: individual spans (ollama.chat, ask_model.task, support_conversation.workflow) each cover one unit of work, and they're tied together into a single trace by parent_id references and a shared trace_id.",
   },
   {
-    question: "The lab switched the Ollama branch from requests.post() (used in every earlier lab) to the official ollama Python package. Why was that change necessary for this chapter?",
+    question: "The chapter builds on OpenLLMetry, which is built on OpenTelemetry, a vendor-neutral standard, rather than a proprietary tracing SDK. What's the actual benefit of that choice?",
     options: [
-      "The ollama package is faster than raw HTTP requests",
-      "OpenLLMetry auto-instruments specific known client libraries like the ollama package -- it can't see inside a generic requests.post() call, so that swap is what actually turns Ollama calls into rich LLM spans",
-      "requests.post() doesn't work with Ollama's chat endpoint at all",
-      "The .env file requires the ollama package to load PROVIDER correctly",
+      "Vendor-neutral SDKs are always faster than proprietary ones",
+      "You instrument your code once, and can send the resulting spans to whichever destination you want (console, Jaeger, a hosted platform) without changing the instrumentation itself -- no vendor lock-in",
+      "OpenTelemetry is required by law for any production AI system",
+      "Proprietary SDKs cannot capture prompt or completion content",
     ],
     correctIndex: 1,
-    explanation: "Auto-instrumentation works by wrapping a specific library's functions. A generic HTTP call carries no signal that it's an LLM request, so OpenLLMetry has nothing to hook into -- using the real client library is what makes the prompt/completion/token capture possible.",
+    explanation: "The chapter's bonus section proves this in practice: switching from console output to Jaeger, or to LangSmith, changes exactly one line, Traceloop.init()'s destination argument. The @task/@workflow decorators and auto-instrumentation never change.",
   },
   {
     question: "In the real captured trace, the model answered 'we have three locations, all within the state of Oregon,' but the system prompt only said 'all in the same state,' no state name given. How did the trace make this catchable?",
@@ -35,14 +35,14 @@ export const questions: QuizQuestion[] = [
     explanation: "Tracing doesn't catch hallucinations automatically -- it makes them visible by keeping the exact prompt and the exact completion attached to the same span, so a mismatch between what was given and what came back is something you can actually go look at, instead of something invisible once the response scrolls by.",
   },
   {
-    question: "The bonus Jaeger section changes exactly one argument to Traceloop.init() (exporter=ConsoleSpanExporter() becomes api_endpoint=\"http://localhost:4318\") and nothing else in the script. Why is that the only change needed?",
+    question: "The chapter's bonus section offers both a local Jaeger container and a hosted LangSmith account as trace UIs, even though this lab never imports LangChain. What's the actual trade-off between the two options?",
     options: [
-      "Jaeger and the console use the same data format by coincidence",
-      "The @task/@workflow decorators and auto-instrumentation always produce the same spans -- Traceloop.init() is the one place that decides where those spans go, so switching destinations doesn't touch how they're generated",
-      "The script actually needs several other changes not shown in the lab",
-      "Jaeger only works with OpenAI and Anthropic, not Ollama",
+      "LangSmith can't be used at all without also using LangChain in your code",
+      "Jaeger needs Docker and a container to manage but keeps traces on your machine with no account; LangSmith needs a free account and sends traces off your machine, but neither needs any change beyond Traceloop.init()'s destination -- LangSmith accepts plain OTLP regardless of what library produced it",
+      "Jaeger is strictly better in every way and LangSmith offers no advantage",
+      "LangSmith requires rewriting the lab's @task and @workflow decorators",
     ],
     correctIndex: 1,
-    explanation: "This is the practical payoff of building on OpenTelemetry: instrumentation (what gets recorded) and export (where it goes) are separate concerns. The same trace can go to a terminal, a local Jaeger container, or a production observability platform without changing a single decorator.",
+    explanation: "LangSmith works here specifically because it accepts standard OTLP traces, it doesn't care that the spans came from OpenLLMetry instead of LangChain. The real choice is local-and-account-free (Jaeger) versus zero-install-but-hosted (LangSmith), not a difference in what gets captured.",
   },
 ];

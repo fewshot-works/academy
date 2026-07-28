@@ -2,37 +2,37 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'What does "augmented" mean in Retrieval-Augmented Generation?',
+    question: 'The chapter\'s history note says the term "Retrieval-Augmented Generation" comes from a 2020 research paper, about two years before ChatGPT went mainstream. What point is the chapter making with that timing?',
     options: [
-      "The model's size is increased right before it answers",
-      'The question gets automatically translated before being sent',
-      'The LLM answer is supplemented with retrieved text at the moment of answering, instead of relying only on what it learned during training',
-      'The LLM is retrained on the retrieved documents before answering',
-    ],
-    correctIndex: 2,
-    explanation: 'No retraining happens at all. The relevant facts are just handed to the model at the moment you ask.',
-  },
-  {
-    question: 'Why does RAG reduce hallucination without eliminating it?',
-    options: [
-      'RAG completely eliminates hallucination, since the model can no longer guess',
-      'The model now works from real retrieved text, which makes correct answers far more likely, but it can still misread or misuse that text',
-      'RAG has no real effect on hallucination one way or the other',
-      'RAG only works on fictional documents, so hallucination does not apply',
+      "That RAG was invented specifically to fix ChatGPT's flaws",
+      "That combining search with generation predates the current AI boom, RAG isn't a reaction to ChatGPT-style tools going mainstream",
+      'That the 2020 paper has since been proven wrong',
+      'That RAG only became possible once ChatGPT existed',
     ],
     correctIndex: 1,
-    explanation: 'RAG lowers the odds of a wrong answer. It does not remove them entirely.',
+    explanation: 'The chapter notes this is "worth noticing": the RAG paper predates ChatGPT-style tools going mainstream by about two years.',
   },
   {
-    question: 'What are the main steps in the RAG loop?',
+    question: "The lab's document, Fernwood Coffee Co., is entirely made up and doesn't exist anywhere in the real world. Why does the chapter deliberately choose a fictional company for this lab?",
     options: [
-      'Train a new model, then embed the question, then answer directly',
-      'Ask the question twice and compare the two answers',
-      'Embed the question, search a vector database for close matches, add those chunks to the prompt as context, then generate an answer',
-      'Summarize the entire database first, then embed just the summary',
+      'To make the lab more entertaining to read',
+      "So that if the bot answers correctly, that's proof it's actually using the retrieved text, not something the model already knew from training",
+      'Because real company names are legally protected',
+      'Because fictional names produce more accurate embeddings',
     ],
-    correctIndex: 2,
-    explanation: "It chains together the two prior chapters' pieces (embed, search) plus one more step (stuff context, then generate).",
+    correctIndex: 1,
+    explanation: "The chapter is explicit that the document is \"made-up on purpose, so you can be certain any correct answer came from retrieval, not from something the model already knew.\"",
+  },
+  {
+    question: 'In the chapter\'s Langflow bonus section, what has to be swapped out of the default "Vector Store RAG" template to match what the Python lab actually used?',
+    options: [
+      'Nothing, the template already matches exactly',
+      'Both Astra DB components need to be swapped for Chroma DB, and the embedding components swapped for Ollama Embeddings (or OpenAI, matching whichever provider the lab used)',
+      'The LLM component needs to be removed entirely',
+      'The template only works with a paid Langflow account',
+    ],
+    correctIndex: 1,
+    explanation: 'The bonus section walks through exactly this swap: Astra DB to Chroma DB, and the embedding components to match the local Ollama model used since Chapter 4.',
   },
   {
     question: 'In the closed-book vs. open-book exam analogy, which student represents a plain LLM answering from memory alone?',

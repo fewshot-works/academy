@@ -60,6 +60,13 @@ negative
 
 Zero-shot tends to ramble because you never told the model what shape you wanted the answer in. Few-shot and the system prompt both land on a clean one-word answer, but for different reasons: few-shot copies the pattern of the examples you showed it, while the system prompt is a standing rule the model was told to follow.
 
+💡 A few honest notes on this real run:
+
+- **Few-shot doesn't always land clean.** Run it twice against `llama3.2` and you might get a tidy `negative` one time, then a made-up second review plus a full sentence explaining it the next. Two worked examples are a much weaker steer than an explicit instruction, so a small model sometimes drifts back into rambling despite the pattern you showed it.
+- **The system prompt was the one consistently reliable answer across every run**, `Negative`, nothing else, every time. That's the difference between showing the model what you want (few-shot) and telling it (a system prompt): a direct instruction the model was told to follow held up far more reliably here than a pattern it had to infer.
+
+With `PROVIDER=openai` or `PROVIDER=anthropic`, expect few-shot to hold its one-word format more reliably than it does here, larger models tend to pick up on the pattern more consistently.
+
 ## What the script is actually doing
 
 Open `prompt_playground.py` and follow along:

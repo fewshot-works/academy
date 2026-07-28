@@ -58,6 +58,13 @@ Fernwood Coffee Co.'s most popular drink is the Depot Latte.
 
 "Fernwood Coffee Co." is entirely made up for this lab, it doesn't exist anywhere in the real world. If the bot answers correctly anyway, that's proof it's actually using the retrieved text from `sample_facts.txt`, not something it already knew.
 
+💡 A few honest notes on this real run:
+
+- **The two retrieved chunks weren't the ones shown above.** Every run here pulled the bestselling-drink chunk (the one that actually answers the question) and the loyalty-program chunk, which has nothing to do with what's most popular. The founding-year chunk shown in the example above never came back at all. Retrieval isn't grabbing "the founding fact plus the answer," it's grabbing whatever the embedding model scores closest, and that won't always match a hand-picked example.
+- **The wrong second chunk didn't throw the model off.** Every run answered "the Depot Latte" correctly anyway, worded slightly differently each time, because the prompt still handed it the one chunk that actually contains the answer, and the model was able to ignore the irrelevant second chunk rather than getting confused by it.
+
+With `PROVIDER=openai`, expect the same correct answer, retrieval quality and which two chunks come back can shift with the embedding model, but a well-grounded question like this one tends to succeed either way.
+
 ## What the script is actually doing
 
 Open `rag_bot.py` and follow along:

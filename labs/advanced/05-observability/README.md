@@ -105,10 +105,7 @@ The console dump above is honest but not fun to read once you have more than a c
 1. **Start Jaeger:**
 
    ```bash
-   docker run --rm -d --name jaeger \
-     -p 16686:16686 \
-     -p 4318:4318 \
-     jaegertracing/all-in-one:latest
+   docker run --rm -d --name jaeger -p 16686:16686 -p 4318:4318 jaegertracing/all-in-one:latest
    ```
 
    `16686` is the web UI, `4318` is Jaeger's built-in OTLP/HTTP receiver, recent Jaeger versions accept OpenTelemetry traces natively, no separate collector needed.

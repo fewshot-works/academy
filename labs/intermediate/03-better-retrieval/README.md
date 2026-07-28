@@ -80,12 +80,12 @@ Summary of top pick per approach:
   D. LLM re-rank            -> [Fernwood]
 ```
 
-Notice what actually happens here, not the tidy version you might expect:
+💡 A few honest notes on this real run, not the tidy version you might expect:
 
 - **A (baseline) gets it wrong.** Even though the question names Fernwood directly, plain vector search ranks Harbor Bean's loyalty fact first, because Harbor Bean's wording ("free drink after every eight purchases") is embedded as slightly more similar to the question than Fernwood's own answer is. This is the real failure mode these techniques exist to fix, not a rigged example.
 - **B (metadata filter) fixes it instantly**, because scoping the search to `company = Fernwood` before ranking removes every wrong-company document from consideration entirely. It only works because the question happens to name the company explicitly, though, if it hadn't, there'd be nothing to filter on.
 - **C (hybrid) narrows the gap but doesn't flip the top result on its own.** BM25 does score Fernwood's fact higher than Harbor Bean's for this query (the word "Fernwood" only appears in Fernwood's documents), but the fixed 50/50 blend with vector similarity isn't quite enough to overcome how confidently vector search preferred the wrong document. What hybrid *does* do is pull the correct document into the top 3, which matters for the next step.
-- **D (re-ranking) is what actually finishes the job.** Handed hybrid's top 3 candidates, the LLM reads the actual text, not just a similarity score, and correctly picks Fernwood's fact. Re-ranking works here specifically because hybrid already did the work of getting the right answer into the candidate pool.
+- **D (re-ranking) is what actually finishes the job, most of the time.** Handed hybrid's top 3 candidates, the LLM reads the actual text, not just a similarity score, and correctly picks Fernwood's fact on most runs. But it's a real model call, not a guaranteed lookup, out of a handful of runs against `llama3.2`, one of them picked Harbor Bean's loyalty fact instead, even with the correct answer sitting right there in the same 3-candidate list. Re-ranking raises the odds of getting the right answer, it doesn't make the earlier steps' work bulletproof.
 
 Your exact numbers may shift slightly with a different embedding model, but this general shape, baseline stumbles, filtering and hybrid each help partially, re-ranking cleans up what's left, tends to hold.
 

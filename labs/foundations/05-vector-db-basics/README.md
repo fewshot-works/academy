@@ -60,6 +60,13 @@ Your exact numbers, and even the third match, will differ depending on your embe
 
 A new folder called `chroma_db/` also appears next to the script. That's the actual database, saved to disk so it's still there if you run the script again.
 
+💡 A few honest notes on this real run:
+
+- **Unlike Labs 2 and 3, this one is boringly repeatable.** Embeddings aren't generated word-by-word like chat replies, so running this script five times in a row against `nomic-embed-text` gave the exact same three matches with the exact same scores every time, not just the same ranking.
+- **Running the script twice doesn't create a second copy of anything.** `collection.upsert(...)` uses each sentence's id to overwrite, not append, so `chroma_db/` stays at 10 sentences no matter how many times you rerun the script. That's worth noticing because it means you can experiment freely (rerun, tweak the query) without needing to delete `chroma_db/` between attempts.
+
+With `PROVIDER=openai`, expect the same top-2 dog sentences and the same query-without-a-manual-loop behavior, just with different underlying scores from a different embedding model.
+
 ## What the script is actually doing
 
 Open `vector_db_basics.py` and follow along:

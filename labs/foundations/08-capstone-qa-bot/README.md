@@ -74,6 +74,13 @@ Both documents are made up on purpose, "Fernwood Coffee Co." and the "Mountain V
 
 A new folder called `chroma_db/` appears next to the script after the first run. That's the saved database, so re-running the script won't re-embed anything that's already in it.
 
+💡 A few honest notes on this real run:
+
+- **Retrieval crossed documents on both questions, and it still worked out.** Asking about Fernwood's most popular drink correctly retrieved the Depot Latte chunk first, but the second-closest chunk wasn't from the coffee document at all, it was the hiking club's "Ridge Trail Sunrise Hike" chunk. Asking about the hiking club's meeting time pulled that same sunrise-hike chunk as its second match too. In both cases the model answered correctly anyway, because the one relevant chunk it needed was still there in the context, and it didn't get distracted by the unrelated second chunk.
+- **This is a good reminder of what "retrieve the 2 closest chunks" actually promises.** It doesn't promise both chunks will be relevant, only that they're the closest by embedding distance. With just 8 chunks total across 2 documents, there often isn't a second genuinely-related chunk to find, so the database returns its best remaining guess instead of an empty slot.
+
+With `PROVIDER=openai`, expect the same correct answers on these two questions; which second chunk gets retrieved may differ, but it doesn't need to be relevant for the model to answer correctly.
+
 ## Try it on your own documents
 
 This is the actual capstone step. Open the `docs/` folder, delete the two sample files, and drop in a few of your own, notes, a resume, an FAQ, meeting minutes, anything in plain `.txt` format. Delete the `chroma_db/` folder too, so old sample data doesn't linger, then run the script again and ask it real questions about your own material.

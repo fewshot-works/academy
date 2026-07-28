@@ -87,6 +87,13 @@ Look at the boundary between chunk 1 and chunk 2 in the fixed-size split above: 
 
 Your exact chunk boundaries may shift slightly with a different embedding model, but the fixed-size split should always cut mid-sentence somewhere, and the semantic split should always keep the whole Fernwood Coffee story (which spans two paragraphs) together in one chunk.
 
+💡 A few honest notes on this real run:
+
+- **Every chunk shown above came back byte-for-byte identical across repeated runs.** None of these four methods depend on a model generating new text token by token, `nomic-embed-text` embeddings are deterministic too, so unlike the chat-based labs, there's no "your exact output may differ" here for the actual chunk boundaries.
+- **The 0.55 threshold in `semantic_chunk` is doing real work, and it's not a huge margin.** Bumping it to 0.65 (just to see) split the Fernwood Coffee story into five separate chunks instead of keeping it together, sentence-by-sentence, because the similarity between consecutive coffee-story sentences dips just below 0.65 in a couple of places. The threshold isn't a formality, it's the one number standing between "one coherent chunk" and "shredded into sentence fragments."
+
+With `PROVIDER=openai`, expect the same shape overall (fixed-size cuts mid-sentence, recursive doesn't, semantic groups by topic), but the exact semantic boundaries can shift, a different embedding model scores sentence similarity differently, so 0.55 isn't guaranteed to be the right threshold for it.
+
 ## What the script is actually doing
 
 Open `chunking.py` and follow along. The document itself is a small fictional town newsletter with three unrelated stories glued together, library hours, a coffee shop opening, a hiking club update, on purpose, so it's obvious when a chunking method blends two unrelated stories into one chunk versus keeps them apart.

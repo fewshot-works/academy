@@ -2,37 +2,37 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: 'Why does the tool-execution loop need a maximum step count (MAX_STEPS)?',
+    question: "The chapter shows tool-calling mechanics differ across providers: Ollama hands you already-parsed arguments, OpenAI hands you a JSON string you parse yourself, and Anthropic is described as 'the odd one out.' What specifically makes Anthropic the odd one out?",
     options: [
-      'Nothing guarantees the model eventually stops asking for tools and gives a plain-text answer, so without a cap a model that keeps calling tools could loop forever',
-      'Each provider charges extra after 5 tool calls in a single conversation',
-      'Ollama refuses to accept more than 5 messages in one conversation',
-      'It prevents the calculator tool from being called more than once',
-    ],
-    correctIndex: 0,
-    explanation: 'MAX_STEPS is the concrete version of the "reason to stop" idea from Foundations Chapter 7, a beginner-obvious safety net against a model that never stops calling tools.',
-  },
-  {
-    question: 'Why does the calculator tool parse the expression with the ast module instead of calling Python\'s eval()?',
-    options: [
-      'ast is faster than eval() for simple arithmetic',
-      "eval() runs whatever text it's given as real Python code, not just arithmetic; since the input is text the model generated, that's a real security risk, not a hypothetical one",
-      'eval() cannot handle decimal numbers',
-      'ast is required by Ollama\'s API, but not by OpenAI or Anthropic',
+      'Anthropic does not support tool calling at all',
+      'Anthropic requires the tool result to go back as a user-role message containing a tool_result block, instead of an assistant-role message like the other two',
+      'Anthropic charges extra for every tool call',
+      'Anthropic only allows one tool call per conversation',
     ],
     correctIndex: 1,
-    explanation: "eval(\"18 * 7 + 4\") and eval(\"os.system('rm -rf /')\") are both just code that runs. Parsing into a syntax tree and only walking a small set of allowed operations means anything outside basic arithmetic can't do anything, even if the model asks it to.",
+    explanation: "The chapter is explicit: with Anthropic, the result has to go back as a user-role message, not assistant, containing a tool_result block, the detail most likely to trip up someone used to OpenAI-style APIs.",
   },
   {
-    question: "What's actually different between what Chapter 4's function-calling section showed and what this chapter's lab does?",
+    question: "During testing, an earlier attempt at question 3 had the model call calculator with the argument '1 hour of focused study per day', plain English, not math. What happened, and how did the script handle it?",
     options: [
-      'Chapter 4 used a smaller model, this chapter requires a larger one',
-      'Chapter 4 only worked with OpenAI, this chapter adds Ollama and Anthropic support',
-      "Chapter 4 showed the model choosing a tool and filling in arguments, but never running it; this chapter actually calls the real function, feeds the result back to the model, and repeats until there's a final answer",
-      'Chapter 4 used JSON mode instead of function calling',
+      'The script crashed and had to be restarted manually',
+      "The syntax-tree parser failed on that input, but call_tool() wraps the real function call in a try/except, turning the failure into an error string handed back to the model instead of crashing",
+      'Ollama silently ignored the tool call and answered directly',
+      'The lab was rewritten afterward to prevent the model from ever calling the calculator with non-math input',
     ],
-    correctIndex: 2,
-    explanation: "Chapter 4's decision (which tool, which arguments) never went anywhere. This chapter acts on that same kind of decision: real function call, real result, fed back into the conversation, looping until the model is done.",
+    correctIndex: 1,
+    explanation: "That's exactly why call_tool() in the script wraps the actual function call in a try/except, and turns any failure into an error string, handed back to the model the same way a real result would be, instead of taking down the whole script.",
+  },
+  {
+    question: 'The chapter notes that search_wikipedia needs no API key, no cost, and no signup. Why does the chapter call this detail out specifically?',
+    options: [
+      "Because it's the only tool in the entire curriculum that works without an API key",
+      "Because it keeps the chapter's own \"$0 with Ollama\" promise intact even for what functions as a \"web search\" tool",
+      'Because Wikipedia normally requires a paid subscription for programmatic access',
+      'Because the calculator tool requires an API key and this contrasts with it',
+    ],
+    correctIndex: 1,
+    explanation: 'No API key, no cost, no signup, which keeps this lab\'s "$0 with Ollama" promise intact even for the "web search" tool.',
   },
   {
     question: 'During testing, a lab question that needed no live lookup ("what\'s a good tip for staying focused while studying?") still triggered a search_wikipedia call from llama3.2. What does this show?',

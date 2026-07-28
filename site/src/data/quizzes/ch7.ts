@@ -2,36 +2,36 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 
 export const questions: QuizQuestion[] = [
   {
-    question: "What's the key difference between a RAG bot and an AI agent?",
+    question: 'The chapter\'s history note credits a 2022 "ReAct" paper, a project called AutoGPT going viral in 2023, and Meta\'s "Toolformer." What did Toolformer show, per the chapter?',
     options: [
-      'An agent is just a RAG bot with a bigger context window',
-      'A RAG bot can use tools, but an agent cannot',
-      "There's no real difference, 'agent' is just newer marketing for the same thing",
-      'A RAG bot follows one fixed sequence every time; an agent loops, deciding at each step what to do next, and can use more than one tool',
-    ],
-    correctIndex: 3,
-    explanation: 'A RAG bot is a vending machine: same input, same steps, every time. An agent is more like an assistant that adapts.',
-  },
-  {
-    question: 'What two things does an agent need that a plain chatbot does not?',
-    options: [
-      'A bigger training dataset and more parameters',
-      'Tools it is allowed to use, and a way to recognize when it has enough information to stop looping',
-      'A human reviewing every single response before it is sent',
-      'A separate, fine-tuned version of the base model',
+      'That agents require an entirely new kind of model architecture',
+      'That a model could learn on its own when and how to call a tool',
+      'That AutoGPT was based on flawed research',
+      "That the ReAct pattern doesn't actually work in practice",
     ],
     correctIndex: 1,
-    explanation: 'Without a reason to stop, an agent could loop forever instead of ever giving a final answer.',
+    explanation: 'The chapter states this directly: Toolformer showed "a model could learn on its own when and how to call a tool."',
   },
   {
-    question: 'In the flight-and-weather example, why could a plain RAG bot not answer the question in one pass?',
+    question: 'The "Agents aren\'t magic" section says production systems add guardrails "for exactly this." What specific failure modes is it referring to?',
     options: [
-      'RAG bots cannot access the internet under any circumstances',
-      'The question was too long to fit in a RAG bot context window',
-      'It needed two separate pieces of live information, and the second lookup depended on the result of the first',
-      'RAG bots can only ever answer questions about documents, never about weather',
+      'The agent running too slowly for users to tolerate',
+      "The agent calling the wrong tool, misreading a tool's result, or getting stuck looping without ever deciding it has enough",
+      'The agent costing too much money per API call',
+      'The agent refusing to use any tools at all',
     ],
-    correctIndex: 2,
-    explanation: "You can't look up tomorrow's weather at the destination until you know the destination. A fixed retrieve-then-answer bot can't make that kind of mid-course decision.",
+    correctIndex: 1,
+    explanation: "The chapter lists these exact failure modes right before mentioning production guardrails like loop limits and human-approval rules.",
+  },
+  {
+    question: "In the chapter's Langflow bonus, the \"Simple Agent\" template needs no swapping, unlike Chapter 6's RAG template. Why?",
+    options: [
+      "Because Langflow doesn't support agents at all",
+      'Because it already comes with a calculator tool and a URL-fetching tool wired straight into an Agent component',
+      'Because agent templates never require an LLM to be configured',
+      'Because the Simple Agent template has no chat interface',
+    ],
+    correctIndex: 1,
+    explanation: 'The chapter notes this template "already comes with a calculator tool and a URL-fetching tool wired straight into an Agent component," unlike Chapter 6\'s template.',
   },
 ];

@@ -76,6 +76,11 @@ Your exact numbers will shift a little run to run, but the quality gap should be
 
 **One thing to notice about the timing:** it doesn't behave the way you might expect. Run the script twice in a row and the *second* run is much faster for both models, and the two models end up close to each other, sometimes with the bigger model even edging out the smaller one. That's because most of what you're timing on the first run is Ollama loading the model into memory, not the embedding computation itself. Locally, latency is a noisy signal. The tradeoff that holds up consistently is quality versus cost, not quality versus speed. On a hosted API, where you're paying per call over the network, latency becomes a much more dependable thing to compare, which is one more reason the `PROVIDER=openai` path is worth trying if you have a key.
 
+💡 A few honest notes on this real run:
+
+- **The timing claim above held up exactly.** On a first run where `mxbai-embed-large` hadn't been used yet this session, it took 8.85s against `nomic-embed-text`'s 0.16s, a huge, misleading gap. Running the exact same script again right after, with both models already loaded, `mxbai-embed-large` dropped to 0.10s and came out faster than `nomic-embed-text`. Same script, same machine, opposite conclusion, purely from what happened to already be in memory.
+- **The quality gap numbers didn't move at all between those two runs**, 0.275 for `nomic-embed-text` and 0.382 for `mxbai-embed-large`, identical both times. That's the actual, reliable comparison this lab is teaching: quality is stable and worth comparing, first-run timing on a local model is not.
+
 ## What the script is actually doing
 
 Open `embedding_models.py` and follow along.

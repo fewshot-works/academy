@@ -41,19 +41,17 @@ Run locally first, with Ollama:
 $ curl http://localhost:8000/health
 {"status":"ok","provider":"ollama"}
 
-$ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What'\''s your best-selling drink?"}'
+$ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What is your best-selling drink?"}'
 {"answer":"Our best-selling drink is the Depot Latte - a rich and creamy blend of espresso, steamed milk, and a hint of vanilla flavoring."}
 ```
+
+💡 On Windows PowerShell, run `curl.exe` instead of plain `curl` -- PowerShell aliases `curl` to `Invoke-WebRequest`, which doesn't accept `-d` the same way. `curl.exe` runs the real curl binary that ships with Windows 10 and later, and the command above works as written.
 
 Then build and run the exact same app inside Docker:
 
 ```bash
 docker build -t fernwood-api .
-docker run --rm -d --name fernwood-api \
-  --env-file .env \
-  -e OLLAMA_URL=http://host.docker.internal:11434 \
-  -p 8000:8000 \
-  fernwood-api
+docker run --rm -d --name fernwood-api --env-file .env -e OLLAMA_URL=http://host.docker.internal:11434 -p 8000:8000 fernwood-api
 ```
 
 ```

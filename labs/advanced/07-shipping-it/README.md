@@ -45,8 +45,10 @@ This lab works with any provider. Ollama is free and local. You'll need [Docker]
 
    ```bash
    curl http://localhost:8000/health
-   curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What'"'"'s your best-selling drink?"}'
+   curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What is your best-selling drink?"}'
    ```
+
+   💡 On Windows PowerShell, run `curl.exe` instead of plain `curl` -- PowerShell aliases `curl` to `Invoke-WebRequest`, which doesn't accept `-d` the same way. `curl.exe` runs the real curl binary that ships with Windows 10 and later, and both commands above work as written.
 
 ### What you should see
 
@@ -56,7 +58,7 @@ Real output, `PROVIDER=ollama`:
 $ curl http://localhost:8000/health
 {"status":"ok","provider":"ollama"}
 
-$ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What'\''s your best-selling drink?"}'
+$ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "What is your best-selling drink?"}'
 {"answer":"Our best-selling drink is the Depot Latte - a rich and creamy blend of espresso, steamed milk, and a hint of vanilla flavoring."}
 ```
 
@@ -73,11 +75,7 @@ Stop the app with `Ctrl+C` when you're done, before moving to the Docker steps.
 7. **Run the container.** This is the one step that's genuinely different from running locally: inside the container, `localhost` refers to the container itself, not your Mac, so it can't reach Ollama on your host at `http://localhost:11434` the way the app does when run directly. `OLLAMA_URL` overrides that:
 
    ```bash
-   docker run --rm -d --name fernwood-api \
-     --env-file .env \
-     -e OLLAMA_URL=http://host.docker.internal:11434 \
-     -p 8000:8000 \
-     fernwood-api
+   docker run --rm -d --name fernwood-api --env-file .env -e OLLAMA_URL=http://host.docker.internal:11434 -p 8000:8000 fernwood-api
    ```
 
    `host.docker.internal` is a special hostname Docker sets up that always points back to your host machine, this only matters for Ollama, OpenAI's and Anthropic's APIs are already out on the internet, so `PROVIDER=openai` or `PROVIDER=anthropic` need no such override.
@@ -88,6 +86,8 @@ Stop the app with `Ctrl+C` when you're done, before moving to the Docker steps.
    curl http://localhost:8000/health
    curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d '{"question": "How many locations do you have?"}'
    ```
+
+   💡 Same note as step 5: on Windows PowerShell, use `curl.exe` instead of plain `curl`.
 
 ### What you should see
 

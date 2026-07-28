@@ -66,6 +66,13 @@ Open `embeddings_plot.png` in the same folder afterward. You should see the two 
 
 Your exact numbers will differ slightly depending on the embedding model, but the two dog sentences should always come out as the most similar pair.
 
+💡 A few honest notes on this real run:
+
+- **The most similar pair held up exactly as promised**, the two dog sentences, every time this was run against `nomic-embed-text`. That part of the lab's claim is solid.
+- **The least similar pair was not the pasta/stock-market comparison shown above**, it was "our puppy barks at everything" against the stock market sentence, scoring 0.31 (this model's scores also run lower overall, in the 0.3-0.7 range rather than the 0.08-0.91 shown above). Least-similar is a much closer contest than most-similar: several unrelated-topic pairs score in a similar low range, so which one comes out lowest can shift with the embedding model, while the two dog sentences being closest is the reliable, repeatable part of this lab.
+
+With `PROVIDER=openai`, the shape stays the same, dog sentences closest, finance and cooking sentences off on their own, but the exact scores will differ since it's a different embedding model.
+
 ## What the script is actually doing
 
 Open `embed_similarity.py` and follow along:

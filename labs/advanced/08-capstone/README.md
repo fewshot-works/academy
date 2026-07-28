@@ -89,6 +89,8 @@ Agent: You were comparing Fernwood Coffee Co. to other local businesses for a cl
 And, I apologize for not answering your question correctly earlier. Since you were comparing Fernwood Coffee Co. to other local businesses, I should have said that I don't have information on the number of locations that Fernwood Coffee Co. has, since it's being compared to others in your project.
 ```
 
+💡 A few honest notes on this real run, not the tidy version:
+
 This is a real, unedited run, and it's worth reading closely: **the fourth question genuinely fails.** `search_documents` was asked for "Fernwood Coffee Co." (too generic) and came back with the founding-history and bestselling-drink paragraphs instead of the one that actually says "three locations" — a real retrieval miss, not a scripted one. The agent then honestly says it doesn't know, and even apologizes for it two turns later when memory brings the question back up. The guardrail turn worked exactly as designed: `check_input()` matched the phrase before the model was ever called.
 
 `evaluate.py`, real run, `PROVIDER=ollama`:
@@ -164,5 +166,5 @@ Open `evaluate.py`.
 
 - **`PROVIDER is set to '...'` message and the script exits**: switch `PROVIDER` to `ollama` or `openai` in your `.env`. Anthropic has no embeddings API.
 - **`ConnectionError` with `PROVIDER=ollama`**: make sure Ollama is running (`ollama serve`), and that you've pulled both `nomic-embed-text` and `llama3.2`.
-- **The trace output is overwhelming**: it's meant to be exhaustive, that's the point of Chapter 5. If you just want the conversation, pipe through `grep`: `uv run agent.py | grep -E "^(You:|Agent:|  calling)"`.
+- **The trace output is overwhelming**: it's meant to be exhaustive, that's the point of Chapter 5. If you just want the conversation, pipe through `grep`: `uv run agent.py | grep -E "^(You:|Agent:|  calling)"` (on Windows PowerShell, use `uv run agent.py | Select-String "^(You:|Agent:|  calling)"` instead, PowerShell has no built-in `grep`).
 - **Your own run's retrieval numbers or judge verdicts come out differently**: expected. Small local models are non-deterministic run to run, same as every earlier chapter's honestly-reported variance. Run `evaluate.py` a few times and look at the pattern, not any single run.
