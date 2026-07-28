@@ -13,7 +13,7 @@ type TrackItem = {
 // Same three destinations the docs sidebar already leads to. This section
 // exists so a first-time visitor sees the shape of the whole course before
 // they've clicked into any of it. Status reflects what's actually written
-// today: Foundations and Intermediate are complete, Advanced is not yet.
+// today: all three tracks are complete.
 const TrackList: TrackItem[] = [
   {
     status: 'Live now',
@@ -30,7 +30,7 @@ const TrackList: TrackItem[] = [
     to: '/docs/intermediate/overview',
   },
   {
-    status: 'Coming soon',
+    status: 'Live now',
     title: 'Advanced',
     description:
       'Multi-agent patterns, guardrails, observability, and shipping a traced, evaluated agentic RAG system.',

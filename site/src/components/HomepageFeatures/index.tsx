@@ -22,7 +22,7 @@ const FeatureList: FeatureItem[] = [
     title: 'Free and Local-First',
     description: (
       <>
-        Every Foundations/Intermediate lab runs with a free local Ollama model and a local
+        Every lab across all three tracks runs with a free local Ollama model and a local
         ChromaDB — no credit card, no cloud account, no server required.
       </>
     ),
