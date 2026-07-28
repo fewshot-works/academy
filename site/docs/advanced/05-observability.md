@@ -73,7 +73,12 @@ Two more spans wrap that one: an `ask_model.task` span (its `span_id` is the `ol
 
 ## The bonus: a real trace UI
 
-Reading raw JSON in a terminal works for one call. It stops working the moment you have a real agent making a dozen calls per request. The lab's bonus section runs [Jaeger](https://www.jaegertracing.io/), a free, open-source trace UI, with a single `docker run`, then swaps one line, `exporter=ConsoleSpanExporter()` becomes `api_endpoint="http://localhost:4318"`, and the exact same three-span trace shows up as a waterfall diagram with timing bars, at `http://localhost:16686`. Same instrumentation, same code, different destination. That swap, pointing the same trace data at a different backend without touching how you generate it, is the entire reason OpenTelemetry exists as a standard.
+Reading raw JSON in a terminal works for one call. It stops working the moment you have a real agent making a dozen calls per request. The lab's bonus section covers two ways to get an actual trace UI, pick whichever fits what you have on hand:
+
+- **Local Jaeger**, if you have Docker: run [Jaeger](https://www.jaegertracing.io/), a free, open-source trace UI, with a single `docker run`, then swap one line, `exporter=ConsoleSpanExporter()` becomes `api_endpoint="http://localhost:4318"`, and the exact same three-span trace shows up as a waterfall diagram with timing bars, at `http://localhost:16686`.
+- **LangSmith**, if you'd rather not run Docker: sign up for a free account, swap the same line for `api_endpoint="https://api.smith.langchain.com/otel"` plus an `x-api-key` header, and the trace shows up in LangSmith's hosted UI instead. LangSmith is normally associated with LangChain, but it accepts plain OTLP, so it works here even though this lab never imports LangChain, the trade-off is an account and your traces leaving your machine, instead of a local container.
+
+Either way, it's the same instrumentation and the same code, only the destination changes. That swap, pointing the same trace data at a different backend without touching how you generate it, is the entire reason OpenTelemetry exists as a standard.
 
 ## Checkpoint
 

@@ -27,9 +27,12 @@ provider = os.getenv("PROVIDER", "ollama")
 # disable_batch=True prints each span as soon as it finishes, instead of
 # waiting to batch several together -- easier to read for a short script.
 #
-# Bonus (see README): to send traces to a local Jaeger UI instead of the
-# console, run Jaeger with Docker and swap this line for:
-#   Traceloop.init(app_name="fernwood-support-agent", api_endpoint="http://localhost:4318", disable_batch=True)
+# Bonus (see README), two ways to get a real trace UI instead of console JSON:
+#   1. Local Jaeger (needs Docker):
+#      Traceloop.init(app_name="fernwood-support-agent", api_endpoint="http://localhost:4318", disable_batch=True)
+#   2. LangSmith (needs a free account, no Docker):
+#      Traceloop.init(app_name="fernwood-support-agent", api_endpoint="https://api.smith.langchain.com/otel",
+#                      headers={"x-api-key": os.getenv("LANGSMITH_API_KEY")}, disable_batch=True)
 Traceloop.init(app_name="fernwood-support-agent", exporter=ConsoleSpanExporter(), disable_batch=True)
 
 

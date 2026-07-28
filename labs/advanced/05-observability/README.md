@@ -94,11 +94,15 @@ Open `observability.py`.
 3. **`@workflow(name="support_conversation")`** on `run_conversation()` wraps the whole two-question exchange in one root span, `support_conversation.workflow`.
 4. **Nothing inside `ask()` talks to OpenTelemetry directly.** The `ollama.chat` span appears because OpenLLMetry auto-instruments the `ollama` package at import time, call it normally and the span, prompt, completion, and token counts are captured for you.
 
-## Bonus: a real trace UI with local Jaeger
+## Bonus: a real trace UI
 
-The console dump above is honest but not fun to read once you have more than a couple of calls. [Jaeger](https://www.jaegertracing.io/) is a free, open-source trace UI, run it locally and OpenLLMetry can send traces there instead of (or alongside) the console.
+The console dump above is honest but not fun to read once you have more than a couple of calls. Pick whichever of these two fits what you have on hand, both send the exact same spans, only `Traceloop.init()` changes.
 
-1. **Start Jaeger** (needs Docker):
+### Option A: local Jaeger (needs Docker)
+
+[Jaeger](https://www.jaegertracing.io/) is a free, open-source trace UI, run it locally and OpenLLMetry can send traces there instead of (or alongside) the console.
+
+1. **Start Jaeger:**
 
    ```bash
    docker run --rm -d --name jaeger \
@@ -125,9 +129,35 @@ The console dump above is honest but not fun to read once you have more than a c
    docker stop jaeger
    ```
 
+### Option B: LangSmith (free account, no Docker)
+
+No local container to run, no port to remember to stop, at the cost of an account and your traces leaving your machine. [LangSmith](https://smith.langchain.com) is LangChain's hosted trace UI, and it accepts plain OTLP, so it works here even though this lab never imports LangChain.
+
+1. **Get a free API key** at [smith.langchain.com](https://smith.langchain.com) -> Settings -> API Keys, and add it to `.env`:
+
+   ```bash
+   LANGSMITH_API_KEY=lsv2_...
+   ```
+
+2. **Point the script at LangSmith's OTLP endpoint**, with your key as a header:
+
+   ```python
+   Traceloop.init(
+       app_name="fernwood-support-agent",
+       api_endpoint="https://api.smith.langchain.com/otel",
+       headers={"x-api-key": os.getenv("LANGSMITH_API_KEY")},
+       disable_batch=True,
+   )
+   ```
+
+3. **Run the script again**, then open [smith.langchain.com](https://smith.langchain.com), go to the default project (or the one set via a `Langsmith-Project` header, see LangSmith's OTel docs), and find the `support_conversation` trace, same nesting, same fields, hosted trace UI instead of a local one.
+
+Same instrumentation either way, `@task`/`@workflow` and the `ollama.chat` auto-instrumentation don't know or care where `Traceloop.init()` sends the spans, that's the actual point of building on OpenTelemetry instead of a vendor SDK.
+
 ## Troubleshooting
 
 - **`ConnectionError` with `PROVIDER=ollama`**: make sure Ollama is running (`ollama serve`) and you've pulled `llama3.2`.
 - **No spans print at all**: check that `disable_batch=True` is still set, batching is the usual cause of "it ran but nothing showed up," spans are just waiting in a buffer.
 - **Jaeger UI shows no service in the dropdown**: give it a few seconds after the script exits, and confirm the container is actually running with `docker ps`. If you changed the port mapping, update the `api_endpoint` in the script to match.
+- **LangSmith shows no trace**: double check `LANGSMITH_API_KEY` is set in `.env` and the header key is exactly `x-api-key`, a missing or wrong key fails silently at the export step rather than crashing the script.
 - **Your token counts or exact wording differ from the transcript above**: expected, this is a real, live model call, not a fixture. The nested-span shape and which fields are populated should stay the same.
