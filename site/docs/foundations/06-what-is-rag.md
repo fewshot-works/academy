@@ -110,7 +110,13 @@ uv pip install langflow
 uv run langflow run
 ```
 
-Open `http://127.0.0.1:7860` in your browser once it starts.
+If Docker is already comfortable for you, there's an official image that skips the pip install (and any dependency it pulls in) entirely:
+
+```bash
+docker run -p 7860:7860 langflowai/langflow:latest
+```
+
+Either way, open `http://127.0.0.1:7860` in your browser once it starts.
 
 **Build the flow:**
 
