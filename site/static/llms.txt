@@ -18,13 +18,30 @@
 - [Chapter 7: What Is an AI Agent?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-ai-agent): How agents differ from a plain chatbot: deciding what to do next and calling tools.
 - [Chapter 8: Capstone — A Q&A Bot Over Your Own Documents](https://fewshot-works.github.io/academy/docs/foundations/capstone-qa-bot): Combines embeddings, a vector database, and RAG into a working Q&A bot over your own files.
 
-## Intermediate (in progress)
+## Intermediate (complete — 9 chapters + capstone)
 
-- [Overview](https://fewshot-works.github.io/academy/docs/intermediate/overview): Planned — chunking strategies, choosing an embedding model, hybrid search and re-ranking, prompt patterns, tool use, a first agent, memory, evaluation, and a multi-tool agent capstone.
+- [Overview](https://fewshot-works.github.io/academy/docs/intermediate/overview): Chunking strategies, embedding model choice, hybrid search and re-ranking, prompt patterns, tool use, a first agent, memory, evaluation, and a multi-tool agent capstone.
+- [Chapter 1: Chunking Strategies](https://fewshot-works.github.io/academy/docs/intermediate/chunking-strategies): Fixed-size vs. semantic chunking, and why how you cut up a document matters as much as what model reads it.
+- [Chapter 2: Choosing an Embedding Model](https://fewshot-works.github.io/academy/docs/intermediate/choosing-embedding-model): Comparing embedding models head to head instead of picking one by name recognition.
+- [Chapter 3: Better Retrieval](https://fewshot-works.github.io/academy/docs/intermediate/better-retrieval): Hybrid search and re-ranking, so retrieval finds the right chunk even when keyword and meaning search disagree.
+- [Chapter 4: Prompt Patterns](https://fewshot-works.github.io/academy/docs/intermediate/prompt-patterns): Chain-of-thought reasoning, structured output, and getting a model to reliably do what you asked.
+- [Chapter 5: Tool Use](https://fewshot-works.github.io/academy/docs/intermediate/tool-use): Building a tool-calling loop by hand, so you see what happens on the wire before a framework hides it.
+- [Chapter 6: Your First Agent](https://fewshot-works.github.io/academy/docs/intermediate/your-first-agent): Rebuilding that same loop with a single `create_agent` call, and weighing the trade-off yourself.
+- [Chapter 7: Memory](https://fewshot-works.github.io/academy/docs/intermediate/memory): Short-term memory via a checkpointer, and summarized long-term memory for conversations that outgrow a context window.
+- [Chapter 8: Evaluating What You Built](https://fewshot-works.github.io/academy/docs/intermediate/evaluating): precision@k, recall@k, and LLM-as-judge, instead of eyeballing a couple of answers and calling it good.
+- [Chapter 9: Capstone — Multi-Tool Agent](https://fewshot-works.github.io/academy/docs/intermediate/capstone): One agent picking between a calculator, Wikipedia search, and RAG over your own documents, with memory across the conversation.
 
-## Advanced (in progress)
+## Advanced (complete — 8 chapters + capstone)
 
-- [Overview](https://fewshot-works.github.io/academy/docs/advanced/overview): Planned — multi-agent patterns, advanced RAG, fine-tuning vs. RAG vs. prompting, guardrails and safety, observability, production concerns, and an end-to-end agentic RAG system capstone.
+- [Overview](https://fewshot-works.github.io/academy/docs/advanced/overview): Multi-agent patterns, advanced RAG, fine-tuning vs. RAG vs. prompting, guardrails and safety, observability, production concerns, shipping it, and an end-to-end agentic RAG system capstone.
+- [Chapter 1: Multi-Agent Patterns](https://fewshot-works.github.io/academy/docs/advanced/multi-agent-patterns): A supervisor agent delegating to specialist agents instead of one generalist doing everything.
+- [Chapter 2: Advanced RAG](https://fewshot-works.github.io/academy/docs/advanced/advanced-rag): Query rewriting, HyDE, and a self-correcting retrieval loop that checks its own results.
+- [Chapter 3: Fine-Tuning vs. RAG vs. Prompting](https://fewshot-works.github.io/academy/docs/advanced/fine-tuning-vs-rag-vs-prompting): A decision framework, plus a real (tiny, local) LoRA fine-tune to compare against RAG and prompting directly.
+- [Chapter 4: Guardrails and Safety](https://fewshot-works.github.io/academy/docs/advanced/guardrails-and-safety): A hand-rolled input/output guardrail wrapper, and an honest look at where that minimum version breaks.
+- [Chapter 5: Observability](https://fewshot-works.github.io/academy/docs/advanced/observability): Instrumenting an agent with OpenLLMetry/OpenTelemetry so every model call becomes an inspectable, nested trace span.
+- [Chapter 6: Production Concerns](https://fewshot-works.github.io/academy/docs/advanced/production-concerns): Caching, rate limiting, and streaming, so a working demo also survives real load.
+- [Chapter 7: Shipping It](https://fewshot-works.github.io/academy/docs/advanced/shipping-it): Wrapping an agent in a FastAPI app and a Dockerfile so it runs anywhere, not just your machine.
+- [Chapter 8: Capstone — A Guarded, Traced, Evaluated Agent](https://fewshot-works.github.io/academy/docs/advanced/capstone): The Intermediate capstone's agent wrapped in an input guardrail and full tracing, then measured with precision@k/recall@k and LLM-as-judge.
 
 ## Optional
 
