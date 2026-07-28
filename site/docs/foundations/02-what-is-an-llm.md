@@ -67,6 +67,8 @@ That matters because a hosted provider handles your prompt under *their* privacy
 
 Combine that with what you just learned about hallucination, confidently wrong answers, plus content that leaves your machine, and one habit covers both: treat anything you send to or get back from a hosted AI tool the way you'd treat a conversation with a helpful stranger, often right, but worth checking before you hand over anything sensitive or act on anything important.
 
+There's a short bonus chapter right after this one that rounds out the rest of the picture, bias, a fuller verify-before-you-trust habit, and a light word on IP, worth five minutes before Chapter 3.
+
 ## Hands-on lab: make your first LLM call
 
 Time to see the loop from Step 2 actually run. In this lab you'll write a tiny script that sends one prompt to an AI model and prints back what it generated, using either your free local Ollama model from Chapter 0, or a hosted OpenAI/Anthropic key if you set one up.
@@ -121,4 +123,4 @@ Because a hosted model runs on that provider's own computers, so your prompt tra
 
 ## What's next
 
-Now that you know an LLM is just repeatedly predicting the next token, Chapter 3 covers something you have direct control over: how you *phrase* your prompt changes what the model considers likely, and that's the entire game behind "prompt engineering."
+Now that you know an LLM is just repeatedly predicting the next token, there's a short bonus chapter next on using AI responsibly, then Chapter 3 covers something you have direct control over: how you *phrase* your prompt changes what the model considers likely, and that's the entire game behind "prompt engineering."

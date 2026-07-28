@@ -5,6 +5,8 @@ description: What Advanced covers, what you'll build by the end, and how it buil
 
 # Advanced Overview
 
+> **Before you start:** if it's been a while, skim Foundations' [bonus chapter on using AI responsibly](../foundations/02b-responsible-ai-use.md) as a refresher, privacy, bias, and verifying what a model tells you.
+
 ## Where you're picking up
 
 Intermediate ended with one agent, three tools it picked between on its own — a calculator, a Wikipedia search, and search over your own documents — with memory holding the whole conversation together. That agent worked, and worked well enough to trust for a demo. It's also, by production standards, still a toy: one model doing everything itself, no other agents to delegate to, no defense against a document or a user actively trying to make it misbehave, no record of what a run actually cost, and nothing making sure a slow or wrong answer isn't a total mystery.

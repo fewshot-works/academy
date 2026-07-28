@@ -31,6 +31,8 @@ By the end of Foundations, you'll have built a working Q&A bot that answers ques
 7. **What is an AI agent?** — giving a model the ability to reason, act, and loop.
 8. **Capstone** — a working Q&A bot over your own documents, built from everything before it.
 
+There's also a short, optional bonus chapter tucked in right after Chapter 2: using AI responsibly, privacy, bias, and verifying what a model tells you.
+
 ## What's next
 
 Chapter 0 starts with the boring-but-necessary part: getting the free tools installed so every later chapter just works.

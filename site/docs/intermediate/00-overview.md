@@ -5,6 +5,8 @@ description: What Intermediate covers, what you'll build by the end, and how it 
 
 # Intermediate Overview
 
+> **Before you start:** if it's been a while, skim Foundations' [bonus chapter on using AI responsibly](../foundations/02b-responsible-ai-use.md) as a refresher, privacy, bias, and verifying what a model tells you.
+
 ## Where you're picking up from
 
 Foundations took you from zero to a working Q&A bot. Along the way you sent your first prompt to an LLM, turned text into embeddings, stored and searched those embeddings in a vector database, wired retrieval and generation together into RAG, met the idea of an AI agent, and combined all of it into a real bot that answers questions over your own documents.
