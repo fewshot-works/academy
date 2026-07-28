@@ -17,6 +17,7 @@ labs/**/chroma_db/
 labs/**/*.egg-info/
 labs/**/embeddings_plot.png
 labs/**/lora-output/
+labs/**/cache.json
 
 # Secrets
 .env
