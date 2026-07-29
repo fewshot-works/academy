@@ -14,7 +14,7 @@ type TrackItem = {
 
 const TrackList: TrackItem[] = [
   {
-    status: 'Guide coming soon',
+    status: 'Live now',
     title: 'Forward-Deployed Engineer (FDE)',
     description:
       'Embedded with a customer, shipping production AI inside their org. The deepest track: full curriculum plus judgment skills the labs alone don’t teach.',

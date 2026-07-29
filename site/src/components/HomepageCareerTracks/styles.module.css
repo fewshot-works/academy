@@ -1,0 +1,76 @@
+.band {
+  padding: 2.75rem 0;
+  background: var(--zta-chip-bg);
+  border-top: 1px solid var(--zta-border);
+  border-bottom: 1px solid var(--zta-border);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin: 0 0 0.4rem;
+}
+
+.title {
+  margin: 0 0 0.6rem;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  max-width: 44ch;
+  line-height: 1.6;
+}
+
+.rolesSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.roleChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.roleChip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--zta-border);
+  color: var(--zta-ink);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.roleChip:hover,
+.roleChip:focus-visible {
+  border-color: var(--ifm-color-primary);
+  color: var(--zta-ink);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 996px) {
+  .inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .rolesSide {
+    align-items: flex-start;
+  }
+}
