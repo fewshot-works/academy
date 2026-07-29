@@ -155,7 +155,12 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Curriculum',
+          label: 'Learn',
+        },
+        {
+          to: '/career-tracks',
+          position: 'left',
+          label: 'Career Tracks',
         },
       ],
     },

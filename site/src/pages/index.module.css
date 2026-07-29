@@ -41,6 +41,12 @@
   margin-top: 1rem;
 }
 
+.heroNote {
+  font-size: 0.95rem;
+  color: var(--zta-ink-muted);
+  margin-top: 0.85rem;
+}
+
 .buttons {
   display: flex;
   align-items: center;

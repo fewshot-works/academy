@@ -58,6 +58,11 @@ function HomepageHeader() {
             {siteConfig.title}
           </Heading>
           <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+          <p className={styles.heroNote}>
+            Not just training — a roadmap to the AI-era job you actually
+            want.{' '}
+            <Link to="/career-tracks">See the career tracks &rarr;</Link>
+          </p>
           <div className={styles.buttons}>
             <Link
               className="button button--primary button--lg"

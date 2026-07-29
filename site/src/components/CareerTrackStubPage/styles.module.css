@@ -1,0 +1,27 @@
+.page {
+  padding: 3rem 0 4rem;
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.oneLiner {
+  font-size: 1.1rem;
+  color: var(--zta-ink-muted);
+  line-height: 1.6;
+}
+
+.notice {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px dashed var(--zta-border);
+  border-radius: 8px;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
