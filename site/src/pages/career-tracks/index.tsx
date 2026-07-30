@@ -21,7 +21,7 @@ const TrackList: TrackItem[] = [
     to: '/career-tracks/forward-deployed-engineer',
   },
   {
-    status: 'Guide coming soon',
+    status: 'Live now',
     title: 'Applied / Agentic AI Engineer',
     description:
       'The core hands-on builder role: RAG systems, tool-using agents, and multi-agent orchestration.',

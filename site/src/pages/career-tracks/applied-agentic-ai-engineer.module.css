@@ -1,0 +1,402 @@
+.page {
+  padding: 2.5rem 0 5rem;
+}
+
+.page .container {
+  max-width: 76rem;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero {
+  max-width: 68ch;
+  margin-bottom: 3rem;
+}
+
+.oneLiner {
+  font-size: 1.1rem;
+  color: var(--zta-ink);
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.factStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  max-width: none;
+}
+
+.factCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.factValue {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ifm-color-primary);
+}
+
+.factLabel {
+  font-size: 0.8rem;
+  color: var(--zta-ink-muted);
+}
+
+.section {
+  max-width: 68ch;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--zta-border);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+.section:has(.tableWrap),
+.section:has(.curriculumGrid) {
+  max-width: none;
+}
+
+.section p + p {
+  margin-top: 1rem;
+}
+
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin: 0 0 0.4rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1rem;
+}
+
+.aside {
+  font-size: 0.9rem;
+  color: var(--zta-ink-muted);
+  margin-top: 1rem;
+}
+
+/* Day-in-the-life bar */
+
+.dayBar {
+  display: flex;
+  width: 100%;
+  height: 1.75rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--zta-border);
+  margin-top: 1.25rem;
+}
+
+.daySegment {
+  height: 100%;
+}
+
+.daySegment.customer {
+  background: var(--ifm-color-primary);
+}
+
+.daySegment.code {
+  background: var(--zta-accent);
+}
+
+.daySegment.internal {
+  background: var(--zta-border);
+}
+
+.dayLegend {
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dayLegendRow dt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.dayLegendRow dd {
+  margin: 0.2rem 0 0 1.15rem;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+}
+
+.legendDot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendDot.customer {
+  background: var(--ifm-color-primary);
+}
+
+.legendDot.code {
+  background: var(--zta-accent);
+}
+
+.legendDot.internal {
+  background: var(--zta-border);
+}
+
+/* Tables */
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--zta-border);
+}
+
+.table th {
+  background: var(--zta-chip-bg);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--zta-ink-muted);
+}
+
+.highlightRow td {
+  background: var(--zta-chip-bg);
+  font-weight: 600;
+}
+
+/* Callouts — one reused pattern for "named items worth calling out": entry-path
+   exceptions, where to find jobs. Keeps the page from inventing a new card
+   style per section. */
+
+.calloutList {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.callout {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--ifm-color-primary);
+}
+
+.calloutTitle {
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--zta-ink-muted);
+}
+
+/* Single-insight box — the one or two moments per page that deserve visual
+   weight above a plain paragraph. */
+
+.insightBox {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  background: var(--zta-chip-bg);
+  border-radius: 0 8px 8px 0;
+}
+
+.insightBox p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Curriculum mapping */
+
+.curriculumGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.curriculumCard {
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.curriculumTier {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+  color: var(--ifm-color-primary);
+}
+
+.curriculumDesc {
+  font-size: 0.85rem;
+  color: var(--zta-ink-muted);
+  margin: 0 0 0.75rem;
+}
+
+.curriculumList {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.gapsBox {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px dashed var(--zta-border);
+  border-radius: 8px;
+}
+
+.gapsHeading {
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.gapsList {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.9rem;
+  color: var(--zta-ink-muted);
+  line-height: 1.6;
+}
+
+/* Interview timeline */
+
+.timeline {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.timelineStep {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.timelineStep::before {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 2rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--zta-border);
+}
+
+.timelineStep:last-child::before {
+  display: none;
+}
+
+.timelineIndex {
+  flex-shrink: 0;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-surface-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.timelineTitle {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.timelineStep p {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+}
+
+.timelineBadge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Job title chips — used inline inside the "landing one" section */
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.chip {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-ink);
+  font-size: 0.85rem;
+  border: 1px solid var(--zta-border);
+}
+
+/* Sources */
+
+.sourceList {
+  margin-top: 1rem;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+/* CTA */
+
+.ctaRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--zta-border);
+}
+
+@media screen and (max-width: 996px) {
+  .factStrip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .curriculumGrid {
+    grid-template-columns: 1fr;
+  }
+}
