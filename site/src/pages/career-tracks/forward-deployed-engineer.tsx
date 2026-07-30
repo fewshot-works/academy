@@ -380,10 +380,24 @@ export default function ForwardDeployedEngineer(): ReactNode {
                 </div>
               ))}
             </dl>
+            <div className={styles.insightBox}>
+              <p>
+                <strong>That 10% “internal” slice undersells what happens after launch.</strong> The job doesn’t
+                end when the deployment goes live. An FDE keeps watching what they built — catching model drift or
+                a broken integration before the customer notices — and packages what they learned into something
+                reusable: a checklist, a template, an internal tool the next engagement starts from instead of
+                rebuilding. Just as often, a client asking for something the system can’t do yet is a signal worth
+                routing back to the core product team, not just a scope conversation to manage. Several current
+                postings name this directly — Zendesk calls it “bridging the gap” between the field and the
+                product roadmap, Notion asks for “reusable technical assets” and a working “feedback loop” into
+                planning, and Deloitte’s posting expects deliverables like CI/CD, logging, and documentation left
+                behind for whoever operates the system next, not just working code on day one.
+              </p>
+            </div>
             <p>
-              Most of the job, in other words, happens before you write a line of code that ships. That’s the
-              real reason FDE hiring bars look nothing like a typical SWE loop — starting with who even gets in
-              the door.
+              Most of the job, in other words, happens before you write a line of code that ships — and doesn’t
+              stop the moment it does. That’s the real reason FDE hiring bars look nothing like a typical SWE
+              loop — starting with who even gets in the door.
             </p>
           </Section>
 
@@ -456,6 +470,15 @@ export default function ForwardDeployedEngineer(): ReactNode {
               CrewAI, DSPy). Weak eval skills is a cited leading cause of final-round failure; Anthropic’s own
               posting asks directly for “production experience with LLMs including advanced prompt engineering,
               agent development, evaluation frameworks, and deployment at scale.”
+            </p>
+            <p>
+              <strong>Testing and operating what you ship:</strong> most candidates think of this job as ending at
+              deployment, but the postings don’t. CI/CD for agent and RAG pipelines, structured logging and
+              tracing, versioning prompts and retrieval indexes so a bad change is reversible, and a monitoring
+              habit for catching drift after launch, are named explicitly and separately from “writes clean code”
+              in several current postings — this is the piece easiest to under-prepare for, since it rarely comes
+              up until the case-study round starts asking “and how would you know if this broke, three months
+              in?”
             </p>
             <div className={styles.insightBox}>
               <p>

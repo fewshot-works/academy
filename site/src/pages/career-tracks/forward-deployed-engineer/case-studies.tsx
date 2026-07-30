@@ -133,6 +133,10 @@ const CS1_PHASES: Step[] = [
     title: 'Phase 3 — visible suggestion, one pilot console',
     body: 'Only after shadow-mode accuracy is proven and shared with the department does the suggestion appear on screen, on a single pilot console, with the dispatcher always making the final call.',
   },
+  {
+    title: 'Phase 4 — ongoing: monitor, recalibrate, then playbook it',
+    body: 'Track suggestion-acceptance rate by shift and district every month, since traffic patterns and staffing shift over time; only expand from the single pilot console once accuracy holds for a full quarter. The CAD-diagnosis approach from Phase 0 gets written up as a reusable intake checklist for the next city, instead of being rediscovered from scratch.',
+  },
 ];
 
 const CS1_FAILURES: Callout[] = [
@@ -234,6 +238,10 @@ const CS2_PHASES: Step[] = [
     title: 'Phase 4 — customer-notification draft',
     body: 'An agent drafts delay-notification emails for affected customers based on the approved reroute, with a human reviewing before send — not because the drafting is risky, but because the customer relationship is.',
   },
+  {
+    title: 'Phase 5 — ongoing: track detection quality, feed the pattern back',
+    body: 'Track false-positive and missed-disruption rates on the detection agent monthly; a port-status feed that turns out to be unreliable for one carrier is exactly the kind of thing that should get flagged to the product team as a source-reliability signal, not silently worked around case by case.',
+  },
 ];
 
 const CS2_FAILURES: Callout[] = [
@@ -334,6 +342,10 @@ const CS3_PHASES: Step[] = [
   {
     title: 'Phase 4 — move toward real-time, only once trusted',
     body: 'Batch scoring shifts toward near-real-time only after false-positive and false-link rates are proven acceptable in production over a full cycle — speed is the last thing optimized for, not the first.',
+  },
+  {
+    title: 'Phase 5 — ongoing: track false-link rate, package the pattern',
+    body: 'Review false-link and false-positive rates with the fraud team every month, since identity-resolution accuracy can drift as the underlying systems change. The identity-resolution approach itself, once proven, becomes a reusable pattern for the next client running the same three-siloed-systems problem, rather than a one-off build.',
   },
 ];
 
@@ -503,6 +515,33 @@ export default function CaseStudies(): ReactNode {
               phasesTitle="How this decomposes"
               phases={CS3_PHASES}
               failures={CS3_FAILURES}
+            />
+          </Section>
+
+          <Section title="The job doesn't end when it ships">
+            <p>
+              All three walkthroughs above stop at the moment a system reaches production — that's deliberate for
+              pacing, but it undersells the role. An FDE stays on the hook after launch: watching the thing they
+              built, catching drift before the customer does, and turning what they learned into something reusable
+              for the next engagement. Each case study now ends with a beat for exactly that, and it's worth being
+              explicit about why here, since it's what separates "shipped a proof of concept" from "owns the
+              outcome."
+            </p>
+            <CalloutList
+              items={[
+                {
+                  title: 'Monitoring is your job, not just the client\'s',
+                  body: 'Nobody hands you a pager, but if the shadow-mode accuracy in the 911 case study drifts after a city changes its CAD vendor, or the detection agent in the logistics case study starts missing a new class of disruption, you\'re the one who notices first — because you\'re the one who knows what "normal" looked like at launch.',
+                },
+                {
+                  title: 'Every engagement should leave behind a reusable asset',
+                  body: 'The identity-resolution pattern from the banking case study is the same pattern the next legacy-systems client will need. Writing it up as a template, a checklist, or a piece of internal tooling is quietly one of the highest-leverage things an FDE does — it\'s the difference between redoing the same discovery from scratch every time and getting faster with each customer.',
+                },
+                {
+                  title: 'Customer friction is roadmap input, not just scope to manage',
+                  body: 'When a client asks for something the current system can\'t do, that\'s not only a scope conversation — it\'s a signal worth routing back to the product or engineering team. Job postings for this role describe it directly as turning customer friction into product features, not just holding the line on scope.',
+                },
+              ]}
             />
           </Section>
 
