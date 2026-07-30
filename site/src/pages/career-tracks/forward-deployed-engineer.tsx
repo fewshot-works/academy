@@ -150,22 +150,28 @@ const CURRICULUM_GAPS: string[] = [
   'The judgment half of the job — case-study decomposition, live discovery, stakeholder management. That’s a different kind of practice than a chapter can teach.',
 ];
 
-type InterviewStep = {title: string; body: string; badge?: string};
+type InterviewStep = {title: string; body: string; badge?: string; to?: string; toLabel?: string};
 
 const INTERVIEW_STEPS: InterviewStep[] = [
   {title: 'Recruiter screen', body: 'Standard fit and background conversation.'},
   {
     title: 'Coding / technical round',
     body: 'Integration design, debugging, production-quality code — explicitly not LeetCode-style.',
+    to: '/career-tracks/forward-deployed-engineer/technical-round',
+    toLabel: 'What to expect, how to prepare, and two things to have ready',
   },
   {
     title: 'Case-study round',
     body: 'A hypothetical customer hands you a vague problem and you decompose it live, 45–60 minutes.',
     badge: 'Lowest pass rate (~40%), highest weight (~30%)',
+    to: '/career-tracks/forward-deployed-engineer/case-studies',
+    toLabel: 'The framework, plus 3 full end-to-end walkthroughs',
   },
   {
     title: 'Behavioral round',
     body: 'Client ownership, accountability under repeat failure, communicating technically to non-technical stakeholders, navigating internal client politics.',
+    to: '/career-tracks/forward-deployed-engineer/behavioral-round',
+    toLabel: 'Sample questions and how to structure your answers',
   },
   {
     title: 'System design (some companies)',
@@ -520,6 +526,11 @@ export default function ForwardDeployedEngineer(): ReactNode {
                     </Heading>
                     <p>{step.body}</p>
                     {step.badge && <span className={styles.timelineBadge}>{step.badge}</span>}
+                    {step.to && (
+                      <p>
+                        <Link to={step.to}>{step.toLabel} &rarr;</Link>
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}
