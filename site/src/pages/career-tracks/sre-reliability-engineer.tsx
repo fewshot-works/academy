@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import styles from './sre-reliability-engineer.module.css';
@@ -302,6 +303,12 @@ function Section({eyebrow, title, children}: {eyebrow?: string; title: string; c
 export default function SreReliabilityEngineer(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI SRE, AI reliability engineer, how to become an SRE for AI systems, AI site reliability engineer career path, SRE for AI agents salary"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <Link to="/career-tracks" className={styles.back}>

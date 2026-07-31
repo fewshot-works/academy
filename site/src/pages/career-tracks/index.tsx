@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import styles from './styles.module.css';
@@ -28,7 +29,7 @@ const TrackList: TrackItem[] = [
     to: '/career-tracks/applied-agentic-ai-engineer',
   },
   {
-    status: 'Guide coming soon',
+    status: 'Live now',
     title: 'AI Product Manager',
     description:
       'Decides what gets built, not how it’s built. A non-coding, decision-making track — approachable even with zero prior technical background.',
@@ -67,6 +68,12 @@ export default function CareerTracks(): ReactNode {
     <Layout
       title="Career Tracks"
       description="New AI-era job roles, explained end to end: what they are, what to learn first, how to prepare for the interview, and how much of this curriculum you need.">
+      <Head>
+        <meta
+          name="keywords"
+          content="AI career tracks, how to become an AI engineer, how to become a forward-deployed engineer, how to become an AI product manager, AI SRE career path, AI solutions architect career path, AI job interview prep"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <header className={styles.header}>

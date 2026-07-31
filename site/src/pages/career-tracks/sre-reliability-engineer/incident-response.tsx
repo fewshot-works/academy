@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import {
@@ -400,6 +401,12 @@ function Scenario({
 export default function IncidentResponse(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI incident response interview, SRE incident response case study, AI agent outage interview questions"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <PageHeader

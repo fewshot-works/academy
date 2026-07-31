@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import {PageHeader, Section, StepList, Dialogue, SubNav, styles, type Step, type Turn} from './_shared';
@@ -155,6 +156,12 @@ function QuestionBlock({question}: {question: BehavioralQuestion}): ReactNode {
 export default function BehavioralRound(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI solutions architect behavioral interview, AI presales interview prep"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <PageHeader

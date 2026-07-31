@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import {
@@ -402,6 +403,12 @@ function CaseStudy({
 export default function CaseStudies(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI presales case study interview, solutions architect case study round, enterprise AI demo interview questions"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <PageHeader

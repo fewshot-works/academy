@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import styles from './ai-solutions-architect-presales.module.css';
@@ -292,6 +293,12 @@ function Section({eyebrow, title, children}: {eyebrow?: string; title: string; c
 export default function AiSolutionsArchitectPresales(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI solutions architect, AI presales engineer, how to become an AI solutions architect, AI presales career path, AI solutions architect salary"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <Link to="/career-tracks" className={styles.back}>

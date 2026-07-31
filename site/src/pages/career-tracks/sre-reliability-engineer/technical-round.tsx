@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 
 import {PageHeader, Section, CalloutList, StepList, SubNav, styles, type Callout, type Step} from './_shared';
 
@@ -102,6 +103,12 @@ const READY_ITEMS: Callout[] = [
 export default function TechnicalRound(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI SRE technical interview questions, AI reliability engineer interview prep, observability interview questions"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <PageHeader

@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 
 import {
@@ -407,6 +408,12 @@ function CaseStudy({
 export default function SystemDesign(): ReactNode {
   return (
     <Layout title={TITLE} description={META_DESCRIPTION}>
+      <Head>
+        <meta
+          name="keywords"
+          content="AI agent system design interview, agentic AI system design round, RAG system design interview questions"
+        />
+      </Head>
       <main className={styles.page}>
         <div className="container">
           <PageHeader
