@@ -35,14 +35,14 @@ const TrackList: TrackItem[] = [
     to: '/career-tracks/ai-product-manager',
   },
   {
-    status: 'Guide coming soon',
+    status: 'Live now',
     title: 'SRE / Reliability Engineer for AI Agent Applications',
     description:
       'Keeps AI agents running reliably in production: observability, guardrails, and cost/latency budgets.',
     to: '/career-tracks/sre-reliability-engineer',
   },
   {
-    status: 'Guide coming soon',
+    status: 'Live now',
     title: 'AI Solutions Architect / Presales Engineer',
     description:
       'Pre-sales and consulting: demoing, proposal-writing, and requirement analysis for enterprise AI adoption.',

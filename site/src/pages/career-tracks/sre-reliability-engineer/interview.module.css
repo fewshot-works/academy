@@ -1,0 +1,340 @@
+.page {
+  padding: 2.5rem 0 5rem;
+}
+
+.page .container {
+  max-width: 76rem;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero {
+  max-width: 68ch;
+  margin-bottom: 2.5rem;
+}
+
+.oneLiner {
+  font-size: 1.1rem;
+  color: var(--zta-ink);
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.metaChip {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-ink);
+  font-size: 0.82rem;
+  border: 1px solid var(--zta-border);
+}
+
+.section {
+  max-width: 68ch;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--zta-border);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+.section:has(.tableWrap),
+.section:has(.dialogue),
+.section:has(.diagramWrap) {
+  max-width: none;
+}
+
+.section p + p {
+  margin-top: 1rem;
+}
+
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin: 0 0 0.4rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1rem;
+}
+
+.aside {
+  font-size: 0.9rem;
+  color: var(--zta-ink-muted);
+  margin-top: 1rem;
+}
+
+.insightBox {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  background: var(--zta-chip-bg);
+  border-radius: 0 8px 8px 0;
+}
+
+.insightBox p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Named-item callouts, e.g. tips or prep-plan weeks */
+
+.calloutList {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.callout {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--ifm-color-primary);
+}
+
+.calloutTitle {
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--zta-ink-muted);
+}
+
+/* Numbered step list — reused for prep plans, decomposition frameworks */
+
+.steps {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.step::before {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 2rem;
+  bottom: 0;
+  width: 1px;
+  background: var(--zta-border);
+}
+
+.step:last-child::before {
+  display: none;
+}
+
+.stepIndex {
+  flex-shrink: 0;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-surface-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.stepTitle {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.step p {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+}
+
+/* Tables */
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--zta-border);
+  vertical-align: top;
+}
+
+.table th {
+  background: var(--zta-chip-bg);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--zta-ink-muted);
+}
+
+/* Tag chips — industry / topic labels */
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.chip {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-ink);
+  font-size: 0.85rem;
+  border: 1px solid var(--zta-border);
+}
+
+/* Interviewer / candidate dialogue transcript */
+
+.dialogue {
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 1rem;
+  max-width: 68ch;
+}
+
+.turn {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.speaker {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+  color: var(--zta-ink-muted);
+}
+
+.speaker.interviewer {
+  color: var(--ifm-color-primary);
+}
+
+.speaker.candidate {
+  color: var(--zta-accent);
+}
+
+.turnBody {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.turnBody code {
+  white-space: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .turn {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+/* Mermaid architecture diagrams */
+
+.diagramWrap {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  overflow-x: auto;
+}
+
+.diagramWrap svg {
+  margin: 0 auto;
+  display: block;
+}
+
+.guidanceList {
+  margin: 1.25rem 0 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  color: var(--zta-ink-muted);
+  line-height: 1.7;
+}
+
+.guidanceList li + li {
+  margin-top: 0.5rem;
+}
+
+/* Case-study block wrapper (own divider, since it nests inside a Section) */
+
+.caseStudy {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--zta-border);
+}
+
+.caseStudy:first-child {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.caseStudyEyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--zta-accent);
+  margin: 0 0 0.4rem;
+}
+
+/* Prev/next + CTA nav between the three subpages */
+
+.subNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--zta-border);
+}
+
+.ctaRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--zta-border);
+}
