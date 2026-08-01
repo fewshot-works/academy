@@ -1,6 +1,6 @@
 # Lab: Prompt Engineering
 
-Companion lab for [Advanced Concepts: Prompt Engineering](https://fewshot-works.github.io/academy/docs/advanced-concepts/prompt-engineering). One question about a fictional bike shop, asked through four increasingly deliberate prompts: bloated, trimmed, structured, and grounded, so you can watch the same source document produce a different answer at each stage.
+Companion lab for [Advanced Concepts: Prompt Engineering](https://fewshot-works.github.io/academy/docs/advanced-concepts/prompt-engineering). Two experiments in one script: one question about a fictional bike shop asked through four increasingly deliberate prompts (bloated, trimmed, structured, grounded), then a word problem run once with chain-of-thought and three times with self-consistency, to see whether all three runs actually agree.
 
 ## Before you start
 
@@ -60,8 +60,14 @@ Open `prompt_engineering.py` and follow along. All four prompts ask about the sa
 
 Each variant prints its word count (a rough stand-in for token count) alongside its response, so you can see the prompt getting shorter as it gets better, not longer.
 
+Then the script moves on to `WORD_PROBLEM`, a three-step math problem (multiply, subtract, multiply again), plenty of room for a model to slip on one of the steps:
+
+5. **Chain-of-thought**: one call, asked to show its work and end with a line the script can reliably pull the final number from.
+6. **Self-consistency**: the exact same chain-of-thought prompt, run three times in a row. The script tallies each run's final line and prints whichever answer showed up most often, since each call samples from the model's output distribution, the reasoning can walk a slightly different path each time, especially on a smaller model working through several steps.
+
 ## Troubleshooting
 
 - **`ConnectionError` with `PROVIDER=ollama`**: make sure Ollama is running (`ollama serve`), and that you've pulled `llama3.2`.
 - **`AuthenticationError` with `PROVIDER=openai` or `PROVIDER=anthropic`**: check that your key in `.env` has no extra quotes or spaces, and that the line isn't still commented out with `#`.
 - **The bloated or trimmed prompt happens to answer question 3 correctly with "I don't know" on your run**: it's a real LLM call, not scripted, small models don't fail the same way every time. Run it a few times, the grounded prompt should be the one that reliably gets it right.
+- **All three self-consistency runs agree with each other**: that can happen, especially with a stronger hosted model. The lesson isn't "the runs must disagree," it's that you can't assume they will, self-consistency is the insurance policy for when they don't.

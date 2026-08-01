@@ -53,4 +53,30 @@ export const questions: QuizQuestion[] = [
     explanation:
       '"Be accurate" changes nothing, a model already believes it\'s being accurate. What actually works is telling it exactly where the honest boundary is (the source) and exactly what to say when it\'s outside that boundary, removing the ambiguity that otherwise gets resolved by guessing.',
   },
+  {
+    question:
+      "Chain-of-thought asks a model to show its reasoning before answering. Why isn't that enough on its own, and what does self-consistency add on top of it?",
+    options: [
+      "Chain-of-thought is already perfect; self-consistency is just a slower way to get the same answer",
+      "Showing reasoning doesn't guarantee the reasoning is correct, self-consistency runs the same chain-of-thought prompt several times and takes whichever final answer shows up most often",
+      "Self-consistency replaces chain-of-thought entirely, you should never use chain-of-thought once you know about self-consistency",
+      "Self-consistency makes a single model call deterministic so it never disagrees with itself",
+    ],
+    correctIndex: 1,
+    explanation:
+      "Showing your work makes a mistake visible, it doesn't prevent the mistake. Self-consistency accepts that any single run can still slip on a step, and fixes that by running the identical prompt multiple times and trusting the answer the majority of runs land on, the same logic as trusting the estimate two colleagues agree on over the one only one of them gave you.",
+  },
+  {
+    question:
+      "The chapter describes DSPy's approach as \"compile, don't hand-write.\" What does that actually mean?",
+    options: [
+      "DSPy converts your prompts into a faster programming language before sending them to the model",
+      "Instead of hand-tuning a prompt's exact wording, you declare what goes in and out (a signature) and let an optimizer search for the instructions and examples that score best against a dataset you've already scored",
+      "DSPy writes documentation for your prompts automatically so other engineers can read them",
+      "DSPy compiles multiple prompts into a single prompt to save on token costs",
+    ],
+    correctIndex: 1,
+    explanation:
+      "The shift is from a person eyeballing outputs and tweaking phrasing by feel, to an optimizer searching over wording and few-shot examples against real, scored data, the same kind of hand-labeled eval set Intermediate Chapter 8 builds for judging a RAG pipeline. It's tuning by measurement instead of tuning by ear.",
+  },
 ];

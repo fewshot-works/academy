@@ -1,16 +1,21 @@
-# Advanced Concepts lab: one question, four prompts. The same underlying
-# question about a fictional bike shop gets asked four times, each time
-# through a more deliberately written prompt, bloated, trimmed, structured,
-# grounded, so you can watch the answer change as the prompt improves.
+# Advanced Concepts lab: two experiments in one script.
 #
-# One of the three questions has no answer in the source document at all.
-# That's on purpose: it's the hallucination test. Watch which prompts make
-# the model admit it doesn't know, and which ones guess.
+# Part one: the same underlying question about a fictional bike shop gets
+# asked four times, each time through a more deliberately written prompt,
+# bloated, trimmed, structured, grounded, so you can watch the answer change
+# as the prompt improves. One of the three questions has no answer in the
+# source document at all, that's the hallucination test.
+#
+# Part two: a multi-step word problem gets asked once with chain-of-thought,
+# then three times with the exact same chain-of-thought prompt, to see
+# whether all three runs actually agree (self-consistency).
 #
 # Which provider this uses (Ollama, OpenAI, or Anthropic) is controlled by
 # the PROVIDER variable in your .env file. See README.md for setup steps.
 
 import os
+import re
+from collections import Counter
 from dotenv import load_dotenv
 
 load_dotenv()  # reads .env, makes PROVIDER (and any API keys) available below
@@ -196,3 +201,75 @@ print("the head mechanic's experience, since the document never says it.")
 print("Only a prompt that explicitly tells the model what to do when it")
 print("doesn't know reliably admits that, instead of inventing a")
 print("plausible-sounding number of years.")
+
+# ============================================================
+# Part two: chain-of-thought and self-consistency. This word problem takes
+# three steps to solve, plenty of room for a model to slip on one of them.
+# Chain-of-thought makes the model show its work, self-consistency runs
+# that same chain-of-thought prompt several times and takes whichever
+# answer shows up most, instead of trusting whichever run came back first.
+# ============================================================
+
+WORD_PROBLEM = (
+    "A farmer has 3 fields. Each field has 8 rows of 15 corn plants. Pests "
+    "destroyed 22 plants in total before harvest. The farmer sells each "
+    "remaining plant's corn for $2. How much money does the farmer make?"
+)
+
+print()
+print("=" * 60)
+print("PART TWO: chain-of-thought and self-consistency")
+print("=" * 60)
+print(f"Question: {WORD_PROBLEM}")
+
+# ============================================================
+# 5. Chain-of-thought: ask the model to show its steps before answering,
+#    ending with a line we can reliably pull the final number from.
+# ============================================================
+
+cot_prompt = (
+    f"{WORD_PROBLEM}\n\nThink through this step by step, showing each "
+    "calculation, then state your final dollar answer clearly at the end."
+)
+
+
+def get_final_number(reply):
+    # Pulls the last number that appears anywhere in the reply, so it still
+    # works whether the model ends with "Answer: 676", "$676", or just
+    # "676" written into its last sentence.
+    numbers = re.findall(r"\d+", reply)
+    return numbers[-1] if numbers else "no number found"
+
+
+print()
+print("--- 5. CHAIN-OF-THOUGHT (single run) ---")
+cot_reply = ask(cot_prompt)
+print(cot_reply.strip())
+print(f"\nFinal answer extracted: {get_final_number(cot_reply)}")
+
+# ============================================================
+# 6. Self-consistency: run the exact same chain-of-thought prompt three
+#    times. Each call samples from the model's output distribution, so the
+#    reasoning can walk a slightly different path each time, especially on
+#    a smaller model working through several steps in a row. Whichever
+#    final answer shows up most often is the one we trust.
+# ============================================================
+
+print()
+print("--- 6. SELF-CONSISTENCY (same prompt, run 3 times) ---")
+
+final_answers = []
+for run_number in range(1, 4):
+    reply = ask(cot_prompt)
+    final_number = get_final_number(reply)
+    print(f"Run {run_number} final answer: {final_number}")
+    final_answers.append(final_number)
+
+vote_counts = Counter(final_answers)
+winner, count = vote_counts.most_common(1)[0]
+print()
+print(f"Most common answer ({count}/3 runs): {winner}")
+if count < 3:
+    print("The runs didn't all agree, that disagreement is exactly why")
+    print("self-consistency takes a majority vote instead of trusting")
+    print("whichever run happened to come back first.")
