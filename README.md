@@ -1,5 +1,7 @@
 # Few-Shot Academy
 
+**🔗 Live site: [fewshot-works.github.io/academy](https://fewshot-works.github.io/academy/)**
+
 A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG, and Agents — from "what is a token?" to a working, evaluated agentic RAG system.
 
 Everything runs on your own laptop. No servers, no accounts, no required cloud spend:
@@ -22,7 +24,7 @@ academy/
 
 ## Status
 
-**Foundations** (9 chapters) is complete and live. **Intermediate** is in progress, chapter by chapter — Chapter 1 (chunking strategies) is live. **Advanced** comes after that.
+**Foundations**, **Intermediate**, and **Advanced** are all complete and live.
 
 ## License
 

@@ -12,6 +12,9 @@ const config: Config = {
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    // Rspack (pulled in by v4 prep) panics on the dev server's module graph --
+    // stay on webpack until that's fixed upstream.
+    faster: false,
   },
 
   markdown: {
@@ -152,15 +155,41 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          type: 'dropdown',
           position: 'left',
           label: 'Learn',
+          items: [
+            {label: 'Overview', to: '/docs/intro'},
+            {label: 'Foundations', to: '/docs/foundations/overview'},
+            {label: 'Intermediate', to: '/docs/intermediate/overview'},
+            {label: 'Advanced', to: '/docs/advanced/overview'},
+            {label: 'Advanced Concepts', to: '/docs/advanced-concepts/overview'},
+          ],
         },
         {
-          to: '/career-tracks',
+          type: 'dropdown',
           position: 'left',
           label: 'Career Tracks',
+          items: [
+            {label: 'Overview', to: '/career-tracks'},
+            {
+              label: 'Forward-Deployed Engineer (FDE)',
+              to: '/career-tracks/forward-deployed-engineer',
+            },
+            {
+              label: 'Applied / Agentic AI Engineer',
+              to: '/career-tracks/applied-agentic-ai-engineer',
+            },
+            {
+              label: 'AI Solutions Architect / Presales Engineer',
+              to: '/career-tracks/ai-solutions-architect-presales',
+            },
+            {
+              label: 'SRE / Reliability Engineer for AI Agent Applications',
+              to: '/career-tracks/sre-reliability-engineer',
+            },
+            {label: 'AI Product Manager', to: '/career-tracks/ai-product-manager'},
+          ],
         },
       ],
     },

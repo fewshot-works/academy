@@ -1,0 +1,8 @@
+{
+  "label": "Advanced Concepts",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Standalone deep dives for after you've finished the core curriculum -- self-contained topics you can read in any order."
+  }
+}
