@@ -29,6 +29,12 @@ You should have already completed [Lab 2](../02-first-api-call) at least once, s
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    By default `PROVIDER=ollama`. Leave it as-is to use the free local model, or switch it to `openai`/`anthropic` and fill in your key, same as Lab 2.
 
 3. **Make sure Ollama is running** (skip if you're using `openai` or `anthropic`):

@@ -37,6 +37,12 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    By default `PROVIDER=ollama`. Leave it as-is, or switch it to `openai` and fill in your key.
 
 4. **Make sure Ollama is running** (skip if you're using `openai`):

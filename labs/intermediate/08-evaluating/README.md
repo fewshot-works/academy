@@ -40,6 +40,12 @@ You should already have done [Chapter 3: Better Retrieval](../03-better-retrieva
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    If you're using Ollama, `PROVIDER=ollama` is already set, leave it as-is. If you're using OpenAI, open `.env` and set `PROVIDER=openai`, then add your `OPENAI_API_KEY`.
 
 4. **Run both scripts:**

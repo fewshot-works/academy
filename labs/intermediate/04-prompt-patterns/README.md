@@ -37,6 +37,12 @@ This lab is chat-only, no embeddings involved, so it's the first Intermediate la
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    `PROVIDER=ollama` is already set. If you're using OpenAI or Anthropic instead, open `.env`, set `PROVIDER` accordingly, and add the matching API key.
 
 4. **Run the script:**

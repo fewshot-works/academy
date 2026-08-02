@@ -23,6 +23,12 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    Open `.env` in your editor. By default `PROVIDER=ollama`, leave it as-is if you're using the free local model from Chapter 0. If you'd rather use a hosted model, change it to `openai` or `anthropic` and uncomment/fill in the matching API key line.
 
 3. **Make sure Ollama is running** (skip this step if you're using `openai` or `anthropic`). Ollama usually starts automatically after installation; if not, open a separate terminal and run:

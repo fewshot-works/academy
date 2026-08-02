@@ -33,6 +33,12 @@ This lab works with any provider. Ollama is free and local.
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    If you're using Ollama, `PROVIDER=ollama` is already set, leave it as-is.
 
 4. **Run the script:**

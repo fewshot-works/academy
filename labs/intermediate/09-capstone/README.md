@@ -40,6 +40,12 @@ You should already have done [Chapter 7: Memory](../07-memory/) — this script 
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    `PROVIDER=ollama` is already set. If you're using OpenAI instead, open `.env`, set `PROVIDER=openai`, and add your `OPENAI_API_KEY`.
 
 4. **Run the script:**

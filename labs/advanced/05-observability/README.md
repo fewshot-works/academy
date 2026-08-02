@@ -33,6 +33,12 @@ This lab works with any provider. Ollama is free and local. Note: the Ollama bra
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    If you're using Ollama, `PROVIDER=ollama` is already set, leave it as-is. No Traceloop account or API key is needed either way, traces go to your own console.
 
 4. **Run the script:**
