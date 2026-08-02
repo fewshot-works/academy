@@ -12,7 +12,9 @@ import {questions as int1Questions} from '@site/src/data/quizzes/int1';
 
 Imagine a giant cookbook with 500 recipes. Someone asks you, "how long do I roast a chicken?" If your only unit of search is "the whole cookbook," you'd have to hand over all 500 recipes and let them dig. If your unit is "one word," you'd hand over just the word "roast," stripped of everything useful around it. Neither helps.
 
-What you actually want is to hand over one recipe: big enough to stand on its own, small enough to be about one specific thing. That's what a **chunk** is. In Chapter 5 of Foundations, "What Is a Vector Database?", you stored whole tiny documents as single vectors, because those documents were only a sentence or two long. Real documents aren't a sentence or two long. Before anything gets embedded and stored, someone has to decide how to cut it into pieces, and that decision is called a **chunking strategy**.
+What you actually want is to hand over one recipe: big enough to stand on its own, small enough to be about one specific thing. That's what a **chunk** is.
+
+In Chapter 5 of Foundations, "What Is a Vector Database?", you stored whole tiny documents as single vectors, because those documents were only a sentence or two long. Real documents aren't a sentence or two long. Before anything gets embedded and stored, someone has to decide how to cut it into pieces, and that decision is called a **chunking strategy**.
 
 Get chunk size wrong in either direction and RAG quality suffers. Chunks too big, and a search for "roast chicken" also retrieves the marinade instructions, the dessert recipe two paragraphs down, and whatever else got dragged along for the ride, diluting the one relevant fact in a sea of irrelevant text. Chunks too small, and you get a fragment like "Roast at 425°F" with no idea what's being roasted, because the sentence that said "chicken" got cut into a different chunk.
 

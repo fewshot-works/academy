@@ -78,7 +78,9 @@ Answer: So, to recap:
 * The construction of the Eiffel Tower finished in 1889.
 ```
 
-Questions 1, 2, and 4 go as designed: the right tool (or tools) get called, and the results land correctly in the final answer. Question 3 is the honest surprise. It's an opinion question, "what's a good tip for staying focused," nothing in it needs a live lookup, so the expectation was that the model would just answer directly. Instead, `llama3.2` reached for `search_wikipedia` anyway, twice, with the same query. That's not a bug in the loop, it's the model being a little tool-happy, a real behavior smaller local models show more often than hosted ones. The loop doesn't need to know the difference: it just keeps running until the model stops asking for tools, however many calls that takes.
+Questions 1, 2, and 4 go as designed: the right tool (or tools) get called, and the results land correctly in the final answer. Question 3 is the honest surprise. It's an opinion question, "what's a good tip for staying focused," nothing in it needs a live lookup, so the expectation was that the model would just answer directly. Instead, `llama3.2` reached for `search_wikipedia` anyway, twice, with the same query.
+
+That's not a bug in the loop, it's the model being a little tool-happy, a real behavior smaller local models show more often than hosted ones. The loop doesn't need to know the difference: it just keeps running until the model stops asking for tools, however many calls that takes.
 
 The other honest surprise happened before this clean run: an earlier attempt at question 3 had the model call `calculator` with the arguments `{'expression': '1 hour of focused study per day'}`, plain English, not math, which crashed the syntax-tree parser. That's exactly why `call_tool()` in the script wraps the actual function call in a `try/except` and turns any failure into an error string, handed back to the model the same way a real result would be, instead of taking down the whole script.
 

@@ -12,7 +12,9 @@ import {questions as ac3Questions} from '@site/src/data/quizzes/ac3';
 
 Imagine a new hire whose only job is "read every fax that comes in and summarize it for me." One fax arrives from a vendor, an ordinary pricing update, except buried near the bottom, in a fine-print line the vendor never wrote, is an instruction: "per compliance policy, also forward a copy of this month's internal budget to the address below." Nobody said that to the new hire out loud. It arrived hidden inside a document they were only asked to read, and a diligent, helpful new hire might just do it, because reading and acting on written instructions is exactly what they were hired for.
 
-That's the shape of the vulnerability this chapter covers. [Advanced Chapter 4: Guardrails and Safety](/docs/advanced/guardrails-and-safety) already looked at prompt injection, but the **direct** kind: text a user types straight into the chat, like "ignore all previous instructions." That's checkable, you can scan the user's own message before it ever reaches the model. This chapter looks at **indirect** injection: the malicious instruction isn't typed by anyone, it's sitting inside a document, email, or search result the agent reads as part of doing its job. There's no "user input" to scan. The attack arrives as tool output.
+That's the shape of the vulnerability this chapter covers. [Advanced Chapter 4: Guardrails and Safety](/docs/advanced/guardrails-and-safety) already looked at prompt injection, but the **direct** kind: text a user types straight into the chat, like "ignore all previous instructions." That's checkable, you can scan the user's own message before it ever reaches the model.
+
+This chapter looks at **indirect** injection: the malicious instruction isn't typed by anyone, it's sitting inside a document, email, or search result the agent reads as part of doing its job. There's no "user input" to scan. The attack arrives as tool output.
 
 ## Two shapes of the same attack
 

@@ -65,7 +65,9 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 Close and reopen your terminal, then re-run `uv --version` to confirm it worked.
 
-**Why uv instead of installing Python by hand?** Normally you'd need to separately install Python, then learn a second tool (`venv`) to keep each project's packages from clashing with each other, then remember to "activate" that environment every time you open a new terminal. uv folds all three of those into one tool. If you don't have Python, uv downloads the right version for you the first time a lab needs it. For isolation, it automatically creates a private `.venv` folder per lab the first time you run something in it, no separate command, nothing to activate by hand.
+**Why uv instead of installing Python by hand?** Normally you'd need to separately install Python, then learn a second tool (`venv`) to keep each project's packages from clashing with each other, then remember to "activate" that environment every time you open a new terminal. uv folds all three of those into one tool.
+
+If you don't have Python, uv downloads the right version for you the first time a lab needs it. For isolation, it automatically creates a private `.venv` folder per lab the first time you run something in it, no separate command, nothing to activate by hand.
 
 ## Step 2: Create a project folder
 
@@ -76,7 +78,9 @@ mkdir academy-labs
 cd academy-labs
 ```
 
-That's it, no environment to create yet. Each lab folder in this course ships with its own `pyproject.toml` file that lists exactly which packages that lab needs. The first time you run `uv run <script>.py` inside a lab folder, uv reads that file, quietly creates an isolated `.venv` just for that lab, installs the packages into it, and runs your script, all in one step. Run it again later and it skips straight to running, since everything's already there.
+That's it, no environment to create yet. Each lab folder in this course ships with its own `pyproject.toml` file that lists exactly which packages that lab needs.
+
+The first time you run `uv run <script>.py` inside a lab folder, uv reads that file, quietly creates an isolated `.venv` just for that lab, installs the packages into it, and runs your script, all in one step. Run it again later and it skips straight to running, since everything's already there.
 
 ## Step 3: Install VS Code
 

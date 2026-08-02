@@ -10,9 +10,13 @@ import {questions as ch3Questions} from '@site/src/data/quizzes/ch3';
 
 > **Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent per run with a hosted API key.
 
-Imagine you just hired someone new and told them: "handle the customer complaints." That's it, no more detail. You'll get answers, but every one will look different. One reply is three paragraphs long and apologetic. Another is one clipped sentence. A third offers a refund when your policy actually calls for store credit.
+Imagine you just hired someone new and told them: "handle the customer complaints." That's it, no more detail. You'll get answers, but every one will look different.
 
-Now imagine you did it differently. You showed them two real complaints and exactly how you wanted each one handled. Or you sat them down first and said: "you're our returns specialist. Always offer store credit before a refund. Keep replies under three sentences." Suddenly their answers look like something one consistent person wrote.
+One reply is three paragraphs long and apologetic. Another is one clipped sentence. A third offers a refund when your policy actually calls for store credit.
+
+Now imagine you did it differently. You showed them two real complaints and exactly how you wanted each one handled.
+
+Or you sat them down first and said: "you're our returns specialist. Always offer store credit before a refund. Keep replies under three sentences." Suddenly their answers look like something one consistent person wrote.
 
 An LLM is the same new employee, every single time you talk to it. It has no memory of how you wanted the last answer to look unless you tell it again. How you phrase your request, called a **prompt**, is the single biggest lever you have over what comes back. This chapter covers three ways to pull that lever.
 

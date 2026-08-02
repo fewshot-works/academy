@@ -10,13 +10,17 @@ import {questions as ch4Questions} from '@site/src/data/quizzes/ch4';
 
 > **Time:** 10 minutes. **Cost:** $0 with Ollama, a fraction of a cent total with OpenAI (embeddings are one of the cheapest things you can call an API for).
 
-Picture a giant map of every food on earth, laid out so that similar tastes sit near each other. Mango sits close to peach. Chili sits close to wasabi. Both sit far away from vanilla. You didn't build this map by measuring sugar content or spice levels by hand. You built it by noticing which foods taste alike.
+Picture a giant map of every food on earth, laid out so that similar tastes sit near each other. Mango sits close to peach. Chili sits close to wasabi. Both sit far away from vanilla.
+
+You didn't build this map by measuring sugar content or spice levels by hand. You built it by noticing which foods taste alike.
 
 An **embedding** does the same thing for meaning. It takes a piece of text and turns it into a list of numbers, called a **vector**, that acts like coordinates on a giant map of meaning. Put two sentences with similar meaning through the same embedding model, and their coordinates land close together, even if the sentences don't share a single word in common. Put two unrelated sentences through it, and their coordinates land far apart.
 
 This is the trick that lets a computer "understand" that "my dog won't stop barking" and "our puppy barks at everything" are about the same thing, without either sentence sharing more than one word.
 
-> **A bit of history:** this idea traces back to 2013, when researchers at Google led by Tomas Mikolov published a technique called word2vec that turned individual words into vectors. It produced a famous demonstration: take the vector for "king," subtract "man," add "woman," and the closest result was "queen." The model had learned the relationship between gender and royalty purely from how words get used in text, nobody told it directly. Later models extended the same idea from single words to whole sentences and paragraphs, which is what the embedding models you'll use in the lab actually do.
+> **A bit of history:** this idea traces back to 2013, when researchers at Google led by Tomas Mikolov published a technique called word2vec that turned individual words into vectors. It produced a famous demonstration: take the vector for "king," subtract "man," add "woman," and the closest result was "queen."
+>
+> The model had learned the relationship between gender and royalty purely from how words get used in text, nobody told it directly. Later models extended the same idea from single words to whole sentences and paragraphs, which is what the embedding models you'll use in the lab actually do.
 
 ## A vector is just a list of numbers
 

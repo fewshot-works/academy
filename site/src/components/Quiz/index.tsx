@@ -95,7 +95,7 @@ export default function Quiz({chapterId, questions}: QuizProps): ReactNode {
   return (
     <div className={styles.quiz}>
       {submitted && (
-        <p className={styles.score}>
+        <p className={styles.score} role="status" aria-live="polite">
           You scored {score} / {questions.length}
         </p>
       )}
@@ -132,9 +132,13 @@ export default function Quiz({chapterId, questions}: QuizProps): ReactNode {
                 );
               })}
             </div>
-            {isCorrect && <p className={styles.feedbackCorrect}>Correct!</p>}
+            {isCorrect && (
+              <p className={styles.feedbackCorrect} role="status">
+                Correct!
+              </p>
+            )}
             {isWrong && (
-              <p className={styles.feedbackWrong}>
+              <p className={styles.feedbackWrong} role="status">
                 Not quite. The right answer is "{q.options[q.correctIndex]}." {q.explanation}
               </p>
             )}

@@ -10,7 +10,9 @@ import {questions as int7Questions} from '@site/src/data/quizzes/int7';
 
 > **Time:** 25 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI or Anthropic.
 
-Every agent you've built so far answers one question at a time. Ask it something, get an answer, ask it something else, and it has no idea the first question ever happened, because every `agent.invoke()` call in Chapters 5 and 6 started from a blank `messages` list. That's fine for a single lookup. It falls apart the moment you want an actual conversation, one where "what about the second one?" refers back to something said three questions ago. This chapter gives the Chapter 6 agent that memory, first the simple way, then a way that scales.
+Every agent you've built so far answers one question at a time. Ask it something, get an answer, ask it something else, and it has no idea the first question ever happened, because every `agent.invoke()` call in Chapters 5 and 6 started from a blank `messages` list.
+
+That's fine for a single lookup. It falls apart the moment you want an actual conversation, one where "what about the second one?" refers back to something said three questions ago. This chapter gives the Chapter 6 agent that memory, first the simple way, then a way that scales.
 
 ## Short-term memory: remember everything
 

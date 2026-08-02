@@ -61,7 +61,9 @@ mxbai-embed-large
 mxbai-embed-large was faster. mxbai-embed-large had the bigger quality gap.
 ```
 
-`mxbai-embed-large`, the bigger of the two models, separates the similar sentences from the different ones more clearly, a quality gap of 0.382 against 0.275. That part holds up consistently. The timing is a different story: run the script a second time and it flattens out, sometimes even flipping which model looks "faster," because most of what's being measured the first time is Ollama loading the model into memory, not the embedding step itself. Locally, latency is noisy. Quality and cost are the tradeoffs you can actually count on.
+`mxbai-embed-large`, the bigger of the two models, separates the similar sentences from the different ones more clearly, a quality gap of 0.382 against 0.275. That part holds up consistently.
+
+The timing is a different story: run the script a second time and it flattens out, sometimes even flipping which model looks "faster," because most of what's being measured the first time is Ollama loading the model into memory, not the embedding step itself. Locally, latency is noisy. Quality and cost are the tradeoffs you can actually count on.
 
 With `PROVIDER=openai`, the picture sharpens. `text-embedding-3-small` and `text-embedding-3-large` are priced differently per token, and the script reads the real token count straight from each API response, so the dollar cost printed for that run is exact, not estimated. That's the clearest version of the tradeoff: a hosted API where you can see quality, latency, and cost as three numbers, side by side, for a single request.
 

@@ -80,7 +80,9 @@ mxbai-embed-large was faster. mxbai-embed-large had the bigger quality gap.
 
 Your exact numbers will shift a little run to run, but the quality gap should be consistent: `mxbai-embed-large` (the bigger of the two models) should separate the similar pairs from the different pairs more clearly than `nomic-embed-text` does, every time.
 
-**One thing to notice about the timing:** it doesn't behave the way you might expect. Run the script twice in a row and the *second* run is much faster for both models, and the two models end up close to each other, sometimes with the bigger model even edging out the smaller one. That's because most of what you're timing on the first run is Ollama loading the model into memory, not the embedding computation itself. Locally, latency is a noisy signal. The tradeoff that holds up consistently is quality versus cost, not quality versus speed. On a hosted API, where you're paying per call over the network, latency becomes a much more dependable thing to compare, which is one more reason the `PROVIDER=openai` path is worth trying if you have a key.
+**One thing to notice about the timing:** it doesn't behave the way you might expect. Run the script twice in a row and the *second* run is much faster for both models, and the two models end up close to each other, sometimes with the bigger model even edging out the smaller one. That's because most of what you're timing on the first run is Ollama loading the model into memory, not the embedding computation itself.
+
+Locally, latency is a noisy signal. The tradeoff that holds up consistently is quality versus cost, not quality versus speed. On a hosted API, where you're paying per call over the network, latency becomes a much more dependable thing to compare, which is one more reason the `PROVIDER=openai` path is worth trying if you have a key.
 
 💡 A few honest notes on this real run:
 

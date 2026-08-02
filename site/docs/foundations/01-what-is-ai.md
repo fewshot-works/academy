@@ -51,7 +51,9 @@ Imagine teaching a five-year-old to recognize dogs. You don't hand them a rulebo
 
 Machine learning is a big category with many techniques inside it. Deep learning is one specific one, and it's the one responsible for almost every AI headline you've read in the last few years.
 
-Picture a factory assembly line instead of one person doing a whole job. The first worker on the line just looks for edges and simple shapes in a photo. The next worker combines those into curves and corners. The next combines *those* into recognizable parts: an eye, a wheel, a wing. By the end of the line, the combined layers of simple pattern-spotters can recognize something as complex as "this is a photo of a golden retriever." Each individual worker's job is simple; it's the *depth*, many layers stacked on top of each other, that lets the whole system recognize something complicated.
+Picture a factory assembly line instead of one person doing a whole job. The first worker on the line just looks for edges and simple shapes in a photo. The next worker combines those into curves and corners. The next combines *those* into recognizable parts: an eye, a wheel, a wing.
+
+By the end of the line, the combined layers of simple pattern-spotters can recognize something as complex as "this is a photo of a golden retriever." Each individual worker's job is simple; it's the *depth*, many layers stacked on top of each other, that lets the whole system recognize something complicated.
 
 That layered structure is called a **neural network** (loosely inspired by how neurons connect in a brain), and "deep" just means it has many layers stacked up. Deep learning is what made computers dramatically better at recognizing speech, images, and eventually language, starting in the early-to-mid 2010s.
 

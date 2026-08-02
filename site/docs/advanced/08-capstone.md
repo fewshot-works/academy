@@ -91,7 +91,9 @@ Pass rate: 3/3 (100%)
 
 (Full output for all four retrieval questions and all three judged questions is in the lab's README.)
 
-Two honest findings sit side by side here. **Retrieval recall is perfect but precision isn't**: the right chunk is always in the top 2 results, but only half the time is it ranked first, which is exactly why the agent's own run above got the locations question wrong. **The judge is wrong, twice.** It marks "Fernwood Coffee Co. has 1 location" as a PASS against a reference of three, and marks an incomplete answer as a PASS too. A 100% pass rate here isn't a clean bill of health, it's `llama3.2` grading `llama3.2` too leniently. Intermediate Chapter 8 already warned that LLM-as-judge is a signal, not ground truth; this run is that warning showing up in practice, on a real agent instead of a hypothetical.
+Two honest findings sit side by side here. **Retrieval recall is perfect but precision isn't**: the right chunk is always in the top 2 results, but only half the time is it ranked first, which is exactly why the agent's own run above got the locations question wrong.
+
+**The judge is wrong, twice.** It marks "Fernwood Coffee Co. has 1 location" as a PASS against a reference of three, and marks an incomplete answer as a PASS too. A 100% pass rate here isn't a clean bill of health, it's `llama3.2` grading `llama3.2` too leniently. Intermediate Chapter 8 already warned that LLM-as-judge is a signal, not ground truth; this run is that warning showing up in practice, on a real agent instead of a hypothetical.
 
 ## Checkpoint
 

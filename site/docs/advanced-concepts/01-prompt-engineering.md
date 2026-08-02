@@ -90,7 +90,9 @@ Self-consistency is the fix for that: run the same chain-of-thought prompt more 
 
 Asking one prompt to summarize a document, extract every person and organization mentioned, and judge the overall tone is asking one worker to do three different jobs badly instead of three workers to each do one job well. Prompt chaining is that split made explicit: break a complex task into a sequence of smaller prompts, each with a single clear job, where one prompt's output becomes the next prompt's input.
 
-The payoff shows up when something goes wrong. A single mega-prompt that returns a bad answer gives you one wall of text to debug, no way to tell whether the summarizing, the extracting, or the tone judgment failed. A chain gives you a checkpoint at every stage: you can look at exactly which step's output went bad, and fix or re-run only that step. It also means you're not stuck using one model for the whole job. A stage that just reformats text can run on something small and cheap, while the stage that actually needs to reason hard can call a stronger model. That way you're not paying premium-model prices for every step in the pipeline.
+The payoff shows up when something goes wrong. A single mega-prompt that returns a bad answer gives you one wall of text to debug, no way to tell whether the summarizing, the extracting, or the tone judgment failed. A chain gives you a checkpoint at every stage: you can look at exactly which step's output went bad, and fix or re-run only that step.
+
+It also means you're not stuck using one model for the whole job. A stage that just reformats text can run on something small and cheap, while the stage that actually needs to reason hard can call a stronger model. That way you're not paying premium-model prices for every step in the pipeline.
 
 ### ReAct: reasoning interleaved with action
 
@@ -289,7 +291,9 @@ No, it means this run got lucky. Nothing in the trimmed or structured prompt tel
 <details>
 <summary>The grounded prompt (121 words) is longer than the trimmed prompt (84 words). Doesn't that contradict the "specific beats verbose" advice earlier in the chapter?</summary>
 
-No, those are two different kinds of length. The bloated prompt's extra 117 words (over the trimmed version) were filler, politeness, hedging, restating the same ask three ways, that could be deleted without losing anything. The grounded prompt's extra 37 words (over the trimmed version) are a real constraint doing real work: naming the source boundary and the exact fallback phrase. Trimming cuts words that do nothing. Grounding adds words that do something specific. The goal was never "shortest possible prompt," it was "no wasted words."
+No, those are two different kinds of length. The bloated prompt's extra 117 words (over the trimmed version) were filler, politeness, hedging, restating the same ask three ways, that could be deleted without losing anything. The grounded prompt's extra 37 words (over the trimmed version) are a real constraint doing real work: naming the source boundary and the exact fallback phrase.
+
+Trimming cuts words that do nothing. Grounding adds words that do something specific. The goal was never "shortest possible prompt," it was "no wasted words."
 </details>
 
 <details>
