@@ -1,0 +1,11 @@
+[project]
+name = "token-cost-management"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv",
+    "requests",
+    "openai",
+    "anthropic",
+    "tiktoken",
+]

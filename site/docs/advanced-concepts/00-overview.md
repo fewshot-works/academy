@@ -17,6 +17,10 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Prompt Engineering** — how to write a prompt that says exactly what you mean: cutting the filler that wastes tokens, structuring instructions so nothing is ambiguous, and adding the one kind of constraint that actually reduces hallucinations.
 
+**Token & Cost Management** — how to think about reducing token usage and LLM cost: trimming what you resend, provider-native prompt caching, routing tasks to the right-sized model, and batching what isn't urgent.
+
+**Agent Security** — indirect prompt injection: malicious instructions arriving as tool output, like a document or email, instead of user input, and why the fix is constraining what a sensitive tool is allowed to do rather than trying to detect suspicious text.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.

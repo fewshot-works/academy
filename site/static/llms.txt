@@ -43,6 +43,13 @@
 - [Chapter 7: Shipping It](https://fewshot-works.github.io/academy/docs/advanced/shipping-it): Wrapping an agent in a FastAPI app and a Dockerfile so it runs anywhere, not just your machine.
 - [Chapter 8: Capstone — A Guarded, Traced, Evaluated Agent](https://fewshot-works.github.io/academy/docs/advanced/capstone): The Intermediate capstone's agent wrapped in an input guardrail and full tracing, then measured with precision@k/recall@k and LLM-as-judge.
 
+## Advanced Concepts (ongoing — standalone chapters, read in any order)
+
+- [Overview](https://fewshot-works.github.io/academy/docs/advanced-concepts/overview): What this cookbook section is, how it differs from the three-tier curriculum, and how to use it.
+- [Prompt Engineering](https://fewshot-works.github.io/academy/docs/advanced-concepts/prompt-engineering): Trimming, structuring, and grounding a prompt, plus self-consistency, prompt chaining, ReAct, self-refine, and DSPy-style automatic optimization.
+- [Token & Cost Management](https://fewshot-works.github.io/academy/docs/advanced-concepts/token-cost-management): Context trimming, provider-native prompt caching, model right-sizing, and batching, so LLM usage stays cheap without cutting answers short.
+- [Agent Security](https://fewshot-works.github.io/academy/docs/advanced-concepts/agent-security): Indirect prompt injection arriving as tool output instead of user input, and a tool-call allowlist guard that stops it without ever detecting the injected text.
+
 ## Optional
 
 - [Disclaimer](https://fewshot-works.github.io/academy/disclaimer): Data privacy and responsible-use notes for the hands-on labs.
