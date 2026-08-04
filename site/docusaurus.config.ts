@@ -115,6 +115,13 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        // Expanding one top-level category (e.g. Intermediate) auto-collapses
+        // any other expanded sibling, so the sidebar doesn't grow unbounded.
+        autoCollapseCategories: true,
+      },
+    },
     mermaid: {
       // Mermaid computes derived shades internally (khroma), so it needs real
       // hex values, not CSS var() refs — and Docusaurus shares one

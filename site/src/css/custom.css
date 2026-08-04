@@ -57,3 +57,110 @@
   --zta-contour: rgba(120, 200, 166, 0.18);
   --zta-chip-bg: #202b26;
 }
+
+/*
+ * Sidebar + navbar structure: default Infima gives every panel the same
+ * flat background with no separation, which reads as "unstyled." Give the
+ * sidebar its own tinted panel, a clear active-item marker, and more
+ * breathing room between menu items, closer to a polished docs site.
+ */
+.navbar {
+  border-bottom: 1px solid var(--zta-border);
+  box-shadow: none;
+}
+
+.navbar__link--active {
+  font-weight: 700;
+}
+
+.theme-doc-sidebar-container {
+  background: var(--zta-chip-bg);
+  border-right: 1px solid var(--zta-border) !important;
+}
+
+.theme-doc-sidebar-menu {
+  padding: 1.5rem 0.75rem;
+}
+
+.menu__list .menu__list {
+  margin-top: 0.15rem;
+}
+
+.menu__list-item:not(:first-child) {
+  margin-top: 0.2rem;
+}
+
+.menu__link {
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.92rem;
+  transition: background 0.12s ease;
+}
+
+.menu__list-item-collapsible {
+  border-radius: 6px;
+}
+
+.menu__list-item-collapsible > .menu__link {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.menu__link:hover,
+.menu__list-item-collapsible:hover {
+  background: var(--zta-contour);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--zta-contour);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--ifm-color-primary);
+}
+
+.theme-doc-breadcrumbs {
+  margin-bottom: 1.5rem;
+}
+
+/* Serif heading font renders lighter than it looks at a glance -- push page
+   titles to a heavier weight so they read as a clear title, not just a
+   different font. */
+.markdown h1:first-child,
+article > header h1 {
+  font-weight: 700;
+}
+
+/*
+ * Navbar dropdowns: Infima's default caret + menu look dated (thin triangle,
+ * flat white panel, no spacing). Restyle to a small muted chevron and a
+ * card-like panel matching the sidebar/homepage treatment instead of ripping
+ * the dropdowns out.
+ */
+.navbar__item.dropdown > .navbar__link:after {
+  border-width: 0.35em 0.35em 0;
+  opacity: 0.6;
+  transition: transform 0.15s ease;
+}
+
+.dropdown--hoverable:hover > .navbar__link:after,
+.dropdown--show > .navbar__link:after {
+  transform: rotate(180deg);
+}
+
+.dropdown__menu {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--zta-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem;
+}
+
+.dropdown__link {
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.dropdown__link:hover,
+.dropdown__link--active {
+  background: var(--zta-contour);
+}
