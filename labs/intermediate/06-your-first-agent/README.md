@@ -1,10 +1,10 @@
 # Lab 6: Your First Agent
 
-Companion lab for [Intermediate Chapter 6: Your First Agent](https://fewshot-works.github.io/academy/docs/intermediate/06-your-first-agent). Same two tools, same four questions as [Chapter 5](../05-tool-use/), rebuilt with LangChain's `create_agent` instead of a hand-written loop, so you can compare the two directly.
+Companion lab for [Intermediate Chapter 6: Your First Agent](https://fewshotacademy.com/docs/intermediate/06-your-first-agent). Same two tools, same four questions as [Chapter 5](../05-tool-use/), rebuilt with LangChain's `create_agent` instead of a hand-written loop, so you can compare the two directly.
 
 ## Before you start
 
-You should already have done [Chapter 5: Tool Use](https://fewshot-works.github.io/academy/docs/intermediate/05-tool-use) — this lab reuses its exact `calculator` and `search_wikipedia` logic and its exact four example questions, just wired up differently.
+You should already have done [Chapter 5: Tool Use](https://fewshotacademy.com/docs/intermediate/05-tool-use) — this lab reuses its exact `calculator` and `search_wikipedia` logic and its exact four example questions, just wired up differently.
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic.
 
@@ -23,7 +23,7 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
    cd academy/labs/intermediate/06-your-first-agent
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/06-your-first-agent` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/06-your-first-agent` in a terminal.
 
 2. **If you're using Ollama, make sure the model is pulled:**
 

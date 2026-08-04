@@ -22,13 +22,8 @@ const config: Config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
 
-  // GitHub Pages project-site URL. Update if a custom domain is added later.
-  url: 'https://fewshot-works.github.io',
-  baseUrl: '/academy/',
-
-  organizationName: 'fewshot-works', // GitHub org/user name
-  projectName: 'academy', // GitHub repo name
-  deploymentBranch: 'gh-pages',
+  url: 'https://fewshotacademy.com',
+  baseUrl: '/',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -43,12 +38,12 @@ const config: Config = {
         name: 'Few-Shot Academy',
         description:
           'A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG, and Agents — from zero prior AI knowledge to a working, evaluated agentic RAG system. Every lesson is hands-on and runs locally for free via Ollama.',
-        url: 'https://fewshot-works.github.io/academy/',
+        url: 'https://fewshotacademy.com/',
         isAccessibleForFree: true,
         provider: {
           '@type': 'Organization',
           name: 'Few-Shot Academy',
-          url: 'https://fewshot-works.github.io/academy/',
+          url: 'https://fewshotacademy.com/',
         },
       }),
     },

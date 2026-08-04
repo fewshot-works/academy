@@ -1,6 +1,6 @@
 # Lab 3: Prompt Playground
 
-Companion lab for [Chapter 3: Prompting 101](https://fewshot-works.github.io/academy/docs/foundations/prompting-101). You'll ask an AI model to classify the same product review three different ways (zero-shot, few-shot, and with a system prompt) and compare the answers.
+Companion lab for [Chapter 3: Prompting 101](https://fewshotacademy.com/docs/foundations/prompting-101). You'll ask an AI model to classify the same product review three different ways (zero-shot, few-shot, and with a system prompt) and compare the answers.
 
 ## Before you start
 
@@ -21,7 +21,7 @@ You should have already completed [Lab 2](../02-first-api-call) at least once, s
    cd academy/labs/foundations/03-prompt-playground
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/03-prompt-playground` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshotacademy.com/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/03-prompt-playground` in your terminal.
 
 2. **Set up your `.env` file:**
 

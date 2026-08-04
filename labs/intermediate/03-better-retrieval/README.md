@@ -1,10 +1,10 @@
 # Lab 3: Better Retrieval
 
-Companion lab for [Intermediate Chapter 3: Better Retrieval](https://fewshot-works.github.io/academy/docs/intermediate/better-retrieval). You'll retrieve from the same set of documents four different ways, plain vector search, metadata filtering, hybrid search, and LLM re-ranking, and see where each one helps.
+Companion lab for [Intermediate Chapter 3: Better Retrieval](https://fewshotacademy.com/docs/intermediate/better-retrieval). You'll retrieve from the same set of documents four different ways, plain vector search, metadata filtering, hybrid search, and LLM re-ranking, and see where each one helps.
 
 ## Before you start
 
-You should already have Foundations done, at least [Chapter 6: What Is RAG](https://fewshot-works.github.io/academy/docs/foundations/what-is-rag) — this lab reuses that lab's `embed()` and `ask()` pattern, and its corpus starts with the same fictional company, Fernwood Coffee Co., now sharing a bigger, deliberately confusable set of documents with two other fictional coffee companies.
+You should already have Foundations done, at least [Chapter 6: What Is RAG](https://fewshotacademy.com/docs/foundations/what-is-rag) — this lab reuses that lab's `embed()` and `ask()` pattern, and its corpus starts with the same fictional company, Fernwood Coffee Co., now sharing a bigger, deliberately confusable set of documents with two other fictional coffee companies.
 
 **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can do both embeddings and chat, and Anthropic doesn't offer an embeddings API.
 
@@ -23,7 +23,7 @@ You should already have Foundations done, at least [Chapter 6: What Is RAG](http
    cd academy/labs/intermediate/03-better-retrieval
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/03-better-retrieval` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/03-better-retrieval` in a terminal.
 
 2. **If you're using Ollama, make sure both models are pulled:**
 

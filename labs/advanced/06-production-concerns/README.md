@@ -1,6 +1,6 @@
 # Lab 6: Production Concerns
 
-Companion lab for [Advanced Chapter 6: Production Concerns](https://fewshot-works.github.io/academy/docs/advanced/06-production-concerns). Three things that don't show up in a demo but matter the moment real traffic hits: caching a repeated question, rate limiting a burst of requests, and streaming output instead of making the user stare at a spinner.
+Companion lab for [Advanced Chapter 6: Production Concerns](https://fewshotacademy.com/docs/advanced/06-production-concerns). Three things that don't show up in a demo but matter the moment real traffic hits: caching a repeated question, rate limiting a burst of requests, and streaming output instead of making the user stare at a spinner.
 
 ## Before you start
 

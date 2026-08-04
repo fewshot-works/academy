@@ -1,10 +1,10 @@
 # Lab 6: Your First RAG Bot
 
-Companion lab for [Chapter 6: What Is RAG?](https://fewshot-works.github.io/academy/docs/foundations/what-is-rag). You'll build a tiny bot that answers a question using a made-up document as its only source of truth.
+Companion lab for [Chapter 6: What Is RAG?](https://fewshotacademy.com/docs/foundations/what-is-rag). You'll build a tiny bot that answers a question using a made-up document as its only source of truth.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup) and the [Chapter 5 lab](../05-vector-db-basics). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup) and the [Chapter 5 lab](../05-vector-db-basics). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** It needs one provider that can handle both embeddings and chat, and Anthropic doesn't offer an embeddings API.
 
 ## Steps
 
@@ -21,7 +21,7 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd academy/labs/foundations/06-first-rag-bot
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/06-first-rag-bot` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshotacademy.com/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/06-first-rag-bot` in your terminal.
 
 2. **If you're using Ollama, make sure you've pulled the embedding model.** Same model used in Chapters 4 and 5, skip this if you already have it:
 

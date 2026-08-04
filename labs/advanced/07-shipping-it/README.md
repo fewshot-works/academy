@@ -1,6 +1,6 @@
 # Lab 7: Shipping It
 
-Companion lab for [Advanced Chapter 7: Shipping It](https://fewshot-works.github.io/academy/docs/advanced/07-shipping-it). Wraps the support bot in a small FastAPI app, then packages that app in a Docker container, the first lab in this curriculum where you write a Dockerfile instead of just running someone else's image.
+Companion lab for [Advanced Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/07-shipping-it). Wraps the support bot in a small FastAPI app, then packages that app in a Docker container, the first lab in this curriculum where you write a Dockerfile instead of just running someone else's image.
 
 ## Before you start
 

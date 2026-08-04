@@ -1,6 +1,6 @@
 # Lab 2: Advanced RAG
 
-Companion lab for [Advanced Chapter 2: Advanced RAG](https://fewshot-works.github.io/academy/docs/advanced/02-advanced-rag). Four techniques, query rewriting, HyDE, multi-hop retrieval, and self-correcting retrieval, run against the same tricky twelve-fact coffee shop corpus from Intermediate Chapter 3.
+Companion lab for [Advanced Chapter 2: Advanced RAG](https://fewshotacademy.com/docs/advanced/02-advanced-rag). Four techniques, query rewriting, HyDE, multi-hop retrieval, and self-correcting retrieval, run against the same tricky twelve-fact coffee shop corpus from Intermediate Chapter 3.
 
 ## Before you start
 

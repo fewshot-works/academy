@@ -1,6 +1,6 @@
 # Lab 1: Multi-Agent Patterns
 
-Companion lab for [Advanced Chapter 1: Multi-Agent Patterns](https://fewshot-works.github.io/academy/docs/advanced/01-multi-agent-patterns). Instead of one agent juggling every tool itself, this lab splits the work across three agents: a `research_agent` with only `search_wikipedia`, a `math_agent` with only `calculator`, and a `supervisor` that has no tools of its own except those two agents, wrapped as tools it can call.
+Companion lab for [Advanced Chapter 1: Multi-Agent Patterns](https://fewshotacademy.com/docs/advanced/01-multi-agent-patterns). Instead of one agent juggling every tool itself, this lab splits the work across three agents: a `research_agent` with only `search_wikipedia`, a `math_agent` with only `calculator`, and a `supervisor` that has no tools of its own except those two agents, wrapped as tools it can call.
 
 ## Before you start
 

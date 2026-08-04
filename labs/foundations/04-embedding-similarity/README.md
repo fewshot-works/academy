@@ -1,10 +1,10 @@
 # Lab 4: Embedding Similarity
 
-Companion lab for [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-embedding). You'll turn six sentences into embeddings, measure how similar every pair is, and save a picture that shows related sentences clustering together.
+Companion lab for [Chapter 4: What Is an Embedding?](https://fewshotacademy.com/docs/foundations/what-is-an-embedding). You'll turn six sentences into embeddings, measure how similar every pair is, and save a picture that shows related sentences clustering together.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup).
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup).
 
 **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** Anthropic doesn't offer an embeddings API, so if your `.env` from an earlier lab still has `PROVIDER=anthropic`, you'll need to change it here.
 
@@ -23,7 +23,7 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd academy/labs/foundations/04-embedding-similarity
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/04-embedding-similarity` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshotacademy.com/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/04-embedding-similarity` in your terminal.
 
 2. **If you're using Ollama, pull the embedding model.** The chat model from earlier chapters (`llama3.2`) doesn't do embeddings; you need a separate model built for it:
 

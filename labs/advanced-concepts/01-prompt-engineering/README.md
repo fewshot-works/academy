@@ -1,10 +1,10 @@
 # Lab: Prompt Engineering
 
-Companion lab for [Advanced Concepts: Prompt Engineering](https://fewshot-works.github.io/academy/docs/advanced-concepts/prompt-engineering). Two experiments in one script: one question about a fictional bike shop asked through four increasingly deliberate prompts (bloated, trimmed, structured, grounded), then a word problem run once with chain-of-thought and three times with self-consistency, to see whether all three runs actually agree.
+Companion lab for [Advanced Concepts: Prompt Engineering](https://fewshotacademy.com/docs/advanced-concepts/prompt-engineering). Two experiments in one script: one question about a fictional bike shop asked through four increasingly deliberate prompts (bloated, trimmed, structured, grounded), then a word problem run once with chain-of-thought and three times with self-consistency, to see whether all three runs actually agree.
 
 ## Before you start
 
-This lab assumes Foundations, at least [Chapter 3: Prompting 101](https://fewshot-works.github.io/academy/docs/foundations/prompting-101).
+This lab assumes Foundations, at least [Chapter 3: Prompting 101](https://fewshotacademy.com/docs/foundations/prompting-101).
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic.
 

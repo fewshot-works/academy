@@ -1,6 +1,6 @@
 # Lab 8: Evaluating What You Built
 
-Companion lab for [Intermediate Chapter 8: Evaluating What You Built](https://fewshot-works.github.io/academy/docs/intermediate/08-evaluating). Two scripts: one measures retrieval quality with precision/recall, the other measures generated-answer quality with an LLM-as-judge.
+Companion lab for [Intermediate Chapter 8: Evaluating What You Built](https://fewshotacademy.com/docs/intermediate/08-evaluating). Two scripts: one measures retrieval quality with precision/recall, the other measures generated-answer quality with an LLM-as-judge.
 
 ## Before you start
 
@@ -23,7 +23,7 @@ You should already have done [Chapter 3: Better Retrieval](../03-better-retrieva
    cd academy/labs/intermediate/08-evaluating
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/08-evaluating` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/08-evaluating` in a terminal.
 
 2. **If you're using Ollama, make sure both models are pulled:**
 

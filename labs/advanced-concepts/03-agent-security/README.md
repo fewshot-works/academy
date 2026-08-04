@@ -1,10 +1,10 @@
 # Lab: Agent Security
 
-Companion lab for [Advanced Concepts: Agent Security](https://fewshot-works.github.io/academy/docs/advanced-concepts/agent-security). An agent is asked to read two documents and summarize the second one. One of those documents contains a hidden instruction telling the agent to email internal details to an outside address. The lab runs that same setup twice: once with an email tool that sends to whatever address it's told, once with an email tool that checks the recipient against a fixed allowlist first.
+Companion lab for [Advanced Concepts: Agent Security](https://fewshotacademy.com/docs/advanced-concepts/agent-security). An agent is asked to read two documents and summarize the second one. One of those documents contains a hidden instruction telling the agent to email internal details to an outside address. The lab runs that same setup twice: once with an email tool that sends to whatever address it's told, once with an email tool that checks the recipient against a fixed allowlist first.
 
 ## Before you start
 
-This lab assumes [Intermediate Chapter 6: Your First Agent](https://fewshot-works.github.io/academy/docs/intermediate/06-your-first-agent) (the `create_agent` pattern this lab reuses) and pairs well with [Advanced Chapter 4: Guardrails and Safety](https://fewshot-works.github.io/academy/docs/advanced/guardrails-and-safety), which covers direct prompt injection (malicious text typed by the user). This lab covers indirect prompt injection instead: malicious text arriving as tool output, not user input.
+This lab assumes [Intermediate Chapter 6: Your First Agent](https://fewshotacademy.com/docs/intermediate/06-your-first-agent) (the `create_agent` pattern this lab reuses) and pairs well with [Advanced Chapter 4: Guardrails and Safety](https://fewshotacademy.com/docs/advanced/guardrails-and-safety), which covers direct prompt injection (malicious text typed by the user). This lab covers indirect prompt injection instead: malicious text arriving as tool output, not user input.
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic.
 

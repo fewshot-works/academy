@@ -1,10 +1,10 @@
 # Lab 5: Tool Use
 
-Companion lab for [Intermediate Chapter 5: Tool Use](https://fewshot-works.github.io/academy/docs/intermediate/tool-use). Chapter 4 ended with a model *choosing* a tool but never running it. This lab closes that gap: two real tools (a calculator, a Wikipedia search), a loop that actually calls them, and results that feed back into the conversation.
+Companion lab for [Intermediate Chapter 5: Tool Use](https://fewshotacademy.com/docs/intermediate/tool-use). Chapter 4 ended with a model *choosing* a tool but never running it. This lab closes that gap: two real tools (a calculator, a Wikipedia search), a loop that actually calls them, and results that feed back into the conversation.
 
 ## Before you start
 
-You should already have done [Chapter 4: Prompt Patterns](https://fewshot-works.github.io/academy/docs/intermediate/04-prompt-patterns), specifically its function-calling section, this lab builds directly on it.
+You should already have done [Chapter 4: Prompt Patterns](https://fewshotacademy.com/docs/intermediate/04-prompt-patterns), specifically its function-calling section, this lab builds directly on it.
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic.
 
@@ -23,7 +23,7 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
    cd academy/labs/intermediate/05-tool-use
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/05-tool-use` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/05-tool-use` in a terminal.
 
 2. **If you're using Ollama, make sure the model is pulled:**
 

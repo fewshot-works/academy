@@ -1,6 +1,6 @@
 # Lab 7: Memory
 
-Companion lab for [Intermediate Chapter 7: Memory](https://fewshot-works.github.io/academy/docs/intermediate/07-memory). Two scripts, the exact same six-turn conversation, run through `create_agent` two different ways: one that remembers everything, word for word, and one that periodically summarizes the older parts to keep the conversation from growing forever.
+Companion lab for [Intermediate Chapter 7: Memory](https://fewshotacademy.com/docs/intermediate/07-memory). Two scripts, the exact same six-turn conversation, run through `create_agent` two different ways: one that remembers everything, word for word, and one that periodically summarizes the older parts to keep the conversation from growing forever.
 
 ## Before you start
 
@@ -23,7 +23,7 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
    cd academy/labs/intermediate/07-memory
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/07-memory` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/07-memory` in a terminal.
 
 2. **If you're using Ollama, make sure the model is pulled:**
 

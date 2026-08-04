@@ -1,6 +1,6 @@
 # Lab 5: Observability
 
-Companion lab for [Advanced Chapter 5: Observability](https://fewshot-works.github.io/academy/docs/advanced/05-observability). Instruments a two-turn conversation with OpenLLMetry (`traceloop-sdk`, built on OpenTelemetry) so every model call becomes a span with the prompt, the completion, the token counts, and the timing, printed straight to your own console. No account, no API key, nothing leaves your machine.
+Companion lab for [Advanced Chapter 5: Observability](https://fewshotacademy.com/docs/advanced/05-observability). Instruments a two-turn conversation with OpenLLMetry (`traceloop-sdk`, built on OpenTelemetry) so every model call becomes a span with the prompt, the completion, the token counts, and the timing, printed straight to your own console. No account, no API key, nothing leaves your machine.
 
 ## Before you start
 

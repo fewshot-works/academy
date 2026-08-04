@@ -1,10 +1,10 @@
 # Lab 2: Your First LLM Call
 
-Companion lab for [Chapter 2: What Is a Large Language Model?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-llm). You'll send one prompt to an AI model and print what it generates.
+Companion lab for [Chapter 2: What Is a Large Language Model?](https://fewshotacademy.com/docs/foundations/what-is-an-llm). You'll send one prompt to an AI model and print what it generates.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup). This lab assumes uv is installed, and either Ollama or an API key are already working.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup). This lab assumes uv is installed, and either Ollama or an API key are already working.
 
 ## Steps
 
@@ -15,7 +15,7 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd academy/labs/foundations/02-first-api-call
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/02-first-api-call` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshotacademy.com/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/02-first-api-call` in your terminal.
 
 2. **Set up your `.env` file.** This is where you tell the script which AI provider to use, and it holds your API key if you're using one. It's never committed to git (it's in `.gitignore`), so your key stays on your machine only.
 

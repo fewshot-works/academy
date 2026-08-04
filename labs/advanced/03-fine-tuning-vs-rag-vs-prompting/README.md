@@ -1,6 +1,6 @@
 # Lab 3: Fine-tuning vs. RAG vs. prompting
 
-Companion lab for [Advanced Chapter 3: Fine-tuning vs. RAG vs. prompting](https://fewshot-works.github.io/academy/docs/advanced/03-fine-tuning-vs-rag-vs-prompting). A real, tiny LoRA fine-tune, trained and compared against plain prompting and retrieval-augmented context, on the same coffee shop facts from earlier chapters.
+Companion lab for [Advanced Chapter 3: Fine-tuning vs. RAG vs. prompting](https://fewshotacademy.com/docs/advanced/03-fine-tuning-vs-rag-vs-prompting). A real, tiny LoRA fine-tune, trained and compared against plain prompting and retrieval-augmented context, on the same coffee shop facts from earlier chapters.
 
 ## Before you start
 

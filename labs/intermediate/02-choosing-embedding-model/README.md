@@ -1,10 +1,10 @@
 # Lab 2: Choosing an Embedding Model
 
-Companion lab for [Intermediate Chapter 2: Choosing an Embedding Model](https://fewshot-works.github.io/academy/docs/intermediate/choosing-embedding-model). You'll embed the same sentences with two different embedding models and compare them on quality, speed, and cost.
+Companion lab for [Intermediate Chapter 2: Choosing an Embedding Model](https://fewshotacademy.com/docs/intermediate/choosing-embedding-model). You'll embed the same sentences with two different embedding models and compare them on quality, speed, and cost.
 
 ## Before you start
 
-You should already have Foundations done, at least [Chapter 4: What Is an Embedding?](https://fewshot-works.github.io/academy/docs/foundations/what-is-an-embedding) — this lab reuses the same `embed()` and `cosine_similarity()` building blocks from that lab's `embed_similarity.py`.
+You should already have Foundations done, at least [Chapter 4: What Is an Embedding?](https://fewshotacademy.com/docs/foundations/what-is-an-embedding) — this lab reuses the same `embed()` and `cosine_similarity()` building blocks from that lab's `embed_similarity.py`.
 
 **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** Anthropic doesn't offer an embeddings API, so if your `.env` from an earlier lab still has `PROVIDER=anthropic`, you'll need to change it here.
 
@@ -23,7 +23,7 @@ You should already have Foundations done, at least [Chapter 4: What Is an Embedd
    cd academy/labs/intermediate/02-choosing-embedding-model
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/02-choosing-embedding-model` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/02-choosing-embedding-model` in a terminal.
 
 2. **If you're using Ollama, pull both embedding models.** This lab compares a smaller model against a larger one, so you need both on your machine:
 

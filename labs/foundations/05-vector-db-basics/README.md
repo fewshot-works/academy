@@ -1,10 +1,10 @@
 # Lab 5: Vector Database Basics
 
-Companion lab for [Chapter 5: What Is a Vector Database, and Why?](https://fewshot-works.github.io/academy/docs/foundations/what-is-a-vector-database). You'll store ten sentences in a local vector database, then send in one new sentence and watch it instantly return the closest matches.
+Companion lab for [Chapter 5: What Is a Vector Database, and Why?](https://fewshotacademy.com/docs/foundations/what-is-a-vector-database). You'll store ten sentences in a local vector database, then send in one new sentence and watch it instantly return the closest matches.
 
 ## Before you start
 
-You should have already completed [Chapter 0: Set Up Your Machine](https://fewshot-works.github.io/academy/docs/foundations/setup) and [Chapter 4's lab](../04-embedding-similarity). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** Anthropic doesn't offer an embeddings API, so if your `.env` from an earlier lab still has `PROVIDER=anthropic`, you'll need to change it here.
+You should have already completed [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup) and [Chapter 4's lab](../04-embedding-similarity). **This lab only supports `PROVIDER=ollama` or `PROVIDER=openai`.** Anthropic doesn't offer an embeddings API, so if your `.env` from an earlier lab still has `PROVIDER=anthropic`, you'll need to change it here.
 
 ## Steps
 
@@ -21,7 +21,7 @@ You should have already completed [Chapter 0: Set Up Your Machine](https://fewsh
    cd academy/labs/foundations/05-vector-db-basics
    ```
 
-   Don't know git yet? [Download the Foundations labs as a zip](https://fewshot-works.github.io/academy/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/05-vector-db-basics` in your terminal.
+   Don't know git yet? [Download the Foundations labs as a zip](https://fewshotacademy.com/downloads/academy-labs-foundations.zip) instead, unzip it, and open `labs/foundations/05-vector-db-basics` in your terminal.
 
 2. **If you're using Ollama, make sure you've pulled the embedding model.** This is the same model Chapter 4 used, so skip this if you already ran that lab:
 

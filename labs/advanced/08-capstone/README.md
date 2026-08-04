@@ -1,6 +1,6 @@
 # Lab 8: Capstone — A Guarded, Traced, Evaluated Agent
 
-Companion lab for [Advanced Chapter 8: Capstone](https://fewshot-works.github.io/academy/docs/advanced/08-capstone). The Intermediate capstone's three-tool agent (calculator, Wikipedia, search over your own documents, with memory across the conversation), now wrapped in the two things a real deployment needs that a demo doesn't: an input guardrail (Chapter 4) and full tracing (Chapter 5). A second script, `evaluate.py`, measures how well it actually works.
+Companion lab for [Advanced Chapter 8: Capstone](https://fewshotacademy.com/docs/advanced/08-capstone). The Intermediate capstone's three-tool agent (calculator, Wikipedia, search over your own documents, with memory across the conversation), now wrapped in the two things a real deployment needs that a demo doesn't: an input guardrail (Chapter 4) and full tracing (Chapter 5). A second script, `evaluate.py`, measures how well it actually works.
 
 ## Before you start
 

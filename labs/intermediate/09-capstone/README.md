@@ -1,6 +1,6 @@
 # Lab 9: Capstone — Multi-Tool Agent
 
-Companion lab for [Intermediate Chapter 9: Capstone](https://fewshot-works.github.io/academy/docs/intermediate/09-capstone). One script, one agent, three tools: a calculator, Wikipedia search, and search over your own documents — plus memory across the whole conversation.
+Companion lab for [Intermediate Chapter 9: Capstone](https://fewshotacademy.com/docs/intermediate/09-capstone). One script, one agent, three tools: a calculator, Wikipedia search, and search over your own documents — plus memory across the whole conversation.
 
 ## Before you start
 
@@ -23,7 +23,7 @@ You should already have done [Chapter 7: Memory](../07-memory/) — this script 
    cd academy/labs/intermediate/09-capstone
    ```
 
-   Don't know git yet? [Download the Intermediate labs zip](https://fewshot-works.github.io/academy/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/09-capstone` in a terminal.
+   Don't know git yet? [Download the Intermediate labs zip](https://fewshotacademy.com/downloads/academy-labs-intermediate.zip) instead, unzip it, and open `labs/intermediate/09-capstone` in a terminal.
 
 2. **If you're using Ollama, make sure both models are pulled:**
 

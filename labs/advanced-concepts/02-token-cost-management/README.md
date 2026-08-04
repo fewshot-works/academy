@@ -1,10 +1,10 @@
 # Lab: Token & Cost Management
 
-Companion lab for [Advanced Concepts: Token & Cost Management](https://fewshot-works.github.io/academy/docs/advanced-concepts/token-cost-management). Two experiments in one script: a growing support conversation sent both in full and trimmed down to see how many tokens that saves, then the same logic puzzle sent to a small model and a large model from the same provider, to see what the extra cost actually buys.
+Companion lab for [Advanced Concepts: Token & Cost Management](https://fewshotacademy.com/docs/advanced-concepts/token-cost-management). Two experiments in one script: a growing support conversation sent both in full and trimmed down to see how many tokens that saves, then the same logic puzzle sent to a small model and a large model from the same provider, to see what the extra cost actually buys.
 
 ## Before you start
 
-This lab assumes Foundations, at least [Chapter 3: Prompting 101](https://fewshot-works.github.io/academy/docs/foundations/prompting-101), and pairs well with [Advanced Concepts: Prompt Engineering](https://fewshot-works.github.io/academy/docs/advanced-concepts/prompt-engineering).
+This lab assumes Foundations, at least [Chapter 3: Prompting 101](https://fewshotacademy.com/docs/foundations/prompting-101), and pairs well with [Advanced Concepts: Prompt Engineering](https://fewshotacademy.com/docs/advanced-concepts/prompt-engineering).
 
 This lab is chat-only, no embeddings involved, so it supports all three providers: Ollama, OpenAI, and Anthropic. Part two needs two models per provider, one small and one large, see the pull step below if you're using Ollama.
 

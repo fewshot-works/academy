@@ -1,6 +1,6 @@
 # Lab 4: Guardrails and Safety
 
-Companion lab for [Advanced Chapter 4: Guardrails and Safety](https://fewshot-works.github.io/academy/docs/advanced/04-guardrails-and-safety). A hand-rolled guardrail wrapper around a chat call: a pattern-based input check, and Pydantic schema validation on the output, with a retry-then-fail-closed policy.
+Companion lab for [Advanced Chapter 4: Guardrails and Safety](https://fewshotacademy.com/docs/advanced/04-guardrails-and-safety). A hand-rolled guardrail wrapper around a chat call: a pattern-based input check, and Pydantic schema validation on the output, with a retry-then-fail-closed policy.
 
 ## Before you start
 
