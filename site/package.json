@@ -12,7 +12,10 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "functions:dev": "wrangler pages dev build",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -32,7 +35,8 @@
     "@docusaurus/types": "3.10.2",
     "@types/react": "^19.0.0",
     "sharp": "^0.33.5",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "wrangler": "^4.118.0"
   },
   "browserslist": {
     "production": [
@@ -47,6 +51,6 @@
     ]
   },
   "engines": {
-    "node": ">=20.0"
+    "node": ">=22.0"
   }
 }

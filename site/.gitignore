@@ -1,6 +1,9 @@
 # Dependencies
 /node_modules
 
+# Wrangler local dev state
+/.wrangler
+
 # Production
 /build
 
