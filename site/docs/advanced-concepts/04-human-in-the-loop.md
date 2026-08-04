@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+sidebar_label: "Human-in-the-Loop"
 description: "Pausing an agent before a specific tool call actually runs, and requiring a human's explicit approve/edit/reject/respond decision before it continues, using LangGraph's interrupt-and-resume mechanism underneath create_agent's checkpointer."
 ---
 
