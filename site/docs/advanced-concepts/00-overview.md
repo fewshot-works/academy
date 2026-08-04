@@ -21,6 +21,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Agent Security** — indirect prompt injection: malicious instructions arriving as tool output, like a document or email, instead of user input, and why the fix is constraining what a sensitive tool is allowed to do rather than trying to detect suspicious text.
 
+**Human-in-the-Loop** — pausing an agent right before a specific, hard-to-reverse tool call, like sending an email or issuing a refund, and requiring a human's explicit approve, edit, reject, or respond decision before the real tool ever runs.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.

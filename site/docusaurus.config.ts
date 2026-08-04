@@ -158,7 +158,18 @@ const config: Config = {
             {label: 'Foundations', to: '/docs/foundations/overview'},
             {label: 'Intermediate', to: '/docs/intermediate/overview'},
             {label: 'Advanced', to: '/docs/advanced/overview'},
-            {label: 'Advanced Concepts', to: '/docs/advanced-concepts/overview'},
+          ],
+        },
+        {
+          type: 'dropdown',
+          position: 'left',
+          label: 'Advanced Concepts',
+          items: [
+            {label: 'Overview', to: '/docs/advanced-concepts/overview'},
+            {label: 'Prompt Engineering', to: '/docs/advanced-concepts/prompt-engineering'},
+            {label: 'Token & Cost Management', to: '/docs/advanced-concepts/token-cost-management'},
+            {label: 'Agent Security', to: '/docs/advanced-concepts/agent-security'},
+            {label: 'Human-in-the-Loop', to: '/docs/advanced-concepts/human-in-the-loop'},
           ],
         },
         {
