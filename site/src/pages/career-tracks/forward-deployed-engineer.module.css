@@ -17,6 +17,22 @@
   margin-bottom: 3rem;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.mainCol {
+  min-width: 0;
+}
+
+@media screen and (min-width: 997px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+  }
+}
+
 .oneLiner {
   font-size: 1.1rem;
   color: var(--zta-ink);

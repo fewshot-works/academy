@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
 
 import styles from './sre-reliability-engineer.module.css';
 
@@ -171,20 +172,20 @@ const INTERVIEW_STEPS: InterviewStep[] = [
   {
     title: 'Technical round',
     body: 'Format varies more than almost any other track in this guide: Google-style rounds lean on data-structures-and-algorithms coding, while AI-native and mid-market companies lean toward debugging observability pipelines, writing automation, or an SLO-design exercise.',
-    to: '/career-tracks/sre-reliability-engineer/technical-round',
+    to: '/interview-prep/technical-round/sre-reliability-engineer',
     toLabel: 'What to expect, and how the format splits by company type',
   },
   {
     title: 'Incident response / operational system design',
     body: 'Google calls this NALSD. Whatever the name, you’re handed a system and a failure, and asked to triage, mitigate, and design around it live — the round that most consistently decides the offer.',
     badge: 'Highest-weighted round almost everywhere',
-    to: '/career-tracks/sre-reliability-engineer/incident-response',
+    to: '/interview-prep/case-studies/sre-reliability-engineer',
     toLabel: 'The framework, plus full end-to-end incident walkthroughs',
   },
   {
     title: 'Behavioral / “Googleyness” round',
     body: 'Blameless postmortem culture, cross-team collaboration between ML and infra, and judgment calls under 3 a.m. pressure — not fluff, since trust and composure under incidents are exactly what the job requires.',
-    to: '/career-tracks/sre-reliability-engineer/behavioral-round',
+    to: '/interview-prep/behavioral-round/sre-reliability-engineer',
     toLabel: 'Sample questions and how to build a story bank',
   },
   {
@@ -327,6 +328,9 @@ export default function SreReliabilityEngineer(): ReactNode {
               ))}
             </div>
           </header>
+
+          <div className={styles.layout}>
+          <div className={styles.mainCol}>
 
           <Section title="What the job actually is">
             <p>
@@ -668,6 +672,10 @@ export default function SreReliabilityEngineer(): ReactNode {
             <Link className="button button--secondary button--lg" to="/career-tracks">
               &larr; All career tracks
             </Link>
+          </div>
+
+          </div>
+          <CareerTrackSidebar currentSlug="sre-reliability-engineer" />
           </div>
         </div>
       </main>
