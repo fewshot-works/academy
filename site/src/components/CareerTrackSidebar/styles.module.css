@@ -1,0 +1,48 @@
+.sidebar {
+  display: none;
+}
+
+.sticky {
+  position: sticky;
+  top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.block {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--zta-border);
+}
+
+.blockTitle {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--zta-ink-muted);
+  margin: 0 0 0.75rem;
+}
+
+.postList,
+.trackList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.postList li a,
+.trackList li a {
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+/* Desktop only -- on smaller viewports the two-column layout collapses to a
+   single column and this rail would just add scroll length with no benefit. */
+@media screen and (min-width: 997px) {
+  .sidebar {
+    display: block;
+  }
+}

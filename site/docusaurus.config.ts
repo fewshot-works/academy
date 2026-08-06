@@ -1,3 +1,4 @@
+import path from 'node:path';
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -64,10 +65,50 @@ const config: Config = {
               return [existingPath.replace(next, old)];
             }
           }
+
+          // Interview-prep pages moved from nested career-track subpages to a
+          // top-level, round-first section — old URLs still get search traffic.
+          const interviewPrepMoves: Record<string, string> = {
+            '/interview-prep/technical-round/forward-deployed-engineer':
+              '/career-tracks/forward-deployed-engineer/technical-round',
+            '/interview-prep/case-studies/forward-deployed-engineer':
+              '/career-tracks/forward-deployed-engineer/case-studies',
+            '/interview-prep/behavioral-round/forward-deployed-engineer':
+              '/career-tracks/forward-deployed-engineer/behavioral-round',
+            '/interview-prep/technical-round/applied-agentic-ai-engineer':
+              '/career-tracks/applied-agentic-ai-engineer/technical-round',
+            '/interview-prep/case-studies/applied-agentic-ai-engineer':
+              '/career-tracks/applied-agentic-ai-engineer/system-design',
+            '/interview-prep/behavioral-round/applied-agentic-ai-engineer':
+              '/career-tracks/applied-agentic-ai-engineer/behavioral-round',
+            '/interview-prep/technical-round/ai-solutions-architect-presales':
+              '/career-tracks/ai-solutions-architect-presales/technical-round',
+            '/interview-prep/case-studies/ai-solutions-architect-presales':
+              '/career-tracks/ai-solutions-architect-presales/case-studies',
+            '/interview-prep/behavioral-round/ai-solutions-architect-presales':
+              '/career-tracks/ai-solutions-architect-presales/behavioral-round',
+            '/interview-prep/technical-round/sre-reliability-engineer':
+              '/career-tracks/sre-reliability-engineer/technical-round',
+            '/interview-prep/case-studies/sre-reliability-engineer':
+              '/career-tracks/sre-reliability-engineer/incident-response',
+            '/interview-prep/behavioral-round/sre-reliability-engineer':
+              '/career-tracks/sre-reliability-engineer/behavioral-round',
+            '/interview-prep/technical-round/ai-product-manager':
+              '/career-tracks/ai-product-manager/technical-round',
+            '/interview-prep/case-studies/ai-product-manager':
+              '/career-tracks/ai-product-manager/product-sense',
+            '/interview-prep/behavioral-round/ai-product-manager':
+              '/career-tracks/ai-product-manager/behavioral-round',
+          };
+          if (existingPath in interviewPrepMoves) {
+            return [interviewPrepMoves[existingPath]];
+          }
+
           return undefined;
         },
       },
     ],
+    path.resolve(__dirname, 'src/plugins/recent-posts'),
   ],
 
   // Even if you don't use internationalization, you can use this field to set
@@ -86,7 +127,18 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/fewshot-works/academy/tree/main/site/',
         },
-        blog: false,
+        blog: {
+          blogTitle: 'Few-Shot Academy Blog',
+          blogDescription:
+            'Timely takes on what’s happening in AI — new model releases, agent incidents, security advisories, and regulation — tied back to the curriculum chapters that explain the fundamentals.',
+          showReadingTime: true,
+          blogSidebarCount: 'ALL',
+          feedOptions: {
+            type: ['rss', 'atom'],
+            copyright: `Copyright © ${new Date().getFullYear()} Few-Shot Academy.`,
+          },
+          editUrl: 'https://github.com/fewshot-works/academy/tree/main/site/',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -204,6 +256,18 @@ const config: Config = {
             {label: 'AI Product Manager', to: '/career-tracks/ai-product-manager'},
           ],
         },
+        {
+          type: 'dropdown',
+          position: 'left',
+          label: 'Interview Prep',
+          items: [
+            {label: 'Overview', to: '/interview-prep'},
+            {label: 'Technical Round', to: '/interview-prep/technical-round'},
+            {label: 'Case Studies', to: '/interview-prep/case-studies'},
+            {label: 'Behavioral Round', to: '/interview-prep/behavioral-round'},
+          ],
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
       ],
     },
     footer: {

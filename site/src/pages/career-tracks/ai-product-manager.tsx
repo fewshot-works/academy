@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
 
 import styles from './ai-product-manager.module.css';
 
@@ -199,20 +200,20 @@ const INTERVIEW_STEPS: InterviewStep[] = [
   {
     title: 'Technical / evaluation round',
     body: 'SQL and data-analysis exercises, offline-vs-online evaluation design, metrics definition, and build-vs-buy trade-offs.',
-    to: '/career-tracks/ai-product-manager/technical-round',
+    to: '/interview-prep/technical-round/ai-product-manager',
     toLabel: 'Prep for this round',
   },
   {
     title: 'AI product sense round',
     body: 'Design an AI-powered feature, define success metrics, and — just as often — argue for why AI is not the right answer.',
     badge: 'The one round nearly every top AI company runs',
-    to: '/career-tracks/ai-product-manager/product-sense',
+    to: '/interview-prep/case-studies/ai-product-manager',
     toLabel: 'Prep for this round',
   },
   {
     title: 'Behavioral / stakeholder round',
     body: 'How you’ve handled a model’s limitations, a cross-functional disagreement, or a hallucination in front of a user.',
-    to: '/career-tracks/ai-product-manager/behavioral-round',
+    to: '/interview-prep/behavioral-round/ai-product-manager',
     toLabel: 'Prep for this round',
   },
   {
@@ -349,6 +350,9 @@ export default function AiProductManager(): ReactNode {
               ))}
             </div>
           </header>
+
+          <div className={styles.layout}>
+          <div className={styles.mainCol}>
 
           <Section title="What the job actually is">
             <p>
@@ -581,6 +585,10 @@ export default function AiProductManager(): ReactNode {
             <Link className="button button--secondary button--lg" to="/career-tracks">
               All career tracks
             </Link>
+          </div>
+
+          </div>
+          <CareerTrackSidebar currentSlug="ai-product-manager" />
           </div>
         </div>
       </main>

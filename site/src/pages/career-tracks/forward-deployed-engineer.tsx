@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
 
 import styles from './forward-deployed-engineer.module.css';
 
@@ -158,20 +159,20 @@ const INTERVIEW_STEPS: InterviewStep[] = [
   {
     title: 'Coding / technical round',
     body: 'Integration design, debugging, production-quality code — explicitly not LeetCode-style.',
-    to: '/career-tracks/forward-deployed-engineer/technical-round',
+    to: '/interview-prep/technical-round/forward-deployed-engineer',
     toLabel: 'What to expect, how to prepare, and two things to have ready',
   },
   {
     title: 'Case-study round',
     body: 'A hypothetical customer hands you a vague problem and you decompose it live, 45–60 minutes.',
     badge: 'Lowest pass rate (~40%), highest weight (~30%)',
-    to: '/career-tracks/forward-deployed-engineer/case-studies',
+    to: '/interview-prep/case-studies/forward-deployed-engineer',
     toLabel: 'The framework, plus 3 full end-to-end walkthroughs',
   },
   {
     title: 'Behavioral round',
     body: 'Client ownership, accountability under repeat failure, communicating technically to non-technical stakeholders, navigating internal client politics.',
-    to: '/career-tracks/forward-deployed-engineer/behavioral-round',
+    to: '/interview-prep/behavioral-round/forward-deployed-engineer',
     toLabel: 'Sample questions and how to structure your answers',
   },
   {
@@ -306,6 +307,9 @@ export default function ForwardDeployedEngineer(): ReactNode {
               ))}
             </div>
           </header>
+
+          <div className={styles.layout}>
+          <div className={styles.mainCol}>
 
           <Section title="What the job actually is">
             <p>
@@ -650,6 +654,10 @@ export default function ForwardDeployedEngineer(): ReactNode {
             <Link className="button button--secondary button--lg" to="/career-tracks">
               &larr; All career tracks
             </Link>
+          </div>
+
+          </div>
+          <CareerTrackSidebar currentSlug="forward-deployed-engineer" />
           </div>
         </div>
       </main>

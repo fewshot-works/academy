@@ -1,0 +1,77 @@
+.page {
+  padding: 3rem 0 4rem;
+}
+
+.header {
+  max-width: 70ch;
+  margin: 0 0 2.5rem;
+}
+
+.intro {
+  color: var(--zta-ink-muted);
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 10px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--ifm-color-primary);
+  color: inherit;
+  text-decoration: none;
+}
+
+.status {
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-ink-muted);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 996px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

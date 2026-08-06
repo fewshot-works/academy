@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
 
 import styles from './ai-solutions-architect-presales.module.css';
 
@@ -167,20 +168,20 @@ const INTERVIEW_STEPS: InterviewStep[] = [
   {
     title: 'Live design / discovery round',
     body: 'Given a vague prompt, design an architecture out loud and defend it under questioning — the presales equivalent of a whiteboard interview.',
-    to: '/career-tracks/ai-solutions-architect-presales/technical-round',
+    to: '/interview-prep/technical-round/ai-solutions-architect-presales',
     toLabel: 'What to expect, how to prepare, and what to have ready',
   },
   {
     title: 'Case-study / PoC round',
     body: 'A hypothetical customer hands you a vague ask, and you work it live from discovery through a proposed architecture and demo plan.',
     badge: 'Often the most heavily weighted round',
-    to: '/career-tracks/ai-solutions-architect-presales/case-studies',
+    to: '/interview-prep/case-studies/ai-solutions-architect-presales',
     toLabel: 'The framework, plus full end-to-end walkthroughs',
   },
   {
     title: 'Behavioral / stakeholder round',
     body: 'A mock customer call — objection handling, value anchoring, and navigating a deal team of Account Executive, delivery, and legal/procurement.',
-    to: '/career-tracks/ai-solutions-architect-presales/behavioral-round',
+    to: '/interview-prep/behavioral-round/ai-solutions-architect-presales',
     toLabel: 'Sample scenarios and how to work through them',
   },
   {
@@ -317,6 +318,9 @@ export default function AiSolutionsArchitectPresales(): ReactNode {
               ))}
             </div>
           </header>
+
+          <div className={styles.layout}>
+          <div className={styles.mainCol}>
 
           <Section title="What the job actually is">
             <p>
@@ -664,6 +668,10 @@ export default function AiSolutionsArchitectPresales(): ReactNode {
             <Link className="button button--secondary button--lg" to="/career-tracks">
               &larr; All career tracks
             </Link>
+          </div>
+
+          </div>
+          <CareerTrackSidebar currentSlug="ai-solutions-architect-presales" />
           </div>
         </div>
       </main>

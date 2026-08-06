@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
 
 import styles from './applied-agentic-ai-engineer.module.css';
 
@@ -165,20 +166,20 @@ const INTERVIEW_STEPS: InterviewStep[] = [
   {
     title: 'Coding / technical round',
     body: 'LLM-adjacent coding: a retrieval scorer, a token-budget allocator, a tool-use orchestrator, or a debugging pass through a buggy agent codebase.',
-    to: '/career-tracks/applied-agentic-ai-engineer/technical-round',
+    to: '/interview-prep/technical-round/applied-agentic-ai-engineer',
     toLabel: 'What to expect, how to prepare, and two things to have ready',
   },
   {
     title: 'System design round',
     body: 'You design an agent or RAG system live, often on a whiteboard or in a tool like Excalidraw, while the interviewer pushes on your architecture and trade-offs.',
     badge: 'Highest weight in the loop, the round that actually decides most offers',
-    to: '/career-tracks/applied-agentic-ai-engineer/system-design',
+    to: '/interview-prep/case-studies/applied-agentic-ai-engineer',
     toLabel: 'The framework, plus 3 full end-to-end walkthroughs',
   },
   {
     title: 'Behavioral round',
     body: 'Shipping under ambiguity, handling a regression a user found before your eval set did, and working with product and support on what the agent should actually do.',
-    to: '/career-tracks/applied-agentic-ai-engineer/behavioral-round',
+    to: '/interview-prep/behavioral-round/applied-agentic-ai-engineer',
     toLabel: 'Sample questions and how to structure your answers',
   },
   {
@@ -302,6 +303,9 @@ export default function AppliedAgenticAIEngineer(): ReactNode {
               ))}
             </div>
           </header>
+
+          <div className={styles.layout}>
+          <div className={styles.mainCol}>
 
           <Section title="What the job actually is">
             <p>
@@ -634,6 +638,10 @@ export default function AppliedAgenticAIEngineer(): ReactNode {
             <Link className="button button--secondary button--lg" to="/career-tracks">
               &larr; All career tracks
             </Link>
+          </div>
+
+          </div>
+          <CareerTrackSidebar currentSlug="applied-agentic-ai-engineer" />
           </div>
         </div>
       </main>

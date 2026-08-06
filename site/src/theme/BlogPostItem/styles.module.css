@@ -1,0 +1,29 @@
+.itemWithThumbnail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.thumbnail {
+  flex: 0 0 auto;
+  width: 220px;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--zta-border);
+}
+
+.itemBody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .itemWithThumbnail {
+    flex-direction: column;
+  }
+
+  .thumbnail {
+    width: 100%;
+  }
+}

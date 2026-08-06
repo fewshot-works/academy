@@ -50,6 +50,14 @@
 - [Token & Cost Management](https://fewshotacademy.com/docs/advanced-concepts/token-cost-management): Context trimming, provider-native prompt caching, model right-sizing, and batching, so LLM usage stays cheap without cutting answers short.
 - [Agent Security](https://fewshotacademy.com/docs/advanced-concepts/agent-security): Indirect prompt injection arriving as tool output instead of user input, and a tool-call allowlist guard that stops it without ever detecting the injected text.
 
+## Blog
+
+- [Blog index](https://fewshotacademy.com/blog): Short-form posts on AI agent news and practice, separate from the chapter-wise curriculum.
+- [Agent memory just became its own product category](https://fewshotacademy.com/blog/agent-memory-first-class): A tour of LangMem, Mem0, and Zep, the 2026 memory frameworks, and where agent memory is still unsolved.
+- [OWASP just published a security top 10 for MCP](https://fewshotacademy.com/blog/owasp-mcp-top-10): All ten OWASP MCP Top 10 risk categories with real-world examples, from token mismanagement to shadow MCP servers.
+- [The EU AI Act deadline moved. The obligations didn't.](https://fewshotacademy.com/blog/eu-ai-act-obligations): What actually changed in the Digital Omnibus, the finalized dates, and what high-risk obligations require.
+- [What the 'rogue agent' headlines got wrong](https://fewshotacademy.com/blog/rogue-agent-incidents-guardrails): Three real 2026 AI security incidents explained, and why eval-environment security is the actual lesson.
+
 ## Optional
 
 - [Disclaimer](https://fewshotacademy.com/disclaimer): Data privacy and responsible-use notes for the hands-on labs.

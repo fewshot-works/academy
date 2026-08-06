@@ -6,6 +6,8 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import HomepageTracks from '@site/src/components/HomepageTracks';
 import HomepageCareerTracks from '@site/src/components/HomepageCareerTracks';
+import HomepageMostPopular from '@site/src/components/HomepageMostPopular';
+import HomepageWhatsNew from '@site/src/components/HomepageWhatsNew';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
@@ -90,6 +92,8 @@ export default function Home(): ReactNode {
       <main>
         <HomepageTracks />
         <HomepageCareerTracks />
+        <HomepageMostPopular />
+        <HomepageWhatsNew />
         <HomepageFeatures />
       </main>
     </Layout>

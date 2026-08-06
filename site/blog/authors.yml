@@ -1,0 +1,14 @@
+mangatrai:
+  name: Mangat Rai
+  title: Creator, Few-Shot Academy
+  url: https://github.com/fewshot-works
+  image_url: /img/logo.svg
+  page: true
+  description: >
+    Presales Solutions Engineer with 20 years of experience, from enterprise integration to
+    helping Fortune 50 companies put AI into production. For the last four years my focus
+    has been entirely on GenAI: RAG pipelines, agentic workflows, and LLM orchestration,
+    working the full presales motion from technical discovery through proof-of-concept to
+    closing the deal. I build my own prototypes in Python and TypeScript, with the code in
+    public GitHub repos anyone can review, and I bring hands-on experience with responsible
+    AI: governance, fairness monitoring, and regulatory compliance.
