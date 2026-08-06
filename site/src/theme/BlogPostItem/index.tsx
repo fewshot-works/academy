@@ -4,6 +4,7 @@ import type BlogPostItemType from '@theme/BlogPostItem';
 import type {WrapperProps} from '@docusaurus/types';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 
+import BlogPostGiscus from '@site/src/components/BlogPostGiscus';
 import styles from './styles.module.css';
 
 type Props = WrapperProps<typeof BlogPostItemType>;
@@ -15,7 +16,16 @@ export default function BlogPostItemWrapper(props: Props): ReactNode {
   const {assets, frontMatter, isBlogPostPage} = useBlogPost();
   const image = assets.image ?? frontMatter.image;
 
-  if (isBlogPostPage || !image) {
+  if (isBlogPostPage) {
+    return (
+      <>
+        <BlogPostItem {...props} />
+        <BlogPostGiscus />
+      </>
+    );
+  }
+
+  if (!image) {
     return <BlogPostItem {...props} />;
   }
 
