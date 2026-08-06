@@ -4,7 +4,7 @@ description: LangMem, Mem0, Zep, and half a dozen other memory frameworks shippe
 slug: agent-memory-first-class
 authors: [mangatrai]
 tags: [agents, memory, langchain]
-image: /img/academy-social-card.png
+image: ./social-card.png
 ---
 
 Two memory startups published head-to-head benchmarks against each other in 2026. Neither could agree on how much context the other one actually used to get its numbers. That disagreement, more than any single feature, is the clearest sign that "agent memory" went from a prompt-engineering trick to a real, contested product category this year.

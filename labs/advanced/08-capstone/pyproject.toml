@@ -11,4 +11,5 @@ dependencies = [
     "langchain-openai",
     "langgraph",
     "traceloop-sdk",
+    "streamlit>=1.61.1",
 ]

@@ -250,4 +250,5 @@ def run_conversation():
     send("What am I comparing Fernwood to, and what did you just tell me about its locations?")
 
 
-run_conversation()
+if __name__ == "__main__":
+    run_conversation()

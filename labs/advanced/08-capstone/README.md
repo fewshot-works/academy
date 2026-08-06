@@ -170,6 +170,16 @@ Open `evaluate.py`.
 1. **Retrieval quality** queries the same in-memory `collection` directly, bypassing the agent entirely, the same `precision_at_k`/`recall_at_k` functions from Intermediate Chapter 8, run against a hand-labeled `RETRIEVAL_EVAL_SET`.
 2. **LLM-as-judge runs the full agent**, not a bare retrieve-then-answer pipeline. Each question gets its own fresh `thread_id` (`eval-0`, `eval-1`, ...) so one question's memory doesn't bleed into the next question's score. One of the three questions ("What's 15% of 340, and what's Fernwood's bestselling drink?") deliberately needs two different tools in one answer, exercising tool choice as part of what's being judged, not just retrieval.
 
+## Bonus: run it in a browser with Streamlit
+
+Optional, not required to finish this lab. `streamlit_app.py` wraps the exact same agent (tools, guardrail, and memory all unchanged) in a chat window instead of a scripted terminal conversation — handy if you want something clickable to demo instead of a wall of `You:`/`Agent:` text.
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+This opens a browser tab at `http://localhost:8501`. The sidebar lists what's running (guardrail, tracing, tools, memory). Type a question in the chat box at the bottom — try one of the same questions from `agent.py`'s scripted conversation above, or the injection attempt, and watch the guardrail block it with a visible warning, exactly like the terminal did. A caption under each answer also shows which tool the agent actually called, so you can watch the same tool choices from the transcript above happen live. Ctrl+C in the terminal to stop the server when you're done.
+
 ## Troubleshooting
 
 - **`PROVIDER is set to '...'` message and the script exits**: switch `PROVIDER` to `ollama` or `openai` in your `.env`. Anthropic has no embeddings API.

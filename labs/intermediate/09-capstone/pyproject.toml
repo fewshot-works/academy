@@ -10,4 +10,5 @@ dependencies = [
     "langchain-ollama",
     "langchain-openai",
     "langgraph",
+    "streamlit>=1.61.1",
 ]

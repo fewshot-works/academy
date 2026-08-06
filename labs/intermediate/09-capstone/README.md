@@ -111,6 +111,16 @@ Open `agent.py` top to bottom.
 5. **The agent is built exactly like Chapter 7's**: `create_agent(model=..., tools=[...], checkpointer=InMemorySaver())`, with the same `thread_config` pattern tying every `send()` call into one ongoing conversation.
 6. **`send()` only prints tool calls made during the current turn**, not the whole conversation's history. The checkpointer returns every past message on every call, so without trimming, the trace would re-print turn 1's tool call six times by the end of the conversation.
 
+## Bonus: run it in a browser with Streamlit
+
+Optional, not required to finish this lab. `streamlit_app.py` wraps the exact same agent (all three tools and memory unchanged) in a chat window instead of a scripted terminal conversation — handy if you want something clickable to demo instead of a wall of `You:`/`Agent:` text. The sidebar lists the tools and a caption under each answer shows which one the agent actually reached for, so you can watch the same tool-picking behavior from the transcript above happen live.
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+This opens a browser tab at `http://localhost:8501`. Try the same questions from the scripted conversation above, and watch the "Tools used" caption confirm whether it picked `calculator`, `search_wikipedia`, or `search_documents`. Ctrl+C in the terminal to stop the server when you're done.
+
 ## Troubleshooting
 
 - **`PROVIDER is set to '...'` message and the script exits**: switch `PROVIDER` to `ollama` or `openai` in your `.env`. Anthropic has no embeddings API.

@@ -124,6 +124,16 @@ Not much, without also reading the actual answers it graded. A pass rate is only
 
 </details>
 
+## Bonus: put a face on it with Streamlit
+
+Everything in this chapter so far runs from a terminal, which is fine for measuring an agent but not for showing it off. The lab folder also has `streamlit_app.py`, an optional script that wraps the exact same agent, tools, guardrail, and memory all unchanged, in a chat window instead of a scripted conversation:
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+That opens a browser tab with a normal-looking chat box, a sidebar summarizing what's running (guardrail, tracing, tools, memory), and a small "Tools used" caption under each answer. Ask it the same questions from this chapter's real run above, including the injection attempt, and you'll see the guardrail block it with a visible warning exactly the way it printed in the terminal, and the caption will confirm whether it reached for `calculator`, `search_wikipedia`, or `search_documents`. Nothing about the agent changed to make this possible, `streamlit_app.py` just imports `agent`, `thread_config`, and `check_input` from `agent.py` and calls them from inside Streamlit's chat components instead of a `print()` loop. It's the same lesson as the Langflow bonuses in earlier chapters: the interface is a thin layer on top of logic you already built, not a reason to rebuild that logic.
+
 ## What's next
 
 That's Advanced complete. Here's the whole arc, one line per chapter:

@@ -149,6 +149,16 @@ Reopen the Simple Agent flow from Chapter 6 and 7's bonus sections — the one w
 
 Rebuild that retriever flow if you don't still have it (**Chroma DB** + **Ollama Embeddings**, pointed at this lab's two sample `.txt` files instead of `sample_facts.txt`), then connect it into the Simple Agent flow as an additional tool alongside the calculator. Open **Playground** and ask the same kind of mixed question from this chapter's lab: *"How many locations does Fernwood Coffee Co. have, and what's 15% of 340?"* The Agent component's logs will show it picking between the document tool and the calculator, the same decision `agent.py` just made in code, now visible as a wired-up diagram.
 
+## Bonus: put a face on it with Streamlit
+
+The lab folder also has `streamlit_app.py`, an optional script that wraps this same agent, same three tools, same memory, all unchanged, in a chat window instead of a scripted terminal conversation:
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+
+That opens a browser tab with a normal-looking chat box, a sidebar listing the three tools, and a small "Tools used" caption under each answer so you can watch the agent's tool choice happen live instead of reading it off a printed trace. Ask it the same questions from this chapter's real run above; the caption should show `calculator` for the math question, `search_wikipedia` for the Eiffel Tower question, and `search_documents` for anything about Fernwood or the hiking club. Nothing about the agent changed to make this possible, `streamlit_app.py` just imports `agent` and `thread_config` from `agent.py` and calls them from inside Streamlit's chat components instead of a `print()` loop — the same "thin interface over logic you already built" lesson as the Langflow bonus above, in code instead of a visual flow.
+
 ## What's next
 
 That's Intermediate complete. Here's the whole arc, one line per chapter:

@@ -207,9 +207,15 @@ def send(message):
 # then a question only answerable by remembering earlier turns
 # ============================================================
 
-send("Hi, I'm comparing Fernwood Coffee Co. to a few other local businesses for a class project.")
-send("What's 15% of 340?")
-send("What year did construction of the Eiffel Tower finish?")
-send("How many locations does Fernwood Coffee Co. have, according to my notes?")
-send("What am I comparing Fernwood to, and what did you just tell me about its locations?")
-send("How often does the Mountain View Hiking Club meet, and is it free to join?")
+
+def run_conversation():
+    send("Hi, I'm comparing Fernwood Coffee Co. to a few other local businesses for a class project.")
+    send("What's 15% of 340?")
+    send("What year did construction of the Eiffel Tower finish?")
+    send("How many locations does Fernwood Coffee Co. have, according to my notes?")
+    send("What am I comparing Fernwood to, and what did you just tell me about its locations?")
+    send("How often does the Mountain View Hiking Club meet, and is it free to join?")
+
+
+if __name__ == "__main__":
+    run_conversation()
