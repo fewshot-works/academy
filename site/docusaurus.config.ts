@@ -164,6 +164,14 @@ const config: Config = {
           'generative AI course, learn generative AI, GenAI training, free LLM course, RAG tutorial, AI agents tutorial, vector database tutorial, learn AI for beginners',
       },
     ],
+    announcementBar: {
+      id: 'mcp-track-launch',
+      content:
+        '🎉 New: the <a href="/docs/mcp/overview">MCP track</a> is live — 8 hands-on chapters on building, connecting, and securing MCP servers and agents.',
+      backgroundColor: '#1f5d4c',
+      textColor: '#f6f4ef',
+      isCloseable: true,
+    },
     colorMode: {
       respectPrefersColorScheme: true,
     },

@@ -2,35 +2,43 @@ import type {ReactNode} from 'react';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import {launches} from '@site/src/data/launches';
 
 import styles from './styles.module.css';
 
-type RecentPost = {
+type FeedItem = {
   permalink: string;
   title: string;
   description?: string;
   date: string;
+  kind: 'post' | 'launch';
 };
 
 type RecentPostsData = {
-  posts: RecentPost[];
+  posts: Array<Omit<FeedItem, 'kind'>>;
 };
 
-const MIN_POSTS_TO_SHOW = 3;
-const MAX_POSTS_TO_SHOW = 3;
+const MIN_ITEMS_TO_SHOW = 3;
+const MAX_ITEMS_TO_SHOW = 3;
 
-// Hidden until there are enough posts to not look like an empty/broken
-// section on launch (see homepage-redesign issue #41). Sourced from the
-// custom recent-posts-plugin, since the blog plugin itself doesn't expose
-// post metadata via global data.
+// Hidden until there are enough items to not look like an empty/broken
+// section on launch (see homepage-redesign issue #41). Merges blog posts
+// (from the custom recent-posts-plugin, since the blog plugin itself doesn't
+// expose post metadata via global data) with curated curriculum launches
+// (site/src/data/launches.ts) into one date-sorted feed.
 export default function HomepageWhatsNew(): ReactNode {
   const {posts} = usePluginData('recent-posts-plugin') as RecentPostsData;
 
-  if (!posts || posts.length < MIN_POSTS_TO_SHOW) {
+  const items: FeedItem[] = [
+    ...(posts ?? []).map((post) => ({...post, kind: 'post' as const})),
+    ...launches.map((launch) => ({...launch, kind: 'launch' as const})),
+  ].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  if (items.length < MIN_ITEMS_TO_SHOW) {
     return null;
   }
 
-  const recentPosts = posts.slice(0, MAX_POSTS_TO_SHOW);
+  const recentItems = items.slice(0, MAX_ITEMS_TO_SHOW);
 
   return (
     <section className={styles.section}>
@@ -39,7 +47,7 @@ export default function HomepageWhatsNew(): ReactNode {
           <div>
             <p className={styles.eyebrow}>What's new</p>
             <Heading as="h2" className={styles.title}>
-              Fresh off the blog
+              Latest from Few-Shot Academy
             </Heading>
           </div>
           <Link className={styles.viewAll} to="/blog">
@@ -47,12 +55,14 @@ export default function HomepageWhatsNew(): ReactNode {
           </Link>
         </div>
         <div className={styles.grid}>
-          {recentPosts.map((post) => (
-            <Link key={post.permalink} to={post.permalink} className={styles.card}>
-              <span className={styles.cardDate}>{post.date}</span>
-              <span className={styles.cardTitle}>{post.title}</span>
-              {post.description && (
-                <span className={styles.cardExcerpt}>{post.description}</span>
+          {recentItems.map((item) => (
+            <Link key={item.permalink} to={item.permalink} className={styles.card}>
+              <span className={styles.cardDate}>
+                {item.kind === 'launch' ? 'New' : item.date}
+              </span>
+              <span className={styles.cardTitle}>{item.title}</span>
+              {item.description && (
+                <span className={styles.cardExcerpt}>{item.description}</span>
               )}
             </Link>
           ))}
