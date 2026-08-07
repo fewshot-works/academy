@@ -47,9 +47,13 @@
 }
 
 .cardMeta {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
   color: var(--zta-ink-muted);
-  font-family: var(--ifm-font-family-monospace);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 996px) {

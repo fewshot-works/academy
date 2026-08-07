@@ -3,6 +3,7 @@ import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 
+import {PAGE_BLURBS} from '@site/src/data/pageBlurbs';
 import styles from './styles.module.css';
 
 type TopPage = {path: string; count: number};
@@ -56,7 +57,9 @@ export default function HomepageMostPopular(): ReactNode {
           {pages.map((page) => (
             <Link key={page.path} to={page.path} className={styles.card}>
               <span className={styles.cardTitle}>{titleFromPath(page.path)}</span>
-              <span className={styles.cardMeta}>{page.path}</span>
+              {PAGE_BLURBS[page.path] && (
+                <span className={styles.cardMeta}>{PAGE_BLURBS[page.path]}</span>
+              )}
             </Link>
           ))}
         </div>
