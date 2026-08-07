@@ -69,10 +69,24 @@
   color: var(--zta-ink-muted);
 }
 
+.curriculumLink {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--zta-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.curriculumLink:hover {
+  color: var(--ifm-color-primary);
+}
+
 .section {
   max-width: 68ch;
   padding: 2.25rem 0;
   border-top: 1px solid var(--zta-border);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 1rem);
 }
 
 .section:first-of-type {

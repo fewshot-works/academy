@@ -307,13 +307,15 @@ function Section({
   eyebrow,
   title,
   children,
+  id,
 }: {
   eyebrow?: string;
   title: string;
   children: ReactNode;
+  id?: string;
 }) {
   return (
-    <section className={styles.section}>
+    <section id={id} className={styles.section}>
       {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
       <Heading as="h2" className={styles.sectionTitle}>
         {title}
@@ -349,6 +351,9 @@ export default function AiProductManager(): ReactNode {
                 </div>
               ))}
             </div>
+            <a href="#curriculum" className={styles.curriculumLink}>
+              See what you&rsquo;d actually study &darr;
+            </a>
           </header>
 
           <div className={styles.layout}>
@@ -466,7 +471,7 @@ export default function AiProductManager(): ReactNode {
             </div>
           </Section>
 
-          <Section title="How Few-Shot Academy gets you there">
+          <Section id="curriculum" title="How Few-Shot Academy gets you there">
             <p>
               This curriculum won&rsquo;t teach you go-to-market strategy or how to run a user interview
               — it teaches the technical layer underneath the job, so you can hold your own in the

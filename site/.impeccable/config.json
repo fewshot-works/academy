@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/pages/career-tracks/forward-deployed-engineer.module.css"
+        ],
+        "createdAt": "2026-08-07T05:29:36.114Z",
+        "reason": "Pre-existing .insightBox left-border callout from commit b9e6666, not part of this session's change"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/pages/career-tracks/applied-agentic-ai-engineer.module.css"
+        ],
+        "createdAt": "2026-08-07T05:29:36.172Z",
+        "reason": "Pre-existing .insightBox left-border callout from commit b9e6666, not part of this session's change"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/pages/career-tracks/ai-solutions-architect-presales.module.css"
+        ],
+        "createdAt": "2026-08-07T05:29:36.232Z",
+        "reason": "Pre-existing .insightBox left-border callout from commit b9e6666, not part of this session's change"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/pages/career-tracks/sre-reliability-engineer.module.css"
+        ],
+        "createdAt": "2026-08-07T05:29:36.288Z",
+        "reason": "Pre-existing .insightBox left-border callout from commit b9e6666, not part of this session's change"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/pages/career-tracks/ai-product-manager.module.css"
+        ],
+        "createdAt": "2026-08-07T05:29:36.343Z",
+        "reason": "Pre-existing .insightBox left-border callout from commit b9e6666, not part of this session's change"
+      }
+    ]
+  }
+}

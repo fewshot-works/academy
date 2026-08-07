@@ -264,9 +264,9 @@ function CalloutList({items}: {items: Callout[]}) {
   );
 }
 
-function Section({eyebrow, title, children}: {eyebrow?: string; title: string; children: ReactNode}) {
+function Section({eyebrow, title, children, id}: {eyebrow?: string; title: string; children: ReactNode; id?: string}) {
   return (
-    <section className={styles.section}>
+    <section id={id} className={styles.section}>
       {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
       <Heading as="h2" className={styles.sectionTitle}>
         {title}
@@ -302,6 +302,9 @@ export default function AppliedAgenticAIEngineer(): ReactNode {
                 </div>
               ))}
             </div>
+            <a href="#curriculum" className={styles.curriculumLink}>
+              See what you&rsquo;d actually study &darr;
+            </a>
           </header>
 
           <div className={styles.layout}>
@@ -495,7 +498,7 @@ export default function AppliedAgenticAIEngineer(): ReactNode {
             </p>
           </Section>
 
-          <Section eyebrow="Curriculum mapping" title="How Few-Shot Academy gets you there">
+          <Section id="curriculum" eyebrow="Curriculum mapping" title="How Few-Shot Academy gets you there">
             <div className={styles.curriculumGrid}>
               {CURRICULUM_GROUPS.map((group) => (
                 <div key={group.tier} className={styles.curriculumCard}>
