@@ -217,6 +217,7 @@ const config: Config = {
             {label: 'Foundations', to: '/docs/foundations/overview'},
             {label: 'Intermediate', to: '/docs/intermediate/overview'},
             {label: 'Advanced', to: '/docs/advanced/overview'},
+            {label: 'MCP', to: '/docs/mcp/overview'},
           ],
         },
         {
