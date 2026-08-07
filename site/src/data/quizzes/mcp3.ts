@@ -3,42 +3,42 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 export const questions: QuizQuestion[] = [
   {
     question:
-      "multi_server_agent.py's mcp_servers dict has two entries, fetch and calculator. What does client.get_tools() return?",
+      "multi_server_agent.py's mcp_servers dict starts fetch and calculator as two separate subprocesses. Do the two servers know about each other or coordinate in any way?",
     options: [
-      'Two separate tool lists that have to be merged by hand',
-      'One combined list of tools from both servers, with no indication in the agent code of which server each tool came from',
-      'Only the tools from whichever server was listed first in the dict',
-      'A single merged tool that can do both fetching and arithmetic',
+      'Yes, MultiServerMCPClient introduces them so they can divide up incoming questions',
+      "No, each server is started and talked to independently over its own stdio pipe; neither is aware the other exists, it's client.get_tools() that merges their two answers into one list",
+      'Yes, but only if both are listed under the same transport type',
+      'No, and because of that the agent has to specify which server a call should go to',
     ],
     correctIndex: 1,
     explanation:
-      "MultiServerMCPClient starts every server in the dict and asks each one \"what do you offer?\", then hands back one flat list. The agent that receives it has no idea, and doesn't need to know, which server any given tool came from.",
+      "fetch and calculator are two unrelated subprocesses that never talk to each other. All the merging happens on the client side, when client.get_tools() combines what each one separately reported.",
   },
   {
     question:
-      "The lab's README describes an early version of the question ('What's 12% of 850?') that made llama3.2 call fetch instead of calculator, and sometimes get the math wrong. What does that show?",
+      "The chapter says adding a second server to mcp_servers \"doesn't add a routing layer.\" What does that mean in practice?",
     options: [
-      'The calculator server was broken and needed to be restarted',
-      "Having the right tool available doesn't guarantee the model picks it; a smaller model can judge a less-suited tool as more likely to help, based on wording alone",
-      'MCP servers must be listed in the correct order or they get ignored',
-      'The fetch server silently overrides other servers when both are connected',
+      "MCP itself adds a hidden routing step that picks the right server automatically once there's more than one",
+      "MCP's job stops at each server describing what it offers; deciding which tool fits a given question is the same ordinary tool-calling decision from Intermediate Chapter 5, just now choosing from a bigger pool of candidates",
+      'Routing only becomes necessary once you connect three or more servers',
+      'Each server has to declare a priority so the agent knows which one to try first',
     ],
     correctIndex: 1,
     explanation:
-      "Both servers correctly advertised what they offer. The model still chose to search the web over calling a tool literally named calculator, until the question named the tool explicitly. That's model behavior, not a server or protocol bug.",
+      "Nothing new gets built to handle multiple servers. The model makes the same kind of tool-choice call it always did, MCP just hands it a longer list of candidates to choose from.",
   },
   {
     question:
-      "calculator_server.py in this lab's folder is identical to Chapter 2's. Why copy it instead of importing it from the Chapter 2 folder?",
+      "mcp_servers[\"fetch\"][\"args\"] in this chapter still includes --with mcp<2.0.0, the same version-skew workaround from Chapter 1. Why does a chapter about connecting two servers still need it?",
     options: [
-      'Python cannot import files from other directories',
-      "Every lab folder in this project is self-contained and copy-paste runnable on its own, no shared library across labs, so each one carries its own copy of anything it needs",
-      'The calculator logic actually had to change for this chapter',
-      'Copying is faster to run than importing at execution time',
+      "The bug is between the mcp-server-fetch and mcp packages themselves, unrelated to how many servers a script connects to, so any lab that starts mcp-server-fetch needs the same pin",
+      "calculator_server.py has the same bug, so the pin covers both servers at once",
+      'It was left in by mistake and has no effect in this chapter',
+      "It's only needed the first time uvx downloads mcp-server-fetch, and this chapter is that first time",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      'This project deliberately avoids a shared library across labs so any single lab folder can be copied out and run on its own, at the cost of some duplicated files like this one.',
+      "The workaround travels with mcp-server-fetch itself, not with any particular lab. Every chapter in this track that starts mcp-server-fetch carries the same --with mcp<2.0.0 pin for the same reason.",
   },
   {
     question:

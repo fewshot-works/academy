@@ -3,16 +3,16 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 export const questions: QuizQuestion[] = [
   {
     question:
-      "In the host/client/server split, which role does mcp-server-fetch play in this chapter's lab, and how is it started?",
+      "The lab's client is created with MultiServerMCPClient(mcp_servers), even though this chapter's mcp_servers dict only lists one server. Why not a class named for a single server?",
     options: [
-      "It's the host, and it runs inside the same Python process as the agent",
-      "It's the server, and MultiServerMCPClient starts it as a separate subprocess, talking to it over stdio",
-      "It's the client, and it connects out to the agent",
-      'It replaces the LLM entirely for this lab',
+      "It's a naming mistake left over from an earlier draft of the library",
+      'MultiServerMCPClient works identically whether mcp_servers has one entry or several; this chapter just never exercises the "multi" part, Chapter 3 is where connecting to more than one server matters',
+      "It's required specifically because mcp-server-fetch needs multiple connections internally",
+      'It automatically starts several copies of the same server for load balancing',
     ],
     correctIndex: 1,
     explanation:
-      "mcp-server-fetch is the server: a separate program exposing a fetch tool over MCP. The script's MultiServerMCPClient plays the client, starting that server as a subprocess and talking to it over stdio, the host is the script (and the LLM it calls) that never sees the server's source code.",
+      "The class name reflects what it's built for, not what this particular chapter uses it for. One server or several, the code is the same; Chapter 3 is where a second server actually gets added to mcp_servers.",
   },
   {
     question:
@@ -29,16 +29,16 @@ export const questions: QuizQuestion[] = [
   },
   {
     question:
-      "During testing, llama3.2 occasionally called the fetch tool with start_index as the string '0' instead of the integer 0, and the server rejected the call with a real validation error. Why does that happen with an MCP server but not with the reader's own hand-written tools?",
+      "The chapter says the host never needs to read the server's source code to use its tools. What actually makes that possible?",
     options: [
-      'MCP servers are simply broken and reject valid input at random',
-      "An MCP server enforces its declared input schema strictly, wrong types are rejected outright, while a hand-written Python function like calculator() will happily accept and coerce whatever it's given",
-      'The fetch tool has no input schema at all',
-      "Ollama doesn't support integer arguments",
+      'uvx downloads and displays the server’s source for the host to read before first use',
+      "The client asks the server, over the MCP protocol, what it offers, and the server answers with tool names, descriptions, and the exact shape of arguments each one expects, before any tool is ever called",
+      'LangChain ships with every MCP server’s tools pre-registered, so no request to the server is needed',
+      'The model itself infers the server’s tools by reading its Python code at runtime',
     ],
     correctIndex: 1,
     explanation:
-      "The chapter and lab both call this out as a real, observed difference: your own hand-written tools accept whatever Python hands them, but an MCP server enforces the schema it declared, a small local model sending the wrong JSON type gets a real rejection instead of silent coercion.",
+      "That's the whole handshake: the host asks \"what do you offer?\" and gets back a self-describing list, no source reading required. This chapter's lab performs exactly that handshake against mcp-server-fetch.",
   },
   {
     question:

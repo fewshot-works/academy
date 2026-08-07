@@ -28,6 +28,12 @@ This lab needs **two terminals**, one for the server, one for the client. It's c
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    `PROVIDER=ollama` is already set. If you're using OpenAI or Anthropic instead, open `.env`, set `PROVIDER` accordingly, and add the matching API key.
 
 4. **In terminal 1, start the server and leave it running:**

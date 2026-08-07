@@ -67,7 +67,7 @@ Question: What is the page at https://example.com about? Answer in one sentence.
 Answer: The webpage at https://example.com is a documentation example domain...
 ```
 
-**An honest surprise.** The first version of this lab's math question just said `"What's 12% of 850?"`, no mention of "calculator." With `llama3.2`, that consistently picked `fetch` instead, searching the web for the answer rather than calling the tool named `calculator` sitting right next to it, and got the math wrong roughly half the time. Both servers correctly advertised what they offer; the model simply judged "search" as more promising than "call this specific tool" from wording alone. Naming the tool explicitly fixed it every run. Larger models route correctly from the vague phrasing too, this is a small-model quirk worth seeing firsthand, not a bug in either server.
+💡 **An honest surprise.** The first version of this lab's math question just said `"What's 12% of 850?"`, no mention of "calculator." With `llama3.2`, that consistently picked `fetch` instead, searching the web for the answer rather than calling the tool named `calculator` sitting right next to it, and got the math wrong roughly half the time. Both servers correctly advertised what they offer; the model simply judged "search" as more promising than "call this specific tool" from wording alone. Naming the tool explicitly fixed it every run. Larger models route correctly from the vague phrasing too, this is a small-model quirk worth seeing firsthand, not a bug in either server.
 
 ## Bonus: Langflow as the client
 

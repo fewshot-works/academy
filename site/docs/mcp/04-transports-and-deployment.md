@@ -44,6 +44,8 @@ On the server side, one line: `mcp.run(transport="stdio")` becomes `mcp.run(tran
 
 That `url` could point at `127.0.0.1` for local testing, exactly like this lab, or at a real hostname for a server running anywhere else. Nothing else in the client changes either way.
 
+A real remote server, one exposed on the open internet rather than sitting behind `127.0.0.1`, normally needs authentication too, so it doesn't answer "what do you offer?" for absolutely anyone. The MCP spec defines an OAuth 2.1-based authorization flow for this. This track doesn't implement it: every lab here runs on localhost, with nothing to protect. Worth knowing it exists before you put a server anywhere a stranger could reach it.
+
 ## Hands-on lab: swap stdio for HTTP
 
 Full instructions: [`labs/mcp/04-transports-and-deployment`](https://github.com/fewshot-works/academy/tree/main/labs/mcp/04-transports-and-deployment)

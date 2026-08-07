@@ -3,42 +3,42 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 export const questions: QuizQuestion[] = [
   {
     question:
-      "Every earlier chapter's mcp_servers entry had 'command' and 'args'. This chapter's has 'url' instead. What's the practical difference?",
+      'While the client runs, terminal 1 prints lines like INFO: 127.0.0.1:... "POST /mcp HTTP/1.1" 200 OK. What is that?',
     options: [
-      "'url' entries run faster than 'command' entries",
-      "'command'/'args' tell the client how to start a server itself as a subprocess; 'url' tells the client where to find a server that's already running on its own",
-      'There is no real difference, just different syntax for the same thing',
-      "'url' only works with OpenAI and Anthropic, not Ollama",
+      "An error indicating calculator_http_server.py crashed and had to restart mid-request",
+      "Uvicorn, the web server running calculator_http_server.py, logging each HTTP request the client's MCP calls arrive as",
+      "The client's own debug output, accidentally printed to the wrong terminal",
+      'A sign that Ollama is sending requests directly to the calculator server, bypassing the client',
     ],
     correctIndex: 1,
     explanation:
-      "stdio servers are started by the client (command + args). HTTP servers run independently, the client just connects to wherever they already are (url), possibly on a different machine.",
+      "Every tool call this lab makes arrives at the server as a real HTTP POST. Terminal 1's log lines are Uvicorn, the server underneath FastMCP, recording each one, visible proof the client is talking to it over the network rather than a subprocess pipe.",
   },
   {
     question:
-      "In this lab, why does the server need to be started in a separate terminal before the client runs, unlike Chapters 1-3?",
+      "Unlike Chapters 1-3's servers, calculator_http_server.py doesn't stop when the client script finishes running. Why not, and how do you actually stop it?",
     options: [
-      'HTTP servers are slower to start than stdio servers',
-      "The streamable-http transport isn't a subprocess the client launches; it's a standalone process (here, a local Uvicorn server) that keeps running on its own, the same way a server on another machine would",
-      "It's a bug in langchain-mcp-adapters that will be fixed later",
-      'Two terminals are required by the MCP protocol itself',
+      "It's an independent process the client never owned in the first place, so it keeps running until you stop it yourself with Ctrl+C in its own terminal, the same way a server on another machine would keep running after any one client disconnects",
+      "It automatically shuts down after 60 seconds of inactivity",
+      'The client sends a shutdown signal, but only if PROVIDER=ollama',
+      'It stops the moment terminal 2 is closed, regardless of what terminal 1 is doing',
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "That's the whole point of this chapter's swap: stdio servers are owned and started by the client process; HTTP servers are independent processes the client merely connects to.",
+      "stdio servers lived and died with the client process that started them. This HTTP server has no such tie to any one client, so its lifecycle is yours to manage directly, Ctrl+C in terminal 1 when you're done.",
   },
   {
     question:
-      "calculator_http_server.py's calculator() function is identical to Chapter 2's calculator_server.py. What does that show about MCP's transport layer?",
+      'The troubleshooting section says if port 8000 is already taken on your machine, two files need updating to match a new port. Which two, and why both?',
     options: [
-      'The transport layer requires rewriting all tool logic to match',
-      "A tool's logic and schema don't change based on transport; only how the client and server exchange bytes changes, so switching stdio for HTTP is a config change, not a rewrite",
-      'HTTP transport only supports tools with string arguments',
-      'stdio and HTTP servers cannot use the same @mcp.tool() decorator',
+      "Only calculator_http_server.py needs changing, since it's the one that binds the port",
+      "calculator_http_server.py's port=8000 (where the server listens) and http_client_agent.py's url (where the client looks for it), since the url is the only thing telling the client where the server lives",
+      'Only http_client_agent.py, since the client is what fails to connect',
+      ".env, since PROVIDER controls which port the server uses",
     ],
     correctIndex: 1,
     explanation:
-      "@mcp.tool() and the function underneath it are transport-agnostic. Only mcp.run(transport=...) on the server and the mcp_servers config on the client change.",
+      "The server binds whatever port you give it, and the client has no way to find it except the url you configured. Change one without the other and the client connects to the wrong place, or nowhere at all.",
   },
   {
     question:

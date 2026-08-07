@@ -28,6 +28,12 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
    cp .env.example .env
    ```
 
+   On Windows Command Prompt, `cp` isn't a built-in command, use `copy` instead:
+
+   ```cmd
+   copy .env.example .env
+   ```
+
    `PROVIDER=ollama` is already set. If you're using OpenAI or Anthropic instead, open `.env`, set `PROVIDER` accordingly, and add the matching API key.
 
 4. **Run the agent script:**
@@ -74,3 +80,4 @@ Point `agent_with_server.py` at it and you'd see the same shape of run: `client.
 - **`AuthenticationError` with `PROVIDER=openai` or `PROVIDER=anthropic`**: check that your key in `.env` has no extra quotes or spaces, and that the line isn't still commented out with `#`.
 - **Nothing happens for a few seconds on first run**: `uv run calculator_server.py` (started as a subprocess) has to create its own virtual environment and install `mcp` the first time. Subsequent runs start instantly.
 - **The model calls `calculator` with an expression that isn't math**: unlike Intermediate Chapter 5's hand-written loop, this server's tool has no `try/except` around the arithmetic logic at all, and it doesn't need one. FastMCP catches the exception itself and hands the agent an error result like `"Error executing tool calculator: <class 'ast.Not'>"`, the same "tell the model what went wrong instead of crashing" behavior Chapter 5 wrote by hand, here for free.
+- **Not sure whether a bug is in your server or the client**: `npx @modelcontextprotocol/inspector uv run calculator_server.py` opens a browser UI that talks to `calculator_server.py` directly, no client or agent involved, so you can list its tools and call them by hand to check the server on its own.

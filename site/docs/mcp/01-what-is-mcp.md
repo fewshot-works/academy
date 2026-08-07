@@ -59,7 +59,7 @@ Answer: The page at https://example.com is a domain name used for demonstration 
 
 The script never defines a `fetch` function anywhere. `client.get_tools()` asks the running server what it offers and wraps whatever comes back as a LangChain tool, the same shape `create_agent` already expects from Chapter 6's hand-written `@tool` functions.
 
-Two honest surprises from testing, both worth knowing about before you hit them yourself:
+💡 Two honest surprises from testing, both worth knowing about before you hit them yourself:
 
 - **A wrong-typed argument gets rejected, not coerced.** `llama3.2` occasionally called `fetch` with `start_index` as the string `'0'` instead of the integer `0`, and the server came back with a real validation error, `"'0' is not of type 'integer'"`, rather than silently accepting it. That's the schema enforcement described above, happening live. Hosted models get the types right more consistently than small local ones.
 - **A version-skew bug needed a workaround.** As of this writing, the latest `mcp-server-fetch` release imports a name that was renamed in the `mcp` package's newest major version, so a plain `uvx mcp-server-fetch` fails with an `ImportError`. The lab's server config pins a compatible version with `--with "mcp<2.0.0"`. It's a real bug in someone else's package, not something wrong with your setup, and it's a taste of a very real MCP-ecosystem problem: servers and clients version independently, and they don't always agree.
