@@ -55,11 +55,10 @@ export default function HomepageTracks(): ReactNode {
     <section className={styles.tracks}>
       <div className="container">
         <Heading as="h2" className={styles.sectionHead}>
-          Three tracks, each building on the last
+          One curriculum. Every role runs through it.
         </Heading>
         <p className={styles.sectionSub}>
-          Start with "what is a token?" and end with a working, evaluated
-          agentic RAG system.
+          From "what's a token?" to a working, evaluated agent.
         </p>
         <div className={styles.grid}>
           {TrackList.map((props) => (

@@ -4,85 +4,327 @@
  */
 
 .heroBanner {
+  position: relative;
   padding: 4.5rem 0 3.5rem;
   overflow: hidden;
 }
 
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .heroInner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 2rem;
-}
-
-.heroText {
-  max-width: 40rem;
-}
-
-.eyebrow {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-  margin: 0 0 0.5rem;
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+  margin: 0 auto;
 }
 
 .heroTitle {
-  font-size: 3rem;
-  line-height: 1.05;
+  font-size: clamp(2.3rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
 }
 
 .heroSubtitle {
   font-size: 1.15rem;
-  max-width: 46ch;
+  max-width: 52ch;
   color: var(--zta-ink-muted);
   line-height: 1.6;
   margin-top: 1rem;
 }
 
-.heroNote {
-  font-size: 0.95rem;
-  color: var(--zta-ink-muted);
-  margin-top: 0.85rem;
-}
-
-.buttons {
+/* The featured role: bigger, first, and its own visual weight — not a
+   fourth card in a grid of five equals. */
+.spotlight {
+  position: relative;
   display: flex;
   align-items: center;
-  margin-top: 2rem;
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+  padding: 1.75rem 2rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 16px;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 16px 36px -20px rgba(31, 93, 76, 0.4);
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.heroArt {
+.spotlight::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -8%;
+  width: 55%;
+  height: 220%;
+  background: radial-gradient(
+    circle,
+    var(--ifm-color-primary) 0%,
+    transparent 72%
+  );
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.spotlight:hover,
+.spotlight:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -20px rgba(31, 93, 76, 0.5);
+  border-color: var(--ifm-color-primary);
+  color: inherit;
+  text-decoration: none;
+}
+
+.spotlight:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.spotlightIcon {
+  flex-shrink: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--zta-chip-bg);
+  color: var(--ifm-color-primary);
 }
 
-.contour {
-  width: 100%;
-  max-width: 26rem;
-  height: auto;
+.spotlightIcon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.spotlightMain {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.spotlightTitle {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.spotlightBlurb {
+  margin: 0.4rem 0 0;
+  color: var(--zta-ink-muted);
+  max-width: 48ch;
+  line-height: 1.55;
+}
+
+.spotlightCta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  white-space: nowrap;
+  position: relative;
+}
+
+.spotlightCta span {
+  transition: transform 0.18s ease;
+}
+
+.spotlight:hover .spotlightCta span,
+.spotlight:focus-visible .spotlightCta span {
+  transform: translateX(4px);
+}
+
+.roleList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.roleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 10px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.roleRow:hover,
+.roleRow:focus-visible {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  color: inherit;
+  text-decoration: none;
+}
+
+.roleRow:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.roleIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--zta-chip-bg);
+  color: var(--zta-accent);
+}
+
+.roleIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.roleRowTitle {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.roleRowArrow {
+  flex-shrink: 0;
+  color: var(--zta-ink-muted);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.roleRow:hover .roleRowArrow,
+.roleRow:focus-visible .roleRowArrow {
+  transform: translateX(3px);
+  color: var(--ifm-color-primary);
+}
+
+.metaStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.75rem 0 0;
+}
+
+.metaChip {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  background: var(--zta-chip-bg);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+
+.secondaryLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.85rem 0 0;
+  font-size: 0.92rem;
+  color: var(--zta-ink-muted);
+}
+
+.secondaryLinks a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.secondaryLinks a:hover {
+  color: var(--ifm-color-primary);
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 2.5rem 0 2rem;
   }
 
-  .heroInner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .heroText {
+  .heroTitle {
     max-width: none;
   }
 
-  .heroArt {
-    order: -1;
+  .spotlight {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .contour {
-    max-width: 14rem;
+  .spotlightCta {
+    margin-top: 0.25rem;
+  }
+
+  .roleList {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* One authored entrance for the hero, staggered top to bottom. Every other
+   homepage section stays static — this moment doesn't repeat. */
+@media (prefers-reduced-motion: no-preference) {
+  .heroTitle,
+  .heroSubtitle,
+  .spotlight,
+  .roleList,
+  .metaStrip,
+  .secondaryLinks {
+    opacity: 0;
+    animation: heroRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .heroTitle {
+    animation-delay: 0.02s;
+  }
+
+  .heroSubtitle {
+    animation-delay: 0.1s;
+  }
+
+  .spotlight {
+    animation-delay: 0.18s;
+  }
+
+  .roleList {
+    animation-delay: 0.26s;
+  }
+
+  .metaStrip {
+    animation-delay: 0.34s;
+  }
+
+  .secondaryLinks {
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
