@@ -50,66 +50,7 @@ const config: Config = {
     },
   ],
 
-  plugins: [
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        createRedirects(existingPath: string) {
-          const map: Record<string, string> = {
-            '/docs/foundations/': '/docs/tier-1-foundations/',
-            '/docs/intermediate/': '/docs/tier-2-intermediate/',
-            '/docs/advanced/': '/docs/tier-3-advanced/',
-          };
-          for (const [next, old] of Object.entries(map)) {
-            if (existingPath.startsWith(next)) {
-              return [existingPath.replace(next, old)];
-            }
-          }
-
-          // Interview-prep pages moved from nested career-track subpages to a
-          // top-level, round-first section — old URLs still get search traffic.
-          const interviewPrepMoves: Record<string, string> = {
-            '/interview-prep/technical-round/forward-deployed-engineer':
-              '/career-tracks/forward-deployed-engineer/technical-round',
-            '/interview-prep/case-studies/forward-deployed-engineer':
-              '/career-tracks/forward-deployed-engineer/case-studies',
-            '/interview-prep/behavioral-round/forward-deployed-engineer':
-              '/career-tracks/forward-deployed-engineer/behavioral-round',
-            '/interview-prep/technical-round/applied-agentic-ai-engineer':
-              '/career-tracks/applied-agentic-ai-engineer/technical-round',
-            '/interview-prep/case-studies/applied-agentic-ai-engineer':
-              '/career-tracks/applied-agentic-ai-engineer/system-design',
-            '/interview-prep/behavioral-round/applied-agentic-ai-engineer':
-              '/career-tracks/applied-agentic-ai-engineer/behavioral-round',
-            '/interview-prep/technical-round/ai-solutions-architect-presales':
-              '/career-tracks/ai-solutions-architect-presales/technical-round',
-            '/interview-prep/case-studies/ai-solutions-architect-presales':
-              '/career-tracks/ai-solutions-architect-presales/case-studies',
-            '/interview-prep/behavioral-round/ai-solutions-architect-presales':
-              '/career-tracks/ai-solutions-architect-presales/behavioral-round',
-            '/interview-prep/technical-round/sre-reliability-engineer':
-              '/career-tracks/sre-reliability-engineer/technical-round',
-            '/interview-prep/case-studies/sre-reliability-engineer':
-              '/career-tracks/sre-reliability-engineer/incident-response',
-            '/interview-prep/behavioral-round/sre-reliability-engineer':
-              '/career-tracks/sre-reliability-engineer/behavioral-round',
-            '/interview-prep/technical-round/ai-product-manager':
-              '/career-tracks/ai-product-manager/technical-round',
-            '/interview-prep/case-studies/ai-product-manager':
-              '/career-tracks/ai-product-manager/product-sense',
-            '/interview-prep/behavioral-round/ai-product-manager':
-              '/career-tracks/ai-product-manager/behavioral-round',
-          };
-          if (existingPath in interviewPrepMoves) {
-            return [interviewPrepMoves[existingPath]];
-          }
-
-          return undefined;
-        },
-      },
-    ],
-    path.resolve(__dirname, 'src/plugins/recent-posts'),
-  ],
+  plugins: [path.resolve(__dirname, 'src/plugins/recent-posts')],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
