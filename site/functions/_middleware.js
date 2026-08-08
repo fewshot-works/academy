@@ -1,3 +1,4 @@
+const APEX_HOST = 'fewshotacademy.com';
 const TRACKED_PREFIXES = ['/docs/', '/career-tracks/'];
 
 const BOT_USER_AGENT_PATTERN = /bot|crawl|spider|slurp|facebookexternalhit|preview|monitor/i;
@@ -5,6 +6,12 @@ const BOT_USER_AGENT_PATTERN = /bot|crawl|spider|slurp|facebookexternalhit|previ
 export async function onRequest(context) {
   const {request, next, env} = context;
   const url = new URL(request.url);
+
+  if (url.hostname.endsWith('.pages.dev')) {
+    url.protocol = 'https:';
+    url.hostname = APEX_HOST;
+    return Response.redirect(url.toString(), 301);
+  }
 
   const isTracked = TRACKED_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
   const userAgent = request.headers.get('user-agent') || '';
