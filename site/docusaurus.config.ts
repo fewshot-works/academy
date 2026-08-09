@@ -240,7 +240,7 @@ const config: Config = {
           title: 'Get in touch',
           items: [
             {
-              label: 'Contact us / give feedback',
+              label: 'Contact Us / Share Feedback',
               to: '/contact',
             },
           ],
