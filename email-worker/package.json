@@ -1,0 +1,14 @@
+{
+  "name": "fewshot-email-worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "mimetext": "^3.0.28"
+  },
+  "devDependencies": {
+    "wrangler": "^4.118.0"
+  }
+}

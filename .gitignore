@@ -3,6 +3,9 @@ site/node_modules/
 site/build/
 site/.docusaurus/
 site/.cache-loader/
+email-worker/node_modules/
+email-worker/.wrangler/
+email-worker/.dev.vars
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

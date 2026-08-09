@@ -1,0 +1,104 @@
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.typeSwitch {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.typeOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.field select,
+.field input[type='email'],
+.field input[type='text'],
+.field textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 6px;
+  background: var(--ifm-background-surface-color);
+  color: var(--zta-ink);
+}
+
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  margin: 0.3rem 0;
+  cursor: pointer;
+}
+
+.scale {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.scaleOption {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.error {
+  color: var(--ifm-color-danger);
+  font-weight: 600;
+}
+
+.submit {
+  align-self: flex-start;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 1.6rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-surface-color);
+  cursor: pointer;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -6,3 +6,8 @@ compatibility_date = "2026-08-04"
 binding = "DB"
 database_name = "fewshot-academy-analytics"
 database_id = "16ff35b7-439c-48e5-b641-af82b20fe19d"
+
+[[services]]
+binding = "EMAIL_WORKER"
+service = "fewshot-email-worker"
+
