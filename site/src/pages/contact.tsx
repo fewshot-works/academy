@@ -5,7 +5,7 @@ import styles from './contact.module.css';
 
 // Public Turnstile site key -- safe to hardcode, get it from
 // Cloudflare dashboard > Turnstile > Add Site once the widget exists.
-const TURNSTILE_SITE_KEY = '0x4AAAAAAEK1uD08v_lhnySp';
+const TURNSTILE_SITE_KEY = '0x4AAAAAAEK16JHiHMLKULnm';
 
 type FormType = 'contact' | 'feedback';
 type Status = 'idle' | 'submitting' | 'success' | 'error';
