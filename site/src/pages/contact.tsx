@@ -1,4 +1,4 @@
-import {useEffect, useState, type FormEvent, type ReactNode} from 'react';
+import {useEffect, useRef, useState, type FormEvent, type ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './contact.module.css';
@@ -27,7 +27,7 @@ const FEEDBACK_BACKGROUNDS = [
   'Other',
 ];
 const FEEDBACK_REGIONS = ['North America', 'Europe', 'Asia', 'South America', 'Other'];
-const FEEDBACK_SECTIONS = ['Foundations', 'Intermediate', 'Advanced'];
+const FEEDBACK_SECTIONS = ['Foundations', 'Intermediate', 'Advanced', 'MCP', 'Other'];
 const FEEDBACK_RECOMMEND = ['Yes', 'No', 'Maybe'];
 
 export default function Contact(): ReactNode {
@@ -40,6 +40,7 @@ export default function Contact(): ReactNode {
   const [background, setBackground] = useState('');
   const [region, setRegion] = useState('');
   const [sections, setSections] = useState<string[]>([]);
+  const [otherSectionDetail, setOtherSectionDetail] = useState('');
   const [helpful, setHelpful] = useState('');
   const [recommend, setRecommend] = useState('');
   const [whatCouldBeBetter, setWhatCouldBeBetter] = useState('');
@@ -51,10 +52,32 @@ export default function Contact(): ReactNode {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | undefined>(undefined);
+
+  // Explicit rendering instead of the auto-render div+script approach --
+  // auto-render depends on the script's own DOM scan timing, which is
+  // unreliable across React re-renders and client-side route changes.
   useEffect(() => {
-    (window as any).onTurnstileSuccess = (token: string) => setTurnstileToken(token);
+    let cancelled = false;
+    const interval = setInterval(() => {
+      const turnstile = (window as any).turnstile;
+      if (!turnstile || !turnstileRef.current || cancelled) return;
+      clearInterval(interval);
+      turnstileWidgetId.current = turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token: string) => setTurnstileToken(token),
+        'expired-callback': () => setTurnstileToken(''),
+        'error-callback': () => setTurnstileToken(''),
+      });
+    }, 100);
+
     return () => {
-      delete (window as any).onTurnstileSuccess;
+      cancelled = true;
+      clearInterval(interval);
+      if (turnstileWidgetId.current !== undefined && (window as any).turnstile) {
+        (window as any).turnstile.remove(turnstileWidgetId.current);
+      }
     };
   }, []);
 
@@ -83,6 +106,7 @@ export default function Contact(): ReactNode {
             background,
             region,
             sections,
+            otherSectionDetail,
             helpful: Number(helpful),
             recommend,
             whatCouldBeBetter,
@@ -105,6 +129,10 @@ export default function Contact(): ReactNode {
     } catch (err) {
       setStatus('error');
       setErrorMessage(err instanceof Error ? err.message : 'Something went wrong.');
+      setTurnstileToken('');
+      if (turnstileWidgetId.current !== undefined && (window as any).turnstile) {
+        (window as any).turnstile.reset(turnstileWidgetId.current);
+      }
     }
   }
 
@@ -126,7 +154,7 @@ export default function Contact(): ReactNode {
   return (
     <Layout title="Contact us" description="Get in touch with Few-Shot Academy.">
       <Head>
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer />
       </Head>
       <main className={styles.main}>
         <h1>Contact us</h1>
@@ -232,6 +260,17 @@ export default function Contact(): ReactNode {
                 ))}
               </fieldset>
 
+              {sections.includes('Other') && (
+                <label className={styles.field}>
+                  What else? (blog post, advanced topics, etc.)
+                  <input
+                    type="text"
+                    value={otherSectionDetail}
+                    onChange={(e) => setOtherSectionDetail(e.target.value)}
+                  />
+                </label>
+              )}
+
               <fieldset className={styles.field}>
                 <legend>Was this helpful? (1 = not really, 5 = extremely)</legend>
                 <div className={styles.scale}>
@@ -281,7 +320,7 @@ export default function Contact(): ReactNode {
           )}
 
           <div className={styles.field}>
-            <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-callback="onTurnstileSuccess" />
+            <div ref={turnstileRef} />
           </div>
 
           {status === 'error' && <p className={styles.error}>{errorMessage}</p>}

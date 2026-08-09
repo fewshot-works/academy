@@ -14,7 +14,7 @@ const FEEDBACK_BACKGROUNDS = [
   'Product',
   'Other',
 ];
-const FEEDBACK_SECTIONS = ['Foundations', 'Intermediate', 'Advanced'];
+const FEEDBACK_SECTIONS = ['Foundations', 'Intermediate', 'Advanced', 'MCP', 'Other'];
 const FEEDBACK_RECOMMEND = ['Yes', 'No', 'Maybe'];
 
 async function verifyTurnstile(token, ip, secret) {
@@ -106,16 +106,18 @@ export async function onRequestPost(context) {
     const region = (data.region || '').trim().slice(0, 100);
     const whatCouldBeBetter = (data.whatCouldBeBetter || '').trim().slice(0, 2000);
     const otherTopics = (data.otherTopics || '').trim().slice(0, 2000);
+    const otherSectionDetail = (data.otherSectionDetail || '').trim().slice(0, 200);
 
     await env.DB.prepare(
       `INSERT INTO feedback_submissions
-         (background, region, sections, helpful, recommend, what_could_be_better, other_topics, created_at)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)`
+         (background, region, sections, other_section_detail, helpful, recommend, what_could_be_better, other_topics, created_at)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)`
     )
       .bind(
         data.background,
         region || null,
         sections.join(', '),
+        otherSectionDetail || null,
         helpful,
         data.recommend,
         whatCouldBeBetter || null,
@@ -128,6 +130,7 @@ export async function onRequestPost(context) {
       `Background: ${data.background}`,
       `Region: ${region || '(not provided)'}`,
       `Sections completed: ${sections.join(', ')}`,
+      `Other section detail: ${otherSectionDetail || '(not provided)'}`,
       `Helpful (1-5): ${helpful}`,
       `Would recommend: ${data.recommend}`,
       `What could be better: ${whatCouldBeBetter || '(not provided)'}`,
