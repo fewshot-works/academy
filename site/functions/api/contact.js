@@ -30,6 +30,9 @@ async function verifyTurnstile(token, ip, secret) {
     body,
   });
   const result = await response.json();
+  if (result.success !== true) {
+    console.error('Turnstile verification failed', JSON.stringify(result));
+  }
   return result.success === true;
 }
 
