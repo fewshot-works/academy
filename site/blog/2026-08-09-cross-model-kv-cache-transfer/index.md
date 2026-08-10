@@ -11,7 +11,7 @@ A week ago on this blog we called [agent memory its own product category](/blog/
 
 {/* truncate */}
 
-:::tip TL;DR
+:::tip[TL;DR]
 Every time a conversation moves to a different-sized model, that model has to reread the whole thing from scratch, even though a cheaper cache hit was sitting right there a second ago. NVIDIA built a fast, one-time formula that lets one model's cache reused by a different-sized model in the same family. It works well on 4 of 6 tested pairs (73-98% accuracy kept, up to 25x faster), and the paper is upfront that the other 2 pairs are weaker. Skip to [What it actually gets you](#what-it-actually-gets-you) if you just want the payoff, or [Where it doesn't work as well](#where-it-doesnt-work-as-well) for the limits.
 :::
 
