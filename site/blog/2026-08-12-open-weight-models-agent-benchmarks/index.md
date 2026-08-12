@@ -1,13 +1,13 @@
 ---
-title: Open-weight models are starting to win at agent benchmarks
-description: Meta shipped two new models this week. Muse Glimmer, a 30B open-weight model, beats rivals nearly twice its size on agentic benchmarks, while Muse Spark 1.2 is a hosted 1M-token sibling built for long coding sessions. Here's what's in each, and where the open one still loses.
+title: Meta's 30B open model tops its similarly sized rivals at agent tasks
+description: Meta shipped two new models this week. Muse Glimmer, a 30B open-weight model, beats similarly sized open rivals on agentic benchmarks, while Muse Spark 1.2 is a hosted 1M-token sibling built for long coding sessions. Here's what's in each, and where Glimmer still loses.
 slug: open-weight-models-agent-benchmarks
 authors: [mangatrai]
 tags: [agents, open-source, benchmarks]
 image: ./social-card.png
 ---
 
-For the last two years, open-weight model releases have mostly been a China story: DeepSeek, Alibaba's Qwen team, Moonshot AI's Kimi, Zhipu's GLM, MiniMax, all shipping frontier-class open weights on a cadence Western labs haven't matched. This week Meta broke that pattern, twice, in one release. It shipped [Muse Glimmer](https://developer.meta.com/ai/models/muse-glimmer/), a 30-billion-parameter model with Apache 2.0 weights on Hugging Face, alongside [Muse Spark 1.2](https://developer.meta.com/ai/models/muse-spark/), a hosted sibling built for long coding sessions. The interesting part isn't that Meta released open weights again. It's what the open one can now do: beat models nearly twice its size at the kind of multi-step, tool-using tasks that used to be the closed labs' advantage.
+For the last two years, open-weight model releases have mostly been a China story: DeepSeek, Alibaba's Qwen team, Moonshot AI's Kimi, Zhipu's GLM, MiniMax, all shipping frontier-class open weights on a cadence Western labs haven't matched. This week Meta broke that pattern, twice, in one release. It shipped [Muse Glimmer](https://developer.meta.com/ai/models/muse-glimmer/), a 30-billion-parameter model with Apache 2.0 weights on Hugging Face, alongside [Muse Spark 1.2](https://developer.meta.com/ai/models/muse-spark/), a hosted sibling built for long coding sessions. The interesting part isn't that Meta released open weights again. It's that, by Meta's own benchmarks, Glimmer beats two other well-known open-weight models roughly its own size at the kind of multi-step, tool-using tasks that used to separate the labs with the biggest budgets from everyone else.
 
 {/* truncate */}
 
@@ -15,7 +15,7 @@ For the last two years, open-weight model releases have mostly been a China stor
 Meta shipped two models this week. Muse Glimmer (30B, Apache 2.0, runs on one consumer GPU) beats Gemma4-31B and Qwen3.6-27B at agent-style benchmarks like MCP Atlas, though it still loses to Qwen3.6-27B on computer-use and terminal tasks. Muse Spark 1.2 is Meta's hosted, 1M-token sibling for long sessions. OpenAI also has a new flagship family, GPT-5.6 (Sol/Terra/Luna), and a narrower cybersecurity-specific model built on top of it, more on that one in a follow-up post. Skip to [What Muse Glimmer actually gets you](#what-muse-glimmer-actually-gets-you) for the numbers.
 :::
 
-## A 30B model built around the agent loop, not chat
+## Muse Glimmer: built to run on one consumer GPU
 
 Muse Glimmer is a dense transformer, not a mixture-of-experts model, with a 2-billion-parameter vision encoder feeding a 28-billion-parameter text decoder, about 30B total. It reads text and images (no audio, video is sampled as individual frames) and writes text back. Context tops out past 131,000 tokens, and Meta's own documentation lists a knowledge cutoff of January 4, 2026.
 
