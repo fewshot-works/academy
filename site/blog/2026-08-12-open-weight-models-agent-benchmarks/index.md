@@ -1,6 +1,6 @@
 ---
-title: Meta's 30B open model tops its similarly sized rivals at agent tasks
-description: Meta shipped two new models this week. Muse Glimmer, a 30B open-weight model, beats similarly sized open rivals on agentic benchmarks, while Muse Spark 1.2 is a hosted 1M-token sibling built for long coding sessions. Here's what's in each, and where Glimmer still loses.
+title: Every major AI lab shipped an agent model this week
+description: Meta, OpenAI, and xAI all shipped new models the same week, and every one leads with agentic benchmarks. Muse Glimmer is a 30B open-weight model built to run on one GPU that beats similarly sized rivals on tool-calling tasks. GPT-5.6 and Grok 4.6 are closed flagships chasing the same territory. Here's what's in each.
 slug: open-weight-models-agent-benchmarks
 authors: [mangatrai]
 tags: [agents, open-source, benchmarks]
@@ -12,7 +12,7 @@ For the last two years, open-weight model releases have mostly been a China stor
 {/* truncate */}
 
 :::tip[TL;DR]
-Meta shipped two models this week. Muse Glimmer (30B, Apache 2.0, runs on one consumer GPU) beats Gemma4-31B and Qwen3.6-27B at agent-style benchmarks like MCP Atlas, though it still loses to Qwen3.6-27B on computer-use and terminal tasks. Muse Spark 1.2 is Meta's hosted, 1M-token sibling for long sessions. OpenAI also has a new flagship family, GPT-5.6 (Sol/Terra/Luna), and a narrower cybersecurity-specific model built on top of it, more on that one in a follow-up post. Skip to [What Muse Glimmer actually gets you](#what-muse-glimmer-actually-gets-you) for the numbers.
+Meta shipped two models this week. Muse Glimmer (30B, Apache 2.0, runs on one consumer GPU) beats Gemma4-31B and Qwen3.6-27B at agent-style benchmarks like MCP Atlas, though it still loses to Qwen3.6-27B on computer-use and terminal tasks. Muse Spark 1.2 is Meta's hosted, 1M-token sibling for long sessions. The same week, OpenAI shipped a new flagship family, GPT-5.6 (Sol/Terra/Luna), and xAI shipped Grok 4.6, a closed model built for long-running agent work that lands about even with GPT-5.6 Sol on Artificial Analysis's Intelligence Index. OpenAI also has a narrower cybersecurity-specific model built on top of GPT-5.6, more on that one in a follow-up post. Skip to [What Muse Glimmer actually gets you](#what-muse-glimmer-actually-gets-you) for the numbers.
 :::
 
 ## Muse Glimmer: built to run on one consumer GPU
@@ -76,9 +76,11 @@ Pricing is per million tokens, and there are two tiers:
 
 That's a real tradeoff, not a rounding difference: the contributor tier is roughly 12x cheaper on input, in exchange for giving up data privacy. Spark 1.2 also powers Muse Code, Meta's terminal coding agent, which can run multiple sub-agents in parallel, each working in its own isolated git worktree so they don't collide on the same files.
 
-## OpenAI shipped a new flagship family too
+## OpenAI and xAI shipped flagships too
 
 The same stretch saw OpenAI roll out **GPT-5.6**, a three-tier family: Sol (flagship), Terra (mid-tier), Luna (budget). All three ship a 1-million-token context window, 128,000 max output tokens, and a February 16, 2026 knowledge cutoff. Pricing per million tokens: Luna at $1/$6 (input/output), Terra at $2.50/$15, Sol at $5/$30. The family also introduced **Programmatic Tool Calling**, letting the model write JavaScript that orchestrates its own tool calls inside an isolated, network-disabled runtime, instead of making one tool call at a time.
+
+xAI shipped **Grok 4.6** the same day this post went up: closed, API-only, no open weights. Pricing starts at $2 per million input tokens and $6 per million output tokens, with a faster variant at double that. xAI's pitch is squarely about long-running agent work, its system card describes the model checking its own output mid-task instead of running straight through, with training leaning on agentic RL across coding, kernel optimization, web development, and CAD-style tasks. It scores 61 on Artificial Analysis's Intelligence Index, matching GPT-5.6 Sol. Worth noting: this isn't in the same weight class as Muse Glimmer above, it's a frontier proprietary model competing with GPT-5.6, not the 30B run-on-your-GPU bracket.
 
 Days later, OpenAI shipped a narrower, cybersecurity-specific model on top of Sol, available only to vetted defenders. That release, and an academic paper on keeping autonomous cyber-defense agents on a leash, is its own story. We're covering it in a follow-up post.
 
@@ -86,4 +88,4 @@ Days later, OpenAI shipped a narrower, cybersecurity-specific model on top of So
 
 Our [Chapter 6: Your First Agent](/docs/intermediate/your-first-agent) chapter teaches the exact `model="provider:model-name"` pattern this post's code snippet leans on. Nothing in that chapter changes because of these releases, they're just more strings you could plug into the same line, once support lands.
 
-Sources: [Muse Glimmer, Meta's developer page](https://developer.meta.com/ai/models/muse-glimmer/); [Muse Spark, Meta's developer page](https://developer.meta.com/ai/models/muse-spark/); [VentureBeat's coverage of the Muse Glimmer release](https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now); [OpenAI's GPT-5.6 announcement](https://openai.com/index/gpt-5-6/).
+Sources: [Muse Glimmer, Meta's developer page](https://developer.meta.com/ai/models/muse-glimmer/); [Muse Spark, Meta's developer page](https://developer.meta.com/ai/models/muse-spark/); [VentureBeat's coverage of the Muse Glimmer release](https://venturebeat.com/technology/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now); [OpenAI's GPT-5.6 announcement](https://openai.com/index/gpt-5-6/); [xAI's Grok 4.6 announcement](https://x.ai/news/grok-4-6).
