@@ -38,8 +38,8 @@ On the safety side, Meta reports a Siren AgentDojo attack success rate of 28.4% 
 Not every number favors Glimmer. Qwen3.6-27B stays ahead on tasks that involve directly operating a computer:
 
 - **OSWorld-Verified:** Qwen3.6-27B at 75.6 vs. Glimmer's 65.9
-- **TerminalBench 2.1:** Qwen3.6-27B leads, Glimmer scores 60.7
-- **SWE-Bench Verified:** Qwen3.6-27B at 77.2, ahead of Glimmer's own SWE-Bench Pro number
+- **TerminalBench 2.1:** Qwen3.6-27B at 60.7 vs. Glimmer's 51.7
+- **SWE-Bench Verified:** Qwen3.6-27B at 77.2 vs. Glimmer's 76.0, a near-tie
 
 The pattern holds across the whole benchmark suite: Glimmer wins on agentic orchestration and multi-step reasoning, Qwen3.6-27B wins on hands-on-keyboard computer use and terminal work. Neither model wins everything, which is the honest read, not the marketing one.
 
