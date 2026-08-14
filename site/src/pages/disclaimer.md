@@ -26,3 +26,13 @@ an Ollama-backed lab ever leaves it.
 Content is provided as-is, with no guarantee of accuracy. This is a learning
 resource written and maintained by one person — if you spot something wrong
 or out of date, [let us know](https://docs.google.com/forms/d/e/1FAIpQLSeM7Q-VVE6zoJoMQgq4-B4wagm4c9UCKfNFyCmsnsqDA_C_Rg/viewform).
+
+## AI-assisted content
+
+Chapters, labs, and blog posts on this site are drafted with the help of AI
+tools (including Anthropic's Claude), then reviewed, tested, and edited by a
+human before publishing. Lab code is written and run against real APIs, not
+generated blind — expected output shown in a chapter comes from an actual
+run of that lab. If you're relying on a specific claim for something
+important, treat it as a starting point and verify it yourself rather than
+as an authoritative source.

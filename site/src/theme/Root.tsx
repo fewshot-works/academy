@@ -32,7 +32,9 @@ function DisclaimerBanner() {
         your money. Content is provided as-is, with no guarantee of
         accuracy. Anything you send to a hosted API leaves your machine —
         don't paste passwords or anyone's sensitive personal or work data
-        into a prompt. <Link to="/disclaimer">Full disclaimer</Link>.
+        into a prompt. Writing on this site is drafted with AI assistance
+        and reviewed and edited by a human before it's published.{' '}
+        <Link to="/disclaimer">Full disclaimer</Link>.
       </p>
       <button className={styles.button} onClick={dismiss} type="button">
         Got it

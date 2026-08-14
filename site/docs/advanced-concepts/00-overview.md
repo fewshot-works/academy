@@ -23,6 +23,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Human-in-the-Loop** — pausing an agent right before a specific, hard-to-reverse tool call, like sending an email or issuing a refund, and requiring a human's explicit approve, edit, reject, or respond decision before the real tool ever runs.
 
+**RBAC** — scoping what a tool is allowed to do based on who's calling it, not just whether it can be called at all: role-based permission checks, and a per-role limit (like a refund cap) on top of a fixed allowlist.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.

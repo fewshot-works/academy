@@ -179,6 +179,7 @@ const config: Config = {
             {label: 'Token & Cost Management', to: '/docs/advanced-concepts/token-cost-management'},
             {label: 'Agent Security', to: '/docs/advanced-concepts/agent-security'},
             {label: 'Human-in-the-Loop', to: '/docs/advanced-concepts/human-in-the-loop'},
+            {label: 'RBAC', to: '/docs/advanced-concepts/rbac'},
           ],
         },
         {
@@ -246,7 +247,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Few-Shot Academy. Code under MIT, content under CC BY 4.0.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Few-Shot Academy. Code under MIT, content under CC BY 4.0. Written with AI assistance, reviewed by a human.`,
     },
     prism: {
       theme: prismThemes.github,
