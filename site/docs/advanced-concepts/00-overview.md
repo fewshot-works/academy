@@ -25,6 +25,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **RBAC** — scoping what a tool is allowed to do based on who's calling it, not just whether it can be called at all: role-based permission checks, and a per-role limit (like a refund cap) on top of a fixed allowlist.
 
+**Chaos Engineering** — deliberately corrupting a tool's return value to see how an agent degrades, instead of only testing the happy path: crash, omission, and value faults as the mental model, and a guard that checks a response before trusting it.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.
