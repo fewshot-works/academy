@@ -27,6 +27,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Chaos Engineering** — deliberately corrupting a tool's return value to see how an agent degrades, instead of only testing the happy path: crash, omission, and value faults as the mental model, and a guard that checks a response before trusting it.
 
+**Continuous Adversarial Evaluation** — testing a security defense against a battery of differently-worded attacks instead of just one, why a keyword filter misses phrasings it wasn't built to catch while a structural guard doesn't, and why the eval harness itself is also attack surface.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.
