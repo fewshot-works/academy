@@ -5,6 +5,24 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+type NavDropdownItem = {label: string; to: string};
+
+// Navbar dropdowns are static config, so as a section (Advanced Concepts
+// especially, since it's an unbounded cookbook) grows past `max` items, this
+// keeps only the `max` most-recently-added ones visible and adds a "View
+// all" link to the section's landing page instead of letting the dropdown
+// scroll forever. Reorder the `items` array as new chapters ship — the most
+// recent one goes last.
+function capDropdown(overviewTo: string, items: NavDropdownItem[], max = 5): NavDropdownItem[] {
+  const overview: NavDropdownItem = {label: 'Overview', to: overviewTo};
+  const visible = items.length > max ? items.slice(-max) : items;
+  const result = [overview, ...visible];
+  if (items.length > max) {
+    result.push({label: 'View all →', to: overviewTo});
+  }
+  return result;
+}
+
 const config: Config = {
   title: 'Few-Shot Academy',
   tagline: 'From zero to your first AI agent — free, local-first, hands-on.',
@@ -161,33 +179,31 @@ const config: Config = {
           type: 'dropdown',
           position: 'left',
           label: 'Learn',
-          items: [
-            {label: 'Overview', to: '/docs/intro'},
+          items: capDropdown('/docs/intro', [
             {label: 'Foundations', to: '/docs/foundations/overview'},
             {label: 'Intermediate', to: '/docs/intermediate/overview'},
             {label: 'Advanced', to: '/docs/advanced/overview'},
             {label: 'MCP', to: '/docs/mcp/overview'},
-          ],
+          ]),
         },
         {
           type: 'dropdown',
           position: 'left',
           label: 'Advanced Concepts',
-          items: [
-            {label: 'Overview', to: '/docs/advanced-concepts/overview'},
+          items: capDropdown('/docs/advanced-concepts/overview', [
             {label: 'Prompt Engineering', to: '/docs/advanced-concepts/prompt-engineering'},
             {label: 'Token & Cost Management', to: '/docs/advanced-concepts/token-cost-management'},
             {label: 'Agent Security', to: '/docs/advanced-concepts/agent-security'},
             {label: 'Human-in-the-Loop', to: '/docs/advanced-concepts/human-in-the-loop'},
             {label: 'RBAC', to: '/docs/advanced-concepts/rbac'},
-          ],
+            {label: 'Chaos Engineering', to: '/docs/advanced-concepts/chaos-engineering'},
+          ]),
         },
         {
           type: 'dropdown',
           position: 'left',
           label: 'Career Tracks',
-          items: [
-            {label: 'Overview', to: '/career-tracks'},
+          items: capDropdown('/career-tracks', [
             {
               label: 'Forward-Deployed Engineer (FDE)',
               to: '/career-tracks/forward-deployed-engineer',
@@ -205,18 +221,17 @@ const config: Config = {
               to: '/career-tracks/sre-reliability-engineer',
             },
             {label: 'AI Product Manager', to: '/career-tracks/ai-product-manager'},
-          ],
+          ]),
         },
         {
           type: 'dropdown',
           position: 'left',
           label: 'Interview Prep',
-          items: [
-            {label: 'Overview', to: '/interview-prep'},
+          items: capDropdown('/interview-prep', [
             {label: 'Technical Round', to: '/interview-prep/technical-round'},
             {label: 'Case Studies', to: '/interview-prep/case-studies'},
             {label: 'Behavioral Round', to: '/interview-prep/behavioral-round'},
-          ],
+          ]),
         },
         {to: '/blog', label: 'Blog', position: 'left'},
       ],
