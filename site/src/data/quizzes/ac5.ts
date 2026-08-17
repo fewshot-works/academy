@@ -3,7 +3,7 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 export const questions: QuizQuestion[] = [
   {
     question:
-      "This chapter maps to OWASP's LLM06:2025 Excessive Agency, which breaks the risk into three root causes: excessive functionality, excessive permissions, and excessive autonomy. Which one does this chapter's lab actually address?",
+      "This chapter maps to OWASP's Excessive Agency risk (LLM03 in the 2026 Top 10, LLM06 in 2025), which breaks the risk into three root causes: excessive functionality, excessive permissions, and excessive autonomy. Which one does this chapter's lab actually address?",
     options: [
       "Excessive functionality -- giving a tool capabilities it doesn't need",
       "Excessive permissions -- scoping what a tool is allowed to do based on which role is calling it",

@@ -3,7 +3,7 @@ title: OWASP published a security top 10 for MCP
 description: MCP crossed 10,000 active servers and 97 million monthly downloads in 2026. A wave of 30+ CVEs followed, and OWASP's checklist maps exactly where they came from.
 slug: owasp-mcp-top-10
 authors: [mangatrai]
-tags: [security, mcp, agents, tool-use]
+tags: [security, owasp, mcp, agents, tool-use]
 image: ./social-card.png
 ---
 
