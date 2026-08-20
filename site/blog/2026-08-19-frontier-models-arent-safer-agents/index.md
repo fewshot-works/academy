@@ -4,6 +4,7 @@ description: A new benchmark auto-generates adversarial tool environments at sca
 slug: frontier-models-arent-safer-agents
 authors: [mangatrai]
 tags: [security, agents, research]
+image: ./social-card.png
 ---
 
 DeepSeek-V3.2 gets hijacked into an unauthorized tool call 75% of the time under its worst attack framing. GPT-4.1 hits 75.6%. GPT-5, the strongest model in the lineup, still gets hijacked 59% of the time under a different framing. These aren't obscure or under-trained models. They're the frontier, tested by a new benchmark called [ToolHazard](https://arxiv.org/abs/2608.11878), and none of them come close to holding.
