@@ -45,4 +45,15 @@ export const questions: QuizQuestion[] = [
     correctIndex: 1,
     explanation: "The style guidance is about avoiding abstraction for its own sake, not about avoiding a framework's standard patterns. FastAPI validates and documents endpoints through Pydantic models; fighting that to avoid a class would be the actual unnecessary complication.",
   },
+  {
+    question: "The local Docker container starts in under a second whenever you run docker run. The live Render deploy, on its free tier, can take about a minute to respond to the first request after sitting idle. What's causing that specific delay?",
+    options: [
+      "Render's free tier deliberately throttles response speed on every single request, not just the first",
+      "Render spins a Free web service down after 15 minutes with no traffic to save resources, and spinning it back up on the next incoming request is what takes the time, after that it responds normally until it goes idle again",
+      "The Docker image has to be rebuilt from scratch on every request",
+      "OpenAI and Anthropic's APIs are simply slower to respond than Ollama",
+    ],
+    correctIndex: 1,
+    explanation: "This is specific to running on a free host: Render suspends an idle Free service after 15 minutes of no traffic to avoid keeping unused containers running, and the next request has to wake it back up before it can answer, which is where that one-time delay comes from. The local Docker run never sleeps because nothing is managing it that way, it just runs as long as your terminal does.",
+  },
 ];

@@ -1,6 +1,6 @@
 # Lab 7: Shipping It
 
-Companion lab for [Advanced Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/07-shipping-it). Wraps the support bot in a small FastAPI app, then packages that app in a Docker container, the first lab in this curriculum where you write a Dockerfile instead of just running someone else's image.
+Companion lab for [Advanced Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/07-shipping-it). Wraps the support bot in a small FastAPI app, packages that app in a Docker container, the first lab in this curriculum where you write a Dockerfile instead of just running someone else's image, and optionally puts it on a live URL with Render.
 
 ## Before you start
 
@@ -113,6 +113,44 @@ $ curl -X POST http://localhost:8000/ask -H "Content-Type: application/json" -d 
    docker stop fernwood-api
    ```
 
+## Steps: put it on a live URL (optional)
+
+This part needs a free [Render](https://render.com/) account (no credit card required) and a GitHub account. Render builds from a repo it can see, not from a Dockerfile sitting on your laptop, so this involves pushing your fork to GitHub. If you'd rather stop after the local Docker steps above, that's a complete, working stopping point on its own.
+
+**Important:** this step can't use `PROVIDER=ollama`. The local Docker run reaches Ollama through `host.docker.internal`, Docker's hostname for "the machine this container is running on" -- that only works because Ollama and the container are on the same physical laptop. On Render, the container runs on Render's servers, with no laptop nearby to reach. Use `PROVIDER=openai` or `PROVIDER=anthropic` with a real API key instead.
+
+10. **Fork [the academy repo](https://github.com/fewshot-works/academy)** to your own GitHub account (the "Fork" button on that page), so Render has a repo of yours to build from.
+
+11. **In the [Render dashboard](https://dashboard.render.com/)**, click **New > Web Service** and connect the fork you just created. When asked for the **Language**, choose **Docker**.
+
+12. **Point it at this lab's subfolder.** The repo is a monorepo, so Render needs to know this app doesn't live at the repo root: in the service's **Settings > Build & Deploy**, set **Root Directory** to `labs/advanced/07-shipping-it`, then trigger a manual deploy. (Some Render dashboards offer this field during initial setup instead, use whichever one you see.)
+
+13. **Add environment variables** under the service's **Environment** tab -- the same keys as your local `.env`, but with a real key this time:
+
+    ```
+    PROVIDER=openai
+    OPENAI_API_KEY=sk-...
+    ```
+
+    (Or `PROVIDER=anthropic` with `ANTHROPIC_API_KEY`.) Do not set `OLLAMA_URL` here, there's nothing for it to point to.
+
+14. **Deploy.** Render builds the exact same `Dockerfile` you already tested locally and gives you a public URL, something like `https://fernwood-api.onrender.com`.
+
+15. **Call it, same commands as before, just a different host:**
+
+    ```bash
+    curl https://fernwood-api.onrender.com/health
+    curl -X POST https://fernwood-api.onrender.com/ask -H "Content-Type: application/json" -d '{"question": "What is your best-selling drink?"}'
+    ```
+
+    💡 Same PowerShell note as before: use `curl.exe` on Windows, not plain `curl`.
+
+    💡 Render's free tier spins a service down after **15 minutes** with no traffic and takes **about a minute** to wake back up on the next request. That first slow call is expected, it's the tradeoff for a host that isn't running around the clock for free.
+
+    🖥️ **Want to see it, not just curl it?** FastAPI serves an interactive UI at `/docs` automatically, no code required. Open `https://fernwood-api.onrender.com/docs` in a browser and try `/ask` by clicking through it.
+
+Nothing in `app.py` or the `Dockerfile` changed for this step. Same image, same code, the only thing that moved is which computer it's running on.
+
 ## What the lab is actually doing
 
 Open `app.py`.
@@ -129,3 +167,6 @@ Open `Dockerfile`. It's five real steps: start from a slim Python base image, in
 - **`docker build` fails on the `uv sync` step**: make sure `uv.lock` exists in the folder (it's committed to the repo) and wasn't excluded by a `.dockerignore` you added yourself, this lab doesn't ship one.
 - **Port 8000 already in use**: something else (maybe the local `uvicorn` run from step 4) is still bound to it. Stop that process, or change `-p 8000:8000` to `-p 8001:8000` and call `http://localhost:8001` instead.
 - **`docker: command not found`**: install Docker Desktop, Rancher Desktop, or another Docker-compatible engine, and make sure it's actually running (not just installed) before `docker build`.
+- **Render deploy fails or the live `/ask` call times out**: check that `PROVIDER` is set to `openai` or `anthropic` (not `ollama`) in Render's Environment tab, that the matching API key is set, and that `OLLAMA_URL` is *not* set, it has nothing to point to on Render's servers.
+- **First live request after a while hangs for about a minute**: normal. Render's free tier sleeps a service after 15 idle minutes and wakes it on the next request. Retry once it responds and it'll be fast from then on.
+- **Render can't find the Dockerfile / build fails immediately after connecting the fork**: the Dockerfile lives in `labs/advanced/07-shipping-it`, not the repo root. Set **Root Directory** to that path under the service's Settings > Build & Deploy, then trigger a manual deploy.
