@@ -10,6 +10,12 @@ description: What MCP is, what you'll build across this track, and how it builds
 > [Your First Agent](../intermediate/06-your-first-agent.md) chapters are the minimum. If those
 > are unfamiliar, start there first.
 
+> **Spec version:** this track teaches MCP as of the
+> [2026-07-28 spec revision](https://modelcontextprotocol.io/specification/2026-07-28/changelog),
+> the biggest overhaul since MCP launched. The protocol is now fully stateless, Sampling, Roots,
+> and Logging are officially deprecated, and the older HTTP+SSE transport is deprecated in favor
+> of Streamable HTTP, which is the only transport this track ever teaches.
+
 ## Where you're picking up
 
 Every agent you've built so far calls hand-wired tools: a `calculator` function you wrote, a
@@ -39,9 +45,10 @@ question, not a hypothetical one.
 By the end of this track, you'll connect an agent to an existing public MCP server, build and
 serve your own tool as an MCP server, wire one agent to more than one server at a time, deploy a
 server over both local and remote transports, use MCP primitives beyond tools (resources and
-prompts), and harden a multi-server agent against a malicious or poisoned tool description. The
-capstone puts all of it together: one agent, your own MCP server and a public one, guardrails, and
-a Streamlit UI on top.
+prompts), harden a multi-server agent against a malicious or poisoned tool description, and
+delegate a task to a remote agent over A2A, the sibling protocol for agent-to-agent instead of
+agent-to-tool communication. The capstone puts the MCP side of it together: one agent, your own
+MCP server and a public one, guardrails, and a Streamlit UI on top.
 
 ## Chapters ahead
 
@@ -57,7 +64,10 @@ a Streamlit UI on top.
    and a prompt template.*
 6. **MCP Security** — untrusted tool output, allowlisting, and supply-chain risk. *Lab: harden the
    Chapter 3 multi-server agent against a poisoned tool description.*
-7. **Capstone** — one agent, your own server and a public one, guardrails, and a Streamlit UI.
+7. **Beyond MCP: Agent2Agent (A2A)** — the sibling protocol for agent-to-agent instead of
+   agent-to-tool communication, and where it fits next to MCP. *Lab: discover two remote agents by
+   their Agent Cards and delegate a question to the right one.*
+8. **Capstone** — one agent, your own server and a public one, guardrails, and a Streamlit UI.
 
 ## What's next
 

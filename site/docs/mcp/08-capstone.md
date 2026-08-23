@@ -1,16 +1,16 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 description: The capstone for the MCP track, one agent, your own MCP server and a public one, a domain-allowlist guard on the risky tool, memory, and a Streamlit UI.
 ---
 
 import Quiz from '@site/src/components/Quiz';
-import {questions as mcp7Questions} from '@site/src/data/quizzes/mcp7';
+import {questions as mcp8Questions} from '@site/src/data/quizzes/mcp8';
 
-# Chapter 7: Capstone
+# Chapter 8: Capstone
 
 > **Time:** 20 minutes. **Cost:** $0 with Ollama, a fraction of a cent with OpenAI or Anthropic.
 
-Six chapters, six separate ideas: connecting to a server you didn't build, building your own, wiring two servers to one agent, swapping transports, reaching past tools into resources and prompts, and hardening an agent against one that lies to it. This chapter doesn't add a new idea. It puts all six into one agent and gives it a browser window.
+Six chapters, six separate ideas: connecting to a server you didn't build, building your own, wiring two servers to one agent, swapping transports, reaching past tools into resources and prompts, and hardening an agent against one that lies to it. This chapter doesn't add a new idea about *MCP*. It puts all six into one agent and gives it a browser window. Chapter 7's A2A agents sit outside this capstone, on purpose: they're a separate protocol for a separate job, agent-to-agent instead of agent-to-tool, not another plumbing piece this agent needs.
 
 ## What's being combined
 
@@ -35,7 +35,7 @@ Not every risky tool call is that clear-cut. [Advanced Concepts: Human-in-the-Lo
 
 ## Hands-on lab: one agent, two servers, a guard, and a UI
 
-Full instructions: [`labs/mcp/07-capstone`](https://github.com/fewshot-works/academy/tree/main/labs/mcp/07-capstone)
+Full instructions: [`labs/mcp/08-capstone`](https://github.com/fewshot-works/academy/tree/main/labs/mcp/08-capstone)
 
 A real run, with Ollama:
 
@@ -87,10 +87,10 @@ When a call is too consequential or too context-dependent for a fixed rule to ju
 <details>
 <summary>Click to start quiz</summary>
 
-<Quiz chapterId="mcp7" questions={mcp7Questions} />
+<Quiz chapterId="mcp8" questions={mcp8Questions} />
 
 </details>
 
 ## What's next
 
-That's the MCP track. You've connected to servers you didn't write, built and served your own, wired several to one agent, deployed over two transports, used every primitive MCP defines, and hardened an agent against a server that lies to it. From here, the [Advanced Concepts](/docs/advanced-concepts/overview) chapters this track has been linking back to, agent security, human-in-the-loop, guardrails, are worth a closer look if you haven't read them yet.
+That's the MCP track. You've connected to servers you didn't write, built and served your own, wired several to one agent, deployed over two transports, used every primitive MCP defines, hardened an agent against a server that lies to it, and delegated a task to another agent entirely over A2A. From here, the [Advanced Concepts](/docs/advanced-concepts/overview) chapters this track has been linking back to, agent security, human-in-the-loop, guardrails, are worth a closer look if you haven't read them yet.

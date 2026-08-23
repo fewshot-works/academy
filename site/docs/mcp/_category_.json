@@ -3,6 +3,6 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "A standalone track on the Model Context Protocol: connecting agents to tool servers you didn't write, building your own, and securing a multi-server agent."
+    "description": "A standalone track on the Model Context Protocol: connecting agents to tool servers you didn't write, building your own, securing a multi-server agent, and delegating to another agent over A2A."
   }
 }

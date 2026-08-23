@@ -109,4 +109,4 @@ It checks the `to` argument against a fixed set of approved recipients before ca
 
 ## What's next
 
-Chapter 7 pulls everything in this track together: one agent, your own MCP server alongside a public one, the guardrail pattern from this chapter, and a Streamlit UI on top.
+Every chapter so far has been about an agent talking to *tools*, servers that answer "what do you offer?" and wait to be called. Chapter 7 looks at a related but different problem: an agent talking to another *agent*, over a separate protocol built for exactly that. Chapter 8 then pulls the MCP side of this track together into one capstone.

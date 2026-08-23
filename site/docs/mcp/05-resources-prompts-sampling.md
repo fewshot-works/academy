@@ -59,6 +59,8 @@ MCP defines a few more primitives beyond resources and prompts, roots and elicit
 
 The official MCP Python SDK supports this at the `ClientSession` level, but `langchain-mcp-adapters`, the wrapper every lab in this track uses, doesn't expose it as of this writing. Building a sampling-capable client means dropping to the raw SDK instead. Worth knowing exists, not worth a broken lab pretending otherwise.
 
+That decision turned out to be the right one: the [2026-07-28 spec revision](https://modelcontextprotocol.io/specification/2026-07-28/changelog) officially deprecated Sampling, along with Roots and Logging, in favor of servers integrating directly with an LLM provider's own API instead of asking back through the client.
+
 ## Hands-on lab: read a resource, fill in a prompt
 
 Full instructions: [`labs/mcp/05-resources-prompts-sampling`](https://github.com/fewshot-works/academy/tree/main/labs/mcp/05-resources-prompts-sampling)

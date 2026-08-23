@@ -1,6 +1,6 @@
 # Lab: MCP Capstone
 
-Companion lab for [MCP Chapter 7: Capstone](https://fewshotacademy.com/docs/mcp/capstone). One agent, two MCP servers, `calculator_server.py` (your own, unchanged since Chapter 2) and `mcp-server-fetch` (public, unchanged since Chapter 1 and Chapter 3), with memory across the conversation and a guardrail on fetch, the one tool here that can actually go wrong.
+Companion lab for [MCP Chapter 8: Capstone](https://fewshotacademy.com/docs/mcp/capstone). One agent, two MCP servers, `calculator_server.py` (your own, unchanged since Chapter 2) and `mcp-server-fetch` (public, unchanged since Chapter 1 and Chapter 3), with memory across the conversation and a guardrail on fetch, the one tool here that can actually go wrong.
 
 ## Before you start
 
@@ -13,14 +13,14 @@ This lab is chat-only, no embeddings involved, so it supports all three provider
 1. **Move into the lab folder.** If you already cloned the repo for an earlier lab, just `cd` into this one:
 
    ```bash
-   cd academy/labs/mcp/07-capstone
+   cd academy/labs/mcp/08-capstone
    ```
 
    Otherwise, clone the repo first:
 
    ```bash
    git clone https://github.com/fewshot-works/academy.git
-   cd academy/labs/mcp/07-capstone
+   cd academy/labs/mcp/08-capstone
    ```
 
 2. **If you're using Ollama, make sure the model is pulled:**
