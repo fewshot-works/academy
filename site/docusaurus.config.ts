@@ -165,6 +165,22 @@ const config: Config = {
           textColor: '#1c2622',
           arrowheadColor: '#c17c3a',
           fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
+          // xychart-beta falls back to primaryColor for bar fill, which is
+          // #eae6da here — nearly invisible against the #f6f4ef card behind
+          // it. Give bars their own solid, high-contrast color instead.
+          xyChart: {
+            backgroundColor: '#f6f4ef',
+            titleColor: '#1c2622',
+            xAxisLabelColor: '#1c2622',
+            xAxisTitleColor: '#1c2622',
+            xAxisTickColor: '#1c2622',
+            xAxisLineColor: '#1c2622',
+            yAxisLabelColor: '#1c2622',
+            yAxisTitleColor: '#1c2622',
+            yAxisTickColor: '#1c2622',
+            yAxisLineColor: '#1c2622',
+            plotColorPalette: '#1f5d4c',
+          },
         },
       },
     },
