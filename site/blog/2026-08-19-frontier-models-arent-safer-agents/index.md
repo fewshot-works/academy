@@ -31,6 +31,14 @@ ToolHazard's Environment Simulator, Attacker Agent, and User Simulator generate 
 | DeepSeek-V3.2 | 1.2% to 75.0% |
 | Qwen3-8B | 11.8% to 54.3% |
 
+```mermaid
+xychart-beta
+    title "Worst-case attack success rate by model"
+    x-axis ["GPT-5", "Qwen3-8B", "Gemini-3.1-Pro", "DeepSeek-V3.2", "GPT-4.1"]
+    y-axis "ASR at worst framing (%)" 0 --> 100
+    bar [59.1, 54.3, 63.2, 75.0, 75.6]
+```
+
 Every model's low end sits near zero, meaning it holds fine against a poorly-framed attack. Every model's high end climbs into a range where a real attacker, picking the framing that works, gets through more than half the time. Bigger and newer helped some (GPT-5 fares better than GPT-4.1 on the worst framings) but not enough to call the problem solved. This isn't a small-model issue you outgrow by upgrading.
 
 Two mechanical findings stood out. Injected instructions succeed more often when they show up **early** in an agent's trajectory, and when they're placed **near the end** of a tool's returned text rather than buried in the middle. That second one lines up with a pattern long known outside security research too, "lost in the middle" work has shown models attend unevenly across long context, favoring the start and the end. ToolHazard is evidence that an attacker can exploit the exact same bias.

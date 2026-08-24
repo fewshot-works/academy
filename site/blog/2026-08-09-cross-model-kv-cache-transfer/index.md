@@ -21,7 +21,16 @@ An LLM has no memory between API calls. Send it a long conversation, and it has 
 
 If the same conversation hits the same model twice in a row, most of that prefill is identical: same system prompt, same tools, most of the same history. Providers cache that work so the repeat call is cheap, and both major providers land on the same discount. On [Anthropic's pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching), a cache hit costs exactly 10% of the base input price, Claude Sonnet 5 charges $2 per million input tokens and $0.20 per million for a cache hit. On [OpenAI's pricing](https://developers.openai.com/api/docs/guides/prompt-caching), GPT-5.1 charges $1.25 per million input tokens and $0.125 per million cached, the same 10%.
 
-The catch: that cache only works for the model that built it. The notes are shaped by that specific model's weights, so a small model's notes are gibberish to a bigger model, even one from the same family trained on similar data. And a lot of production systems now route a single conversation across model sizes mid-conversation, a cheap model for easy turns, a bigger one when the question gets hard. The paper says it plainly: "each swap forces the receiver to repay the prefill from scratch." Every swap wipes out the discount.
+The catch: that cache only works for the model that built it. The notes are shaped by that specific model's weights, so a small model's notes are gibberish to a bigger model, even one from the same family trained on similar data. And a lot of production systems now route a single conversation across model sizes mid-conversation, a cheap model for easy turns, a bigger one when the question gets hard.
+
+```mermaid
+flowchart LR
+    A[Model A reads prompt] --> B["KV cache<br/>(shaped by Model A's weights)"]
+    B -->|conversation swaps to Model B| C["Cache is gibberish<br/>to Model B"]
+    C --> D[Full re-prefill, discount lost]
+```
+
+The paper says it plainly: "each swap forces the receiver to repay the prefill from scratch." Every swap wipes out the discount.
 
 ## Two models' notes turn out to be related
 
@@ -66,6 +75,14 @@ The 73-98% headline only covers four of the six pairs. The other two both target
 
 - **Ministral 3B → 14B:** retains 44.2% of accuracy
 - **Ministral 8B → 14B:** retains 41.6% of accuracy
+
+```mermaid
+xychart-beta
+    title "Accuracy retained after cross-model KV cache transfer"
+    x-axis ["Ministral 8B→14B", "Ministral 3B→14B", "4 other pairs: low end", "4 other pairs: high end"]
+    y-axis "Accuracy retained (%)" 0 --> 100
+    bar [41.6, 44.2, 73, 98]
+```
 
 That's the honest middle of the paper, not just its best number.
 

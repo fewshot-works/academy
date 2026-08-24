@@ -17,9 +17,33 @@ Rank the risks by raw incident count alone, and prompt injection falls out of th
 
 Misinformation moved the other way, and further. Practitioners ranked it near the bottom. The incident record put it near the top, the widest gap of any category, in the direction that costs money: a fluent, confident wrong answer becomes a wrong action once it drives a tool call or a decision. It didn't just hold steady, it climbed two spots.
 
+:::tip
 OWASP weighted the practitioner vote at three-quarters and the incident data at one quarter, on purpose. A single year of incident data doesn't get to override the community's judgment, but it's enough to move a category a tier or two when the gap between belief and evidence runs wide. That's the mechanism behind every reorder below.
+:::
 
 ## The full 2026 list, and what moved
+
+The biggest movers, before the full detail:
+
+```mermaid
+flowchart LR
+    subgraph r2025["2025 rank"]
+        A1["#5 Improper Output Handling"]
+        A2["#6 Excessive Agency"]
+        A3["#9 Misinformation"]
+        A4["#10 Unbounded Consumption"]
+    end
+    subgraph r2026["2026 rank"]
+        B1["#10 Improper Output Handling"]
+        B2["#3 Excessive Agency"]
+        B3["#7 Misinformation"]
+        B4["#6 Unbounded Consumption"]
+    end
+    A1 --> B1
+    A2 --> B2
+    A3 --> B3
+    A4 --> B4
+```
 
 | 2026 | Risk | 2025 rank | Move | What it looks like |
 |---|---|---|---|---|

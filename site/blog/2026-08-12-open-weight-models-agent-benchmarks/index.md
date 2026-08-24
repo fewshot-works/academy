@@ -15,6 +15,19 @@ For the last two years, open-weight model releases have mostly been a China stor
 Meta shipped two models this week. Muse Glimmer (30B, Apache 2.0, runs on one consumer GPU) beats Gemma4-31B and Qwen3.6-27B at agent-style benchmarks like MCP Atlas, though it still loses to Qwen3.6-27B on computer-use and terminal tasks. Muse Spark 1.2 is Meta's hosted, 1M-token sibling for long sessions. The same week, OpenAI shipped a new flagship family, GPT-5.6 (Sol/Terra/Luna), and xAI shipped Grok 4.6, a closed model built for long-running agent work that lands about even with GPT-5.6 Sol on Artificial Analysis's Intelligence Index. OpenAI also has a narrower cybersecurity-specific model built on top of GPT-5.6, more on that one in a follow-up post. Skip to [What Muse Glimmer actually gets you](#what-muse-glimmer-actually-gets-you) for the numbers.
 :::
 
+## The lineup at a glance
+
+Five models, three labs, one week. Specs first, rationale below:
+
+| Model | Weights | Context | Price / M tokens (in / out) | Standout | Tradeoff |
+|---|---|---|---|---|---|
+| Muse Glimmer (30B) | Open, Apache 2.0 | 131K | Free, runs local | MCP Atlas 75.5 vs. 54.2/62.5 rivals | Loses to Qwen3.6-27B on computer-use/terminal tasks |
+| Muse Spark 1.2 | Closed, hosted | 1M | $1.25 / $4.25 (standard) | Long sessions without re-summarizing | "Contributor" tier is 12x cheaper, costs you data privacy |
+| GPT-5.6 Luna | Closed | 1M | $1 / $6 | Budget tier of the family | — |
+| GPT-5.6 Terra | Closed | 1M | $2.50 / $15 | Mid-tier | — |
+| GPT-5.6 Sol | Closed | 1M | $5 / $30 | Flagship, Programmatic Tool Calling | Priciest of the three |
+| Grok 4.6 | Closed | — | $2 / $6 (faster variant: 2x) | Matches GPT-5.6 Sol at 61 on Intelligence Index | Frontier proprietary, not the 30B run-on-your-GPU bracket |
+
 ## Muse Glimmer: built to run on one consumer GPU
 
 Muse Glimmer is a dense transformer, not a mixture-of-experts model, with a 2-billion-parameter vision encoder feeding a 28-billion-parameter text decoder, about 30B total. It reads text and images (no audio, video is sampled as individual frames) and writes text back. Context tops out past 131,000 tokens, and Meta's own documentation lists a knowledge cutoff of January 4, 2026.
@@ -24,6 +37,14 @@ What makes it notable is where it's meant to run: one consumer GPU. The minimum 
 ## What Muse Glimmer actually gets you
 
 Meta compared it against Gemma4-31B and Qwen3.6-27B, two similarly sized rivals, on agent-style benchmarks:
+
+```mermaid
+xychart-beta
+    title "MCP Atlas score, ~30B-parameter models"
+    x-axis ["Gemma4-31B", "Qwen3.6-27B", "Muse Glimmer"]
+    y-axis "Score" 0 --> 100
+    bar [54.2, 62.5, 75.5]
+```
 
 - **MCP Atlas: 75.5**, versus 54.2 (Gemma4) and 62.5 (Qwen3.6) — a wide lead on tool-calling-heavy tasks
 - **DeepSearch QA: 74.6**

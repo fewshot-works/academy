@@ -31,6 +31,13 @@ None of these are new models. They're the same underlying models you'd get calli
 
 Here's the part the "avoid vendor lock-in" pitch skips: switching Bedrock's model parameter from Claude to Llama is genuinely easy. Switching your whole application off AWS, once it's wired into Bedrock's IAM roles, private network (VPC) endpoints, and CloudWatch logging, is not. You've traded a one-line config change (swapping which provider's API key you use) for a cloud migration.
 
+```mermaid
+flowchart LR
+    A[Model-provider lock-in] -->|"swap Bedrock's model param"| B["Looks solved"]
+    B -->|but you gained| C["Cloud-provider lock-in<br/>(IAM, VPC, billing, logging)"]
+    C -->|harder to unwind than| A
+```
+
 That's not automatically a bad trade. If your company is already all-in on AWS, Azure, or GCP for everything else, adding the model layer to infrastructure you're not leaving anyway costs you almost nothing extra. The mistake is treating "we moved to a model platform" as solving vendor risk in general, when it really just moves that risk one layer up, from a model company to a cloud company, and cloud contracts are usually harder to unwind than model contracts.
 
 ## Where the three actually differ

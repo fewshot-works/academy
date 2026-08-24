@@ -19,6 +19,12 @@ A year ago, agent memory mostly meant stuffing more of the conversation into the
 - **Mem0** takes a different approach: an extraction pipeline that decides, turn by turn, whether to ADD, UPDATE, DELETE, or leave alone a piece of remembered information. It's the most widely adopted of the group (around 48,000 GitHub stars as of mid-2026, on $24 million raised as of late 2025), and its published benchmarks claim a 26% accuracy improvement over OpenAI's built-in memory feature, plus roughly 90% lower token costs and 91% lower p95 latency than a full-context approach.
 - **Zep**'s Graphiti architecture is built specifically for temporal reasoning: remembering not just *what* you said, but *when*, and how that changes what's still true later.
 
+| Framework | Core approach | Headline benchmark | Adoption |
+|---|---|---|---|
+| LangMem | Episodic + semantic + procedural memory types | 58% on LOCOMO, ~60s p95 latency | LangChain/LangGraph ecosystem |
+| Mem0 | Turn-by-turn ADD/UPDATE/DELETE pipeline | 26% accuracy gain vs. OpenAI's built-in memory, ~90% lower tokens | ~48,000 GitHub stars, $24M raised |
+| Zep (Graphiti) | Temporal knowledge graph | Disputes Mem0's token-usage comparison on the same task | — |
+
 Underneath the branding, most of these tools converge on the same split: **short-term memory** (what happened in this conversation) versus **long-term memory** (what's worth carrying into the next one). Different frameworks are just optimizing for different sides of that line, and dressing it up in different vocabulary: episodic vs. semantic, ADD/UPDATE/DELETE, temporal graphs.
 
 ## The honest caveat: even the vendors don't agree

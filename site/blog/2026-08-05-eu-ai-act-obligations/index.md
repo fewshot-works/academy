@@ -21,6 +21,21 @@ The Act entered into force in August 2024 and rolls out in phases, not all at on
 - Obligations for **general-purpose AI model providers** began in **August 2025**.
 - The big one, obligations for **high-risk AI systems** (hiring, credit scoring, education, critical infrastructure), was originally set for **August 2, 2026**.
 
+```mermaid
+timeline
+    title EU AI Act phased rollout
+    section 2025
+        Feb : Prohibited practices banned : AI literacy duty begins
+        Aug : GPAI provider obligations begin
+    section 2026
+        Aug 2 : Article 50 transparency obligations begin
+        Dec 2 : Nudifying-app ban takes full effect : watermarking transitional period ends
+    section 2027
+        Dec 2 : High-risk system obligations begin (moved from Aug 2026)
+    section 2028
+        Aug : Product-embedded high-risk systems begin (medical devices, lifts)
+```
+
 ## The deadline move is no longer a maybe
 
 Back in May 2026, EU negotiators reached a political agreement, the "Digital Omnibus on AI," to push that high-risk deadline out. At the time, it was still provisional: a deal that hadn't cleared Parliament or the Council yet.

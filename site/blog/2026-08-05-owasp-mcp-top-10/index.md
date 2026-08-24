@@ -42,6 +42,21 @@ All ten categories, in OWASP's ranked order, with a concrete example of each:
 | MCP09 | Shadow MCP servers | Someone wires up an MCP server IT never approved or reviewed, the AI equivalent of shadow IT, except this one can execute code | A team spins up a quick internal MCP server for a hackathon prototype, connects it to a production data source for convenience, and it's still running six months later, unpatched and unreviewed |
 | MCP10 | Context injection & over-sharing | Shared or poorly scoped context/memory leaks sensitive data between unrelated tasks, users, or agents | A multi-tenant agent setup carries one customer's data forward into a different customer's session because the context store wasn't scoped per-user |
 
+Solid lines are the agent's normal connections. Dotted lines are what a compromised Server 1 can reach without ever touching the agent:
+
+```mermaid
+flowchart LR
+    Agent --> S1["Server 1<br/>(compromised)"]
+    Agent --> S2[Server 2]
+    Agent --> S3[Server 3]
+    Agent --> S4[Server 4]
+    Agent --> S5[Server 5]
+    S1 -.-> S2
+    S1 -.-> S3
+    S1 -.-> S4
+    S1 -.-> S5
+```
+
 :::danger
 Read the MCP07 row again: 78.3%. Connecting multiple MCP servers to one agent doesn't just add risk per server, it lets a single compromised server reach across the others. Treating each connection as independently trustworthy is the mistake.
 :::
@@ -65,4 +80,4 @@ None of this means MCP is unsafe to build on. It means the same short list of ha
 - Log what a tool actually did, not just that it was called
 - Treat the model plus every connected server as one trust boundary, not separate ones
 
-We cover the same ground in the [Agent Security](/docs/advanced-concepts/agent-security) chapter. The Top 10 list itself will keep changing as new attack patterns show up (it's currently in a "beta, gathering feedback" phase), and this post will get updated if that status changes.
+We cover the same ground in the [Agent Security](/docs/advanced-concepts/agent-security) chapter. Trust every connected MCP server the way you'd trust a new dependency, not the way you trust code you wrote yourself. That single habit would have blunted most of the CVEs above before they shipped.

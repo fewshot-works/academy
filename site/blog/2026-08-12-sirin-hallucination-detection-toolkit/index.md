@@ -21,6 +21,12 @@ SIRIN is an open-source toolkit that unifies three different ways to catch a RAG
 
 **Representation probing** works differently. It trains a small classifier on the model's hidden states, the internal numbers a model produces while generating, learning to separate "this generation pattern usually means a faithful answer" from "this pattern usually means a hallucinated one." It's white-box: you need access to those internals, which rules it out for a model you only reach through an API.
 
+| Method | Access needed | What it reads |
+|---|---|---|
+| Judge-style verification | Black-box (API-only fine) | A second model's read of evidence vs. answer |
+| Representation probing | White-box (needs internals) | The model's own hidden states while generating |
+| Uncertainty estimation | Black-box | How confident the model was (entropy, perplexity, 38 fused estimators) |
+
 **Uncertainty estimation** doesn't read the answer's content at all. It looks at how confident the model was while generating it, things like entropy and perplexity, and SIRIN fuses 38 separate estimators of this kind (wrapping an existing library called LM-Polygraph) into one calibrated score. A model that's "unsure" in a measurable way is more likely to be guessing.
 
 Three methods, three completely different signals: what a second model thinks, what the first model's internals show, and how confident the first model was. SIRIN's premise is that none of them alone is trustworthy enough to be the whole answer.
@@ -28,6 +34,14 @@ Three methods, three completely different signals: what a second model thinks, w
 ## How the three methods actually stack up
 
 The paper backs that premise with numbers across three datasets: RAGTruth (QA, summarization, and data-to-text), SQuAD 2.0 (response-level detection plus answerability), and PsiloQA (span-level, English subset). There's no single winner, which method comes out ahead depends on how much labeled data you have:
+
+```mermaid
+xychart-beta
+    title "RAGTruth QA hallucination detection (AUROC)"
+    x-axis ["Probe (few labels)", "Judge (few labels)", "Judge (more labels)"]
+    y-axis "AUROC" 0 --> 100
+    bar [88.0, 81.6, 93.5]
+```
 
 - **With few labeled examples, probing wins.** On RAGTruth, a lightweight probe reaches 88.0 AUROC on QA and 85.3 on data-to-text, beating a LoRA-tuned judge trained on that same small amount of data (80.2-81.6 AUROC).
 - **With enough labeled examples, the judge wins.** Given more supervision, a LoRA-tuned Qwen3-4B judge climbs to 91.8-93.5 AUROC on RAGTruth and 87.0 AUROC / 70.2 F1 on SQuAD 2.0, roughly 9 points ahead of the best probe on RAGTruth.

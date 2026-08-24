@@ -130,6 +130,22 @@ article > header h1 {
 }
 
 /*
+ * Mermaid's themeVariables (docusaurus.config.ts) are one fixed light-card
+ * palette shared across light and dark mode -- Docusaurus doesn't let
+ * mermaid.initialize() react to the site's theme toggle. Node/actor/note
+ * boxes carry their own light fill so they stay readable either way, but
+ * plain message text (e.g. sequence diagram arrow labels) has no box behind
+ * it and otherwise sits directly on the page background, invisible in dark
+ * mode. Give every diagram its own fixed light card so it always matches
+ * the palette it was actually themed for.
+ */
+.docusaurus-mermaid-container {
+  background-color: #f6f4ef;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/*
  * Navbar dropdowns: Infima's default caret + menu look dated (thin triangle,
  * flat white panel, no spacing). Restyle to a small muted chevron and a
  * card-like panel matching the sidebar/homepage treatment instead of ripping
