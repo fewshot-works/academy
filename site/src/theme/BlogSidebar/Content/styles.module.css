@@ -1,0 +1,9 @@
+.monthGroupHeading {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: var(--ifm-font-weight-semibold);
+  color: var(--ifm-color-emphasis-600);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}

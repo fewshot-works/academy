@@ -1,0 +1,34 @@
+.blogContainer {
+  /* Infima's default .container centers at max-width: 1320px, which on wide
+     screens leaves a huge empty margin on both sides and strands the sidebar
+     far from the real page edge (the navbar above it is edge-to-edge, with
+     ~16px padding). Go near-full-width instead, left-aligned like the
+     navbar, with a generous cap so body text doesn't get absurdly long on
+     ultra-wide monitors. */
+  width: 100%;
+  max-width: 1800px;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+@media (min-width: 997px) {
+  .blogContainer {
+    padding: 0 1.5rem;
+  }
+}
+
+.main {
+  /* Flex items default to min-width: auto, so a long unbreakable token deep
+     inside post content (e.g. a code span with no spaces) can bubble up as
+     this column's minimum size and force the row to wrap below the sidebar.
+     min-width: 0 lets it shrink to the available space and scroll/wrap
+     internally instead. */
+  min-width: 0;
+  /* Extra breathing room so body text isn't flush against the sidebar/TOC. */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.toc {
+  padding-left: 2rem;
+}
