@@ -8,8 +8,8 @@ directory.
 
 1. Follow the user's current request and explicit decisions.
 2. Follow this `AGENTS.md` for repository process and quality gates.
-3. Use `CLAUDE.md`, `CONTENT_REVIEW_CHECKLIST.md`, `site/PRODUCT.md`, existing implementations,
-   and linked GitHub issues as supporting context.
+3. Use `site/PRODUCT.md`, existing implementations, and linked GitHub issues as supporting
+   context.
 4. Treat status summaries in older notes as potentially stale. Verify the current source tree,
    live configuration, and issue state before relying on them.
 
@@ -256,8 +256,8 @@ Use Mermaid for diagrams instead of embedding static diagram screenshots.
 
 When testing with Ollama, use:
 
-- Start: `/Users/mrai/datastax/codesample/help-scripts/start_ollama.sh`
-- Stop: `/Users/mrai/datastax/codesample/help-scripts/stop_ollama.sh`
+- Start from the repository root: `../help-scripts/start_ollama.sh`
+- Stop from the repository root: `../help-scripts/stop_ollama.sh`
 
 Always stop Ollama in the same working session after testing.
 

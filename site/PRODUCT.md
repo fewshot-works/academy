@@ -9,7 +9,7 @@ web
 ## Users
 
 Primary: complete beginners to GenAI — a curious high schooler through a 50-year-old career
-changer, zero CS background assumed (per project CLAUDE.md's stated voice/audience).
+changer, zero CS background assumed (per the project `AGENTS.md` voice and audience rules).
 
 Growing secondary audience, confirmed by the site owner: technical job-seekers who arrive
 searching for how to prepare for a specific AI-era role (Forward-Deployed Engineer, Applied /
