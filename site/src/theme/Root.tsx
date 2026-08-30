@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import {useEffect, useState} from 'react';
 import Link from '@docusaurus/Link';
+import EngagementLinkTracker from '@site/src/components/EngagementLinkTracker';
 import styles from './Root.module.css';
 
 const STORAGE_KEY = 'zta-disclaimer-dismissed';
@@ -46,6 +47,7 @@ function DisclaimerBanner() {
 export default function Root({children}: {children: ReactNode}): ReactNode {
   return (
     <>
+      <EngagementLinkTracker />
       {children}
       <DisclaimerBanner />
     </>

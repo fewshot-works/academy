@@ -6,7 +6,7 @@ import {
   type CurriculumLesson,
 } from '@site/src/data/curriculum';
 import {useLearningProgress} from '@site/src/hooks/useLearningProgress';
-import {trackLearningEvent} from '@site/src/utils/analytics';
+import {trackEngagementEvent} from '@site/src/utils/analytics';
 import styles from './styles.module.css';
 
 export default function LessonCompletion({lesson}: {lesson: CurriculumLesson}): ReactNode {
@@ -34,7 +34,7 @@ export default function LessonCompletion({lesson}: {lesson: CurriculumLesson}): 
   function complete() {
     const result = completeLesson(lesson.id);
     if (result.changed) {
-      trackLearningEvent('lesson_complete', {
+      trackEngagementEvent('lesson_complete', {
         track_id: lesson.trackId,
         lesson_id: lesson.id,
         completion_method: 'button',

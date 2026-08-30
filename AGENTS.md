@@ -30,6 +30,7 @@ Repository map:
 
 - `site/`: Docusaurus content site, custom React pages, blog, quizzes, and Cloudflare Pages
   Functions.
+- `site/ANALYTICS.md`: privacy boundaries, GA4 event taxonomy, setup, and reporting definitions.
 - `labs/`: self-contained Python labs, one folder per lesson/project.
 - `email-worker/`: Cloudflare Worker used for contact notifications.
 - `.github/workflows/deploy.yml`: production build, lab ZIP creation, migrations, and deployment.
@@ -68,6 +69,10 @@ brand change:
 - Do not broaden a content edit into a framework/design migration without explicit approval.
 - Agents may create local git commits autonomously when a coherent unit of work is complete and
   verified. Use focused commits with clear messages, and never include unrelated user changes.
+- Link issue-related commits explicitly. Use `Closes #N` when the commit fully satisfies an
+  issue so GitHub closes it when the change reaches the default branch. Use `Refs #N` when the
+  commit is only a partial step. Never use a closing keyword before the issue's acceptance
+  criteria and the repository definition of done are satisfied.
 - Do not push, merge, deploy, close issues, or open a pull request unless the user asks for that
   action in the current conversation.
 

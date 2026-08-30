@@ -11,7 +11,7 @@ import {
   findResumeLesson,
   hasLearningProgress,
 } from '@site/src/utils/learningProgressCore';
-import {trackLearningEvent} from '@site/src/utils/analytics';
+import {trackEngagementEvent} from '@site/src/utils/analytics';
 import styles from './styles.module.css';
 
 export default function HomepageContinueLearning(): ReactNode {
@@ -51,7 +51,7 @@ export default function HomepageContinueLearning(): ReactNode {
     if (!lesson) {
       return;
     }
-    trackLearningEvent('continue_learning_click', {
+    trackEngagementEvent('continue_learning_click', {
       track_id: lesson.trackId,
       lesson_id: lesson.id,
     });
