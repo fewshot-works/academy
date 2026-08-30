@@ -9,6 +9,76 @@
   text-transform: uppercase;
 }
 
+.lessonProgressStrip {
+  margin: 0.5rem 0 1.15rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--zta-border);
+  border-bottom: 1px solid var(--zta-border);
+}
+
+.lessonProgressSummary,
+.lessonProgressDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lessonProgressTrack {
+  color: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lessonProgressCount,
+.lessonProgressLink {
+  font-size: 0.78rem;
+}
+
+.lessonProgressCount {
+  color: var(--zta-ink-muted);
+}
+
+.lessonProgressDetails {
+  margin-top: 0.45rem;
+}
+
+.lessonProgressBar {
+  flex: 1;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+}
+
+.lessonProgressBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ifm-color-primary);
+  transition: width 0.2s ease;
+}
+
+.lessonProgressLink {
+  flex-shrink: 0;
+  color: var(--zta-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lessonProgressLink:hover,
+.lessonProgressLink:focus-visible {
+  color: var(--ifm-color-primary);
+}
+
+.lessonProgressLink:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
 .lessonControl,
 .trackProgress,
 .continueCard {
@@ -153,6 +223,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lessonProgressBar span,
   .progressBar span {
     transition: none;
   }
