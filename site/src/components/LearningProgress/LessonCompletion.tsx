@@ -1,6 +1,10 @@
 import {useEffect, useId, type ReactNode} from 'react';
 import Heading from '@theme/Heading';
-import {findTrackById, type CurriculumLesson} from '@site/src/data/curriculum';
+import {
+  findTrackById,
+  isFinalTrackLesson,
+  type CurriculumLesson,
+} from '@site/src/data/curriculum';
 import {useLearningProgress} from '@site/src/hooks/useLearningProgress';
 import {trackLearningEvent} from '@site/src/utils/analytics';
 import styles from './styles.module.css';
@@ -17,12 +21,13 @@ export default function LessonCompletion({lesson}: {lesson: CurriculumLesson}): 
   } = useLearningProgress();
   const track = findTrackById(lesson.trackId);
   const isCompleted = progress.completedLessonIds.includes(lesson.id);
+  const showManualCompletion = isFinalTrackLesson(lesson);
 
   useEffect(() => {
     recordVisit(lesson.id);
   }, [lesson.id, recordVisit]);
 
-  if (!hydrated) {
+  if (!hydrated || !showManualCompletion) {
     return null;
   }
 
@@ -50,8 +55,8 @@ export default function LessonCompletion({lesson}: {lesson: CurriculumLesson}): 
         </Heading>
         <p className={styles.lessonCopy}>
           {isCompleted
-            ? 'This lesson now counts toward your track progress.'
-            : 'Mark it complete now, or use Next below to complete it automatically.'}
+            ? 'This capstone now counts toward your track progress.'
+            : 'Mark it complete after you finish the capstone.'}
         </p>
         {storageStatus === 'unavailable' && (
           <p className={styles.storageWarning} role="status">

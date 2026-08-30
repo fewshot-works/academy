@@ -9,7 +9,11 @@ import {
   setLessonCompletion,
   visitLesson,
 } from '../src/utils/learningProgressCore.ts';
-import {CURRICULUM_LESSONS, CURRICULUM_TRACKS} from '../src/data/curriculum.ts';
+import {
+  CURRICULUM_LESSONS,
+  CURRICULUM_TRACKS,
+  isFinalTrackLesson,
+} from '../src/data/curriculum.ts';
 
 const fixtureLessons = [
   {id: 'foundations:one', trackId: 'foundations'},
@@ -28,6 +32,20 @@ test('the curriculum registry uses unique stable IDs and routes', () => {
       ['intermediate', 9],
       ['advanced', 8],
       ['mcp', 8],
+    ],
+  );
+});
+
+test('only the final capstone in each track receives manual completion', () => {
+  const manualLessons = CURRICULUM_LESSONS.filter(isFinalTrackLesson);
+
+  assert.deepEqual(
+    manualLessons.map((lesson) => lesson.id),
+    [
+      'foundations:capstone',
+      'intermediate:capstone',
+      'advanced:capstone',
+      'mcp:capstone',
     ],
   );
 });

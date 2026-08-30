@@ -241,3 +241,8 @@ export function findTrackById(id: TrackId): CurriculumTrack {
   }
   return result;
 }
+
+export function isFinalTrackLesson(lesson: CurriculumLesson): boolean {
+  const lessons = findTrackById(lesson.trackId).lessons;
+  return lessons[lessons.length - 1]?.id === lesson.id;
+}
