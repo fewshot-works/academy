@@ -3,7 +3,11 @@ sidebar_position: 1
 description: What MCP is, what you'll build across this track, and how it builds on the tool-calling agents from Intermediate and Advanced.
 ---
 
+import TrackProgress from '@site/src/components/LearningProgress/TrackProgress';
+
 # MCP Overview
+
+<TrackProgress trackId="mcp" />
 
 > **Before you start:** this track assumes you've built a tool-calling agent already —
 > Intermediate's [Tool Use](../intermediate/05-tool-use.md) and
