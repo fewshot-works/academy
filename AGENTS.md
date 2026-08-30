@@ -62,8 +62,9 @@ brand change:
 - Read the relevant issue and inspect the current implementation before proposing a rewrite.
 - Treat one GitHub issue or one clearly bounded deliverable as the unit of work.
 - Check `git status` before editing. Preserve unrelated user changes.
-- Work on an appropriately named branch. Do not switch branches if doing so would overwrite or
-  strand uncommitted user work.
+- Continue on the repository's current shared work branch. Do not create or switch to a separate
+  branch for each issue unless the user explicitly asks. Never switch branches if doing so would
+  overwrite or strand uncommitted user work.
 - Do not broaden a content edit into a framework/design migration without explicit approval.
 - Agents may create local git commits autonomously when a coherent unit of work is complete and
   verified. Use focused commits with clear messages, and never include unrelated user changes.
