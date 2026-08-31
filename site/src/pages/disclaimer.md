@@ -1,38 +1,45 @@
 ---
 title: Disclaimer
-description: What Few-Shot Academy is, what it isn't, and what you're responsible for when you run the labs.
+description: What Few-Shot Academy is, what it is not, and what you are responsible for when you run the labs.
 ---
 
 # Disclaimer
 
-Few-Shot Academy is a free, open-source course. It's not professional advice — not
-legal, financial, security, or otherwise. Use what you learn here at your own
-judgment.
+Few-Shot Academy is a free, open-source educational resource. It does not provide legal,
+financial, security, medical, career, or other professional advice. Use the material as a
+starting point and apply your own judgment.
 
-Some labs call a paid API (OpenAI or Anthropic) that bills you directly, at
-your own risk. This project never sees your API key or your money — you
-create your own account, get your own key, and pay the provider directly.
-Check the pricing page for the model you're using before you run a lab, and
-keep an eye on your usage if you're cost-conscious.
+## Labs, providers, and costs
 
-Some labs also send your prompts and documents to a third-party API (OpenAI
-or Anthropic) for processing. Those providers handle your data under their
-own privacy and retention policies, not this project's — don't paste
-passwords, confidential work material, or anyone's personal, health, or
-financial information into a prompt unless you've checked that policy
-yourself. Ollama runs entirely on your own machine, so nothing you type into
-an Ollama-backed lab ever leaves it.
+Some labs can call a paid API from providers such as OpenAI or Anthropic. You create and manage
+that provider account, supply your own API key, and pay the provider directly. Few-Shot Academy
+does not receive your API key or payment. Check the provider's current pricing and your usage
+limits before running a lab.
 
-Content is provided as-is, with no guarantee of accuracy. This is a learning
-resource written and maintained by one person — if you spot something wrong
-or out of date, [let us know](https://docs.google.com/forms/d/e/1FAIpQLSeM7Q-VVE6zoJoMQgq4-B4wagm4c9UCKfNFyCmsnsqDA_C_Rg/viewform).
+Hosted model providers receive the prompts, documents, and other inputs you send through their
+APIs. Their privacy, security, and retention terms apply. Do not submit passwords, API keys,
+confidential work, or personal, health, or financial information unless you are authorized to do
+so and have reviewed the provider's terms.
+
+When a lab is configured to use Ollama, model prompts are processed on your computer. Review any
+other tools and dependencies used by the lab before working with sensitive material.
+
+## Accuracy and availability
+
+Content and code are provided as-is, without a guarantee that every statement, command, external
+service, or result will remain accurate or available. Software, models, APIs, pricing, laws, and
+industry practices change. Verify important information against current authoritative sources.
+
+If you find an error or outdated instruction, [contact us](/contact).
 
 ## AI-assisted content
 
-Chapters, labs, and blog posts on this site are drafted with the help of AI
-tools (including Anthropic's Claude), then reviewed, tested, and edited by a
-human before publishing. Lab code is written and run against real APIs, not
-generated blind — expected output shown in a chapter comes from an actual
-run of that lab. If you're relying on a specific claim for something
-important, treat it as a starting point and verify it yourself rather than
-as an authoritative source.
+AI tools help draft portions of the chapters, labs, and blog posts. The repository's documented
+review process requires human review and lab testing before publication. AI assistance and human
+review do not eliminate the possibility of an error.
+
+## Website privacy
+
+This disclaimer does not ask for analytics consent and clicking a link does not grant consent.
+The [Privacy Notice](/privacy) explains website analytics, browser storage, contact and feedback
+submissions, and third-party services.

@@ -6,6 +6,7 @@
   z-index: 200;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.25rem;
   padding: 0.85rem 1.5rem;
   background: var(--ifm-background-surface-color);
@@ -13,10 +14,26 @@
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
 }
 
+.copy {
+  flex: 1;
+  max-width: 72ch;
+}
+
+.headingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  color: var(--zta-ink);
+}
+
 .text {
   margin: 0;
-  flex: 1;
-  max-width: 70ch;
   font-size: 0.85rem;
   line-height: 1.5;
   color: var(--zta-ink-muted);
@@ -27,21 +44,49 @@
   font-weight: 600;
 }
 
-.button {
+.status {
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--zta-ink-muted);
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.65rem;
+}
+
+.choiceButton,
+.closeButton {
   flex-shrink: 0;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.55rem 1.2rem;
-  border: none;
+  border: 1px solid var(--ifm-color-primary);
   border-radius: 6px;
-  background: var(--ifm-color-primary);
-  color: var(--ifm-background-surface-color);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-primary);
   cursor: pointer;
 }
 
-.button:hover {
-  background: var(--ifm-color-primary-dark);
+.choiceButton:hover,
+.choiceButton:focus-visible {
+  background: var(--zta-contour);
+}
+
+.closeButton {
+  border: 0;
+  padding: 0.2rem;
+  color: var(--zta-ink-muted);
+  text-decoration: underline;
+}
+
+.choiceButton:focus-visible,
+.closeButton:focus-visible {
+  outline: 3px solid var(--ifm-color-primary-light);
+  outline-offset: 2px;
 }
 
 @media screen and (max-width: 640px) {
@@ -50,7 +95,11 @@
     align-items: stretch;
   }
 
-  .button {
-    align-self: flex-end;
+  .actions {
+    width: 100%;
+  }
+
+  .choiceButton {
+    flex: 1;
   }
 }

@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  disableGoogleAnalytics,
+  initializeGoogleAnalytics,
+  saveAnalyticsConsent,
   sanitizeAnalyticsProperties,
   trackEngagementEvent,
 } from '../src/utils/analytics.ts';
@@ -11,6 +15,20 @@ import {
 import {CURRICULUM_TRACKS} from '../src/data/curriculum.ts';
 
 const SITE_ORIGIN = 'https://fewshotacademy.com';
+
+function memoryStorage(initial = {}) {
+  const values = new Map(Object.entries(initial));
+  return {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, String(value)),
+    removeItem: (key) => values.delete(key),
+    clear: () => values.clear(),
+    key: (index) => [...values.keys()][index] ?? null,
+    get length() {
+      return values.size;
+    },
+  };
+}
 
 test('the runtime allowlist removes unexpected and sensitive properties', () => {
   const properties = sanitizeAnalyticsProperties('quiz_submit', {
@@ -23,12 +41,18 @@ test('the runtime allowlist removes unexpected and sensitive properties', () => 
   assert.deepEqual(properties, {content_id: 'ch1'});
 });
 
-test('tracking sends one sanitized GA4 event and tolerates unavailable analytics', () => {
+test('tracking requires consent, sends one sanitized GA4 event, and tolerates unavailable analytics', () => {
   const calls = [];
+  const localStorage = memoryStorage();
   globalThis.window = {
+    localStorage,
     gtag: (...args) => calls.push(args),
   };
 
+  trackEngagementEvent('quiz_submit', {content_id: 'ch1'});
+  assert.deepEqual(calls, []);
+
+  localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'granted');
   trackEngagementEvent('lesson_complete', {
     track_id: 'foundations',
     lesson_id: 'foundations:ai',
@@ -47,10 +71,76 @@ test('tracking sends one sanitized GA4 event and tolerates unavailable analytics
     ],
   ]);
 
+  localStorage.setItem(ANALYTICS_CONSENT_STORAGE_KEY, 'denied');
+  trackEngagementEvent('quiz_submit', {content_id: 'ch1'});
+  assert.equal(calls.length, 1);
+
   delete globalThis.window.gtag;
   assert.doesNotThrow(() =>
     trackEngagementEvent('quiz_submit', {content_id: 'ch1'}),
   );
+  delete globalThis.window;
+});
+
+test('Basic Consent Mode does not create a Google tag before permission', () => {
+  const localStorage = memoryStorage();
+  const appendedScripts = [];
+  const document = {
+    title: 'Privacy test',
+    cookie: '',
+    head: {appendChild: (script) => appendedScripts.push(script)},
+    createElement: () => ({id: '', async: false, src: ''}),
+    getElementById: () => null,
+  };
+  globalThis.window = {
+    localStorage,
+    location: {
+      hostname: 'fewshotacademy.com',
+      origin: 'https://fewshotacademy.com',
+      pathname: '/docs/foundations',
+    },
+  };
+  globalThis.document = document;
+
+  initializeGoogleAnalytics();
+  assert.equal(appendedScripts.length, 0);
+  assert.equal(globalThis.window.gtag, undefined);
+
+  saveAnalyticsConsent('granted');
+  initializeGoogleAnalytics();
+  assert.equal(appendedScripts.length, 1);
+  assert.equal(appendedScripts[0].src, 'https://www.googletagmanager.com/gtag/js?id=G-51WGH2MZ08');
+  assert.deepEqual(globalThis.window.dataLayer.slice(0, 2), [
+    [
+      'consent',
+      'default',
+      {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      },
+    ],
+    [
+      'consent',
+      'update',
+      {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      },
+    ],
+  ]);
+
+  saveAnalyticsConsent('denied');
+  document.cookie = '_ga=client-id; _ga_51WGH2MZ08=session-id';
+  disableGoogleAnalytics();
+  assert.equal(globalThis.window['ga-disable-G-51WGH2MZ08'], true);
+  assert.equal(globalThis.window.dataLayer.at(-1)[2].analytics_storage, 'denied');
+  assert.match(document.cookie, /Max-Age=0/);
+
+  delete globalThis.document;
   delete globalThis.window;
 });
 

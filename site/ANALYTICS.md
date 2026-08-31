@@ -1,8 +1,9 @@
 # Engagement analytics
 
-Few-Shot Academy sends privacy-conscious engagement events to the existing Google Analytics 4
-property through Docusaurus's Google tag integration. GA4 stores and reports the events. The D1
-database remains limited to aggregate page-view popularity and is not a second event store.
+Few-Shot Academy sends privacy-conscious engagement events to its Google Analytics 4 property only
+after a visitor selects **Allow analytics**. The site uses Basic Consent Mode: it does not load the
+Google tag or transmit data to Google before that choice. GA4 stores and reports consented events.
+The D1 database remains limited to aggregate page-view popularity and is not a second event store.
 
 ## Privacy boundary
 
@@ -27,6 +28,11 @@ GA4 may still use its own browser/device signals according to the site's analyti
 and Google's policies. Few-Shot Academy does not add an identity layer. Clearing browser data or
 changing browsers/devices can therefore break continuity, just as it does for local course
 progress.
+
+The consent preference is stored in the visitor's browser under
+`fewshot-academy:analytics-consent:v1`. Advertising storage, advertising user data, and advertising
+personalization remain denied. Do not restore automatic Docusaurus `gtag` configuration because it
+would load Google before the consent component can run.
 
 ## Event taxonomy
 
@@ -116,8 +122,9 @@ These events measure interaction, not whether a learner successfully ran a lab.
 
 ## Local verification
 
-GA4 is allowed to be unavailable during local development. In browser developer tools, install a
-temporary stub before clicking a tracked control:
+GA4 is allowed to be unavailable during local development. Engagement events also require a saved
+`granted` preference. In browser developer tools, grant analytics through the banner, then install
+a temporary stub before clicking a tracked control:
 
 ```js
 window.capturedEvents = [];
@@ -127,3 +134,11 @@ window.gtag = (...args) => window.capturedEvents.push(args);
 Inspect `window.capturedEvents` after the interaction. Each intended interaction should add one
 event with only the documented properties. Reloading a page or restoring a saved quiz must not
 create an engagement event.
+
+For consent verification, start with a clean browser profile and confirm:
+
+1. No request to `googletagmanager.com` or `google-analytics.com` occurs before a choice.
+2. **Decline** stores the preference without loading Google or setting `_ga` cookies.
+3. **Allow analytics** loads the tag and sends the initial page view.
+4. **Privacy settings** in the footer reopens the controls.
+5. Withdrawing consent stops future events and removes accessible `_ga` cookies.

@@ -68,7 +68,10 @@ const config: Config = {
     },
   ],
 
-  plugins: [path.resolve(__dirname, 'src/plugins/recent-posts')],
+  plugins: [
+    path.resolve(__dirname, 'src/plugins/recent-posts'),
+    path.resolve(__dirname, 'src/plugins/consent-analytics'),
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -100,10 +103,6 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
-        },
-        gtag: {
-          trackingID: 'G-51WGH2MZ08',
-          anonymizeIP: true,
         },
       } satisfies Preset.Options,
     ],
@@ -265,6 +264,14 @@ const config: Config = {
             {
               label: 'Disclaimer',
               to: '/disclaimer',
+            },
+            {
+              label: 'Privacy',
+              to: '/privacy',
+            },
+            {
+              label: 'Privacy settings',
+              to: '/privacy#privacy-settings',
             },
           ],
         },

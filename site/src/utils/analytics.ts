@@ -1,5 +1,163 @@
 import type {TrackId} from '../data/curriculum';
 
+export const ANALYTICS_CONSENT_STORAGE_KEY = 'fewshot-academy:analytics-consent:v1';
+export const ANALYTICS_SETTINGS_HASH = '#privacy-settings';
+
+const GOOGLE_ANALYTICS_ID = 'G-51WGH2MZ08';
+const GOOGLE_ANALYTICS_SCRIPT_ID = 'fewshot-academy-google-analytics';
+const GOOGLE_ANALYTICS_DISABLE_KEY = `ga-disable-${GOOGLE_ANALYTICS_ID}`;
+
+export type AnalyticsConsent = 'granted' | 'denied';
+type Gtag = (...args: unknown[]) => void;
+let memoryConsent: AnalyticsConsent | null = null;
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[][];
+    gtag?: Gtag;
+    __fewShotAnalyticsInitialized?: boolean;
+  }
+}
+
+function browserStorage(): Storage | undefined {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+
+  try {
+    return window.localStorage;
+  } catch {
+    return undefined;
+  }
+}
+
+export function readAnalyticsConsent(): AnalyticsConsent | null {
+  const storage = browserStorage();
+  if (!storage) {
+    return memoryConsent;
+  }
+
+  const value = storage.getItem(ANALYTICS_CONSENT_STORAGE_KEY);
+  return value === 'granted' || value === 'denied' ? value : memoryConsent;
+}
+
+export function saveAnalyticsConsent(consent: AnalyticsConsent): void {
+  memoryConsent = consent;
+  try {
+    browserStorage()?.setItem(ANALYTICS_CONSENT_STORAGE_KEY, consent);
+  } catch {
+    // The in-memory choice still applies for this page when storage is unavailable.
+  }
+}
+
+export function hasAnalyticsConsent(): boolean {
+  return readAnalyticsConsent() === 'granted';
+}
+
+function isAcademyHost(): boolean {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  return window.location.hostname === 'fewshotacademy.com' || window.location.hostname.endsWith('.fewshotacademy.com');
+}
+
+function setGoogleAnalyticsDisabled(disabled: boolean): void {
+  (window as unknown as Record<string, unknown>)[GOOGLE_ANALYTICS_DISABLE_KEY] = disabled;
+}
+
+function pageFields(pathname: string): Record<string, string> {
+  return {
+    page_path: pathname,
+    page_location: `${window.location.origin}${pathname}`,
+    page_title: document.title,
+  };
+}
+
+function ensureGtag(): Gtag {
+  window.dataLayer = window.dataLayer ?? [];
+  window.gtag = window.gtag ?? ((...args: unknown[]) => window.dataLayer?.push(args));
+  return window.gtag;
+}
+
+export function initializeGoogleAnalytics(): void {
+  if (!hasAnalyticsConsent() || !isAcademyHost()) {
+    return;
+  }
+
+  const gtag = ensureGtag();
+  setGoogleAnalyticsDisabled(false);
+
+  if (window.__fewShotAnalyticsInitialized) {
+    gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+    gtag('config', GOOGLE_ANALYTICS_ID, pageFields(window.location.pathname));
+    return;
+  }
+
+  window.__fewShotAnalyticsInitialized = true;
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
+  gtag('consent', 'update', {
+    analytics_storage: 'granted',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
+  gtag('js', new Date());
+  gtag('config', GOOGLE_ANALYTICS_ID, pageFields(window.location.pathname));
+
+  if (!document.getElementById(GOOGLE_ANALYTICS_SCRIPT_ID)) {
+    const script = document.createElement('script');
+    script.id = GOOGLE_ANALYTICS_SCRIPT_ID;
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
+    document.head.appendChild(script);
+  }
+}
+
+function removeGoogleAnalyticsCookies(): void {
+  const cookieNames = document.cookie
+    .split(';')
+    .map((cookie) => cookie.split('=')[0]?.trim())
+    .filter((name) => name && /^(_ga|_gid|_gat)/.test(name));
+
+  for (const name of cookieNames) {
+    document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
+    document.cookie = `${name}=; Max-Age=0; Path=/; Domain=.${window.location.hostname}; SameSite=Lax`;
+  }
+}
+
+export function disableGoogleAnalytics(): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.gtag?.('consent', 'update', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
+  setGoogleAnalyticsDisabled(true);
+  removeGoogleAnalyticsCookies();
+}
+
+export function trackAnalyticsPageView(pathname: string): void {
+  if (!hasAnalyticsConsent() || !window.__fewShotAnalyticsInitialized || typeof window.gtag !== 'function') {
+    return;
+  }
+
+  window.gtag('event', 'page_view', pageFields(pathname));
+}
+
 export type AnalyticsEventProperties = {
   course_start: {
     track_id: TrackId;
@@ -74,12 +232,6 @@ const PROPERTY_ALLOWLIST = {
   [Name in AnalyticsEventName]: readonly (keyof AnalyticsEventProperties[Name])[];
 };
 
-declare global {
-  interface Window {
-    gtag?: (command: 'event', eventName: string, properties?: Record<string, unknown>) => void;
-  }
-}
-
 function isAnalyticsValue(value: unknown): value is AnalyticsValue {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean';
 }
@@ -110,7 +262,11 @@ export function trackEngagementEvent<Name extends AnalyticsEventName>(
   eventName: Name,
   properties: AnalyticsEventProperties[Name],
 ): void {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+  if (
+    typeof window === 'undefined' ||
+    !hasAnalyticsConsent() ||
+    typeof window.gtag !== 'function'
+  ) {
     return;
   }
 
