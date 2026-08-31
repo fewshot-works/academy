@@ -60,4 +60,5 @@
 
 ## Optional
 
-- [Disclaimer](https://fewshotacademy.com/disclaimer): Data privacy and responsible-use notes for the hands-on labs.
+- [Disclaimer](https://fewshotacademy.com/disclaimer): Educational limits, external model providers, costs, and responsible lab use.
+- [Privacy Notice](https://fewshotacademy.com/privacy): Website analytics, browser storage, forms, retention, and visitor choices.

@@ -3,7 +3,11 @@ sidebar_position: 1
 description: What Advanced covers, what you'll build by the end, and how it builds on the multi-tool agent you already shipped in Intermediate.
 ---
 
+import TrackProgress from '@site/src/components/LearningProgress/TrackProgress';
+
 # Advanced Overview
+
+<TrackProgress trackId="advanced" />
 
 > **Before you start:** if it's been a while, skim Foundations' [bonus chapter on using AI responsibly](../foundations/02b-responsible-ai-use.md) as a refresher, privacy, bias, and verifying what a model tells you.
 

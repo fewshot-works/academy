@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState, type FormEvent, type ReactNode} from 'react';
+import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import styles from './contact.module.css';
@@ -144,7 +145,7 @@ export default function Contact(): ReactNode {
           <p>
             {formType === 'contact'
               ? "We've got your message and will get back to you if you left an email."
-              : "Thanks for the feedback — it genuinely shapes what we build next."}
+              : 'Thanks for the feedback. It genuinely shapes what we build next.'}
           </p>
         </main>
       </Layout>
@@ -183,6 +184,28 @@ export default function Contact(): ReactNode {
           </label>
         </div>
 
+        <aside className={styles.privacyNotice} aria-labelledby="submission-privacy-title">
+          <p id="submission-privacy-title" className={styles.privacyNoticeTitle}>
+            Before you submit
+          </p>
+          {formType === 'contact' ? (
+            <p>
+              Email is optional and used only to reply. We store the form fields in our database and send a copy to our
+              contact inbox. There is no automatic deletion date yet.
+            </p>
+          ) : (
+            <p>
+              This form does not ask for your email. We store the feedback in our database and send a copy to our
+              contact inbox. There is no automatic deletion date yet. Use Contact us if you want a reply.
+            </p>
+          )}
+          <p>
+            Do not include passwords, API keys, or other sensitive data. See our{' '}
+            <Link to="/privacy">Privacy Notice</Link> or email{' '}
+            <a href="mailto:contact@fewshotacademy.com">contact@fewshotacademy.com</a> to request deletion.
+          </p>
+        </aside>
+
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="text"
@@ -214,7 +237,8 @@ export default function Contact(): ReactNode {
               </label>
 
               <label className={styles.field}>
-                Email (optional — leave blank if you don't need a reply)
+                Email (optional)
+                <span className={styles.fieldHint}>Leave this blank if you do not need a reply.</span>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
               </label>
             </>
@@ -321,6 +345,10 @@ export default function Contact(): ReactNode {
 
           <div className={styles.field}>
             <div ref={turnstileRef} />
+            <span className={styles.fieldHint}>
+              Turnstile sends a challenge token and your connecting IP to Cloudflare for spam protection. Your form
+              answers go to Few-Shot Academy only when you submit.
+            </span>
           </div>
 
           {status === 'error' && <p className={styles.error}>{errorMessage}</p>}

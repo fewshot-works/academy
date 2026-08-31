@@ -3,7 +3,11 @@ sidebar_position: 0
 description: What Foundations covers and what you'll be able to build by the end, before you start setting up your machine.
 ---
 
+import TrackProgress from '@site/src/components/LearningProgress/TrackProgress';
+
 # Foundations Overview
+
+<TrackProgress trackId="foundations" />
 
 ## Who this is for
 

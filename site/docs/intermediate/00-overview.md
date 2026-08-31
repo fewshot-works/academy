@@ -3,7 +3,11 @@ sidebar_position: 1
 description: What Intermediate covers, what you'll build by the end, and how it builds on the Q&A bot you already made in Foundations.
 ---
 
+import TrackProgress from '@site/src/components/LearningProgress/TrackProgress';
+
 # Intermediate Overview
+
+<TrackProgress trackId="intermediate" />
 
 > **Before you start:** if it's been a while, skim Foundations' [bonus chapter on using AI responsibly](../foundations/02b-responsible-ai-use.md) as a refresher, privacy, bias, and verifying what a model tells you.
 

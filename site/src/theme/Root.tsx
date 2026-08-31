@@ -1,53 +1,121 @@
 import type {ReactNode} from 'react';
 import {useEffect, useState} from 'react';
 import Link from '@docusaurus/Link';
+import EngagementLinkTracker from '@site/src/components/EngagementLinkTracker';
+import {
+  ANALYTICS_SETTINGS_HASH,
+  disableGoogleAnalytics,
+  initializeGoogleAnalytics,
+  readAnalyticsConsent,
+  saveAnalyticsConsent,
+  type AnalyticsConsent,
+} from '@site/src/utils/analytics';
 import styles from './Root.module.css';
 
-const STORAGE_KEY = 'zta-disclaimer-dismissed';
+function clearSettingsHash() {
+  if (window.location.hash === ANALYTICS_SETTINGS_HASH) {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+  }
+}
 
-function DisclaimerBanner() {
-  const [visible, setVisible] = useState(false);
+function PrivacyConsentBanner() {
+  const [preference, setPreference] = useState<AnalyticsConsent | null>(null);
+  const [hydrated, setHydrated] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      setVisible(true);
+    const savedPreference = readAnalyticsConsent();
+    setPreference(savedPreference);
+    setHydrated(true);
+
+    if (savedPreference === 'granted') {
+      initializeGoogleAnalytics();
     }
+
+    function openSettingsFromHash() {
+      if (window.location.hash === ANALYTICS_SETTINGS_HASH) {
+        setSettingsOpen(true);
+      }
+    }
+
+    function openSettingsFromLink(event: MouseEvent) {
+      const target = event.target instanceof Element ? event.target.closest('a') : null;
+      if (target?.getAttribute('href')?.endsWith(`/privacy${ANALYTICS_SETTINGS_HASH}`)) {
+        setSettingsOpen(true);
+      }
+    }
+
+    openSettingsFromHash();
+    window.addEventListener('hashchange', openSettingsFromHash);
+    document.addEventListener('click', openSettingsFromLink);
+    return () => {
+      window.removeEventListener('hashchange', openSettingsFromHash);
+      document.removeEventListener('click', openSettingsFromLink);
+    };
   }, []);
 
-  if (!visible) {
+  if (!hydrated || (preference !== null && !settingsOpen)) {
     return null;
   }
 
-  function dismiss() {
-    localStorage.setItem(STORAGE_KEY, 'true');
-    setVisible(false);
+  function choose(nextPreference: AnalyticsConsent) {
+    saveAnalyticsConsent(nextPreference);
+    setPreference(nextPreference);
+    setSettingsOpen(false);
+
+    if (nextPreference === 'granted') {
+      initializeGoogleAnalytics();
+    } else {
+      disableGoogleAnalytics();
+    }
+    clearSettingsHash();
+  }
+
+  function closeSettings() {
+    setSettingsOpen(false);
+    clearSettingsHash();
   }
 
   return (
-    <div className={styles.banner} role="note">
-      <p className={styles.text}>
-        Few-Shot Academy is a free, open-source course, not professional advice.
-        Some labs use a paid API (OpenAI or Anthropic) that bills you
-        directly, at your own risk — this project never sees your key or
-        your money. Content is provided as-is, with no guarantee of
-        accuracy. Anything you send to a hosted API leaves your machine —
-        don't paste passwords or anyone's sensitive personal or work data
-        into a prompt. Writing on this site is drafted with AI assistance
-        and reviewed and edited by a human before it's published.{' '}
-        <Link to="/disclaimer">Full disclaimer</Link>.
-      </p>
-      <button className={styles.button} onClick={dismiss} type="button">
-        Got it
-      </button>
-    </div>
+    <section className={styles.banner} role="region" aria-labelledby="privacy-choice-title">
+      <div className={styles.copy}>
+        <div className={styles.headingRow}>
+          <h2 id="privacy-choice-title" className={styles.title}>Optional analytics</h2>
+          {settingsOpen && preference !== null && (
+            <button className={styles.closeButton} onClick={closeSettings} type="button" aria-label="Close privacy settings">
+              Close
+            </button>
+          )}
+        </div>
+        <p className={styles.text}>
+          Help us improve the curriculum by allowing Google Analytics. It records page visits and selected course
+          interactions. We do not send quiz answers, scores, or contact messages.{' '}
+          <Link to="/privacy">Privacy details</Link>.
+        </p>
+        {settingsOpen && preference !== null && (
+          <p className={styles.status}>
+            Analytics is currently {preference === 'granted' ? 'allowed' : 'declined'}.
+          </p>
+        )}
+      </div>
+      <div className={styles.actions}>
+        <button className={styles.choiceButton} onClick={() => choose('denied')} type="button">
+          Decline
+        </button>
+        <button className={styles.choiceButton} onClick={() => choose('granted')} type="button">
+          Allow analytics
+        </button>
+      </div>
+    </section>
   );
 }
 
 export default function Root({children}: {children: ReactNode}): ReactNode {
   return (
     <>
+      <EngagementLinkTracker />
       {children}
-      <DisclaimerBanner />
+      <PrivacyConsentBanner />
     </>
   );
 }

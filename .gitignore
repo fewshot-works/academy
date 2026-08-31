@@ -28,9 +28,8 @@ labs/**/.env
 !.env.example
 !labs/**/.env.example
 
-# Internal-only docs (kept on disk, not published to the public repo)
+# Internal-only product document (kept on disk, not published to the public repo)
 /PRD.md
-/CLAUDE.md
 
 # Claude Code local settings (machine-specific, may include local env/proxy config)
 .claude/

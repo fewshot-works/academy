@@ -6,6 +6,8 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "test:analytics": "node --no-warnings --experimental-strip-types --test tests/analytics.test.mjs",
+    "test:progress": "node --no-warnings --experimental-strip-types --test tests/learningProgress.test.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

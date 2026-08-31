@@ -1,0 +1,52 @@
+.comments {
+  max-width: var(--ifm-container-width);
+  margin: 2.5rem auto;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.loadComments {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--zta-border);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.loadComments p {
+  margin: 0;
+  color: var(--zta-ink-muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.85rem;
+}
+
+.loadButton {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.loadButton:hover,
+.loadButton:focus-visible {
+  background: var(--zta-contour);
+}
+
+.loadButton:focus-visible {
+  outline: 3px solid var(--ifm-color-primary-light);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 480px) {
+  .actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,337 @@
+.eyebrow {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lessonProgressStrip {
+  margin: 0.5rem 0 1.15rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--zta-border);
+  border-bottom: 1px solid var(--zta-border);
+}
+
+.lessonProgressSummary,
+.lessonProgressDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lessonProgressTrack {
+  color: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lessonProgressCount,
+.lessonProgressLink {
+  font-size: 0.78rem;
+}
+
+.lessonProgressCount {
+  color: var(--zta-ink-muted);
+}
+
+.lessonProgressDetails {
+  margin-top: 0.45rem;
+}
+
+.lessonProgressBar {
+  flex: 1;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+}
+
+.lessonProgressBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ifm-color-primary);
+  transition: width 0.2s ease;
+}
+
+.lessonProgressLink {
+  flex-shrink: 0;
+  color: var(--zta-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lessonProgressLink:hover,
+.lessonProgressLink:focus-visible {
+  color: var(--ifm-color-primary);
+}
+
+.lessonProgressLink:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.lessonControl,
+.trackProgress,
+.continueCard {
+  border: 1px solid var(--zta-border);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+}
+
+.lessonControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.lessonHeading,
+.trackHeading,
+.continueHeading {
+  margin: 0;
+}
+
+.lessonHeading {
+  font-size: 1.25rem;
+}
+
+.lessonCopy,
+.continueCopy,
+.loading {
+  margin: 0.35rem 0 0;
+  color: var(--zta-ink-muted);
+}
+
+.lessonCopy {
+  font-size: 0.92rem;
+}
+
+.storageWarning {
+  margin: 0.5rem 0 0;
+  color: var(--zta-accent);
+  font-size: 0.86rem;
+}
+
+.primaryButton,
+.secondaryButton,
+.dangerButton,
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primaryButton,
+.primaryLink {
+  border: 1px solid var(--ifm-color-primary);
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+}
+
+.primaryButton:hover,
+.primaryButton:focus-visible,
+.primaryLink:hover,
+.primaryLink:focus-visible {
+  filter: brightness(0.92);
+  color: var(--ifm-background-color);
+  text-decoration: none;
+}
+
+.secondaryButton,
+.secondaryLink {
+  border: 1px solid var(--zta-border);
+  background: transparent;
+  color: var(--ifm-color-primary);
+}
+
+.secondaryButton:hover,
+.secondaryButton:focus-visible,
+.secondaryLink:hover,
+.secondaryLink:focus-visible {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.dangerButton:focus-visible,
+.primaryLink:focus-visible,
+.secondaryLink:focus-visible,
+.textButton:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.trackProgress {
+  margin: 1.25rem 0 2rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.trackHeader,
+.storageRow,
+.continueCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.trackHeading {
+  font-size: 1.2rem;
+}
+
+.percentage {
+  color: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.1rem;
+}
+
+.progressBar {
+  height: 8px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--zta-chip-bg);
+}
+
+.progressBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ifm-color-primary);
+  transition: width 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lessonProgressBar span,
+  .progressBar span {
+    transition: none;
+  }
+}
+
+.storageRow {
+  align-items: baseline;
+  margin-top: 0.8rem;
+}
+
+.storageRow p {
+  margin: 0;
+  color: var(--zta-ink-muted);
+  font-size: 0.84rem;
+}
+
+.textButton {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--zta-ink-muted);
+  font: inherit;
+  font-size: 0.84rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.textButton:hover {
+  color: var(--ifm-color-primary);
+}
+
+.resetConfirmation {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--zta-border);
+}
+
+.resetConfirmation p {
+  margin: 0 0 0.75rem;
+}
+
+.resetActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.dangerButton {
+  border: 1px solid var(--ifm-color-danger-dark);
+  background: transparent;
+  color: var(--ifm-color-danger-dark);
+}
+
+.dangerButton:hover,
+.dangerButton:focus-visible {
+  background: var(--ifm-color-danger-dark);
+  color: white;
+}
+
+.srStatus {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.continueSection {
+  padding: 1.25rem 0 0;
+}
+
+.continueCard {
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 12px 28px -24px rgba(31, 93, 76, 0.65);
+}
+
+.continueHeading {
+  font-size: 1.35rem;
+}
+
+.continueLesson {
+  margin: 0.35rem 0 0;
+  font-weight: 700;
+}
+
+.continueCopy {
+  font-size: 0.86rem;
+}
+
+@media screen and (max-width: 700px) {
+  .lessonControl,
+  .trackHeader,
+  .storageRow,
+  .continueCard {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .primaryLink,
+  .secondaryLink {
+    width: 100%;
+  }
+}

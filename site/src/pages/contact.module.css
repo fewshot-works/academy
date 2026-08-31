@@ -24,11 +24,44 @@
   gap: 1.25rem;
 }
 
+.privacyNotice {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--zta-border);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  color: var(--zta-ink-muted);
+}
+
+.privacyNotice p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.privacyNotice p + p {
+  margin-top: 0.65rem;
+}
+
+.privacyNotice .privacyNoticeTitle {
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+  color: var(--zta-ink);
+}
+
 .field {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   font-weight: 600;
+}
+
+.fieldHint {
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--zta-ink-muted);
 }
 
 .field select,

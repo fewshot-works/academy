@@ -6,6 +6,7 @@ import Layout from '@theme/Layout';
 import HomepageTracks from '@site/src/components/HomepageTracks';
 import HomepageMostPopular from '@site/src/components/HomepageMostPopular';
 import HomepageWhatsNew from '@site/src/components/HomepageWhatsNew';
+import HomepageContinueLearning from '@site/src/components/LearningProgress/HomepageContinueLearning';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
@@ -276,6 +277,7 @@ export default function Home(): ReactNode {
       description="A free, open-source, chapter-wise curriculum for LLMs, Vector Databases, RAG, and Agents — from zero to your first AI agent, running entirely on your own laptop.">
       <HomepageHeader />
       <main>
+        <HomepageContinueLearning />
         <HomepageTracks />
         <HomepageMostPopular />
         <HomepageWhatsNew />

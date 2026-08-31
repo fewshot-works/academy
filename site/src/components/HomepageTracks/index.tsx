@@ -1,9 +1,13 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import {findTrackById} from '@site/src/data/curriculum';
+import type {TrackId} from '@site/src/data/curriculum';
+import {trackEngagementEvent} from '@site/src/utils/analytics';
 import styles from './styles.module.css';
 
 type TrackItem = {
+  trackId: TrackId;
   status: string;
   title: string;
   description: ReactNode;
@@ -16,6 +20,7 @@ type TrackItem = {
 // today: all three tracks are complete.
 const TrackList: TrackItem[] = [
   {
+    trackId: 'foundations',
     status: 'Live now',
     title: 'Foundations',
     description:
@@ -23,6 +28,7 @@ const TrackList: TrackItem[] = [
     to: '/docs/foundations/setup',
   },
   {
+    trackId: 'intermediate',
     status: 'Live now',
     title: 'Intermediate',
     description:
@@ -30,6 +36,7 @@ const TrackList: TrackItem[] = [
     to: '/docs/intermediate/overview',
   },
   {
+    trackId: 'advanced',
     status: 'Live now',
     title: 'Advanced',
     description:
@@ -38,9 +45,20 @@ const TrackList: TrackItem[] = [
   },
 ];
 
-function Track({status, title, description, to}: TrackItem) {
+function Track({trackId, status, title, description, to}: TrackItem) {
+  function trackCourseStart() {
+    const firstLesson = findTrackById(trackId).lessons[0];
+    if (firstLesson?.permalink !== to) {
+      return;
+    }
+    trackEngagementEvent('course_start', {
+      track_id: trackId,
+      source_surface: 'homepage',
+    });
+  }
+
   return (
-    <Link to={to} className={styles.card}>
+    <Link to={to} className={styles.card} onClick={trackCourseStart}>
       <span className={styles.status}>{status}</span>
       <Heading as="h3" className={styles.cardTitle}>
         {title}

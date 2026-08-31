@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import {useEffect, useState} from 'react';
 import clsx from 'clsx';
+import {trackEngagementEvent} from '@site/src/utils/analytics';
 import styles from './styles.module.css';
 
 export type QuizQuestion = {
@@ -86,6 +87,7 @@ export default function Quiz({chapterId, questions}: QuizProps): ReactNode {
       storageKey(chapterId),
       JSON.stringify({answers: finalAnswers, score: finalScore}),
     );
+    trackEngagementEvent('quiz_submit', {content_id: chapterId});
     setScore(finalScore);
     setSubmitted(true);
   }
