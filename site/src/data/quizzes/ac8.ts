@@ -3,16 +3,16 @@ import type {QuizQuestion} from '@site/src/components/Quiz';
 export const questions: QuizQuestion[] = [
   {
     question:
-      "This chapter lists four jobs a gateway does: one interface, failover, centralized keys/cost tracking, and caching/rate limiting. Which one does the chapter say a single-provider PROVIDER if/elif genuinely cannot do at all, no matter how well the code is written?",
+      "A provider accepts the request but never returns a response or an error. What does the gateway need so it can eventually try the fallback?",
     options: [
-      "One interface across providers",
-      "Failover to a different provider when the primary is down",
-      "Centralized API key management",
-      "Caching repeated responses",
+      "A longer system prompt",
+      "A per-attempt timeout",
+      "The same API key for both providers",
+      "A cache containing the unanswered request",
     ],
     correctIndex: 1,
     explanation:
-      "The chapter's opening makes this exact point: a PROVIDER if/elif can be perfectly correct code and still have nowhere to go once the one provider it picked stops answering. The lab's part one demonstrates it directly, the request just fails, there's no fallback anywhere in that code path. The other three jobs (a consistent call shape, centralized keys, caching) are all things a single-provider setup could still do reasonably well on its own.",
+      "Failover code runs only after an attempt returns or raises an error. A provider that hangs can hold the request indefinitely unless each attempt has a deadline. The lab sets a 30-second timeout so a stalled provider becomes a retryable timeout instead of blocking the fallback forever.",
   },
   {
     question:
@@ -25,7 +25,7 @@ export const questions: QuizQuestion[] = [
     ],
     correctIndex: 2,
     explanation:
-      "Kong AI Gateway extends Kong's existing API gateway to LLM traffic, so a team already operating Kong for ordinary REST APIs gets LLM routing nearly for free by turning on a plugin, rather than standing up a separate piece of infrastructure. LiteLLM and Portkey are both good defaults for a team with no existing gateway, but that specific \"already running this platform\" fit is Kong's.",
+      "Kong AI Gateway extends Kong's existing API gateway to LLM traffic, so a team already operating Kong for ordinary REST APIs can reuse that infrastructure rather than introduce a separate gateway platform. Basic LLM proxying and the chapter's multi-provider failover are not the same product tier: the latter requires Kong's paid AI Proxy Advanced plugin.",
   },
   {
     question:
@@ -42,7 +42,7 @@ export const questions: QuizQuestion[] = [
   },
   {
     question:
-      "The TL;DR says two providers each at 99.53% uptime combine to about 12 minutes of expected downtime a year instead of 41 hours, assuming independent failures. What calculation actually produces that 12-minute figure?",
+      "The TL;DR uses a hypothetical example where two providers each have 99.5% uptime. Assuming independent failures, what calculation produces about 13 minutes of combined downtime a year?",
     options: [
       "Averaging the two providers' uptime percentages together",
       "Adding the two providers' downtime hours together",
@@ -51,6 +51,6 @@ export const questions: QuizQuestion[] = [
     ],
     correctIndex: 2,
     explanation:
-      "A single provider at 99.53% uptime is down about 0.47% of the year (~41 hours). With two independent providers behind a gateway, the combined setup only fails when BOTH are down at once, so the combined downtime share is roughly the product of each one's downtime share: 0.0047 x 0.0047, about 0.0022%, or roughly 11 to 12 minutes a year. Adding or averaging the two would both give a much larger, wrong number, multiplication is what independence actually implies.",
+      "A hypothetical provider at 99.5% uptime is down 0.5% of the year, about 44 hours. With two independent providers behind a gateway, the provider path fails only when both are down at once: 0.005 x 0.005 = 0.000025, or roughly 13 minutes a year. This best-case calculation excludes correlated failures and downtime in the gateway itself.",
   },
 ];

@@ -212,6 +212,8 @@ const config: Config = {
             {label: 'Human-in-the-Loop', to: '/docs/advanced-concepts/human-in-the-loop'},
             {label: 'RBAC', to: '/docs/advanced-concepts/rbac'},
             {label: 'Chaos Engineering', to: '/docs/advanced-concepts/chaos-engineering'},
+            {label: 'Continuous Red-Teaming', to: '/docs/advanced-concepts/continuous-adversarial-evaluation'},
+            {label: 'AI Gateways', to: '/docs/advanced-concepts/ai-gateways'},
           ]),
         },
         {

@@ -1,34 +1,36 @@
 ---
 title: Stop calling LLM APIs directly
-description: Anthropic and OpenAI each had multi-day outage streaks in 2026, and most production apps still call one provider's SDK with no fallback. That's a solved problem now, most teams just haven't wired up the fix.
+description: Anthropic and OpenAI each recorded clusters of service incidents in 2026. A gateway can keep one affected provider from taking an application feature down with it.
 slug: stop-calling-llm-apis-directly
 authors: [mangatrai]
 tags: [infrastructure, llm-platforms, production, reliability]
 image: ./social-card.png
 ---
 
-Anthropic's Claude went dark for five and a half hours on June 2, 2026, taking Claude.ai, the API, Console, and Claude Code out together. Three days later, on June 5, a longer stretch began: ten separate service disruptions across the next twelve days, running through June 16. Seven weeks after that stretch began, OpenAI had its own rough stretch: four disruptions in four days between July 22 and July 25, with the July 25 incident knocking out ChatGPT, the API, and Codex at once.
+On June 2, 2026, Claude had a [major service incident affecting its API and Claude Code](https://www.thoughtworks.com/en-us/insights/blog/generative-ai/claude-outage-june-2026). From June 5 through June 16, its [status history](https://status.claude.com/history) recorded more disruptions; [Tech Times counted ten incidents across twelve days](https://www.techtimes.com/articles/318514/20260616/claude-outage-tenth-disruption-12-days-exposes-anthropic-infrastructure-strain.htm). OpenAI's [status history](https://status.openai.com/history?page=2) then recorded separate incidents on each day from July 22 through July 25. The [July 25 incident](https://status.openai.com/incidents/x9p6qd31) affected API, ChatGPT, and Codex components.
 
-If your app calls one provider's SDK directly with no fallback, both of those weeks were your outage too, whether or not anyone at your company noticed why the AI feature just went quiet.
+These were separate incidents with varying scope, not uninterrupted week-long outages. But if your application depended only on an affected service, any one of those incidents could become your feature's outage too.
 
 {/* truncate */}
 
 :::tip[TL;DR]
-Routing LLM calls through a gateway instead of a raw SDK call, so a dead provider automatically fails over to a working one, isn't a new idea. LiteLLM has been doing this for years, and the pattern itself long predates any single vendor. What changed in 2026 isn't the tooling, it's how often the fallback path actually gets exercised for real. We've turned this into a full hands-on [Advanced Concepts chapter](/docs/advanced-concepts/ai-gateways) where you build a minimal gateway by hand and watch it survive a simulated outage, this post is just the "why now."
+Routing LLM calls through a gateway lets a temporary provider failure move to a compatible fallback. LiteLLM, Portkey, and Kong each implement that pattern, with different hosting models and product tiers. The clusters of incidents in 2026 are a useful reminder to exercise the fallback path before you need it. Our hands-on [Advanced Concepts chapter](/docs/advanced-concepts/ai-gateways) builds a minimal version and runs it through a simulated outage; this post is the "why now."
 :::
 
-## The math nobody argues with
+## The best-case math
 
-Run the numbers on two independent providers, each at 99.53% uptime: a single one of them is down about 41 hours a year. Put a gateway in front of both, with the app failing over automatically when the primary errors out, and the *combined* setup only goes down when both providers are out at the same instant, roughly 11 to 12 minutes a year. Real providers aren't perfectly independent, a shared cloud region or a common upstream dependency can take two "different" providers down together, so treat that as a best case, not a guarantee. It's still the right order of magnitude for why teams that already had this wired up shrugged through June and July while everyone else's status page turned red.
+Take a hypothetical pair of independent providers, each at 99.5% uptime. One is down about 44 hours a year. If the application can use either provider, the provider path is unavailable only when both are down at the same time: `0.005 x 0.005 = 0.000025`, or about 13 minutes a year.
 
-None of the mechanics here are exotic. A gateway is a thin routing layer: one call shape in, try the primary provider, catch a failure, retry a fallback, return whichever one actually answered. You can build the core of it in about ten lines of Python, and teams that skipped it aren't missing sophistication, they're missing ten lines.
+That is best-case arithmetic, not an availability promise. Real providers can share a cloud region, network, or DNS dependency. The gateway can fail too, and the fallback may not support every context window, tool schema, policy, or data-region requirement. Redundancy helps only when the fallback is genuinely independent and compatible.
+
+None of the mechanics here are exotic. A gateway is a thin routing layer: one call shape in, try the primary provider, catch a retryable failure, try a compatible fallback, and return whichever one answered. The routing loop takes about ten lines of Python. A production version also needs deadlines, a deliberate error policy, monitoring, and a plan for the gateway's own availability.
 
 :::info
-💡 This isn't an argument for a specific tool. LiteLLM, Portkey, and Kong AI Gateway all do this job at production scale, with dashboards, spend tracking, and caching layered on top of the same core idea. Which one fits depends more on what infrastructure you're already running than which is "best," a team already on Kong for its REST APIs gets LLM routing nearly for free.
+💡 This isn't an argument for a specific tool. LiteLLM, Portkey, and Kong AI Gateway all offer multi-provider routing, with different hosting models and product tiers. A team already using Kong can reuse that gateway platform, but Kong's multi-provider failover requires its paid AI Proxy Advanced plugin. The chapter compares the tradeoffs and links to current first-party documentation.
 :::
 
 ## Build it once, understand it forever
 
-The fastest way to actually trust a gateway, instead of just installing one, is to build the failover path yourself once, badly, on purpose, and watch it work. That's the whole shape of the [Advanced Concepts: AI Gateways](/docs/advanced-concepts/ai-gateways) chapter we just published: a support bot that fails outright when its primary provider is simulated down with no fallback, then the identical call, wrapped in a ten-line gateway function that catches the exact same failure and routes around it automatically. Same failure, two outcomes, and the difference is a function most teams could write in the time it takes to read this post.
+The fastest way to understand a gateway is to build the routing core once and watch it work. That is the shape of the [Advanced Concepts: AI Gateways](/docs/advanced-concepts/ai-gateways) chapter: a support bot fails when its simulated primary has no fallback, then handles the same retryable failure through a small gateway function. The chapter also shows the parts hidden by that tiny loop, including timeouts, error classification, provider compatibility, and the gateway's own failure risk.
 
-Sources: [OpenAI outage coverage, July 2026, The Next Web](https://thenextweb.com/news/openai-outage-chatgpt-codex-api-july-2026); [OpenAI July 25 outage report, BleepingComputer](https://www.bleepingcomputer.com/news/artificial-intelligence/openai-confirms-chatgpt-is-down-as-logins-and-signups-fail/); [Anthropic June 2026 outage pattern, Tech Times](https://www.techtimes.com/articles/318514/20260616/claude-outage-tenth-disruption-12-days-exposes-anthropic-infrastructure-strain.htm); [Claude outage details, Tech Insider](https://tech-insider.org/claude-outage-june-2026/).
+Sources: [Claude's June 2 incident, Thoughtworks](https://www.thoughtworks.com/en-us/insights/blog/generative-ai/claude-outage-june-2026); [Claude incident history](https://status.claude.com/history); [OpenAI incident history](https://status.openai.com/history?page=2); [OpenAI July 25 incident](https://status.openai.com/incidents/x9p6qd31); [Anthropic June incident count, Tech Times](https://www.techtimes.com/articles/318514/20260616/claude-outage-tenth-disruption-12-days-exposes-anthropic-infrastructure-strain.htm).

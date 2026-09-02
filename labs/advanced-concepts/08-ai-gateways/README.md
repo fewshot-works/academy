@@ -6,7 +6,7 @@ Companion lab for [Advanced Concepts: AI Gateways](https://fewshotacademy.com/do
 
 This lab assumes you've read at least [Advanced Concepts: Token & Cost Management](https://fewshotacademy.com/docs/advanced-concepts/token-cost-management) or another earlier Advanced Concepts chapter.
 
-This lab is different from every other lab in this course: it needs **two** backends configured, not one. The whole lesson is routing across providers, so a single `PROVIDER` value wouldn't have anywhere to fail over to. `PRIMARY_PROVIDER` and `FALLBACK_PROVIDER` each accept `ollama`, `openai`, or `anthropic`, and the fault injector always simulates `PRIMARY_PROVIDER` as down, regardless of which one you pick. `FALLBACK_PROVIDER` defaults to `ollama` since it's free and most labs in this course already assume it's installed.
+This lab is different from every other lab in this course: it names **two** distinct backends, not one. The whole lesson is routing across providers, so a single `PROVIDER` value wouldn't have anywhere to fail over to. `PRIMARY_PROVIDER` and `FALLBACK_PROVIDER` each accept `ollama`, `openai`, or `anthropic`. The fault injector simulates `PRIMARY_PROVIDER` as down before touching the network, so only `FALLBACK_PROVIDER` needs to be running and authenticated. It defaults to `ollama` since it's free and most labs in this course already assume it's installed.
 
 ## Steps
 
@@ -41,7 +41,7 @@ This lab is different from every other lab in this course: it needs **two** back
    copy .env.example .env
    ```
 
-   `PRIMARY_PROVIDER=openai` and `FALLBACK_PROVIDER=ollama` are already set. Add your `OPENAI_API_KEY` for the primary. If you'd rather use Anthropic as the primary, or use two cloud providers instead of Ollama as the fallback, change `PRIMARY_PROVIDER` and/or `FALLBACK_PROVIDER` and add the matching key(s).
+   `PRIMARY_PROVIDER=openai` and `FALLBACK_PROVIDER=ollama` are already set. You do not need an OpenAI key for this run because the simulated primary fails before making a network call. If you use OpenAI or Anthropic as the fallback, change `FALLBACK_PROVIDER` and add that provider's key.
 
 4. **Run the script:**
 
@@ -53,10 +53,10 @@ This lab is different from every other lab in this course: it needs **two** back
 
 Open `ai_gateways.py` and follow along.
 
-1. **`call_provider(provider, messages)`** is one real call to one real provider, OpenAI, Anthropic, or a local Ollama model, all accepting the same `messages` shape. This is the "one interface" half of what a gateway buys you: your code doesn't change shape depending on which provider answers.
-2. **`flaky_call_provider(provider, messages)`** wraps that with a fault injector: any call to `PRIMARY_PROVIDER` raises a simulated `ConnectionError` before it ever reaches the network. Every call to any *other* provider goes through untouched. This stands in for a real provider outage, deterministically, so the lab doesn't depend on an actual outage happening while you run it.
-3. **`call_with_failover(messages, providers)`** is the gateway itself, in about ten lines: try each provider in the given order, catch a failure, move to the next one, and return which provider actually answered.
-4. **PART ONE** calls `flaky_call_provider(PRIMARY_PROVIDER, ...)` directly, no gateway involved. The simulated outage isn't caught by anything, so the request just fails.
+1. **`call_provider(provider, messages)`** is one real call to one real provider, OpenAI, Anthropic, or a local Ollama model, all behind the same `messages` interface. Each call has a 30-second deadline. Temporary connection, timeout, rate-limit, and server errors become `RetryableProviderError`; authentication mistakes, invalid requests, unknown providers, and code defects do not.
+2. **`flaky_call_provider(provider, messages)`** wraps that with a fault injector: any call to `PRIMARY_PROVIDER` raises a simulated `RetryableProviderError` before it ever reaches the network. Every call to any *other* provider goes through untouched. This stands in for a real provider outage, deterministically, so the lab doesn't depend on an actual outage happening while you run it.
+3. **`call_with_failover(messages, providers)`** is the gateway itself, in about ten lines: try each provider in the given order, catch only a retryable provider failure, move to the next one, and return which provider actually answered.
+4. **PART ONE** calls `flaky_call_provider(PRIMARY_PROVIDER, ...)` directly, no gateway involved. Its error handler prints the failure but never tries another provider, so the request still fails.
 5. **PART TWO** calls `call_with_failover(MESSAGES, [PRIMARY_PROVIDER, FALLBACK_PROVIDER])`. The same simulated failure happens on the first attempt, but this time something catches it and retries the fallback, which succeeds.
 
 ## What you should see
@@ -65,9 +65,9 @@ The fault injector and gateway routing lines are deterministic, code-generated, 
 
 ```
 ============================================================
-PART ONE: no gateway, direct call to openai (today's outage)
+PART ONE: no gateway, direct call to openai (simulated outage)
 ============================================================
-  [fault injector] simulating a openai outage (connection refused)
+  [fault injector] simulating outage for openai (connection refused)
 
 Request failed: simulated outage: openai is not responding
 No fallback exists here. The support widget shows an error until the provider recovers.
@@ -75,18 +75,20 @@ No fallback exists here. The support widget shows an error until the provider re
 ============================================================
 PART TWO: with a gateway, openai -> ollama on failure
 ============================================================
-  [fault injector] simulating a openai outage (connection refused)
+  [fault injector] simulating outage for openai (connection refused)
   [gateway] openai failed (simulated outage: openai is not responding), trying next provider
 
 (answered by: ollama)
-To export your TaskFlow tasks to a CSV file, you can navigate to the "Tasks" tab, click on the three dots next to the title of your task list and select "Export as CSV". Alternatively, you can also use the settings icon in the top right corner to access more options.
+To export your TaskFlow tasks to a CSV file, navigate to the "Reports" section of your TaskFlow dashboard and click on "Export", then select "CSV" as the file format. Follow the prompts to choose which columns you'd like to include in the exported file.
 ```
 
 Part one fails outright, there's nothing downstream of the direct call to catch it. Part two hits the identical simulated failure but never surfaces it to the caller, `call_with_failover` already moved on to `FALLBACK_PROVIDER` before returning.
 
+The error boundary is deliberate. A temporary outage is a reason to try a compatible fallback. A bad API key, malformed request, unknown provider name, or bug in your own response handling is a reason to stop and fix the problem, not hide it by sending the request somewhere else. The deadline matters too: without one, a provider that hangs instead of returning an error can prevent the gateway from ever reaching its fallback.
+
 ## Troubleshooting
 
-- **`ConnectionError` in part two as well**: check that `PRIMARY_PROVIDER` and `FALLBACK_PROVIDER` aren't set to the same value. The fault injector simulates *whichever provider matches `PRIMARY_PROVIDER`* as down, so if both variables point at the same provider, the "fallback" attempt fails the exact same way the primary did, there's no real redundancy to fall back on. That's not a bug, it's the same lesson production systems learn the hard way: a fallback that's secretly the same backend as your primary isn't a fallback.
-- **`ConnectionError` with `FALLBACK_PROVIDER=ollama`**: make sure Ollama is running (`ollama serve`) and that you've pulled `llama3.2`.
-- **`AuthenticationError` with a provider set to `openai` or `anthropic`**: check that your key in `.env` has no extra quotes or spaces, and that the line isn't still commented out with `#`.
+- **`All providers failed` in part two**: check that `PRIMARY_PROVIDER` and `FALLBACK_PROVIDER` aren't set to the same value. The fault injector simulates *whichever provider matches `PRIMARY_PROVIDER`* as down, so if both variables point at the same provider, the "fallback" attempt fails the exact same way the primary did. A fallback that points to the same backend provides no redundancy.
+- **`All providers failed` with `FALLBACK_PROVIDER=ollama`**: make sure Ollama is running (`ollama serve`) and that you've pulled `llama3.2`. The last error in the traceback contains the underlying connection or timeout details.
+- **`AuthenticationError` with `FALLBACK_PROVIDER=openai` or `FALLBACK_PROVIDER=anthropic`**: check that your key in `.env` has no extra quotes or spaces, and that the line isn't still commented out with `#`. Authentication failures stop immediately instead of triggering failover because another provider cannot repair a bad credential.
 - **You want to see it fail all the way through**: pass two providers that are both `PRIMARY_PROVIDER` to `call_with_failover` (or just set `FALLBACK_PROVIDER` equal to `PRIMARY_PROVIDER`) to see the "All providers failed" error the gateway raises when it genuinely runs out of options.
