@@ -9,10 +9,12 @@
 # "just call the provider's SDK" looks like when the provider is down: the
 # request fails, full stop, the customer gets nothing.
 #
-# PART TWO wraps the exact same call in a tiny gateway function: try the
-# primary, catch the failure, automatically retry against FALLBACK_PROVIDER
-# instead. When the fallback is available, the customer gets an answer and
-# never sees the primary provider's error.
+# PART TWO wraps the exact same call in a gateway function: try the primary,
+# catch a retryable failure, and try FALLBACK_PROVIDER instead.
+#
+# PART THREE simulates a configuration error. The gateway deliberately stops
+# instead of trying the fallback, because a second provider cannot repair a
+# broken request or bad configuration.
 #
 # Which two providers this uses is controlled by PRIMARY_PROVIDER and
 # FALLBACK_PROVIDER in your .env file. See README.md for setup steps.
@@ -47,7 +49,12 @@ def call_provider(provider, messages):
         try:
             response = requests.post(
                 "http://localhost:11434/api/chat",
-                json={"model": OLLAMA_MODEL, "messages": messages, "stream": False},
+                json={
+                    "model": OLLAMA_MODEL,
+                    "messages": messages,
+                    "stream": False,
+                    "options": {"temperature": 0},
+                },
                 timeout=REQUEST_TIMEOUT_SECONDS,
             )
         except (requests.ConnectionError, requests.Timeout) as error:
@@ -114,7 +121,9 @@ def call_provider(provider, messages):
         return response.content[0].text
 
     else:
-        raise ValueError(f"Unknown provider '{provider}'. Use ollama, openai, or anthropic.")
+        raise ValueError(
+            f"Unknown provider '{provider}'. Use ollama, openai, or anthropic."
+        )
 
 
 # ============================================================
@@ -136,16 +145,25 @@ def flaky_call_provider(provider, messages):
     return call_provider(provider, messages)
 
 
+def misconfigured_call_provider(provider, messages):
+    """Simulate a non-retryable configuration mistake on the primary."""
+    if provider == PRIMARY_PROVIDER:
+        print(f"  [fault injector] simulating bad configuration for {provider}")
+        raise ValueError(f"simulated configuration error: invalid {provider} API key")
+
+    return call_provider(provider, messages)
+
+
 # ============================================================
 # the gateway -- tries each provider in order, falls back on failure
 # ============================================================
 
-def call_with_failover(messages, providers):
+def call_with_failover(messages, providers, provider_call=call_provider):
     last_error = None
 
     for provider in providers:
         try:
-            reply = flaky_call_provider(provider, messages)
+            reply = provider_call(provider, messages)
             return reply, provider
         except RetryableProviderError as error:
             print(f"  [gateway] {provider} failed ({error}), trying next provider")
@@ -161,9 +179,20 @@ def call_with_failover(messages, providers):
 MESSAGES = [
     {
         "role": "system",
-        "content": "You are a support assistant for TaskFlow, a task-management app. Answer in one or two sentences.",
+        "content": (
+            "You are a support assistant for TaskFlow, a fictional task-management "
+            "app. Answer in one sentence using only the supplied product note. Do "
+            "not add steps or interface details."
+        ),
     },
-    {"role": "user", "content": "How do I export my TaskFlow tasks to a CSV file?"},
+    {
+        "role": "user",
+        "content": (
+            "Product note: To export tasks, open the project, choose More actions, "
+            "then choose Export CSV. Question: How do I export my TaskFlow tasks "
+            "to a CSV file?"
+        ),
+    },
 ]
 
 print("=" * 60)
@@ -185,6 +214,25 @@ print("=" * 60)
 print(f"PART TWO: with a gateway, {PRIMARY_PROVIDER} -> {FALLBACK_PROVIDER} on failure")
 print("=" * 60)
 
-reply, answered_by = call_with_failover(MESSAGES, [PRIMARY_PROVIDER, FALLBACK_PROVIDER])
+reply, answered_by = call_with_failover(
+    MESSAGES,
+    [PRIMARY_PROVIDER, FALLBACK_PROVIDER],
+    provider_call=flaky_call_provider,
+)
 print(f"\n(answered by: {answered_by})")
 print(reply.strip())
+
+print()
+print("=" * 60)
+print("PART THREE: a non-retryable error stops immediately")
+print("=" * 60)
+
+try:
+    call_with_failover(
+        MESSAGES,
+        [PRIMARY_PROVIDER, FALLBACK_PROVIDER],
+        provider_call=misconfigured_call_provider,
+    )
+except ValueError as error:
+    print(f"\nRequest stopped: {error}")
+    print("Fallback was not called. Another provider cannot repair configuration.")

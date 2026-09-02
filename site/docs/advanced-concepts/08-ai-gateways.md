@@ -1,71 +1,184 @@
 ---
 sidebar_position: 9
 sidebar_label: "AI Gateways"
-description: "A thin routing layer that gives one call shape across model providers, with automatic failover, so a temporary provider outage does not have to become an application outage."
+description: "Build the boundary between an application and multiple model providers, then use it to make deliberate failover decisions."
 ---
 
 import Quiz from '@site/src/components/Quiz';
 import {questions as ac8Questions} from '@site/src/data/quizzes/ac8';
 
-# AI Gateways (Multi-Provider Failover)
+# AI Gateways: Build the Boundary
 
-> **Time:** 20 minutes. **Cost:** $0 with the default simulated OpenAI primary and Ollama fallback; a fraction of a cent if you choose a cloud fallback.
+> **Time:** 30 minutes. **Cost:** $0 with the default simulated OpenAI primary and Ollama fallback; a fraction of a cent if you choose a cloud fallback.
 
-On June 2, 2026, Claude had a [major service incident affecting its API and Claude Code](https://www.thoughtworks.com/en-us/insights/blog/generative-ai/claude-outage-june-2026). From June 5 through June 16, its [status history](https://status.claude.com/history) recorded more disruptions. [Tech Times counted ten incidents across twelve days](https://www.techtimes.com/articles/318514/20260616/claude-outage-tenth-disruption-12-days-exposes-anthropic-infrastructure-strain.htm).
+TaskFlow's fictional support assistant began as one feature with one model call. The application sent `messages` to OpenAI, read text from the response, and showed it to the customer. That was a good design for a prototype.
 
-OpenAI's [status history](https://status.openai.com/history?page=2) then recorded separate incidents on each day from July 22 through July 25. The [July 25 incident](https://status.openai.com/incidents/x9p6qd31) affected API, ChatGPT, and Codex components. These were separate incidents with varying scope, not two uninterrupted week-long outages. For an application tied only to an affected service, however, any one of them could still become an application outage.
+Then the feature became important. Customers used it during onboarding. Support linked to it from the help center. A failed model call was no longer a developer inconvenience. It was a failed product interaction.
 
-That's not a reason to panic about any one provider. It is a reason to notice that every lab so far in this course, including the `PROVIDER` pattern from [Chapter 6: Your First Agent](/docs/intermediate/your-first-agent), picks exactly one provider for each run. That is the right level of complexity while you're learning what an agent is. A production feature with a real availability target may need a fallback path too.
+The obvious response is, “Add another provider.” The hard question is not which provider to add. It is **where the application should decide what to do when any provider is slow, unavailable, misconfigured, or unable to perform the requested job**.
 
-## A gateway is a thin layer, not a new framework
+By the end of this chapter, you will build that decision boundary, use it to fail over on a temporary outage, and prove that it refuses to hide a non-retryable error.
 
-An **AI gateway** sits between your application code and every model provider it might call. Strip away the marketing, and it's doing a small number of concrete jobs:
+## One model call grows roots
 
-1. **One interface, many providers.** Your code calls one shape; the gateway translates it for the providers it supports.
-2. **Failover.** If the primary provider has a retryable failure, the gateway tries a compatible fallback inside the same request.
-3. **Centralized keys and cost tracking.** Provider credentials live in one place, spend gets tracked in one place.
-4. **Caching and rate limiting**, covered from the single-provider angle already in [Advanced Chapter 6: Production Concerns](/docs/advanced/production-concerns).
-
-This chapter is about job #2. The earlier `PROVIDER` if/elif selects one provider but does not try another when that provider fails. This lab adds that missing behavior.
-
-```mermaid
-flowchart LR
-    App[Your application] -->|direct SDK call| P1[Primary provider]
-    P1 -.->|"outage: 503s"| App
-    App -->|no fallback| Fail[Request fails, feature is down]
-```
-
-```mermaid
-flowchart LR
-    App[Your application] -->|one call shape| GW[Gateway]
-    GW -->|tries first| P1[Primary provider]
-    P1 -.->|"outage: 503s"| GW
-    GW -->|retries automatically| P2[Fallback provider]
-    P2 -->|response| GW
-    GW -->|same shape either way| App
-```
-
-:::tip[TL;DR]
-A gateway is a self-hosted or managed routing layer that gives your application one call shape across supported model providers. The lab builds its core in about ten lines: try the primary, catch a retryable failure, and try a compatible fallback.
-
-For a hypothetical calculation, suppose two providers each have 99.5% uptime and fail independently. One is down about 44 hours a year. The combined path is down only when both are down together: `0.005 x 0.005 = 0.000025`, or about 13 minutes a year. Real failures can be correlated, and the gateway can fail too, so treat this as best-case arithmetic rather than an availability promise.
-:::
-
-## Hands-on lab: TaskFlow's support bot, on an outage day
-
-[Token & Cost Management](/docs/advanced-concepts/token-cost-management)'s fictional TaskFlow app is back, and its support assistant needs to answer a customer question right now. This lab simulates a temporary provider outage: `PRIMARY_PROVIDER` always raises a retryable error before touching the network. **Part one** calls it directly, with no fallback. **Part two** wraps the identical call in a ten-line gateway function.
-
-Full instructions: [`labs/advanced-concepts/08-ai-gateways`](https://github.com/fewshot-works/academy/tree/main/labs/advanced-concepts/08-ai-gateways)
-
-The gateway itself, in full:
+A direct SDK call looks self-contained:
 
 ```python
-def call_with_failover(messages, providers):
+client = openai.OpenAI()
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages,
+)
+answer = response.choices[0].message.content
+```
+
+But the surrounding application now knows several OpenAI-specific facts:
+
+- where credentials come from;
+- what the model is called;
+- how messages and system instructions are represented;
+- which exception means timeout, rate limit, bad authentication, or server failure;
+- where text, token usage, request IDs, and tool calls live in the response.
+
+Those are the roots of the integration. If the same code appears in a web route, a background worker, and an evaluation script, reliability policy becomes scattered too. One caller may retry a rate limit three times. Another may wait forever because it has no timeout. A third may catch every exception and accidentally conceal a bad API key.
+
+Adding an `if/elif` can select another provider at startup, but selection is not failover:
+
+```python
+if PROVIDER == "openai":
+    answer = call_openai(messages)
+elif PROVIDER == "anthropic":
+    answer = call_anthropic(messages)
+```
+
+Once this process starts, it still has one chosen path. If that path fails, nothing decides whether another path is safe.
+
+```mermaid
+flowchart LR
+    A[Product feature] --> B{Provider setting}
+    B -->|OpenAI| C[OpenAI-specific call]
+    B -->|Anthropic| D[Anthropic-specific call]
+    C -. temporary failure .-> E[Request fails]
+    D -. temporary failure .-> E
+```
+
+## Create one application-owned boundary
+
+The first architectural move is not buying a gateway. It is giving the application one internal call shape that it owns:
+
+```python
+answer, answered_by = generate(messages)
+```
+
+Everything behind `generate` can change without teaching the support widget a new SDK. Three separate responsibilities sit behind that boundary:
+
+| Responsibility | Question it answers | Lab implementation |
+|---|---|---|
+| **Provider adapter** | How do I call this provider and translate its response or errors? | `call_provider` |
+| **Routing policy** | Which compatible provider should receive this request next? | `call_with_failover` |
+| **Operational controls** | How long may an attempt take, and what should be logged, limited, or measured? | timeout plus routing messages |
+
+The boundary can begin as a module inside one application. An **AI gateway** puts that boundary on the request path, usually as a proxy shared by multiple features or services. It receives model requests, applies policy, calls one or more model backends, and returns a response in a known shape. A team can self-host that proxy or use a managed one.
+
+This lab keeps the mechanism in one Python process so you can see every decision without deploying infrastructure. The same responsibilities remain when the boundary moves into a gateway service. Failover, authentication, spend controls, rate limits, caching, logging, and guardrails are common gateway policies. This chapter stays focused on the reliability path: adapters, failure classification, deadlines, and fallback routing.
+
+:::tip[TL;DR]
+💡 A gateway is useful because it gives provider-specific behavior and routing policy one owner. It does not make models interchangeable. A fallback is real only when it is compatible with the request, has time to answer, fails independently enough to help, and is exercised before an incident.
+:::
+
+## Follow one request through the gateway
+
+The gateway does more than forward an HTTP request:
+
+```mermaid
+flowchart LR
+    App[Application request] --> Contract[Validate internal contract]
+    Contract --> Route[Choose compatible route]
+    Route --> Adapt[Translate for provider]
+    Adapt --> Call[Call with deadline]
+    Call --> Decision{Outcome}
+    Decision -->|success| Normalize[Normalize response]
+    Decision -->|retryable failure| Route
+    Decision -->|non-retryable failure| Stop[Stop and expose error]
+    Normalize --> Observe[Record provider, latency, usage]
+    Observe --> App
+```
+
+1. **Validate the request.** Determine whether this is plain text, structured output, vision, streaming, or a tool-using turn.
+2. **Choose an eligible route.** Remove providers that cannot satisfy that contract before considering price or preference.
+3. **Adapt the request.** Translate the internal message shape into the selected provider's API.
+4. **Call within a deadline.** An attempt that can wait forever can consume the entire user-facing time budget.
+5. **Classify the outcome.** Success returns. A retryable failure may take another route. A request or configuration error stops.
+6. **Normalize and observe.** Return the application shape and record which route answered.
+
+That separation matters. Translation answers “how do I call Anthropic?” Routing answers “should Anthropic receive this request now?” They should not be the same decision.
+
+## The interface is a lowest common contract
+
+The lab's request is deliberately portable: system text, user text, and a short text answer. OpenAI, Anthropic, and Ollama can all perform it.
+
+Real applications often depend on more. Tool APIs have provider-specific request and response structures. Anthropic, for example, returns tool requests as [`tool_use` content blocks tied to later `tool_result` blocks](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls), while its [strict tool mode](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use) validates inputs against a supported JSON Schema subset. Structured-output fields and supported schema features also vary by provider and model.
+
+This makes a gateway abstraction **leaky**. It can normalize the common subset, but it cannot manufacture a capability the fallback lacks. Before a route becomes eligible, decide whether it matches the request's contract:
+
+- required input types, such as images or audio;
+- context and output limits;
+- tool definitions and tool-result protocol;
+- structured-output guarantees;
+- streaming behavior;
+- safety and moderation requirements;
+- acceptable latency and cost;
+- data residency, retention, and compliance rules.
+
+If a request requires a feature unique to the primary, the honest fallback may be a controlled error or a reduced-function experience. Sending it to an incompatible model is not resilience. It is a different failure.
+
+## Failure is a routing decision
+
+OpenAI's [error guide](https://developers.openai.com/api/docs/guides/error-codes) and Anthropic's [API error guide](https://platform.claude.com/docs/en/api/errors) distinguish client, authentication, rate-limit, connection, and server failures. A gateway should preserve those distinctions.
+
+| Outcome | Try another provider? | Reason |
+|---|---|---|
+| Connection fails before a response | Usually | Another independent endpoint may be reachable. |
+| Attempt exceeds its deadline | Usually | The primary cannot answer within this request's budget. |
+| Provider returns 500, 502, 503, or overload | Usually | The request may be valid while that provider is unhealthy. |
+| Provider returns 429 | It depends | A provider-specific capacity or quota limit may be routable. Your own application limit should not be bypassed. |
+| Authentication fails | No | Another route would hide a credential or deployment error. |
+| Request is malformed | No | Repeating a broken request adds cost and latency without fixing it. |
+| Context is too large | Only by explicit policy | Route only to a model known to accept that input and preserve required behavior. |
+| Stream fails after text reached the user | Usually no transparent replay | A second answer can duplicate or contradict text already displayed. |
+| Model already requested a side-effecting tool | Not automatically | Replaying the turn can lead to duplicate actions unless the workflow is designed for idempotency. |
+
+The lab simplifies 429 responses into `RetryableProviderError`, which is reasonable for a provider-specific support-bot quota. In a larger system, the classifier needs more context. “Retryable” is a business policy expressed in code, not an eternal property of an HTTP status.
+
+:::warning
+Once a provider has started streaming visible text, failover is no longer invisible. You can stop with a clear error, restart the answer and tell the user, or design buffered output that is not released until safe. Silently splicing a second model's continuation onto the first model's text is not a sound default.
+:::
+
+## Give the fallback time to work
+
+Imagine the support widget promises an answer within 12 seconds. If the primary's timeout is 30 seconds, the fallback exists on paper but can never meet the product promise.
+
+A useful budget might reserve 5 seconds for the primary, 6 seconds for one fallback, and 1 second for gateway and network overhead. Those numbers are illustrative, not universal. The important part is that per-attempt deadlines come from an end-to-end budget.
+
+Retries underneath the gateway can quietly consume that budget. The lab disables the OpenAI and Anthropic SDKs' internal retries with `max_retries=0`, then lets one visible layer own the next decision. A production policy may retry the same provider before failing over, but the total number of attempts and total time should be deliberate.
+
+There is another ambiguity: a client timeout proves that the client stopped waiting, not necessarily that the provider did no work. OpenAI recommends [client-generated request IDs](https://developers.openai.com/api/docs/guides/error-codes#request-ids) partly because a timeout or network problem can prevent the client from receiving the provider's request ID, while support may still be able to determine whether the request arrived. Log one trace ID across every attempt so duplicated work, latency, and charges can be investigated.
+
+## Hands-on lab: build and test the boundary
+
+TaskFlow's support assistant needs to answer, “How do I export my tasks to CSV?” The lab uses a live fallback but injects deterministic faults before the primary touches the network.
+
+Full setup: [`labs/advanced-concepts/08-ai-gateways`](https://github.com/fewshot-works/academy/tree/main/labs/advanced-concepts/08-ai-gateways)
+
+The routing policy is intentionally small:
+
+```python
+def call_with_failover(messages, providers, provider_call=call_provider):
     last_error = None
 
     for provider in providers:
         try:
-            reply = flaky_call_provider(provider, messages)
+            reply = provider_call(provider, messages)
             return reply, provider
         except RetryableProviderError as error:
             print(f"  [gateway] {provider} failed ({error}), trying next provider")
@@ -74,9 +187,15 @@ def call_with_failover(messages, providers):
     raise RuntimeError(f"All providers failed. Last error: {last_error}")
 ```
 
-`flaky_call_provider` is the fault injector: it always raises `RetryableProviderError` when asked for `PRIMARY_PROVIDER`, and calls through normally for anything else. That creates the control flow of a temporary outage without waiting for one. Only the fallback touches the network, so the default run does not require an OpenAI key. Here is a real run with OpenAI as the simulated primary and Ollama as the live fallback:
+Its narrow `except` is the central decision. The script runs three cases:
 
-```
+1. A direct call receives a simulated connection failure and has no fallback.
+2. The gateway receives the same retryable failure and reaches live Ollama.
+3. The gateway receives a simulated configuration error and deliberately does not call Ollama.
+
+A fresh run produced:
+
+```text
 ============================================================
 PART ONE: no gateway, direct call to openai (simulated outage)
 ============================================================
@@ -92,71 +211,73 @@ PART TWO: with a gateway, openai -> ollama on failure
   [gateway] openai failed (simulated outage: openai is not responding), trying next provider
 
 (answered by: ollama)
-To export your TaskFlow tasks to a CSV file, navigate to the "Reports" section of your TaskFlow dashboard and click on "Export", then select "CSV" as the file format. Follow the prompts to choose which columns you'd like to include in the exported file.
+To export your TaskFlow tasks to a CSV file, open the project, choose More actions, and then choose Export CSV.
+
+============================================================
+PART THREE: a non-retryable error stops immediately
+============================================================
+  [fault injector] simulating bad configuration for openai
+
+Request stopped: simulated configuration error: invalid openai API key
+Fallback was not called. Another provider cannot repair configuration.
 ```
 
-:::note
-💡 Part one's failure is the point. `flaky_call_provider` raises before touching the network, similar to a provider returning a retryable 503. Part one has no fallback path, so the error reaches the caller. Part two catches the same simulated failure and tries Ollama before returning.
-:::
+The model's wording will vary. The meaningful evidence is the route: part two reaches Ollama, while part three stops before the fallback.
 
-## Fail over on purpose, not on every error
+## What availability math does and does not prove
 
-The ten-line loop is only the routing core. The lab's provider wrapper adds two production details around it:
+Suppose two providers each have 99.5% uptime and their failures are independent. One is unavailable about 44 hours per year. The probability that both are unavailable at the same moment is `0.005 × 0.005 = 0.000025`, which is about 13 minutes per year.
 
-- **A deadline for every attempt.** A provider can hang instead of returning an error. Without a timeout, the gateway may never reach its fallback.
-- **A narrow retryable error.** Connection failures, timeouts, rate limits, and provider-side server errors become `RetryableProviderError`. Bad credentials, malformed requests, unknown provider names, and bugs in your own code stop immediately because another provider cannot repair them.
+That hypothetical calculation describes only the provider path. It does not include:
 
-A fallback also has to support the request. A text-only support answer can move between the three backends in this lab. A request that depends on a particular context window, tool schema, structured-output mode, safety policy, or data region needs a fallback chosen for those requirements. A gateway gives you a place to encode that decision; it does not make every model interchangeable.
+- correlated failures caused by a shared cloud, network, identity service, or DNS dependency;
+- the gateway's own availability;
+- incompatible fallback requests;
+- exhausted latency budgets;
+- software defects in shared adapters or routing policy.
 
-## The three worth knowing
+The formula is useful because it shows why independent redundancy can help. It is dangerous when presented as an uptime promise. Real availability must be measured at the product boundary: did the user receive a valid response within the promised time?
 
-Building the mechanism by hand is the lesson. For a production system, these three existing gateways are useful starting points. Product support and licensing below were checked against vendor documentation on September 2, 2026, so follow the links for current details:
+## Build, buy, or stay direct
 
-| | [LiteLLM](https://github.com/BerriAI/litellm) | [Portkey](https://github.com/Portkey-AI/gateway) | [Kong AI Gateway](https://developer.konghq.com/ai-gateway/) |
-|---|---|---|---|
-| License | MIT (core), paid enterprise tier | MIT (gateway core), paid hosted tiers | Apache 2.0 (Kong Gateway core, including the basic AI Proxy plugin); multi-provider failover needs the paid [AI Proxy Advanced plugin](https://developer.konghq.com/plugins/ai-proxy-advanced/) |
-| Deploy model | Self-hosted proxy (Docker, Helm, Terraform) or SDK | Managed service or open-source self-hosted gateway | Self-hosted Kong Gateway or managed Konnect deployment |
-| Provider support | [100+ LLM providers](https://github.com/BerriAI/litellm) claimed | [Major hosted and custom providers](https://portkey.ai/docs/api-reference/inference-api/supported-providers); capabilities vary by API format | [OpenAI, Anthropic, Bedrock, Gemini, Azure, Mistral, and others](https://developer.konghq.com/ai-gateway/ai-providers/) through standardized request formats |
-| Where it fits | Teams that want a self-hosted, open-source-first proxy with deep cost/spend tracking | Teams that want managed observability and guardrails without running infrastructure | Teams already running Kong for regular API traffic, now extending it to LLM and MCP traffic too |
+Not every application needs a deployed gateway.
 
-All three apply the pattern this lab builds in miniature: one endpoint, multiple providers, and configurable fallback, with dashboards, spend tracking, and caching layered on top. What is free versus paid differs by vendor. A team already operating Kong for REST APIs can add basic LLM proxying through its existing gateway, but the multi-provider failover covered here requires Kong's paid AI Proxy Advanced plugin. LiteLLM offers open-source fallback routing for teams that want to run the proxy themselves. Portkey offers both a hosted service and an open-source gateway, with fallback available in the gateway.
+| Situation | Sensible starting point |
+|---|---|
+| Prototype, internal experiment, or low-impact feature | Call one provider directly, but keep the call behind one local function. |
+| One application needs basic failover | Use an application-owned adapter and routing module like this lab. |
+| Several services need the same credentials, limits, logs, and routing policy | Consider a shared self-hosted or managed gateway. |
+| Workload depends heavily on one provider's unique tools or state | Keep the provider-specific path explicit; use graceful degradation instead of pretending it is portable. |
+| Strict regional or compliance constraints | Make eligibility policy explicit before cost or availability routing. |
 
-:::info
-💡 A gateway is itself a new dependency, not a way to remove one. Self-host LiteLLM or Kong, and you've added a service that needs to stay up, get patched, and get monitored, in exchange for provider-level outage protection. Use Portkey's hosted option, and you've swapped "my provider is down" risk for "my provider or my gateway vendor is down" risk, a smaller number, not zero. That's the same trade this course's [managed AI platforms](/blog/managed-ai-platforms-lock-in) post makes about cloud model gardens: moving a dependency isn't the same as removing it, even when it's a genuinely better trade.
-:::
+If a shared gateway is justified, the following product behavior was checked against vendor documentation on September 2, 2026. [LiteLLM](https://docs.litellm.ai/) provides a proxy and Python SDK with normalized formats and router fallbacks. [Portkey](https://portkey.ai/docs/product/ai-gateway/fallbacks) provides managed and self-hosted gateway options with configurable fallback status codes. [Kong AI Gateway](https://developer.konghq.com/ai-gateway/load-balancing/) extends an API gateway with model targets, timeouts, retry criteria, health behavior, and routing algorithms.
 
-## Where this doesn't overlap with earlier chapters
-
-Three chapters in this course sound adjacent to this one but answer different questions:
-
-- **[Token & Cost Management](/docs/advanced-concepts/token-cost-management)**'s model right-sizing routes a request to a smaller or larger model *within* one provider, based on task difficulty. This chapter routes *across* providers, based on whether the primary one is answering at all.
-- **[Advanced Chapter 6: Production Concerns](/docs/advanced/production-concerns)** covers caching and rate limiting for a single provider you've already committed to. A gateway typically does both of those too, layered on top of the failover this chapter covers.
-- **[Managed AI platforms](/blog/managed-ai-platforms-lock-in)**, this course's earlier post on Bedrock, Azure OpenAI, and Vertex AI, put one cloud's identity and billing layer in front of a model catalog, with that cloud doing the routing behind the scenes. A gateway does its own routing, in your infrastructure or a vendor's dedicated one, across whichever raw provider APIs you choose. You can run a gateway in front of Bedrock, or instead of it.
+Those products can save engineering work, but none chooses your compatibility contract or error policy for you. Treat the product list as implementation options after the architecture is understood, not as the definition of an AI gateway.
 
 ## Checkpoint
 
 <details>
-<summary>Part one's direct call to the primary provider fails outright, with no fallback. Why doesn't the fault injector itself provide any resilience?</summary>
+<summary>Why is adding a second branch to a `PROVIDER` setting not the same as failover?</summary>
 
-Because `flaky_call_provider` is only the simulated *failure*, not a fix for it. It always raises when asked for `PRIMARY_PROVIDER`, standing in for a real outage. Part one catches the error only to print the customer-facing failure; it never tries another provider. That is the situation the earlier `PROVIDER` if/elif has during an outage: correct code, but no configured retry path.
+The setting chooses one provider before the request. Once that provider is selected, there is still no runtime policy that classifies a failure, checks whether another provider is compatible, and tries it within the remaining deadline. Selection gives the application alternatives. Failover decides when and how to use one during a request.
 </details>
 
 <details>
-<summary>Why does `call_with_failover` catch only `RetryableProviderError` instead of every `Exception`?</summary>
+<summary>Why does part three stop instead of trying Ollama?</summary>
 
-Because another provider can route around a temporary connection failure, timeout, rate limit, or provider-side server error. It cannot repair a bad API key, malformed request, unknown provider name, or bug in your own code. `call_provider` translates only the temporary cases into `RetryableProviderError`, so the gateway retries failures it can plausibly route around and lets the rest surface for correction.
+Its simulated error is a configuration problem, not a temporary provider outage. `call_with_failover` catches only `RetryableProviderError`, so `ValueError` leaves the gateway immediately. Trying Ollama could produce an answer, but it would also hide the broken primary configuration and spend time on a route that did not repair the actual defect.
 </details>
 
 <details>
-<summary>The lab's `.env.example` warns that setting `PRIMARY_PROVIDER` and `FALLBACK_PROVIDER` to the same value breaks the demo. Why, mechanically, does that happen?</summary>
+<summary>A response starts streaming, displays half a sentence, and then disconnects. Why is normal failover unsafe?</summary>
 
-`flaky_call_provider` simulates an outage for *whichever provider string matches `PRIMARY_PROVIDER`*, not for a specific position in the call order. If `FALLBACK_PROVIDER` holds that same string, the "fallback" attempt runs into the identical fault injector check and fails the same way the primary did. `call_with_failover` then runs out of providers to try and raises its own `RuntimeError`. It's not a bug in the gateway function, it's an accurate reflection of a real production mistake: pointing two configured "providers" at the same underlying backend gives you the appearance of redundancy with none of the substance.
+The request already produced a user-visible effect. A fallback model has not generated the same hidden continuation and may answer differently from the beginning. Transparently appending its output can create a contradictory hybrid response, while restarting can duplicate text. The interface needs an explicit interruption or restart policy.
 </details>
 
 <details>
-<summary>The hypothetical failover math in the TL;DR assumes the two providers fail independently. Give one concrete reason two real providers might NOT fail independently.</summary>
+<summary>What does a gateway normalize, and what must remain explicit?</summary>
 
-Shared infrastructure underneath both. Two "different" providers can still depend on the same cloud region, upstream network, or DNS infrastructure. If that shared layer goes down, both providers can fail at the same time for the same root cause. The arithmetic also leaves out the gateway's own availability. Treat the roughly 13-minute annual result as a best case, not a guarantee.
+It can normalize an application-owned common contract, such as text messages in and text plus usage metadata out. Provider or model capabilities that do not fit that contract must remain explicit: tool protocols, schema guarantees, modalities, context limits, safety behavior, streaming semantics, and data restrictions. A gateway is a boundary, not proof that every backend is equivalent.
 </details>
 
 ## Check Your Knowledge
@@ -170,4 +291,6 @@ Shared infrastructure underneath both. Two "different" providers can still depen
 
 ## What's next
 
-This chapter's gateway is the smallest version of the idea: one function, one fallback, one fault. [LiteLLM](https://github.com/BerriAI/litellm), [Portkey](https://github.com/portkey-ai/gateway), and [Kong AI Gateway](https://github.com/Kong/kong) take the same core pattern and add spend tracking, caching, guardrails, and dashboards on top, worth a look once the mechanism itself makes sense. Come back to Advanced Concepts whenever another chapter title catches your eye, nothing here needs to be read in order.
+You started with a direct model call, separated provider translation from routing policy, and tested both sides of the error boundary. The next production step is not adding more providers. It is writing contract tests for the capabilities you depend on, setting an end-to-end latency budget, and exercising each failure path regularly.
+
+The companion article, [Stop calling LLM APIs directly](/blog/stop-calling-llm-apis-directly), examines the same decision from an engineering-lead perspective: how to tell whether a fallback is operationally real or only present in configuration.
