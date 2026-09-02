@@ -79,7 +79,7 @@ PART TWO: with a gateway, openai -> ollama on failure
   [gateway] openai failed (simulated outage: openai is not responding), trying next provider
 
 (answered by: ollama)
-<the fallback model's actual answer about exporting TaskFlow tasks to CSV>
+To export your TaskFlow tasks to a CSV file, you can navigate to the "Tasks" tab, click on the three dots next to the title of your task list and select "Export as CSV". Alternatively, you can also use the settings icon in the top right corner to access more options.
 ```
 
 Part one fails outright, there's nothing downstream of the direct call to catch it. Part two hits the identical simulated failure but never surfaces it to the caller, `call_with_failover` already moved on to `FALLBACK_PROVIDER` before returning.

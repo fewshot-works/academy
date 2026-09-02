@@ -4,10 +4,10 @@ description: Anthropic and OpenAI each had multi-day outage streaks in 2026, and
 slug: stop-calling-llm-apis-directly
 authors: [mangatrai]
 tags: [infrastructure, llm-platforms, production, reliability]
-image: /img/academy-social-card.png
+image: ./social-card.png
 ---
 
-Anthropic logged ten separate service disruptions in twelve days starting June 5, 2026, including a five-and-a-half-hour outage on June 2 that took down Claude.ai, the API, Console, and Claude Code together. Seven weeks later, OpenAI had its own rough stretch: four disruptions in four days between July 23 and July 25, with the July 25 incident knocking out ChatGPT, the API, and Codex at once.
+Anthropic's Claude went dark for five and a half hours on June 2, 2026, taking Claude.ai, the API, Console, and Claude Code out together. Three days later, on June 5, a longer stretch began: ten separate service disruptions across the next twelve days, running through June 16. Seven weeks after that stretch began, OpenAI had its own rough stretch: four disruptions in four days between July 22 and July 25, with the July 25 incident knocking out ChatGPT, the API, and Codex at once.
 
 If your app calls one provider's SDK directly with no fallback, both of those weeks were your outage too, whether or not anyone at your company noticed why the AI feature just went quiet.
 

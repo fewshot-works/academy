@@ -11,7 +11,7 @@ import {questions as ac8Questions} from '@site/src/data/quizzes/ac8';
 
 > **Time:** 20 minutes. **Cost:** a fraction of a cent with OpenAI or Anthropic as the primary, $0 for the Ollama fallback.
 
-Anthropic logged ten separate service disruptions in twelve days starting June 5, 2026, including a five-and-a-half-hour outage on June 2 that took down Claude.ai, the API, Console, and Claude Code together. Seven weeks later, OpenAI had its own rough stretch: four disruptions in four days between July 23 and July 25, with the July 25 incident knocking out ChatGPT, the API, and Codex at once. Every app calling one provider's SDK directly, with no fallback, was down both of those weeks too.
+Anthropic's Claude went dark for five and a half hours on June 2, 2026, taking Claude.ai, the API, Console, and Claude Code out together. Three days later, on June 5, a longer stretch began: ten separate service disruptions across the next twelve days, running through June 16. Seven weeks after that stretch began, OpenAI had its own rough stretch: four disruptions in four days between July 22 and July 25, with the July 25 incident knocking out ChatGPT, the API, and Codex at once. Every app calling one provider's SDK directly, with no fallback, was down both of those weeks too.
 
 That's not a reason to panic about any one provider. It's a reason to notice that every lab so far in this course, including this course's own `PROVIDER` pattern from [Chapter 6: Your First Agent](/docs/intermediate/your-first-agent), picks exactly one provider and calls it directly. That's the right level of complexity while you're learning what an agent even is. It's the wrong level of complexity for anything you'd actually want to stay up during one of those weeks.
 
@@ -88,7 +88,7 @@ PART TWO: with a gateway, openai -> ollama on failure
   [gateway] openai failed (simulated outage: openai is not responding), trying next provider
 
 (answered by: ollama)
-<the fallback model's actual answer about exporting TaskFlow tasks to CSV>
+To export your TaskFlow tasks to a CSV file, you can navigate to the "Tasks" tab, click on the three dots next to the title of your task list and select "Export as CSV". Alternatively, you can also use the settings icon in the top right corner to access more options.
 ```
 
 💡 Part one's failure isn't a bug in the lab, it's the point. `flaky_call_provider` raises before touching the network at all, the same as a real provider returning nothing but 503s. Nothing in part one's code path catches that, so it propagates straight to the customer-facing error. Part two hits the identical simulated failure, but `call_with_failover` catches it and moves on before ever returning control to the caller. The customer in part two never knows the primary was down.
@@ -99,12 +99,12 @@ Building the mechanism by hand is the lesson. In production, most teams reach fo
 
 | | LiteLLM | Portkey | Kong AI Gateway |
 |---|---|---|---|
-| License | MIT (core), paid enterprise tier | MIT (gateway core), paid hosted tiers | Apache 2.0 (Kong Gateway, including AI plugins) |
+| License | MIT (core), paid enterprise tier | MIT (gateway core), paid hosted tiers | Apache 2.0 (Kong Gateway core, including the basic AI Proxy plugin); multi-provider failover needs the paid AI Proxy Advanced plugin |
 | Deploy model | Self-hosted proxy (Docker, Helm, Terraform) or SDK | Hosted-first, with an open-source self-hosted gateway too | Self-hosted, built on the existing Kong API gateway |
 | Providers | 140+ providers, 2,600+ models claimed | 1,600+ models across ~40+ providers | Multi-LLM (OpenAI, Anthropic, Bedrock, Gemini, Azure, Mistral, and more) via a universal API |
 | Where it fits | Teams that want a self-hosted, OSS-first proxy with deep cost/spend tracking | Teams that want managed observability and guardrails without running infrastructure | Teams already running Kong for regular API traffic, now extending it to LLM and MCP traffic too |
 
-All three do the core job this chapter's lab does in miniature: one endpoint, many providers, automatic fallback, at production scale with dashboards, spend tracking, and caching layered on top. The real decision is less "which gateway is best" and more "which one fits infrastructure you already run." A team already operating Kong for its REST APIs gets LLM routing nearly for free by turning on a plugin. A team with no gateway at all and a preference for open source typically reaches for [LiteLLM](https://github.com/BerriAI/litellm) (57k+ GitHub stars, used by Stripe and Google ADK) first. [Portkey](https://github.com/portkey-ai/gateway) is the fastest path if you'd rather not run the proxy yourself.
+All three do the core job this chapter's lab does in miniature, one endpoint, many providers, automatic fallback, at production scale with dashboards, spend tracking, and caching layered on top, though what's free versus paid differs by vendor. The real decision is less "which gateway is best" and more "which one fits infrastructure you already run." A team already operating Kong for its REST APIs gets basic LLM routing nearly for free by turning on a plugin, though the multi-provider failover this chapter covers specifically needs Kong's paid AI Proxy Advanced plugin. A team with no gateway at all and a preference for open source typically reaches for [LiteLLM](https://github.com/BerriAI/litellm) (57k+ GitHub stars, used by Stripe and Google ADK) first, its fallback routing is free and open source. [Portkey](https://github.com/portkey-ai/gateway) is the fastest path if you'd rather not run the proxy yourself, and its open-source gateway includes fallback routing too.
 
 :::info
 💡 A gateway is itself a new dependency, not a way to remove one. Self-host LiteLLM or Kong, and you've added a service that needs to stay up, get patched, and get monitored, in exchange for provider-level outage protection. Use Portkey's hosted option, and you've swapped "my provider is down" risk for "my provider or my gateway vendor is down" risk, a smaller number, not zero. That's the same trade this course's [managed AI platforms](/blog/managed-ai-platforms-lock-in) post makes about cloud model gardens: moving a dependency isn't the same as removing it, even when it's a genuinely better trade.
