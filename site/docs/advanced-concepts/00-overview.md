@@ -29,6 +29,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Continuous Adversarial Evaluation** — testing a security defense against a battery of differently-worded attacks instead of just one, why a keyword filter misses phrasings it wasn't built to catch while a structural guard doesn't, and why the eval harness itself is also attack surface.
 
+**AI Gateways:** the application-owned boundary that separates provider adapters, routing policy, and operational controls; building it by hand, testing which failures should and should not trigger a fallback, and deciding when a shared gateway is justified.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.
