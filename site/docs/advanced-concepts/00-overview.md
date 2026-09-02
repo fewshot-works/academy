@@ -29,6 +29,8 @@ Every chapter here assumes you've been through at least Foundations, ideally the
 
 **Continuous Adversarial Evaluation** — testing a security defense against a battery of differently-worded attacks instead of just one, why a keyword filter misses phrasings it wasn't built to catch while a structural guard doesn't, and why the eval harness itself is also attack surface.
 
+**AI Gateways** — a thin routing layer that gives one call shape across model providers with automatic failover, so a dead provider is a retry instead of a page-out; building the pattern by hand, then a look at LiteLLM, Portkey, and Kong AI Gateway.
+
 ## What's next
 
 Pick a chapter title that catches your eye and start there. Nothing here is gated behind anything else in this section.
