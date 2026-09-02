@@ -93,21 +93,28 @@ brand change:
 - Training scenarios may be invented for practice, but label them clearly as illustrative. Never
   imply they are transcripts or incidents from a named company.
 
-### 3. Plan the reader experience
+### 3. Diagnose and plan content
 
-Before drafting, write down:
+- Classify the task as a new idea, existing-draft revision, targeted correction, or factual
+  update. For an existing draft, read it completely before editing, rank findings as `keep`,
+  `clarify`, `restructure`, `cut`, or `rewrite`, and identify the three highest-impact problems.
+  A weak premise may justify replacing or removing the artifact.
+- Before drafting, define the reader, question, one-sentence thesis, outcome, next action, and
+  primary path. Require logical buildup, concrete examples, tradeoffs, and the mechanism's limits.
+  A blog must remain valuable after all curriculum links are removed.
+- Verify examples against the real lab, README, configuration, defaults, and neighboring pages.
+  Prefer useful artifacts over filler prose. Complete the plan, draft, cold review, and fixes in
+  one task unless a material scope decision requires the user.
 
-- Who the page is for.
-- What question brought them here.
-- What they should understand, decide, build, or practice by the end.
-- What action comes next.
-- Which information belongs in the primary path and which belongs in supplementary detail.
+### 4. Use model effort deliberately
 
-Prefer active learning over additional prose. When a page feels thin, first ask whether it needs
-an exercise, diagram, comparison, rubric, tested artifact, or decision checklist rather than more
-paragraphs.
+- When useful and supported, delegate bounded inventory, source extraction, mechanical checks,
+  and initial gap detection to a fast model such as Luna. Use a strong reasoning model such as Sol
+  for thesis, teaching structure, substantive writing, and a fresh-context final review. The
+  primary agent fixes review findings and owns the result. Skip delegation when its coordination
+  cost exceeds its benefit.
 
-### 4. Implement the smallest complete unit
+### 5. Implement the smallest complete unit
 
 - Follow existing route, component, data, and styling patterns unless the issue explicitly changes
   them.
@@ -118,7 +125,7 @@ paragraphs.
   Docusaurus redirect plugin or `_redirects` file unless the user reverses that decision.
 - Do not fabricate unfinished courses, testimonials, ratings, logos, or usage claims.
 
-### 5. Verify before presenting work
+### 6. Verify before presenting work
 
 Run the checks appropriate to the changed surface:
 
@@ -127,15 +134,19 @@ Run the checks appropriate to the changed surface:
 - Lab: run the exact documented command from a clean lab environment, normally
   `uv run <script>.py`.
 - Interactive UI: verify keyboard use, focus visibility, responsive behavior, and both themes.
-- Content: run the mandatory 12-point review below and report findings point by point for new or
-  materially revised chapters/labs before committing or declaring the work complete.
+- Content: run the mandatory 12-point review below. Report failures and a concise pass summary for
+  new or materially revised chapters/labs before committing or declaring the work complete.
 
 If a check cannot be run, state exactly what was not verified and why. Never describe a lab as
 tested if it was only read.
 
-### 6. Hand off clearly
+### 7. Hand off clearly
 
-- Lead with what changed and what passed verification.
+- Lead with the outcome, decision, or blocker. Default to 3-5 short bullets or brief paragraphs,
+  with one idea each and plain language.
+- Prioritize changes, decisions, and verification. Separate blockers from optional context. Avoid
+  restating the request, narrating routine tool use, or repeating checklists.
+- Expand only when requested or necessary. Use a small table only when it is faster to scan.
 - Mention important limitations, assumptions, and intentionally deferred work.
 - Link the relevant files and issue.
 - Record agreed future work or out-of-scope bugs in GitHub issues so it does not live only in
