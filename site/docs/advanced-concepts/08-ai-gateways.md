@@ -11,7 +11,7 @@ import {questions as ac8Questions} from '@site/src/data/quizzes/ac8';
 
 > **Time:** 30 minutes. **Cost:** $0 with the default simulated OpenAI primary and Ollama fallback; a fraction of a cent if you choose a cloud fallback.
 
-TaskFlow's fictional support assistant began as one feature with one model call. The application sent `messages` to OpenAI, read text from the response, and showed it to the customer. That was a good design for a prototype.
+TaskFlow's fictional support assistant began as one feature with one model call. Like most labs in this course, it used Ollama by default, with OpenAI and Anthropic available as alternatives. For any one run, the `PROVIDER` setting selected exactly one backend. The application sent `messages` to that backend, read text from the response, and showed it to the customer. That was a good design for a prototype.
 
 Then the feature became important. Customers used it during onboarding. Support linked to it from the help center. A failed model call was no longer a developer inconvenience. It was a failed product interaction.
 
@@ -21,7 +21,7 @@ By the end of this chapter, you will build that decision boundary, use it to fai
 
 ## One model call grows roots
 
-A direct SDK call looks self-contained:
+The same coupling appears whichever provider you select. To make it concrete, imagine that a production deployment chooses the lab's optional OpenAI path. Its direct SDK call looks self-contained:
 
 ```python
 client = openai.OpenAI()
