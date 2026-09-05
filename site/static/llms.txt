@@ -53,6 +53,7 @@
 ## Blog
 
 - [Blog index](https://fewshotacademy.com/blog): Short-form posts on AI agent news and practice, separate from the chapter-wise curriculum.
+- [GPT-6 Astra: the harness is the product](https://fewshotacademy.com/blog/gpt-6-astra-the-harness-is-the-product): Why Astra's AGI claim depends on persistent context, searchable history, async tools, and mid-turn steering.
 - [Agent memory just became its own product category](https://fewshotacademy.com/blog/agent-memory-first-class): A tour of LangMem, Mem0, and Zep, the 2026 memory frameworks, and where agent memory is still unsolved.
 - [OWASP just published a security top 10 for MCP](https://fewshotacademy.com/blog/owasp-mcp-top-10): All ten OWASP MCP Top 10 risk categories with real-world examples, from token mismanagement to shadow MCP servers.
 - [The EU AI Act deadline moved. The obligations didn't.](https://fewshotacademy.com/blog/eu-ai-act-obligations): What actually changed in the Digital Omnibus, the finalized dates, and what high-risk obligations require.

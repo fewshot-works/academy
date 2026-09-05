@@ -83,6 +83,16 @@ This is Few-Shot Academy (`fewshotacademy.com`, `fewshot-works/academy`; `zero-t
 
 ## Curriculum and content
 
+### Author voice
+
+- Write like an experienced practitioner explaining how he reached a decision: practical, conversational, direct, candid, and aware of real constraints.
+- Start with the main point or governing constraint. For teaching content, a concrete situation may establish that constraint before explaining the mechanism. Then give the relevant context, show what happens in practice, identify the important tradeoff, and make a clear recommendation or next step.
+- Use concrete examples and practical consequences. Consider the alternatives that could change the decision, but do not turn every statement into a qualification or every argument into a perfectly balanced list.
+- Make the call when the evidence supports one. Say plainly when something is unknown, a claim is weak, or another objection is valid.
+- Prefer ordinary professional language over academic, promotional, corporate, or inflated wording. Avoid generic scene-setting, artificial enthusiasm, and formulaic transitions.
+- Use first person selectively for judgment and recommendations. Favor cohesive paragraphs; use bullets and tables only when they make a decision, comparison, responsibility, or takeaway easier to scan.
+- Preserve the owner's reasoning while correcting grammar, spelling, sentence structure, and unclear transitions. The result should sound like a polished version of the owner, not a communications department or an executive memo.
+
 ### Voice and chapters
 
 - Write like a patient practitioner, not a generated textbook. Introduce concepts through a situation, story, or analogy before the mechanism; keep one coherent example across prose, diagram, lab, checkpoint, and quiz.
