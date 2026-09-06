@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Deploy Few-Shot Academy
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'site/**'
+      - 'email-worker/**'
       - 'labs/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
@@ -14,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
+  group: fewshot-academy-production
   cancel-in-progress: false
 
 jobs:
@@ -22,16 +23,22 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-          cache-dependency-path: site/package-lock.json
+          cache-dependency-path: |
+            site/package-lock.json
+            email-worker/package-lock.json
 
       - name: Install dependencies
         working-directory: site
+        run: npm ci
+
+      - name: Install email worker dependencies
+        working-directory: email-worker
         run: npm ci
 
       - name: Build website
@@ -45,6 +52,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
+      - name: Deploy email worker and queue consumer
+        working-directory: email-worker
+        run: npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
       - name: Build per-track labs zips
         run: |
           mkdir -p site/build/downloads
@@ -54,10 +68,8 @@ jobs:
           done
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: fewshot-academy
-          directory: build
-          workingDirectory: site
+        working-directory: site
+        run: npx wrangler pages deploy build --project-name=fewshot-academy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

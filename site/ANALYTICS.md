@@ -53,8 +53,8 @@ would load Google before the consent component can run.
 
 ## One-time page-view relay setup
 
-Deploying the Pages project does not create the queue, add the Google secret, or deploy the
-consumer worker. Complete the one-time resource setup and deploy both projects explicitly.
+The GitHub Actions deployment deploys the consumer worker before the Pages project. It does not
+create the queue or add the Google secret, which remain one-time Cloudflare and Google setup.
 
 The producer fails closed when its queue binding is absent: the browser receives `204`, but nothing
 is queued. The consumer retries delivery failures up to three times. To enable the complete path:
@@ -77,7 +77,9 @@ is queued. The consumer retries delivery failures up to three times. To enable t
    npx wrangler secret put GA4_MEASUREMENT_PROTOCOL_API_SECRET
    ```
 
-5. Deploy `fewshot-email-worker`, then deploy the Pages site so both queue bindings become active.
+5. Commit and push the configuration. GitHub Actions deploys `fewshot-email-worker` first, then
+   the Pages site, so both queue bindings become active. Re-run a failed deployment after creating
+   the queue.
 6. Open a few routes and verify the `page_view` event count after GA4 processes it. Do not
    use Realtime user counts to validate the relay because the payload intentionally has no session.
 

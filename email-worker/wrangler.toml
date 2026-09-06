@@ -3,6 +3,9 @@ main = "src/index.js"
 compatibility_date = "2026-08-04"
 compatibility_flags = ["nodejs_compat"]
 
+[[send_email]]
+name = "SEND_EMAIL"
+
 [[queues.consumers]]
 queue = "fewshot-anonymous-page-views"
 max_batch_size = 10
