@@ -11,3 +11,6 @@ database_id = "16ff35b7-439c-48e5-b641-af82b20fe19d"
 binding = "EMAIL_WORKER"
 service = "fewshot-email-worker"
 
+[[queues.producers]]
+binding = "ANONYMOUS_PAGE_VIEWS"
+queue = "fewshot-anonymous-page-views"

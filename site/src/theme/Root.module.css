@@ -1,22 +1,21 @@
-.banner {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  padding: 0.85rem 1.5rem;
+.dialog {
+  width: min(42rem, calc(100vw - 2rem));
+  max-width: none;
+  margin: auto;
+  padding: 0;
   background: var(--ifm-background-surface-color);
-  border-top: 1px solid var(--zta-border);
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--zta-border);
+  border-radius: 12px;
+  color: var(--zta-ink);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.22);
 }
 
-.copy {
-  flex: 1;
-  max-width: 72ch;
+.dialog::backdrop {
+  background: rgba(24, 32, 29, 0.62);
+}
+
+.dialogContent {
+  padding: 1.5rem;
 }
 
 .headingRow {
@@ -27,15 +26,15 @@
 }
 
 .title {
-  margin: 0 0 0.2rem;
-  font-size: 1rem;
+  margin: 0;
+  font-size: 1.35rem;
   color: var(--zta-ink);
 }
 
 .text {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.5;
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--zta-ink-muted);
 }
 
@@ -53,8 +52,9 @@
 
 .actions {
   display: flex;
-  flex-shrink: 0;
+  justify-content: flex-end;
   gap: 0.65rem;
+  margin-top: 1.25rem;
 }
 
 .choiceButton,
@@ -90,9 +90,12 @@
 }
 
 @media screen and (max-width: 640px) {
-  .banner {
-    flex-direction: column;
-    align-items: stretch;
+  .dialog {
+    width: calc(100vw - 1.25rem);
+  }
+
+  .dialogContent {
+    padding: 1.15rem;
   }
 
   .actions {

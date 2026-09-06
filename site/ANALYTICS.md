@@ -1,14 +1,24 @@
-# Engagement analytics
+# Analytics
 
-Few-Shot Academy sends privacy-conscious engagement events to its Google Analytics 4 property only
-after a visitor selects **Allow analytics**. The site uses Basic Consent Mode: it does not load the
-Google tag or transmit data to Google before that choice. GA4 stores and reports consented events.
+Few-Shot Academy separates page counts from optional engagement analytics:
+
+- Every route view sends its normalized page path to a first-party Cloudflare Function. The
+  function puts only that path on a Cloudflare Queue. A detached queue consumer forwards a
+  `page_view` to Google Analytics 4 with one shared client ID. The visitor request and its IP
+  address, user agent, referrer, cookies, query string, fragment, and browser/device properties do
+  not enter the queue or the Google request. Unknown and 404 paths are not counted.
+- After a visitor selects **Allow analytics**, the browser loads the Google tag and sends the
+  allowlisted engagement events below. The site uses Basic Consent Mode for these optional events:
+  the tag does not load before consent or after a visitor declines.
+
 The D1 database remains limited to aggregate page-view popularity and is not a second event store.
 
 ## Privacy boundary
 
-Event properties are restricted by both TypeScript types and a runtime allowlist in
-`src/utils/analytics.ts`.
+Optional event properties are restricted by both TypeScript types and a runtime allowlist in
+`src/utils/analytics.ts`. The page-view producer is separately restricted in
+`functions/api/anonymous-page-view.js`; its detached consumer lives in
+`../email-worker/src/anonymousAnalytics.js`.
 
 Allowed data:
 
@@ -22,17 +32,54 @@ Never send:
 - Email addresses or other contact information
 - Local progress or quiz-storage contents
 - Full URLs, query strings, fragments, or link labels
-- A custom user, browser, device, or session identifier
+- A custom visitor, browser, device, or session identifier
 
 GA4 may still use its own browser/device signals according to the site's analytics configuration
-and Google's policies. Few-Shot Academy does not add an identity layer. Clearing browser data or
-changing browsers/devices can therefore break continuity, just as it does for local course
-progress.
+and Google's policies after a visitor allows optional analytics. Few-Shot Academy does not add an
+identity layer. Clearing browser data or changing browsers/devices can therefore break continuity,
+just as it does for local course progress.
+
+The anonymous page-view relay is intentionally unsuitable for users, sessions, acquisition,
+location, demographics, or device reports. Its fixed `731415926.271828182` client ID means GA4
+cannot distinguish one visitor from another. Use only the `Views` event count, page path, and time
+dimensions for this stream of events. Google may derive attributes from Cloudflare's outbound
+queue-consumer request; those attributes describe the worker, not the visitor, and should be
+ignored.
 
 The consent preference is stored in the visitor's browser under
 `fewshot-academy:analytics-consent:v1`. Advertising storage, advertising user data, and advertising
 personalization remain denied. Do not restore automatic Docusaurus `gtag` configuration because it
 would load Google before the consent component can run.
+
+## One-time page-view relay setup
+
+Deploying the Pages project does not create the queue, add the Google secret, or deploy the
+consumer worker. Complete the one-time resource setup and deploy both projects explicitly.
+
+The producer fails closed when its queue binding is absent: the browser receives `204`, but nothing
+is queued. The consumer retries delivery failures up to three times. To enable the complete path:
+
+1. Create the queue once from either project directory:
+
+   ```console
+   npx wrangler queues create fewshot-anonymous-page-views
+   ```
+
+2. In GA4, open **Admin > Data streams**, select the `G-51WGH2MZ08` web stream, open
+   **Measurement Protocol API secrets**, and create a secret named `anonymous-page-views`.
+3. In that web stream, open **Enhanced measurement > Page views > Show advanced settings** and
+   turn off **Page changes based on browser history events**. The code disables tag-load page
+   views; this setting prevents consented SPA navigation from creating duplicates.
+4. Add `GA4_MEASUREMENT_PROTOCOL_API_SECRET` to `fewshot-email-worker`, not the Pages project:
+
+   ```console
+   cd email-worker
+   npx wrangler secret put GA4_MEASUREMENT_PROTOCOL_API_SECRET
+   ```
+
+5. Deploy `fewshot-email-worker`, then deploy the Pages site so both queue bindings become active.
+6. Open a few routes and verify the `page_view` event count after GA4 processes it. Do not
+   use Realtime user counts to validate the relay because the payload intentionally has no session.
 
 ## Event taxonomy
 
@@ -78,6 +125,9 @@ available in reports, so register them before evaluating a release.
 
 Official references:
 
+- [Measurement Protocol reference](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference)
+- [GA4 page-view controls](https://developers.google.com/analytics/devguides/collection/ga4/views)
+- [Cloudflare Queue bindings for Pages Functions](https://developers.cloudflare.com/pages/functions/bindings/#queue-producers)
 - [Set up GA4 events](https://developers.google.com/analytics/devguides/collection/ga4/events)
 - [GA4 custom dimensions and metrics](https://support.google.com/analytics/answer/14240153)
 - [GA4 retention overview](https://support.google.com/analytics/answer/11004084)
@@ -135,10 +185,18 @@ Inspect `window.capturedEvents` after the interaction. Each intended interaction
 event with only the documented properties. Reloading a page or restoring a saved quiz must not
 create an engagement event.
 
-For consent verification, start with a clean browser profile and confirm:
+For page-view and consent verification, start with a clean browser profile and confirm:
 
-1. No request to `googletagmanager.com` or `google-analytics.com` occurs before a choice.
-2. **Decline** stores the preference without loading Google or setting `_ga` cookies.
-3. **Allow analytics** loads the tag and sends the initial page view.
-4. **Privacy settings** in the footer reopens the controls.
-5. Withdrawing consent stops future events and removes accessible `_ga` cookies.
+1. The choice opens as a modal and keyboard focus cannot leave it until **Decline** or
+   **Allow analytics** is selected.
+2. A route view sends `POST /api/anonymous-page-view` with only a `path` field. It does not load a
+   Google script in the browser. The Pages Function queues only that path; only the detached queue
+   consumer contacts Google.
+3. **Decline** stores the preference without loading Google or setting `_ga` cookies. Anonymous
+   route counts continue through the first-party endpoint.
+4. **Allow analytics** loads the tag for allowlisted engagement events. The tag configuration has
+   automatic page views and Google signals disabled; it also replaces page location with the site
+   origin and drops the referrer. This prevents duplicate page tracking and keeps query strings and
+   traffic sources out of optional event requests.
+5. **Privacy settings** in the footer reopens the modal. Withdrawing consent stops future optional
+   events and removes accessible `_ga` cookies.

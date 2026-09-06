@@ -6,6 +6,7 @@ export const ANALYTICS_SETTINGS_HASH = '#privacy-settings';
 const GOOGLE_ANALYTICS_ID = 'G-51WGH2MZ08';
 const GOOGLE_ANALYTICS_SCRIPT_ID = 'fewshot-academy-google-analytics';
 const GOOGLE_ANALYTICS_DISABLE_KEY = `ga-disable-${GOOGLE_ANALYTICS_ID}`;
+const ANONYMOUS_PAGE_VIEW_ENDPOINT = '/api/anonymous-page-view';
 
 export type AnalyticsConsent = 'granted' | 'denied';
 type Gtag = (...args: unknown[]) => void;
@@ -65,18 +66,21 @@ function setGoogleAnalyticsDisabled(disabled: boolean): void {
   (window as unknown as Record<string, unknown>)[GOOGLE_ANALYTICS_DISABLE_KEY] = disabled;
 }
 
-function pageFields(pathname: string): Record<string, string> {
-  return {
-    page_path: pathname,
-    page_location: `${window.location.origin}${pathname}`,
-    page_title: document.title,
-  };
-}
-
 function ensureGtag(): Gtag {
   window.dataLayer = window.dataLayer ?? [];
   window.gtag = window.gtag ?? ((...args: unknown[]) => window.dataLayer?.push(args));
   return window.gtag;
+}
+
+function optionalAnalyticsConfig(): Record<string, string | boolean> {
+  return {
+    send_page_view: false,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    ignore_referrer: true,
+    page_location: window.location.origin,
+    page_referrer: '',
+  };
 }
 
 export function initializeGoogleAnalytics(): void {
@@ -94,7 +98,7 @@ export function initializeGoogleAnalytics(): void {
       ad_user_data: 'denied',
       ad_personalization: 'denied',
     });
-    gtag('config', GOOGLE_ANALYTICS_ID, pageFields(window.location.pathname));
+    gtag('config', GOOGLE_ANALYTICS_ID, optionalAnalyticsConfig());
     return;
   }
 
@@ -112,7 +116,7 @@ export function initializeGoogleAnalytics(): void {
     ad_personalization: 'denied',
   });
   gtag('js', new Date());
-  gtag('config', GOOGLE_ANALYTICS_ID, pageFields(window.location.pathname));
+  gtag('config', GOOGLE_ANALYTICS_ID, optionalAnalyticsConfig());
 
   if (!document.getElementById(GOOGLE_ANALYTICS_SCRIPT_ID)) {
     const script = document.createElement('script');
@@ -150,12 +154,29 @@ export function disableGoogleAnalytics(): void {
   removeGoogleAnalyticsCookies();
 }
 
-export function trackAnalyticsPageView(pathname: string): void {
-  if (!hasAnalyticsConsent() || !window.__fewShotAnalyticsInitialized || typeof window.gtag !== 'function') {
+export function trackAnonymousPageView(pathname: string): void {
+  if (typeof window === 'undefined' || !isAcademyHost()) {
     return;
   }
 
-  window.gtag('event', 'page_view', pageFields(pathname));
+  const body = JSON.stringify({path: pathname});
+
+  try {
+    void window
+      .fetch(ANONYMOUS_PAGE_VIEW_ENDPOINT, {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body,
+        credentials: 'omit',
+        keepalive: true,
+        referrerPolicy: 'no-referrer',
+      })
+      .catch(() => {
+        // A blocked or unavailable endpoint is safe to ignore.
+      });
+  } catch {
+    // Anonymous page counts must never interrupt navigation.
+  }
 }
 
 export type AnalyticsEventProperties = {

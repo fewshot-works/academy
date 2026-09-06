@@ -6,8 +6,17 @@ import {
   initializeGoogleAnalytics,
   saveAnalyticsConsent,
   sanitizeAnalyticsProperties,
+  trackAnonymousPageView,
   trackEngagementEvent,
 } from '../src/utils/analytics.ts';
+import {
+  normalizePagePath,
+  onRequestPost,
+} from '../functions/api/anonymous-page-view.js';
+import {
+  createAnonymousPageViewPayload,
+  deliverAnonymousPageView,
+} from '../../email-worker/src/anonymousAnalytics.js';
 import {
   classifyEngagementLink,
   getDocsContentId,
@@ -132,6 +141,18 @@ test('Basic Consent Mode does not create a Google tag before permission', () => 
       },
     ],
   ]);
+  assert.deepEqual(globalThis.window.dataLayer.at(-1), [
+    'config',
+    'G-51WGH2MZ08',
+    {
+      send_page_view: false,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      ignore_referrer: true,
+      page_location: 'https://fewshotacademy.com',
+      page_referrer: '',
+    },
+  ]);
 
   saveAnalyticsConsent('denied');
   document.cookie = '_ga=client-id; _ga_51WGH2MZ08=session-id';
@@ -142,6 +163,106 @@ test('Basic Consent Mode does not create a Google tag before permission', () => 
 
   delete globalThis.document;
   delete globalThis.window;
+});
+
+test('anonymous page tracking sends only a path to the first-party endpoint', async () => {
+  const requests = [];
+  globalThis.window = {
+    location: {
+      hostname: 'fewshotacademy.com',
+    },
+    fetch: async (...args) => {
+      requests.push(args);
+      return new Response(null, {status: 204});
+    },
+  };
+
+  trackAnonymousPageView('/docs/foundations/what-is-ai');
+  await new Promise((resolve) => setTimeout(resolve));
+
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0][0], '/api/anonymous-page-view');
+  assert.deepEqual(JSON.parse(requests[0][1].body), {
+    path: '/docs/foundations/what-is-ai',
+  });
+  assert.equal(requests[0][1].credentials, 'omit');
+  assert.equal(requests[0][1].referrerPolicy, 'no-referrer');
+
+  delete globalThis.window;
+});
+
+test('anonymous page paths exclude queries, fragments, and external URLs', () => {
+  assert.equal(normalizePagePath('/docs/foundations/what-is-ai'), '/docs/foundations/what-is-ai');
+  assert.equal(normalizePagePath('/docs?email=learner@example.com'), null);
+  assert.equal(normalizePagePath('/docs#progress'), null);
+  assert.equal(normalizePagePath('//example.com/private'), null);
+  assert.equal(normalizePagePath('https://example.com/private'), null);
+});
+
+test('the GA4 page-view payload has no visitor, session, referrer, or device data', () => {
+  assert.deepEqual(createAnonymousPageViewPayload('/docs/foundations/what-is-ai'), {
+    client_id: '731415926.271828182',
+    consent: {
+      ad_user_data: 'DENIED',
+      ad_personalization: 'DENIED',
+    },
+    events: [
+      {
+        name: 'page_view',
+        params: {
+          page_location: 'https://fewshotacademy.com/docs/foundations/what-is-ai',
+        },
+      },
+    ],
+  });
+});
+
+test('the page-view function queues only the path without blocking the response', async () => {
+  const deliveries = [];
+
+  let pendingDelivery;
+  const response = await onRequestPost({
+    request: new Request('https://fewshotacademy.com/api/anonymous-page-view', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        origin: 'https://fewshotacademy.com',
+        referer: 'https://fewshotacademy.com/private-referrer',
+        'user-agent': 'Private Browser 1.0',
+      },
+      body: JSON.stringify({path: '/blog'}),
+    }),
+    env: {
+      ANONYMOUS_PAGE_VIEWS: {
+        send: async (message) => {
+          deliveries.push(message);
+        },
+      },
+    },
+    waitUntil: (promise) => {
+      pendingDelivery = promise;
+    },
+  });
+
+  await pendingDelivery;
+  assert.equal(response.status, 204);
+  assert.deepEqual(deliveries, [{path: '/blog'}]);
+});
+
+test('the detached queue delivery sends the path-only GA4 payload', async () => {
+  const deliveries = [];
+  const response = await deliverAnonymousPageView('/blog', 'test-secret', async (url, options) => {
+    deliveries.push({url: String(url), options});
+    return new Response(null, {status: 204});
+  });
+
+  assert.equal(response.status, 204);
+  assert.equal(deliveries.length, 1);
+  assert.match(
+    deliveries[0].url,
+    /^https:\/\/www\.google-analytics\.com\/mp\/collect\?measurement_id=G-51WGH2MZ08&api_secret=test-secret$/,
+  );
+  assert.deepEqual(JSON.parse(deliveries[0].options.body), createAnonymousPageViewPayload('/blog'));
 });
 
 test('curriculum and reference docs receive stable content IDs', () => {

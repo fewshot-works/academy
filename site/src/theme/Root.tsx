@@ -1,6 +1,7 @@
-import type {ReactNode} from 'react';
-import {useEffect, useState} from 'react';
+import type {ReactNode, SyntheticEvent} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Link from '@docusaurus/Link';
+import {useLocation} from '@docusaurus/router';
 import EngagementLinkTracker from '@site/src/components/EngagementLinkTracker';
 import {
   ANALYTICS_SETTINGS_HASH,
@@ -19,9 +20,11 @@ function clearSettingsHash() {
 }
 
 function PrivacyConsentBanner() {
+  const {pathname} = useLocation();
   const [preference, setPreference] = useState<AnalyticsConsent | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const savedPreference = readAnalyticsConsent();
@@ -54,9 +57,27 @@ function PrivacyConsentBanner() {
     };
   }, []);
 
-  if (!hydrated || (preference !== null && !settingsOpen)) {
-    return null;
-  }
+  const shouldOpen = hydrated && (settingsOpen || (preference === null && pathname !== '/privacy'));
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (shouldOpen && dialog && !dialog.open) {
+      dialog.showModal();
+      dialog.querySelector<HTMLButtonElement>('[data-initial-focus]')?.focus();
+    } else if (!shouldOpen && dialog?.open) {
+      dialog.close();
+    }
+
+    if (!shouldOpen) {
+      return undefined;
+    }
+
+    const previousOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.documentElement.style.overflow = previousOverflow;
+    };
+  }, [shouldOpen]);
 
   function choose(nextPreference: AnalyticsConsent) {
     saveAnalyticsConsent(nextPreference);
@@ -76,9 +97,22 @@ function PrivacyConsentBanner() {
     clearSettingsHash();
   }
 
+  function keepInitialChoiceOpen(event: SyntheticEvent<HTMLDialogElement>) {
+    if (preference === null) {
+      event.preventDefault();
+    } else {
+      closeSettings();
+    }
+  }
+
   return (
-    <section className={styles.banner} role="region" aria-labelledby="privacy-choice-title">
-      <div className={styles.copy}>
+    <dialog
+      className={styles.dialog}
+      ref={dialogRef}
+      aria-labelledby="privacy-choice-title"
+      aria-describedby="privacy-choice-description"
+      onCancel={keepInitialChoiceOpen}>
+      <div className={styles.dialogContent}>
         <div className={styles.headingRow}>
           <h2 id="privacy-choice-title" className={styles.title}>Optional analytics</h2>
           {settingsOpen && preference !== null && (
@@ -87,9 +121,9 @@ function PrivacyConsentBanner() {
             </button>
           )}
         </div>
-        <p className={styles.text}>
-          Help us improve the curriculum by allowing Google Analytics. It records page visits and selected course
-          interactions. We do not send quiz answers, scores, or contact messages.{' '}
+        <p id="privacy-choice-description" className={styles.text}>
+          We count page opens without cookies or visitor identifiers. Allowing optional Google Analytics also helps
+          us understand course progress and navigation. We never send quiz answers, scores, or contact messages.{' '}
           <Link to="/privacy">Privacy details</Link>.
         </p>
         {settingsOpen && preference !== null && (
@@ -97,16 +131,20 @@ function PrivacyConsentBanner() {
             Analytics is currently {preference === 'granted' ? 'allowed' : 'declined'}.
           </p>
         )}
+        <div className={styles.actions}>
+          <button
+            className={styles.choiceButton}
+            data-initial-focus
+            onClick={() => choose('denied')}
+            type="button">
+            Decline
+          </button>
+          <button className={styles.choiceButton} onClick={() => choose('granted')} type="button">
+            Allow analytics
+          </button>
+        </div>
       </div>
-      <div className={styles.actions}>
-        <button className={styles.choiceButton} onClick={() => choose('denied')} type="button">
-          Decline
-        </button>
-        <button className={styles.choiceButton} onClick={() => choose('granted')} type="button">
-          Allow analytics
-        </button>
-      </div>
-    </section>
+    </dialog>
   );
 }
 

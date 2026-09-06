@@ -5,7 +5,7 @@ description: What Few-Shot Academy collects, why it is collected, where it is st
 
 # Privacy Notice
 
-**Effective and last updated: August 30, 2026**
+**Effective and last updated: September 5, 2026**
 
 Few-Shot Academy is responsible for the website data described here. For privacy questions or a
 request concerning information you submitted, email
@@ -14,7 +14,10 @@ request concerning information you submitted, email
 ## At a glance
 
 - You do not need an account, and the website does not collect payment-card information.
-- Google Analytics is optional. Its tag does not load unless you select **Allow analytics**.
+- Every page open is counted without a visitor identifier. A Cloudflare Function sends only the
+  page address through a detached queue to Google Analytics; your browser does not contact Google
+  for this count.
+- Optional Google Analytics remains off unless you select **Allow analytics**.
 - Course progress and quiz results stay in your browser and are not synchronized to our server.
 - Contact and feedback submissions are stored so they can be read and acted on.
 - Blog comments connect to GitHub only after you select **Load GitHub comments**.
@@ -27,8 +30,8 @@ request concerning information you submitted, email
 
 | Activity | Information | Why it is used |
 | --- | --- | --- |
-| Visit a curriculum or career page | Page path, aggregate view count, and last-viewed time | Identify useful and underused pages without creating a visitor profile |
-| Allow optional analytics | Page visits, session and device/browser information, approximate location, and selected course interactions | Understand learner journeys and improve the curriculum |
+| Open a page | Page path; aggregate count and last-viewed time for curriculum and career pages | Identify useful and underused pages without creating a visitor profile |
+| Allow optional analytics | Cookie-based browser/session information, approximate location, and selected course interactions | Understand learner journeys and improve the curriculum |
 | Use the contact form | Category, message, optional email, and submission time | Read the message and reply when an email is provided |
 | Share feedback | Background category, optional broad region, course sections, rating, recommendation, optional written feedback, and submission time | Improve the curriculum |
 | Use course features | Progress, completed quiz answers and score, theme, and privacy preference stored in your browser | Remember your choices on that browser |
@@ -36,10 +39,12 @@ request concerning information you submitted, email
 
 ## Optional Google Analytics
 
-Few-Shot Academy uses Google Analytics 4 only after you allow it. Google may then process page
-addresses, a cookie-based client identifier, session statistics, approximate location, and
+Few-Shot Academy loads the Google Analytics 4 browser tag only after you allow it. Google may then
+process a cookie-based client identifier, session statistics, approximate location, and
 browser/device information. Google Analytics can set `_ga` and related `_ga_*` cookies, which may
-remain for up to two years unless you clear them or withdraw your choice.
+remain for up to two years unless you clear them or withdraw your choice. Automatic browser page
+views, Google signals, advertising storage, advertising user data, and advertising personalization
+are disabled in the site's Google tag configuration.
 
 The site also records selected interactions, such as starting or completing a lesson, following
 the next-lesson link, submitting a quiz, opening a lab, or moving between blog, career, interview,
@@ -52,8 +57,7 @@ and curriculum pages. These custom events use stable content identifiers. They d
 - A custom account or user identifier
 - URL query strings or fragments
 
-Advertising storage, advertising user data, and advertising personalization are denied in the
-site's Google tag configuration. Read [Google's description of Analytics data collection](https://support.google.com/analytics/answer/11593727)
+Read [Google's description of Analytics data collection](https://support.google.com/analytics/answer/11593727)
 and the [Google Privacy Policy](https://policies.google.com/privacy).
 
 You can decline analytics and still use the entire curriculum. Use **Privacy settings** in the
@@ -61,11 +65,25 @@ footer to change your choice. Withdrawing disables future analytics activity and
 Analytics cookies that the website can access. Clearing browser data also removes your saved
 choice, so the site will ask again.
 
-## Aggregate page counts
+## Anonymous page counts
 
 For curriculum and career pages, the server increments a first-party aggregate counter. It stores
 the page path, total count, and last-viewed time. It does not add an IP address, cookie, browser
 identifier, or other visitor identifier to that counter.
+
+Every page open also sends the normalized page path to a Few-Shot Academy endpoint on Cloudflare.
+The request omits site cookies and its referrer. The function puts only that address on a
+Cloudflare Queue. A detached queue consumer adds one fixed, shared value required by Google
+Analytics Measurement Protocol and sends the page view. That value is the same
+for every page open, so it cannot distinguish visitors or sessions. The visitor's IP address, user
+agent, referrer, cookies, query string, URL fragment, and device information do not enter the queue
+or the Google request. Unknown and 404 page paths are not counted.
+
+Google receives the detached queue consumer's request, not the visitor's browser request. Google
+may infer details about that Cloudflare worker request, but those details do not describe the
+visitor. Reports from these page counts are used only for view totals, page popularity, and changes
+over time. They are not used for users, sessions, acquisition sources, location, demographics, or
+device analysis.
 
 ## Contact and feedback submissions
 
@@ -112,10 +130,11 @@ may process account, cookie, device, and usage information under the
 
 ## Service providers and international access
 
-Google processes optional analytics. Cloudflare hosts the site infrastructure, stores form
-submissions, routes notification email, and provides Turnstile. GitHub hosts the source repository
-and, when requested, blog comments. These providers may process information in countries other
-than the one where you live under their own terms and transfer mechanisms.
+Google processes anonymous page counts and, when allowed, optional analytics. Cloudflare hosts the
+site infrastructure, queues and relays anonymous page counts, stores form submissions, routes
+notification email, and provides Turnstile. GitHub hosts the source repository and, when requested,
+blog comments. These providers may process information in countries other than the one where you
+live under their own terms and transfer mechanisms.
 
 Course labs may let you choose external model providers. Inputs you send from a lab go to the
 provider you choose, not through the Few-Shot Academy website. See the [Disclaimer](/disclaimer)
