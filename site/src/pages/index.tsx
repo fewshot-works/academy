@@ -2,6 +2,7 @@ import {useEffect, useState, type ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import HomepageTracks from '@site/src/components/HomepageTracks';
 import HomepageMostPopular from '@site/src/components/HomepageMostPopular';
@@ -275,6 +276,22 @@ export default function Home(): ReactNode {
     <Layout
       title={siteConfig.title}
       description="A free, open-source, chapter-wise curriculum for LLMs, Vector Databases, RAG, and Agents — from zero to your first AI agent, running entirely on your own laptop.">
+      <Head>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Course',
+            '@id': 'https://fewshotacademy.com/#course',
+            name: 'Few-Shot Academy',
+            description:
+              'A free, open-source, hands-on curriculum for generative AI, LLMs, vector databases, RAG, and AI agents.',
+            url: 'https://fewshotacademy.com/',
+            inLanguage: 'en',
+            isAccessibleForFree: true,
+            provider: {'@id': 'https://fewshotacademy.com/#organization'},
+          })}
+        </script>
+      </Head>
       <HomepageHeader />
       <main>
         <HomepageContinueLearning />

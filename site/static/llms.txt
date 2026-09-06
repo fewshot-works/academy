@@ -1,65 +1,116 @@
 # Few-Shot Academy
 
-> A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG,
-> and Agents. Starts from zero prior AI knowledge and ends with a working, evaluated agentic RAG
-> system. Every lesson is hands-on: you run real code, mostly for free and entirely on your own
-> machine via a local Ollama model. No cloud credits or credit card required to finish the first
-> two tracks.
+> A free, open-source, local-first curriculum for generative AI, LLMs, vector databases, RAG,
+> agents, and the Model Context Protocol. It is written for learners with no prior AI or
+> computer science background and includes runnable labs.
 
-## Foundations (complete — 9 chapters, about 2 hours total)
+Use the learning tracks in order: Foundations, Intermediate, then Advanced. The MCP track stands
+alone. Advanced Concepts is a production cookbook. The blog contains sourced industry analysis,
+not curriculum recaps.
 
-- [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup): Install uv, VS Code, and Ollama so every later lab runs locally and free.
-- [Chapter 1: What Is AI, Really?](https://fewshotacademy.com/docs/foundations/what-is-ai): Untangles AI, machine learning, deep learning, and generative AI, and how they relate.
-- [Chapter 2: What Is a Large Language Model?](https://fewshotacademy.com/docs/foundations/what-is-an-llm): How LLMs like ChatGPT and Claude predict text one token at a time.
-- [Chapter 3: Prompting 101](https://fewshotacademy.com/docs/foundations/prompting-101): Zero-shot, few-shot, and system prompts, the biggest lever you have over an LLM's output.
-- [Chapter 4: What Is an Embedding?](https://fewshotacademy.com/docs/foundations/what-is-an-embedding): Turning text into vectors that place similar meanings near each other.
-- [Chapter 5: What Is a Vector Database, and Why?](https://fewshotacademy.com/docs/foundations/what-is-a-vector-database): Storing and searching embeddings fast, even across millions of vectors.
-- [Chapter 6: What Is RAG?](https://fewshotacademy.com/docs/foundations/what-is-rag): Retrieval-Augmented Generation, turning an LLM into an open-book answerer.
-- [Chapter 7: What Is an AI Agent?](https://fewshotacademy.com/docs/foundations/what-is-an-ai-agent): How agents differ from a plain chatbot: deciding what to do next and calling tools.
-- [Chapter 8: Capstone — A Q&A Bot Over Your Own Documents](https://fewshotacademy.com/docs/foundations/capstone-qa-bot): Combines embeddings, a vector database, and RAG into a working Q&A bot over your own files.
+## Start Here
 
-## Intermediate (complete — 9 chapters + capstone)
+- [Few-Shot Academy](https://fewshotacademy.com/): Choose a learning track or explore AI career paths.
+- [Curriculum introduction](https://fewshotacademy.com/docs/intro): What the curriculum covers, who it is for, and how to use it.
+- [GitHub repository](https://github.com/fewshot-works/academy): Source for the site and runnable labs.
 
-- [Overview](https://fewshotacademy.com/docs/intermediate/overview): Chunking strategies, embedding model choice, hybrid search and re-ranking, prompt patterns, tool use, a first agent, memory, evaluation, and a multi-tool agent capstone.
-- [Chapter 1: Chunking Strategies](https://fewshotacademy.com/docs/intermediate/chunking-strategies): Fixed-size vs. semantic chunking, and why how you cut up a document matters as much as what model reads it.
-- [Chapter 2: Choosing an Embedding Model](https://fewshotacademy.com/docs/intermediate/choosing-embedding-model): Comparing embedding models head to head instead of picking one by name recognition.
-- [Chapter 3: Better Retrieval](https://fewshotacademy.com/docs/intermediate/better-retrieval): Hybrid search and re-ranking, so retrieval finds the right chunk even when keyword and meaning search disagree.
-- [Chapter 4: Prompt Patterns](https://fewshotacademy.com/docs/intermediate/prompt-patterns): Chain-of-thought reasoning, structured output, and getting a model to reliably do what you asked.
-- [Chapter 5: Tool Use](https://fewshotacademy.com/docs/intermediate/tool-use): Building a tool-calling loop by hand, so you see what happens on the wire before a framework hides it.
-- [Chapter 6: Your First Agent](https://fewshotacademy.com/docs/intermediate/your-first-agent): Rebuilding that same loop with a single `create_agent` call, and weighing the trade-off yourself.
-- [Chapter 7: Memory](https://fewshotacademy.com/docs/intermediate/memory): Short-term memory via a checkpointer, and summarized long-term memory for conversations that outgrow a context window.
-- [Chapter 8: Evaluating What You Built](https://fewshotacademy.com/docs/intermediate/evaluating): precision@k, recall@k, and LLM-as-judge, instead of eyeballing a couple of answers and calling it good.
-- [Chapter 9: Capstone — Multi-Tool Agent](https://fewshotacademy.com/docs/intermediate/capstone): One agent picking between a calculator, Wikipedia search, and RAG over your own documents, with memory across the conversation.
+## Foundations
 
-## Advanced (complete — 8 chapters + capstone)
+- [Overview](https://fewshotacademy.com/docs/foundations/overview): The path from basic AI concepts to a local RAG capstone.
+- [Chapter 0: Set Up Your Machine](https://fewshotacademy.com/docs/foundations/setup): Install uv, VS Code, and Ollama for the labs.
+- [Chapter 1: What Is AI, Really?](https://fewshotacademy.com/docs/foundations/what-is-ai): How AI, machine learning, deep learning, and generative AI relate.
+- [Chapter 2: What Is a Large Language Model?](https://fewshotacademy.com/docs/foundations/what-is-an-llm): How LLMs predict text one token at a time.
+- [Bonus: Using AI Responsibly](https://fewshotacademy.com/docs/foundations/02b-responsible-ai-use): Privacy, bias, verification, and intellectual-property basics.
+- [Chapter 3: Prompting 101](https://fewshotacademy.com/docs/foundations/prompting-101): Zero-shot, few-shot, and system prompts with a runnable comparison.
+- [Chapter 4: What Is an Embedding?](https://fewshotacademy.com/docs/foundations/what-is-an-embedding): How text becomes vectors that preserve semantic similarity.
+- [Chapter 5: What Is a Vector Database?](https://fewshotacademy.com/docs/foundations/what-is-a-vector-database): Storing and searching embeddings efficiently.
+- [Chapter 6: What Is RAG?](https://fewshotacademy.com/docs/foundations/what-is-rag): Turning an LLM into an open-book answerer.
+- [Chapter 7: What Is an AI Agent?](https://fewshotacademy.com/docs/foundations/what-is-an-ai-agent): How agents choose actions and call tools.
+- [Chapter 8: Q&A Bot Capstone](https://fewshotacademy.com/docs/foundations/capstone-qa-bot): Build a RAG bot over your own documents.
 
-- [Overview](https://fewshotacademy.com/docs/advanced/overview): Multi-agent patterns, advanced RAG, fine-tuning vs. RAG vs. prompting, guardrails and safety, observability, production concerns, shipping it, and an end-to-end agentic RAG system capstone.
-- [Chapter 1: Multi-Agent Patterns](https://fewshotacademy.com/docs/advanced/multi-agent-patterns): A supervisor agent delegating to specialist agents instead of one generalist doing everything.
-- [Chapter 2: Advanced RAG](https://fewshotacademy.com/docs/advanced/advanced-rag): Query rewriting, HyDE, and a self-correcting retrieval loop that checks its own results.
-- [Chapter 3: Fine-Tuning vs. RAG vs. Prompting](https://fewshotacademy.com/docs/advanced/fine-tuning-vs-rag-vs-prompting): A decision framework, plus a real (tiny, local) LoRA fine-tune to compare against RAG and prompting directly.
-- [Chapter 4: Guardrails and Safety](https://fewshotacademy.com/docs/advanced/guardrails-and-safety): A hand-rolled input/output guardrail wrapper, and an honest look at where that minimum version breaks.
-- [Chapter 5: Observability](https://fewshotacademy.com/docs/advanced/observability): Instrumenting an agent with OpenLLMetry/OpenTelemetry so every model call becomes an inspectable, nested trace span.
-- [Chapter 6: Production Concerns](https://fewshotacademy.com/docs/advanced/production-concerns): Caching, rate limiting, and streaming, so a working demo also survives real load.
-- [Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/shipping-it): Wrapping an agent in a FastAPI app and a Dockerfile so it runs anywhere, not just your machine.
-- [Chapter 8: Capstone — A Guarded, Traced, Evaluated Agent](https://fewshotacademy.com/docs/advanced/capstone): The Intermediate capstone's agent wrapped in an input guardrail and full tracing, then measured with precision@k/recall@k and LLM-as-judge.
+## Intermediate
 
-## Advanced Concepts (ongoing — standalone chapters, read in any order)
+- [Overview](https://fewshotacademy.com/docs/intermediate/overview): Retrieval, prompting, tools, agents, memory, evaluation, and a capstone.
+- [Chapter 1: Chunking Strategies](https://fewshotacademy.com/docs/intermediate/chunking-strategies): Compare fixed-size, recursive, and semantic chunking.
+- [Chapter 2: Choosing an Embedding Model](https://fewshotacademy.com/docs/intermediate/choosing-embedding-model): Compare quality, latency, and cost.
+- [Chapter 3: Better Retrieval](https://fewshotacademy.com/docs/intermediate/better-retrieval): Metadata filtering, hybrid search, and re-ranking.
+- [Chapter 4: Prompt Patterns](https://fewshotacademy.com/docs/intermediate/prompt-patterns): Reasoning, structured output, and function calling.
+- [Chapter 5: Tool Use](https://fewshotacademy.com/docs/intermediate/tool-use): Build a tool-calling loop by hand.
+- [Chapter 6: Your First Agent](https://fewshotacademy.com/docs/intermediate/your-first-agent): Rebuild the loop with LangChain and examine the abstraction.
+- [Chapter 7: Memory](https://fewshotacademy.com/docs/intermediate/memory): Short-term checkpoints and summarized long-term memory.
+- [Chapter 8: Evaluating What You Built](https://fewshotacademy.com/docs/intermediate/evaluating): Measure retrieval and generated answers.
+- [Chapter 9: Multi-Tool Agent Capstone](https://fewshotacademy.com/docs/intermediate/capstone): Combine calculation, search, RAG, and memory.
 
-- [Overview](https://fewshotacademy.com/docs/advanced-concepts/overview): What this cookbook section is, how it differs from the three-tier curriculum, and how to use it.
-- [Prompt Engineering](https://fewshotacademy.com/docs/advanced-concepts/prompt-engineering): Trimming, structuring, and grounding a prompt, plus self-consistency, prompt chaining, ReAct, self-refine, and DSPy-style automatic optimization.
-- [Token & Cost Management](https://fewshotacademy.com/docs/advanced-concepts/token-cost-management): Context trimming, provider-native prompt caching, model right-sizing, and batching, so LLM usage stays cheap without cutting answers short.
-- [Agent Security](https://fewshotacademy.com/docs/advanced-concepts/agent-security): Indirect prompt injection arriving as tool output instead of user input, and a tool-call allowlist guard that stops it without ever detecting the injected text.
+## Advanced
+
+- [Overview](https://fewshotacademy.com/docs/advanced/overview): Production patterns for agentic RAG systems.
+- [Chapter 1: Multi-Agent Patterns](https://fewshotacademy.com/docs/advanced/multi-agent-patterns): Supervisor, hierarchy, and swarm patterns.
+- [Chapter 2: Advanced RAG](https://fewshotacademy.com/docs/advanced/advanced-rag): Query rewriting, HyDE, multi-hop retrieval, and self-correction.
+- [Chapter 3: Fine-Tuning vs. RAG vs. Prompting](https://fewshotacademy.com/docs/advanced/fine-tuning-vs-rag-vs-prompting): Choose an adaptation strategy and run a small LoRA comparison.
+- [Chapter 4: Guardrails and Safety](https://fewshotacademy.com/docs/advanced/guardrails-and-safety): Input checks, output validation, and their limits.
+- [Chapter 5: Observability](https://fewshotacademy.com/docs/advanced/observability): Trace model calls with OpenTelemetry.
+- [Chapter 6: Production Concerns](https://fewshotacademy.com/docs/advanced/production-concerns): Caching, rate limiting, and streaming.
+- [Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/shipping-it): Package an agent with FastAPI and Docker.
+- [Chapter 8: Evaluated Agent Capstone](https://fewshotacademy.com/docs/advanced/capstone): Add guardrails, tracing, and evaluation to an agent.
+
+## Model Context Protocol
+
+- [MCP track overview](https://fewshotacademy.com/docs/mcp/overview): The standalone track and its final system.
+- [Chapter 1: What Is MCP?](https://fewshotacademy.com/docs/mcp/what-is-mcp): Host, client, and server architecture.
+- [Chapter 2: Build an MCP Server](https://fewshotacademy.com/docs/mcp/building-your-own-mcp-server): Wrap a Python tool with the official SDK.
+- [Chapter 3: One Agent, Many Servers](https://fewshotacademy.com/docs/mcp/one-agent-many-servers): Connect an agent to multiple MCP servers.
+- [Chapter 4: Transports and Deployment](https://fewshotacademy.com/docs/mcp/transports-and-deployment): Compare stdio and HTTP deployment.
+- [Chapter 5: Resources, Prompts, and Sampling](https://fewshotacademy.com/docs/mcp/resources-prompts-sampling): Explore MCP primitives beyond tools.
+- [Chapter 6: MCP Security](https://fewshotacademy.com/docs/mcp/mcp-security): Defend against malicious tool descriptions and output.
+- [Chapter 7: Agent2Agent](https://fewshotacademy.com/docs/mcp/a2a): Discover and delegate to a remote agent with A2A.
+- [Chapter 8: MCP Capstone](https://fewshotacademy.com/docs/mcp/capstone): Combine servers, a domain guard, memory, and a Streamlit UI.
+
+## Advanced Concepts
+
+- [Overview](https://fewshotacademy.com/docs/advanced-concepts/overview): Standalone production topics that can be read in any order.
+- [Prompt Engineering](https://fewshotacademy.com/docs/advanced-concepts/prompt-engineering): Structure, grounding, chaining, ReAct, self-refine, and optimization.
+- [Token and Cost Management](https://fewshotacademy.com/docs/advanced-concepts/token-cost-management): Context trimming, prompt caching, model selection, and batching.
+- [Agent Security](https://fewshotacademy.com/docs/advanced-concepts/agent-security): Stop indirect prompt injection with tool-call policy.
+- [Human in the Loop](https://fewshotacademy.com/docs/advanced-concepts/human-in-the-loop): Pause tool calls for approve, edit, reject, or respond decisions.
+- [Role-Based Access Control](https://fewshotacademy.com/docs/advanced-concepts/rbac): Scope tool permissions and limits by role.
+- [Chaos Engineering](https://fewshotacademy.com/docs/advanced-concepts/chaos-engineering): Inject tool faults and measure agent degradation.
+- [Continuous Adversarial Evaluation](https://fewshotacademy.com/docs/advanced-concepts/continuous-adversarial-evaluation): Test defenses against varied attacks and secure the eval harness.
+- [AI Gateways](https://fewshotacademy.com/docs/advanced-concepts/ai-gateways): Build a provider boundary and deliberate failover policy.
+
+## Career and Interview Preparation
+
+- [Career tracks](https://fewshotacademy.com/career-tracks): Compare five roles that build, operate, sell, or manage AI systems.
+- [Forward-Deployed Engineer](https://fewshotacademy.com/career-tracks/forward-deployed-engineer): Work with customers to turn ambiguous problems into production systems.
+- [Applied and Agentic AI Engineer](https://fewshotacademy.com/career-tracks/applied-agentic-ai-engineer): Build and ship RAG pipelines and tool-using agents.
+- [AI Product Manager](https://fewshotacademy.com/career-tracks/ai-product-manager): Define and guide AI products.
+- [SRE and Reliability Engineer for AI Agents](https://fewshotacademy.com/career-tracks/sre-reliability-engineer): Operate agents against reliability, cost, and latency goals.
+- [AI Solutions Architect and Presales](https://fewshotacademy.com/career-tracks/ai-solutions-architect-presales): Lead discovery, prototypes, demos, and technical proposals.
+- [Interview preparation](https://fewshotacademy.com/interview-prep): Choose a role and prepare for its interview loop.
+- [Technical rounds](https://fewshotacademy.com/interview-prep/technical-round): Role-specific technical questions and exercises.
+- [Behavioral rounds](https://fewshotacademy.com/interview-prep/behavioral-round): Role-specific prompts and answer frameworks.
+- [Case studies](https://fewshotacademy.com/interview-prep/case-studies): Practice role-specific take-home and live cases.
 
 ## Blog
 
-- [Blog index](https://fewshotacademy.com/blog): Short-form posts on AI agent news and practice, separate from the chapter-wise curriculum.
+- [Blog index](https://fewshotacademy.com/blog): Sourced analysis of AI releases, incidents, security, regulation, and engineering practice.
 - [GPT-6 Astra: the harness is the product](https://fewshotacademy.com/blog/gpt-6-astra-the-harness-is-the-product): Why Astra's AGI claim depends on persistent context, searchable history, async tools, and mid-turn steering.
-- [Agent memory just became its own product category](https://fewshotacademy.com/blog/agent-memory-first-class): A tour of LangMem, Mem0, and Zep, the 2026 memory frameworks, and where agent memory is still unsolved.
-- [OWASP just published a security top 10 for MCP](https://fewshotacademy.com/blog/owasp-mcp-top-10): All ten OWASP MCP Top 10 risk categories with real-world examples, from token mismanagement to shadow MCP servers.
-- [The EU AI Act deadline moved. The obligations didn't.](https://fewshotacademy.com/blog/eu-ai-act-obligations): What actually changed in the Digital Omnibus, the finalized dates, and what high-risk obligations require.
-- [What the 'rogue agent' headlines got wrong](https://fewshotacademy.com/blog/rogue-agent-incidents-guardrails): Three real 2026 AI security incidents explained, and why eval-environment security is the actual lesson.
+- [Stop calling LLM APIs directly](https://fewshotacademy.com/blog/stop-calling-llm-apis-directly): Why model fallback needs an application-owned boundary and tested policy.
+- [MCP is done pretending agents are people](https://fewshotacademy.com/blog/mcp-roadmap-agent-identity): What the MCP roadmap means for agent identity and delegation.
+- [MCP just went stateless](https://fewshotacademy.com/blog/mcp-goes-stateless): Production implications of the July 2026 MCP specification revision.
+- [Frontier models don't make safer agents](https://fewshotacademy.com/blog/frontier-models-arent-safer-agents): What adversarial tool environments reveal about agent security.
+- [Managed AI platforms trade one lock-in for another](https://fewshotacademy.com/blog/managed-ai-platforms-lock-in): Compare cloud AI platforms with direct provider APIs.
+- [OWASP checked its LLM Top 10 against real incidents](https://fewshotacademy.com/blog/owasp-llm-top-10-2026): How incident data changed the 2026 ranking.
+- [A new toolkit unifies three ways to catch a hallucination](https://fewshotacademy.com/blog/sirin-hallucination-detection-toolkit): Compare three hallucination-detection methods with SIRIN.
+- [OpenAI's cyber-hunting model found a Chrome vulnerability](https://fewshotacademy.com/blog/openai-cyber-model-chrome-vulnerability): What GPT-5.6-Cyber demonstrated and what its autonomy limits mean.
+- [Every major AI lab shipped an agent model this week](https://fewshotacademy.com/blog/open-weight-models-agent-benchmarks): Compare agentic benchmarks across three model releases.
+- [NVIDIA shows KV caches can move between model sizes](https://fewshotacademy.com/blog/cross-model-kv-cache-transfer): Reuse prompt-processing work across related models.
+- [What the rogue-agent headlines got wrong](https://fewshotacademy.com/blog/rogue-agent-incidents-guardrails): Separate real security incidents from misleading framing.
+- [OWASP published a security top 10 for MCP](https://fewshotacademy.com/blog/owasp-mcp-top-10): Review all ten MCP risk categories and examples.
+- [The EU AI Act deadline moved](https://fewshotacademy.com/blog/eu-ai-act-obligations): What changed and what high-risk obligations still require.
+- [Agent memory became its own product category](https://fewshotacademy.com/blog/agent-memory-first-class): Compare agent-memory frameworks, benchmarks, and open problems.
 
 ## Optional
 
-- [Disclaimer](https://fewshotacademy.com/disclaimer): Educational limits, external model providers, costs, and responsible lab use.
-- [Privacy Notice](https://fewshotacademy.com/privacy): Website analytics, browser storage, forms, retention, and visitor choices.
+- [Disclaimer](https://fewshotacademy.com/disclaimer): Educational limits, external providers, costs, and responsible use.
+- [Privacy Notice](https://fewshotacademy.com/privacy): Analytics, browser storage, forms, retention, and visitor choices.
+- [Contact](https://fewshotacademy.com/contact): Contact Few-Shot Academy.

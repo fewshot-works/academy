@@ -53,17 +53,25 @@ const config: Config = {
       attributes: {type: 'application/ld+json'},
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'Course',
-        name: 'Few-Shot Academy',
-        description:
-          'A free, open-source, chapter-wise curriculum for Generative AI, LLMs, Vector Databases, RAG, and Agents — from zero prior AI knowledge to a working, evaluated agentic RAG system. Every lesson is hands-on and runs locally for free via Ollama.',
-        url: 'https://fewshotacademy.com/',
-        isAccessibleForFree: true,
-        provider: {
-          '@type': 'Organization',
-          name: 'Few-Shot Academy',
-          url: 'https://fewshotacademy.com/',
-        },
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': 'https://fewshotacademy.com/#organization',
+            name: 'Few-Shot Academy',
+            url: 'https://fewshotacademy.com/',
+            logo: 'https://fewshotacademy.com/img/logo.svg',
+          },
+          {
+            '@type': 'WebSite',
+            '@id': 'https://fewshotacademy.com/#website',
+            name: 'Few-Shot Academy',
+            url: 'https://fewshotacademy.com/',
+            description:
+              'A free, open-source, hands-on curriculum for generative AI, LLMs, vector databases, RAG, and AI agents.',
+            inLanguage: 'en',
+            publisher: {'@id': 'https://fewshotacademy.com/#organization'},
+          },
+        ],
       }),
     },
   ],
@@ -120,6 +128,10 @@ const config: Config = {
         name: 'keywords',
         content:
           'generative AI course, learn generative AI, GenAI training, free LLM course, RAG tutorial, AI agents tutorial, vector database tutorial, learn AI for beginners',
+      },
+      {
+        property: 'og:site_name',
+        content: 'Few-Shot Academy',
       },
     ],
     announcementBar: {
