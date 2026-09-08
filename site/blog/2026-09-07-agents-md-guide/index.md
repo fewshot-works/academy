@@ -11,25 +11,25 @@ image: ./social-card.png
 
 `AGENTS.md` is a Markdown file you keep in your repository to tell coding agents how to work on the project. It can explain where the code lives, which commands to run, and which decisions the agent should leave to you. The [open format](https://agents.md/) has no required fields or schema.
 
-The useful idea is portability. If one contributor uses Codex and another uses Cursor, they should be able to share the same project instructions. An open-source maintainer should not have to rewrite the build command for every contributor's preferred tool.
+Imagine asking an agent to add a page on Monday. You explain the project's colors, where the source lives, and why the navigation must stay as it is. On Friday, a contributor picks up the work in another coding tool. Their agent proposes a new color scheme and reorganizes the navigation. The decisions are still in Monday's conversation, but they never made it into the repository.
 
-My recommendation is to make `AGENTS.md` the shared starting point. Keep it short enough to review, specific enough to act on, and check that the tools your team uses actually load it.
+That is the gap this file is meant to close. Write the ground rules down once, keep them with the code, and give the next agent a place to start.
 
 {/* truncate */}
 
-## Why a shared file matters
+## A standard with an extra S
 
-Consider an open-source documentation project. A contributor asks an agent to fix a broken example. The source lives in `site/`, the generated output lives in `site/build/`, and verification requires the project's own commands. Put those decisions in a shared file and you can review them alongside the code. When a build command changes, the instructions can change in the same pull request.
+The history is refreshingly ordinary. Amp initially used `AGENT.md`, singular. When OpenAI chose `AGENTS.md`, Amp agreed to switch if OpenAI secured the matching domain. On [August 20, 2025, Amp announced the change](https://ampcode.com/news/AGENTS.md). Sharing a standard mattered more than keeping its original filename.
 
-That is the standardization `AGENTS.md` offers: a common filename and a readable place for project guidance. It emerged from collaboration across tools including Codex, Amp, Jules, Cursor, and Factory, and is now stewarded by the Linux Foundation's Agentic AI Foundation. The [project site describes that shared ownership](https://agents.md/#about).
+The Linux Foundation dates the format's release to August 2025. By its [December 9 announcement of the Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation), it reported adoption by more than 60,000 open-source projects and agent frameworks. That is a dated adoption report, not a live count. `AGENTS.md` became one of the foundation's initial projects.
 
-Open stewardship matters because the instructions should remain useful when contributors change tools. Each tool still decides how it discovers and applies those instructions.
+For an open-source maintainer, the appeal is practical: one contributor can use Codex and another Cursor without needing separate copies of the same build instructions. The convention gives them a common starting point, although each tool still decides how to discover and apply the file.
 
 ## What belongs in AGENTS.md
 
 A useful file answers the questions that would otherwise interrupt the work: where to start, what to run, what to preserve, and how to know the change is ready.
 
-For the documentation project, “follow best practices” adds little. “Edit source files in `site/`; do not edit generated files in `site/build/`” settles a concrete decision. “Run the checks” is vague. Naming the commands and their working directory makes the instruction usable.
+For our imagined documentation project, “follow best practices” adds little. “Edit source files in `site/`; do not edit generated files in `site/build/`” settles a concrete decision. “Run the checks” is vague. Naming the commands and their working directory makes the instruction usable.
 
 Four sections are a useful starting structure:
 
@@ -38,19 +38,13 @@ Four sections are a useful starting structure:
 3. **Conventions and boundaries.** Existing patterns to reuse, files to preserve, and actions that need approval.
 4. **Completion.** What evidence to report and how to describe anything left untested.
 
-Keep long explanations in the README or contribution guide. Point to the relevant section and say when to read it. The root instruction file should help the agent find the right context without becoming a second copy of all the documentation.
-
-These are instructions the model receives, so they still need judgment and verification. A sentence saying “do not deploy” is useful guidance; actual deployment access belongs in permissions and approval controls. Anthropic makes this distinction explicit in its [instruction-file documentation](https://code.claude.com/docs/en/memory): the files provide context, not enforced configuration.
+These are instructions the model receives, so they still need verification. “Do not deploy” is useful guidance; actual deployment access belongs in permissions and approval controls. Anthropic's [documentation](https://code.claude.com/docs/en/memory) explicitly distinguishes instruction files from enforced configuration.
 
 ## How long should it be?
 
-For a small repository, I would start with roughly 30–60 short lines. That is my editing budget, not a limit imposed by the format. If ten lines cover the project's important decisions, stop there. Add a rule when you can explain which recurring mistake or missing context it addresses.
+For a small repository, I would start with roughly 30–60 short lines. That is my editing budget, not a format limit. If ten lines cover the important decisions, stop there. Add a rule when you can name the recurring mistake it should prevent.
 
-Tool limits are a separate question. Codex caps the combined project instructions it loads at 32 KiB by default. That is a loading limit, not a recommended document size. Its [discovery documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md) explains the setting and how it combines files.
-
-As the repository grows, move specialized guidance closer to the relevant code. A frontend package might need accessibility checks that do not belong in a database task. Nested `AGENTS.md` files can express that distinction, but verify your tool's discovery rules first. In Codex, for example, startup discovery follows the path from the repository root to the current working directory; it does not preload every nested file in the repository.
-
-Before adding more instructions, remove stale commands, repeated rules, and contradictions. A short file that tells the agent to use two different package managers still needs editing.
+Codex has a separate [32 KiB default limit](https://learn.chatgpt.com/docs/agent-configuration/agents-md) on the combined project instructions it loads. Treat that as a ceiling, not a target. Before making the file longer, remove stale commands, repeated rules, and contradictions.
 
 ## A useful starting example
 
@@ -90,9 +84,29 @@ who may have no programming or AI background.
 - State what you could not verify and why.
 ```
 
-The value is in the decisions it makes explicit. It identifies generated output, gives the checks a working directory, and defines what a useful handoff contains. Those instructions can be checked against the work.
+This file names the source directories, gives checks a working directory, and says what to report. Replace its paths and commands with ones you have verified in your own repository.
 
-Replace these paths and commands with ones you have verified in your own repository.
+## Should you split context across more files?
+
+Separate architecture, design, and decision notes can preserve reasoning the code cannot explain. In our Monday-to-Friday example, “use these colors” records a rule. “We kept the existing palette so new pages match the rest of the site” records why it exists.
+
+But five overlapping summaries give you five places to forget an update. Choose a pattern that solves a problem you actually have:
+
+| Pattern | When it helps | What to watch |
+| --- | --- | --- |
+| Short root file with links to project docs | Architecture or design explanations are too long for everyday instructions. | Say when to read each document; a link alone does not guarantee it gets read. |
+| Instructions scoped to a directory | Different packages need different checks or conventions. | Confirm the tool's nesting rules. Avoid copying root rules into every package. |
+| A temporary handoff note | A task spans sessions or pauses halfway through. | Record the current state, unresolved questions, and next step; replace outdated notes when work moves on. |
+
+The first two have direct support in tools such as [Cursor](https://cursor.com/docs/rules), which documents references and nested instructions. For handoffs, Anthropic describes [using progress files alongside Git history](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). The context window, the material a model can use at once, is finite. Summarizing a long conversation helps it continue, but that summary can miss details the next session needs.
+
+### Splitting files does not create more memory
+
+The loading strategy matters more than the file count. Claude Code's [`@` imports](https://code.claude.com/docs/en/memory#import-additional-files) load the referenced content at launch. Splitting one large file into five and importing all five still puts that material into context. To keep startup context small, keep the root guidance brief and instruct the agent to read the relevant supporting document when the task calls for it.
+
+A “resume this project” prompt can tell the agent to read a handoff; it cannot recover details nobody saved. Update the relevant document when a decision changes. Before pausing, record unfinished work, checks performed, and the next step. Review those updates in the diff instead of assuming the agent made them.
+
+My default is one short `AGENTS.md`, existing project docs for durable decisions, and a handoff note only when there is work to resume. Add files when they remove confusion.
 
 ## Which coding tools load it?
 
@@ -137,8 +151,6 @@ Gemini's [context configuration](https://geminicli.com/docs/cli/gemini-md/) supp
 
 ## Check the file against real work
 
-Start a fresh session after changing the setup. Ask the agent which instruction files it loaded and which checks apply to a small task. Then inspect the commands and changes it actually makes. A convincing summary alone does not establish that the instructions shaped its work.
+Start a fresh session after changing the setup and try a small page edit. Did the agent find the source, use the existing design, run the right checks, and report anything it could not verify?
 
-For the documentation example, try a small page edit. Did the agent change the source, run the checks from `site/`, and report any verification it could not complete? If it missed a rule, check loading and conflicting instructions before adding another paragraph.
-
-I would start with one root file, verify it in the tools contributors use, and refine it when real work exposes a gap. The payoff is a set of project decisions you can maintain once and carry with the repository.
+If it misses a rule, check which files loaded and whether their instructions conflict before adding another paragraph. The goal is to stop re-explaining the same decisions, while keeping those decisions easy to find and maintain.
