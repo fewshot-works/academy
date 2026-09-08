@@ -1,0 +1,63 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F6F4EF"/>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#1C2622" flood-opacity=".12"/>
+    </filter>
+  </defs>
+
+  <!-- restrained contour motif -->
+  <g fill="none" stroke="#1F5D4C" stroke-opacity=".14" stroke-width="2">
+    <path d="M-50 84C76 10 165 55 183 130C207 226 94 234 45 312C-9 398 59 480 170 473"/>
+    <path d="M-60 111C62 38 138 74 153 137C171 216 80 235 30 310C-17 380 42 448 143 451"/>
+    <path d="M1056 514C1118 467 1184 473 1240 511"/>
+    <path d="M1067 543C1125 505 1183 506 1230 538"/>
+  </g>
+
+  <g font-family="Georgia, 'Iowan Old Style', serif">
+    <text x="78" y="88" font-size="25" font-weight="700" letter-spacing="2.5" fill="#1F5D4C">FEW-SHOT ACADEMY</text>
+    <rect x="78" y="116" width="85" height="4" rx="2" fill="#A85A1C"/>
+    <text x="78" y="250" font-size="84" font-weight="700" letter-spacing="-2.5" fill="#123A2E">AGENTS.md</text>
+    <text x="82" y="322" font-size="47" fill="#1C2622">One guide for your</text>
+    <text x="82" y="377" font-size="47" fill="#1C2622">coding agents</text>
+  </g>
+
+  <!-- one shared file, three abstract editor windows -->
+  <g filter="url(#shadow)">
+    <rect x="920" y="100" width="200" height="110" rx="12" fill="#EAE6DA" stroke="#1F5D4C" stroke-width="2"/>
+    <path d="M920 133H1120" stroke="#1F5D4C" stroke-opacity=".35" stroke-width="2"/>
+    <circle cx="940" cy="117" r="5" fill="#A85A1C"/>
+    <circle cx="957" cy="117" r="5" fill="#1F5D4C" fill-opacity=".7"/>
+    <circle cx="974" cy="117" r="5" fill="#1F5D4C" fill-opacity=".35"/>
+    <path d="M943 157H1080M943 176H1053M943 195H1096" stroke="#55625B" stroke-width="5" stroke-linecap="round"/>
+
+    <rect x="920" y="260" width="200" height="110" rx="12" fill="#EAE6DA" stroke="#1F5D4C" stroke-width="2"/>
+    <path d="M920 293H1120" stroke="#1F5D4C" stroke-opacity=".35" stroke-width="2"/>
+    <circle cx="940" cy="277" r="5" fill="#A85A1C"/>
+    <circle cx="957" cy="277" r="5" fill="#1F5D4C" fill-opacity=".7"/>
+    <circle cx="974" cy="277" r="5" fill="#1F5D4C" fill-opacity=".35"/>
+    <path d="M943 317H1080M943 336H1053M943 355H1096" stroke="#55625B" stroke-width="5" stroke-linecap="round"/>
+
+    <rect x="920" y="420" width="200" height="110" rx="12" fill="#EAE6DA" stroke="#1F5D4C" stroke-width="2"/>
+    <path d="M920 453H1120" stroke="#1F5D4C" stroke-opacity=".35" stroke-width="2"/>
+    <circle cx="940" cy="437" r="5" fill="#A85A1C"/>
+    <circle cx="957" cy="437" r="5" fill="#1F5D4C" fill-opacity=".7"/>
+    <circle cx="974" cy="437" r="5" fill="#1F5D4C" fill-opacity=".35"/>
+    <path d="M943 477H1080M943 496H1053M943 515H1096" stroke="#55625B" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <g stroke="#1F5D4C" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 9">
+    <path d="M790 270L920 155"/>
+    <path d="M790 311L920 315"/>
+    <path d="M790 350L920 475"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="660" y="245" width="130" height="140" rx="14" fill="#1F5D4C"/>
+    <path d="M684 277H766" stroke="#F6F4EF" stroke-width="6" stroke-linecap="round"/>
+    <path d="M684 299H745" stroke="#F6F4EF" stroke-opacity=".7" stroke-width="6" stroke-linecap="round"/>
+    <path d="M684 321H757" stroke="#F6F4EF" stroke-opacity=".7" stroke-width="6" stroke-linecap="round"/>
+    <path d="M684 343H731" stroke="#F6F4EF" stroke-opacity=".7" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="758" cy="354" r="9" fill="#A85A1C"/>
+  </g>
+  <text x="665" y="420" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1.2" fill="#55625B">SHARED CONTEXT</text>
+</svg>
