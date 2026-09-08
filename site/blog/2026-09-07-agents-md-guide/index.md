@@ -17,15 +17,17 @@ That is the gap this file is meant to close. Write the ground rules down once, k
 
 {/* truncate */}
 
-## A standard with an extra S
+## The instructions should travel with the project
 
-The history is refreshingly ordinary. Amp initially used `AGENT.md`, singular. When OpenAI chose `AGENTS.md`, Amp agreed to switch if OpenAI secured the matching domain. On [August 20, 2025, Amp announced the change](https://ampcode.com/news/AGENTS.md). Sharing a standard mattered more than keeping its original filename.
+For an open-source maintainer, Friday's contributor may use a different coding tool. Keeping the instructions in the repository makes them available to both people; a shared filename gives their tools a common place to look. One contributor can use Codex and another Cursor without needing separate copies of the same build instructions.
+
+That practical benefit is also the story behind the name. Amp initially used `AGENT.md`, singular. When OpenAI chose `AGENTS.md`, Amp agreed to switch if OpenAI secured the matching domain. On [August 20, 2025, Amp announced the change](https://ampcode.com/news/AGENTS.md). Sharing a standard mattered more than keeping its original filename.
 
 The Linux Foundation dates the format's release to August 2025. By its [December 9 announcement of the Agentic AI Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation), it reported adoption by more than 60,000 open-source projects and agent frameworks. That is a dated adoption report, not a live count. `AGENTS.md` became one of the foundation's initial projects.
 
-For an open-source maintainer, the appeal is practical: one contributor can use Codex and another Cursor without needing separate copies of the same build instructions. The convention gives them a common starting point, although each tool still decides how to discover and apply the file.
+The convention gives those contributors a common starting point, although each tool still decides how to discover and apply the file. First, that shared file needs instructions worth carrying forward.
 
-## What belongs in AGENTS.md
+## Write down the decisions the next agent needs
 
 A useful file answers the questions that would otherwise interrupt the work: where to start, what to run, what to preserve, and how to know the change is ready.
 
@@ -38,15 +40,7 @@ Four sections are a useful starting structure:
 3. **Conventions and boundaries.** Existing patterns to reuse, files to preserve, and actions that need approval.
 4. **Completion.** What evidence to report and how to describe anything left untested.
 
-These are instructions the model receives, so they still need verification. “Do not deploy” is useful guidance; actual deployment access belongs in permissions and approval controls. Anthropic's [documentation](https://code.claude.com/docs/en/memory) explicitly distinguishes instruction files from enforced configuration.
-
-## How long should it be?
-
 For a small repository, I would start with roughly 30–60 short lines. That is my editing budget, not a format limit. If ten lines cover the important decisions, stop there. Add a rule when you can name the recurring mistake it should prevent.
-
-Codex has a separate [32 KiB default limit](https://learn.chatgpt.com/docs/agent-configuration/agents-md) on the combined project instructions it loads. Treat that as a ceiling, not a target. Before making the file longer, remove stale commands, repeated rules, and contradictions.
-
-## A useful starting example
 
 Here is an illustrative, shortened file for the website portion of Few-Shot Academy. The paths and commands come from this repository; the example is not a replacement for our full [contributor instructions](https://github.com/fewshot-works/academy/blob/main/AGENTS.md).
 
@@ -84,31 +78,13 @@ who may have no programming or AI background.
 - State what you could not verify and why.
 ```
 
-This file names the source directories, gives checks a working directory, and says what to report. Replace its paths and commands with ones you have verified in your own repository.
+The next agent now has somewhere to find the source paths, design rules, and checks that were stranded in Monday's conversation. Replace the example's paths and commands with ones you have verified in your own repository.
 
-## Should you split context across more files?
+These are still instructions the model receives, so check its work. “Do not deploy” is useful guidance; actual deployment access belongs in permissions and approval controls. Anthropic's [documentation](https://code.claude.com/docs/en/memory) explicitly distinguishes instruction files from enforced configuration.
 
-Separate architecture, design, and decision notes can preserve reasoning the code cannot explain. In our Monday-to-Friday example, “use these colors” records a rule. “We kept the existing palette so new pages match the rest of the site” records why it exists.
+## Make sure your tool reads it
 
-But five overlapping summaries give you five places to forget an update. Choose a pattern that solves a problem you actually have:
-
-| Pattern | When it helps | What to watch |
-| --- | --- | --- |
-| Short root file with links to project docs | Architecture or design explanations are too long for everyday instructions. | Say when to read each document; a link alone does not guarantee it gets read. |
-| Instructions scoped to a directory | Different packages need different checks or conventions. | Confirm the tool's nesting rules. Avoid copying root rules into every package. |
-| A temporary handoff note | A task spans sessions or pauses halfway through. | Record the current state, unresolved questions, and next step; replace outdated notes when work moves on. |
-
-The first two have direct support in tools such as [Cursor](https://cursor.com/docs/rules), which documents references and nested instructions. For handoffs, Anthropic describes [using progress files alongside Git history](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). The context window, the material a model can use at once, is finite. Summarizing a long conversation helps it continue, but that summary can miss details the next session needs.
-
-### Splitting files does not create more memory
-
-The loading strategy matters more than the file count. Claude Code's [`@` imports](https://code.claude.com/docs/en/memory#import-additional-files) load the referenced content at launch. Splitting one large file into five and importing all five still puts that material into context. To keep startup context small, keep the root guidance brief and instruct the agent to read the relevant supporting document when the task calls for it.
-
-A “resume this project” prompt can tell the agent to read a handoff; it cannot recover details nobody saved. Update the relevant document when a decision changes. Before pausing, record unfinished work, checks performed, and the next step. Review those updates in the diff instead of assuming the agent made them.
-
-My default is one short `AGENTS.md`, existing project docs for durable decisions, and a handoff note only when there is work to resume. Add files when they remove confusion.
-
-## Which coding tools load it?
+With the file written, the next step is to connect it to the agent. Some tools recognize `AGENTS.md` directly; others need a small configuration change.
 
 This is a selection of coding editors and agents, not a popularity ranking. The table reflects their official documentation checked on September 8, 2026. “Automatic” means the tool recognizes the file without a filename bridge; settings can still affect loading.
 
@@ -125,9 +101,9 @@ This is a selection of coding editors and agents, not a popularity ranking. The 
 
 The Copilot row is specifically about VS Code. Do not assume that an editor extension, a command-line agent, and a hosted pull-request agent load instructions identically just because they share a product name.
 
-## Bridge the tools that need setup
+### Connecting Claude Code and Gemini CLI
 
-For Claude Code, put this line in the root `CLAUDE.md`:
+The last two rows need setup, but you can keep the shared rules in `AGENTS.md`. For Claude Code, put this line in the root `CLAUDE.md`:
 
 ```text title="CLAUDE.md"
 @AGENTS.md
@@ -149,8 +125,36 @@ For Gemini CLI, merge this into `.gemini/settings.json`, preserving your other s
 
 Gemini's [context configuration](https://geminicli.com/docs/cli/gemini-md/) supports multiple filenames. Keeping both lets existing Gemini-specific guidance remain discoverable; avoid repeating the shared rules in both files.
 
-## Check the file against real work
+## Let the setup grow with the work
 
-Start a fresh session after changing the setup and try a small page edit. Did the agent find the source, use the existing design, run the right checks, and report anything it could not verify?
+Once the short file is written and your tool is set up to read it, you have a starting point for the next session. Over time, you may also want to preserve architecture explanations, design reasoning, or the state of unfinished work. Those do not all belong in the everyday instructions.
+
+Separate architecture, design, and decision notes can preserve reasoning the code cannot explain. In our Monday-to-Friday example, “use these colors” records a rule. “We kept the existing palette so new pages match the rest of the site” records why it exists.
+
+But five overlapping summaries give you five places to forget an update. Choose a pattern that solves a problem you actually have:
+
+| Pattern | When it helps | What to watch |
+| --- | --- | --- |
+| Short root file with links to project docs | Architecture or design explanations are too long for everyday instructions. | Say when to read each document; a link alone does not guarantee it gets read. |
+| Instructions scoped to a directory | Different packages need different checks or conventions. | Confirm the tool's nesting rules. Avoid copying root rules into every package. |
+| A temporary handoff note | A task spans sessions or pauses halfway through. | Record the current state, unresolved questions, and next step; replace outdated notes when work moves on. |
+
+The first two have direct support in tools such as [Cursor](https://cursor.com/docs/rules), which documents references and nested instructions. For handoffs, Anthropic describes [using progress files alongside Git history](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+
+### Splitting files does not create more memory
+
+The context window, the material a model can use at once, is finite. Summarizing a long conversation helps it continue, but that summary can miss details the next session needs.
+
+Tools can also limit how much they load. Codex has a [32 KiB default limit](https://learn.chatgpt.com/docs/agent-configuration/agents-md) on the combined project instructions it loads, but that is a ceiling, not a target.
+
+The loading strategy matters more than the file count. Claude Code's [`@` imports](https://code.claude.com/docs/en/memory#import-additional-files) load the referenced content at launch. Splitting one large file into five and importing all five still puts that material into context. To keep startup context small, keep the root guidance brief and instruct the agent to read the relevant supporting document when the task calls for it.
+
+A “resume this project” prompt can tell the agent to read a handoff; it cannot recover details nobody saved. Update the relevant document when a decision changes. Before pausing, record unfinished work, checks performed, and the next step. Review those updates in the diff instead of assuming the agent made them.
+
+My default is one short `AGENTS.md`, existing project docs for durable decisions, and a handoff note only when there is work to resume. Add files when they remove confusion.
+
+## Try the next handoff
+
+Return to Friday's contributor. The useful test is whether the saved instructions help them pick up the work. Start a fresh session after changing the setup and try a small page edit. Did the agent find the source, use the existing design, run the right checks, and report anything it could not verify?
 
 If it misses a rule, check which files loaded and whether their instructions conflict before adding another paragraph. The goal is to stop re-explaining the same decisions, while keeping those decisions easy to find and maintain.
