@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F6F4EF"/>
+  <g fill="none" stroke="#1F5D4C" stroke-opacity=".14" stroke-width="2">
+    <path d="M-55 88C71 15 160 56 180 132C205 227 91 239 43 314C-12 400 56 481 168 474"/>
+    <path d="M-65 116C57 42 134 76 151 141C170 220 78 240 28 313C-20 383 39 452 140 454"/>
+    <path d="M1037 526C1103 469 1181 472 1244 518"/>
+  </g>
+  <g font-family="Georgia, 'Iowan Old Style', serif">
+    <text x="78" y="88" font-size="25" font-weight="700" letter-spacing="2.5" fill="#1F5D4C">FEW-SHOT ACADEMY</text>
+    <rect x="78" y="116" width="85" height="4" rx="2" fill="#A85A1C"/>
+    <text x="78" y="246" font-size="65" font-weight="700" letter-spacing="-1.8" fill="#123A2E">Secure the tools</text>
+    <text x="78" y="321" font-size="65" font-weight="700" letter-spacing="-1.8" fill="#123A2E">around your agent</text>
+    <text x="82" y="390" font-size="29" fill="#55625B">Runtime · Gateway · Tool call</text>
+  </g>
+  <g transform="translate(795 142)">
+    <rect width="310" height="342" rx="26" fill="#EAE6DA" stroke="#1F5D4C" stroke-width="3"/>
+    <rect x="34" y="37" width="242" height="76" rx="12" fill="#F6F4EF" stroke="#1F5D4C" stroke-width="2"/>
+    <text x="155" y="84" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#123A2E">RUNTIME</text>
+    <path d="M155 113V139" stroke="#A85A1C" stroke-width="4"/>
+    <rect x="34" y="139" width="242" height="76" rx="12" fill="#1F5D4C"/>
+    <text x="155" y="186" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#F6F4EF">GATEWAY</text>
+    <path d="M155 215V241" stroke="#A85A1C" stroke-width="4"/>
+    <rect x="34" y="241" width="242" height="64" rx="12" fill="#F6F4EF" stroke="#1F5D4C" stroke-width="2"/>
+    <text x="155" y="281" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#123A2E">TOOL POLICY</text>
+  </g>
+  <circle cx="950" cy="512" r="8" fill="#A85A1C"/>
+</svg>

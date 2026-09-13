@@ -152,3 +152,5 @@ Only some. An allowlist works well for a tool with a small, known-in-advance set
 ## What's next
 
 Indirect injection and this chapter's allowlist fix are one specific defense for one specific shape of attack, not a complete security posture. Come back to Advanced Concepts whenever another chapter title catches your eye, nothing here needs to be read in order. If you haven't yet, [Advanced Chapter 4: Guardrails and Safety](/docs/advanced/guardrails-and-safety) covers the direct-injection half of this same picture, and pairs naturally with this chapter either before or after.
+
+Tool policy covers actions the model requests. The companion article, [Secure the tools around your agent](/blog/secure-the-tools-around-your-agent), shows why startup behavior, workspace configuration, gateways, credentials, and network access need separate controls around that loop.

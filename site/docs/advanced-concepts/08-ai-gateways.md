@@ -294,3 +294,5 @@ It can normalize an application-owned common contract, such as text messages in 
 You started with a direct model call, separated provider translation from routing policy, and tested both sides of the error boundary. The next production step is not adding more providers. It is writing contract tests for the capabilities you depend on, setting an end-to-end latency budget, and exercising each failure path regularly.
 
 The companion article, [Stop calling LLM APIs directly](/blog/stop-calling-llm-apis-directly), examines the same decision from an engineering-lead perspective: how to tell whether a fallback is operationally real or only present in configuration.
+
+Once that boundary becomes a shared service, [Secure the tools around your agent](/blog/secure-the-tools-around-your-agent) explains the security review it needs: explicit authentication, restricted administration, scoped credentials, and limited access to internal services.
