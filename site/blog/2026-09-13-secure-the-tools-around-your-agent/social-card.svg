@@ -8,9 +8,10 @@
   <g font-family="Georgia, 'Iowan Old Style', serif">
     <text x="78" y="88" font-size="25" font-weight="700" letter-spacing="2.5" fill="#1F5D4C">FEW-SHOT ACADEMY</text>
     <rect x="78" y="116" width="85" height="4" rx="2" fill="#A85A1C"/>
-    <text x="78" y="246" font-size="65" font-weight="700" letter-spacing="-1.8" fill="#123A2E">Secure the tools</text>
-    <text x="78" y="321" font-size="65" font-weight="700" letter-spacing="-1.8" fill="#123A2E">around your agent</text>
-    <text x="82" y="390" font-size="29" fill="#55625B">Runtime · Gateway · Tool call</text>
+    <text x="78" y="222" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#123A2E">Agent security</text>
+    <text x="78" y="288" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#123A2E">starts before</text>
+    <text x="78" y="354" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#123A2E">the first prompt</text>
+    <text x="82" y="416" font-size="29" fill="#55625B">Runtime · Gateway · Tool call</text>
   </g>
   <g transform="translate(795 142)">
     <rect width="310" height="342" rx="26" fill="#EAE6DA" stroke="#1F5D4C" stroke-width="3"/>
