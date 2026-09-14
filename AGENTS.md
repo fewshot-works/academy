@@ -49,8 +49,14 @@ This is Few-Shot Academy (`fewshotacademy.com`, `fewshot-works/academy`; `zero-t
 
 ### 4. Model effort
 
-- When useful and supported, use a fast subagent such as Luna for bounded inventory, source extraction, mechanical checks, and initial gap detection; use a strong reasoning model such as Sol for thesis, teaching structure, substantive writing, and fresh-context final review.
-- The primary agent fixes review findings and owns the result. Skip delegation when coordination costs more than it saves.
+- Delegate a bounded, independent task when the expected time or quality savings justify coordination overhead. Keep decomposition, integration, judgment, and the final result with the primary agent.
+- Use the session's exposed model metadata as the source of truth for availability; do not assume a repository alias is available. Repository defaults are Luna (`gpt-5.6-luna`) for inventories, source extraction, mechanical fixes, and focused checks; Terra (`gpt-5.6-terra`) for moderate coding and debugging; and Sol (`gpt-5.6-sol`) for substantive writing, ambiguous reasoning, and fresh-context review.
+- Give each agent a concrete outcome, bounded scope, files or areas it owns, constraints, and checks to run. The subagent must return findings, changed files, checks performed, and remaining uncertainty. Provide only the context needed to do that work.
+- Assign tasks that can proceed independently. Subagents may edit their assigned files, but avoid overlapping writes or conflicting ownership; the primary agent coordinates branch operations and commits.
+- Start with the least expensive capable model and escalate when the task's ambiguity, risk, or quality needs require it; record the concrete reason for escalation.
+- Reuse an existing agent when practical. Do not create needless recursive delegation or split work into smaller tasks that cost more to coordinate.
+- The primary agent reviews all reports, resolves conflicts, verifies the final checks, and owns commits and any external actions already permitted by the current session.
+- Skip delegation for small, tightly coupled, or judgment-heavy work when coordination would cost more than it saves.
 
 ### 5. Implementation and verification
 
