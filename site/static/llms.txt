@@ -52,6 +52,7 @@ not curriculum recaps.
 - [Chapter 6: Production Concerns](https://fewshotacademy.com/docs/advanced/production-concerns): Caching, rate limiting, and streaming.
 - [Chapter 7: Shipping It](https://fewshotacademy.com/docs/advanced/shipping-it): Package an agent with FastAPI and Docker.
 - [Chapter 8: Evaluated Agent Capstone](https://fewshotacademy.com/docs/advanced/capstone): Add guardrails, tracing, and evaluation to an agent.
+- [What to Build Next](https://fewshotacademy.com/docs/advanced/what-to-build-next): Choose from six scoped projects that reuse techniques from the curriculum.
 
 ## Model Context Protocol
 

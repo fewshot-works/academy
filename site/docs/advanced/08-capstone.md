@@ -150,3 +150,5 @@ That's Advanced complete. Here's the whole arc, one line per chapter:
 You've gone from a single toy script to a system with defenses, visibility, and actual numbers behind it, still running entirely on your own laptop, and now you know exactly where it's still capable of getting things wrong.
 
 💡 Want to keep pushing? Fix the retrieval miss from this chapter's own run, try a smaller `n_results` with a re-ranking step from Chapter 2's advanced RAG techniques, or rewrite the query the way Chapter 2's query-rewriting lab did, and see whether precision@2 improves. Or go the other direction: swap the judge model for something larger than `llama3.2` and see whether it catches the two mistakes this chapter's judge missed. Either way, you're no longer guessing whether a change helped, you have `evaluate.py` to tell you.
+
+Ready to make something of your own? [What to Build Next](/docs/advanced/what-to-build-next) gives you six small projects that reuse the patterns you already know.
