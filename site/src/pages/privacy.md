@@ -133,8 +133,8 @@ may process account, cookie, device, and usage information under the
 Google processes anonymous page counts and, when allowed, optional analytics. Cloudflare hosts the
 site infrastructure, queues and relays anonymous page counts, stores form submissions, routes
 notification email, and provides Turnstile. GitHub hosts the source repository and, when requested,
-blog comments. These providers may process information in countries other than the one where you
-live under their own terms and transfer mechanisms.
+blog comments in a separate public comments repository. These providers may process information in
+countries other than the one where you live under their own terms and transfer mechanisms.
 
 Course labs may let you choose external model providers. Inputs you send from a lab go to the
 provider you choose, not through the Few-Shot Academy website. See the [Disclaimer](/disclaimer)

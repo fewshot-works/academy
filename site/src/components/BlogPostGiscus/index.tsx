@@ -4,9 +4,10 @@ import Link from '@docusaurus/Link';
 import {useColorMode} from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
-// GitHub Discussions-backed comments (see gh issue #42). Repo/category IDs
-// come from https://giscus.app once the giscus GitHub App is installed on
-// fewshot-works/academy and Discussions is enabled.
+// GitHub Discussions-backed comments (see gh issue #42, moved to a
+// comments-only public repo per gh issue #94). Repo/category IDs come from
+// https://giscus.app once the giscus GitHub App is installed on
+// fewshot-works/public-discuss and Discussions is enabled there.
 export default function BlogPostGiscus(): ReactNode {
   const {colorMode} = useColorMode();
   const [loaded, setLoaded] = useState(false);
@@ -30,10 +31,10 @@ export default function BlogPostGiscus(): ReactNode {
       ) : (
         <Giscus
           id="comments"
-          repo="fewshot-works/academy"
-          repoId="R_kgDOTi8uVA"
-          category="Announcements"
-          categoryId="DIC_kwDOTi8uVM4DCxo0"
+          repo="fewshot-works/public-discuss"
+          repoId="R_kgDOUbNDJA"
+          category="General"
+          categoryId="DIC_kwDOUbNDJM4DFn_F"
           mapping="pathname"
           strict="0"
           reactionsEnabled="1"
