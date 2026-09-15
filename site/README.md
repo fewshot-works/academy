@@ -28,16 +28,14 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-Using SSH:
+Production deploys run through `.github/workflows/deploy.yml` on push to `main`: it installs
+dependencies, runs `npm run build`, applies D1 migrations, deploys the email worker, packages each
+`labs/<track>/` directory into a downloadable zip under `build/downloads/`, then runs
+`wrangler pages deploy build` to push to Cloudflare Pages.
 
-```bash
-USE_SSH=true npm run deploy
-```
+`npm run build` alone only generates the static site in `build/` — it does not produce the lab zip
+downloads or apply D1 migrations. To reproduce a full deploy locally, run the "Build per-track labs
+zips" step from the workflow yourself before deploying with Wrangler, and make sure `CLOUDFLARE_API_TOKEN`
+and `CLOUDFLARE_ACCOUNT_ID` are set.
 
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+`npm run deploy` (Docusaurus's own GitHub Pages deploy command) is not used by this project.
