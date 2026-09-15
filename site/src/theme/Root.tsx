@@ -1,4 +1,4 @@
-import type {ReactNode, SyntheticEvent} from 'react';
+import type {ReactNode} from 'react';
 import {useEffect, useRef, useState} from 'react';
 import Link from '@docusaurus/Link';
 import {useLocation} from '@docusaurus/router';
@@ -24,7 +24,7 @@ function PrivacyConsentBanner() {
   const [preference, setPreference] = useState<AnalyticsConsent | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const savedPreference = readAnalyticsConsent();
@@ -59,25 +59,14 @@ function PrivacyConsentBanner() {
 
   const shouldOpen = hydrated && (settingsOpen || (preference === null && pathname !== '/privacy'));
 
+  // Non-blocking: the bar never traps focus or locks scroll (gh issue #88, item 3), so a
+  // first-time visitor can keep reading/browsing before deciding. Auto-focus only when the
+  // visitor deliberately reopened it (Privacy settings link/hash), not on its first appearance.
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (shouldOpen && dialog && !dialog.open) {
-      dialog.showModal();
-      dialog.querySelector<HTMLButtonElement>('[data-initial-focus]')?.focus();
-    } else if (!shouldOpen && dialog?.open) {
-      dialog.close();
+    if (shouldOpen && settingsOpen) {
+      barRef.current?.querySelector<HTMLButtonElement>('[data-initial-focus]')?.focus();
     }
-
-    if (!shouldOpen) {
-      return undefined;
-    }
-
-    const previousOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = 'hidden';
-    return () => {
-      document.documentElement.style.overflow = previousOverflow;
-    };
-  }, [shouldOpen]);
+  }, [shouldOpen, settingsOpen]);
 
   function choose(nextPreference: AnalyticsConsent) {
     saveAnalyticsConsent(nextPreference);
@@ -97,40 +86,38 @@ function PrivacyConsentBanner() {
     clearSettingsHash();
   }
 
-  function keepInitialChoiceOpen(event: SyntheticEvent<HTMLDialogElement>) {
-    if (preference === null) {
-      event.preventDefault();
-    } else {
-      closeSettings();
-    }
+  if (!shouldOpen) {
+    return null;
   }
 
   return (
-    <dialog
-      className={styles.dialog}
-      ref={dialogRef}
+    <div
+      className={styles.bar}
+      ref={barRef}
+      role="region"
       aria-labelledby="privacy-choice-title"
-      aria-describedby="privacy-choice-description"
-      onCancel={keepInitialChoiceOpen}>
-      <div className={styles.dialogContent}>
-        <div className={styles.headingRow}>
-          <h2 id="privacy-choice-title" className={styles.title}>Optional analytics</h2>
+      aria-describedby="privacy-choice-description">
+      <div className={styles.barContent}>
+        <div className={styles.info}>
+          <div className={styles.headingRow}>
+            <h2 id="privacy-choice-title" className={styles.title}>Optional analytics</h2>
+            {settingsOpen && preference !== null && (
+              <button className={styles.closeButton} onClick={closeSettings} type="button" aria-label="Close privacy settings">
+                Close
+              </button>
+            )}
+          </div>
+          <p id="privacy-choice-description" className={styles.text}>
+            We count page opens without cookies or visitor identifiers. Allowing optional Google Analytics also
+            helps us understand course progress and navigation. We never send quiz answers, scores, or contact
+            messages. <Link to="/privacy">Privacy details</Link>.
+          </p>
           {settingsOpen && preference !== null && (
-            <button className={styles.closeButton} onClick={closeSettings} type="button" aria-label="Close privacy settings">
-              Close
-            </button>
+            <p className={styles.status}>
+              Analytics is currently {preference === 'granted' ? 'allowed' : 'declined'}.
+            </p>
           )}
         </div>
-        <p id="privacy-choice-description" className={styles.text}>
-          We count page opens without cookies or visitor identifiers. Allowing optional Google Analytics also helps
-          us understand course progress and navigation. We never send quiz answers, scores, or contact messages.{' '}
-          <Link to="/privacy">Privacy details</Link>.
-        </p>
-        {settingsOpen && preference !== null && (
-          <p className={styles.status}>
-            Analytics is currently {preference === 'granted' ? 'allowed' : 'declined'}.
-          </p>
-        )}
         <div className={styles.actions}>
           <button
             className={styles.choiceButton}
@@ -144,7 +131,7 @@ function PrivacyConsentBanner() {
           </button>
         </div>
       </div>
-    </dialog>
+    </div>
   );
 }
 

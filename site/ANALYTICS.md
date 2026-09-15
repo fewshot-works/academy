@@ -199,8 +199,9 @@ create an engagement event.
 
 For page-view and consent verification, start with a clean browser profile and confirm:
 
-1. The choice opens as a modal and keyboard focus cannot leave it until **Decline** or
-   **Allow analytics** is selected.
+1. The choice opens as a non-blocking bar pinned to the bottom of the viewport (gh issue #88, item
+   3). It does not trap focus or lock scroll, so the visitor can keep reading/navigating before
+   choosing **Decline** or **Allow analytics**; it stays visible until one of those is picked.
 2. A route view sends `POST /api/anonymous-page-view` with only a `path` field. It does not load a
    Google script in the browser. The Pages Function queues only that path; only the detached queue
    consumer contacts Google.
@@ -210,5 +211,5 @@ For page-view and consent verification, start with a clean browser profile and c
    automatic page views and Google signals disabled; it also replaces page location with the site
    origin and drops the referrer. This prevents duplicate page tracking and keeps query strings and
    traffic sources out of optional event requests.
-5. **Privacy settings** in the footer reopens the modal. Withdrawing consent stops future optional
+5. **Privacy settings** in the footer reopens the bar. Withdrawing consent stops future optional
    events and removes accessible `_ga` cookies.

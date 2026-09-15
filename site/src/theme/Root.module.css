@@ -1,21 +1,29 @@
-.dialog {
-  width: min(42rem, calc(100vw - 2rem));
-  max-width: none;
-  margin: auto;
-  padding: 0;
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
   background: var(--ifm-background-surface-color);
-  border: 1px solid var(--zta-border);
-  border-radius: 12px;
+  border-top: 1px solid var(--zta-border);
   color: var(--zta-ink);
-  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.16);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-.dialog::backdrop {
-  background: rgba(24, 32, 29, 0.62);
+.barContent {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
 }
 
-.dialogContent {
-  padding: 1.5rem;
+.info {
+  flex: 1 1 320px;
+  min-width: 0;
 }
 
 .headingRow {
@@ -27,14 +35,14 @@
 
 .title {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.05rem;
   color: var(--zta-ink);
 }
 
 .text {
-  margin: 0.75rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  margin: 0.4rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
   color: var(--zta-ink-muted);
 }
 
@@ -54,7 +62,8 @@
   display: flex;
   justify-content: flex-end;
   gap: 0.65rem;
-  margin-top: 1.25rem;
+  flex-shrink: 0;
+  margin: 0;
 }
 
 .choiceButton,
@@ -90,12 +99,12 @@
 }
 
 @media screen and (max-width: 640px) {
-  .dialog {
-    width: calc(100vw - 1.25rem);
+  .barContent {
+    padding: 1rem 1.15rem;
   }
 
-  .dialogContent {
-    padding: 1.15rem;
+  .info {
+    flex-basis: 100%;
   }
 
   .actions {
