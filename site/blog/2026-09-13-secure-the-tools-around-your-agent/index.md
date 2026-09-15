@@ -17,6 +17,10 @@ The model did not choose a harmful tool call. The runtime acted while preparing 
 
 {/* truncate */}
 
+:::tip[TL;DR]
+An agent has security boundaries before, around, and inside the model loop. Isolate startup and workspace discovery, authenticate and constrain the gateway that holds provider keys, and validate sensitive tool arguments with deterministic checks and approvals. Tool allowlists help with model-requested actions, but they cannot secure a startup hook or an exposed gateway. Map one real job's authority, test a boundary, and fix the gap before granting more access.
+:::
+
 ## Workspace trust has to include startup
 
 Imagine a coding agent opening a project so it can answer a simple question about a failing test. Before the chat box is useful, the application may inspect the working tree, run Git to learn the branch and status, index files, load extensions, and collect credentials for the model gateway. None of that is a model-requested tool call. It is still code acting with the authority of the agent process.

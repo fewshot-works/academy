@@ -17,6 +17,10 @@ That is the gap this file is meant to close. Write the ground rules down once, k
 
 {/* truncate */}
 
+:::tip[TL;DR]
+`AGENTS.md` keeps the project's working rules with the repository so different agents and contributors can find the same guidance. Start with the paths, commands, conventions, boundaries, and completion evidence that prevent recurring mistakes; keep the root file short and link to deeper documentation when needed. Verify that each tool actually loads it, and keep access restrictions in permissions and approval controls.
+:::
+
 ## The instructions should travel with the project
 
 For an open-source maintainer, Friday's contributor may use a different coding tool. Keeping the instructions in the repository makes them available to both people; a shared filename gives their tools a common place to look. One contributor can use Codex and another Cursor without needing separate copies of the same build instructions.

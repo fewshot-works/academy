@@ -19,6 +19,10 @@ That is why Astra matters even if you are not interested in arguing about AGI.
 
 {/* truncate */}
 
+:::tip[TL;DR]
+A model score can describe the harness as much as the model. Evaluate both a provider-neutral setup and the native system you would deploy, including memory, compaction, tools, interruptions, and control limits. Judge the complete system by accepted results, recovery, latency, and cost. Longer autonomy also makes isolation and approval boundaries part of the evaluation; a benchmark result alone cannot establish AGI.
+:::
+
 ## The AGI claim is ahead of the evidence
 
 OpenAI President Greg Brockman believes Astra qualifies as artificial general intelligence. During the launch briefing, he left the final judgment to others but said, “I think we're there,” according to [The Washington Post](https://www.washingtonpost.com/technology/2026/09/03/openai-greg-brockman-says-its-new-model-astra-is-agi/). OpenAI's [Charter defines AGI](https://openai.com/charter/) as highly autonomous systems that outperform humans at most economically valuable work. No launch benchmark can establish that on its own.
