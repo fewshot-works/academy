@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+comments: true
 description: "How to think about reducing token usage and LLM cost: context trimming, provider-native prompt caching (and how it differs from the response caching in Production Concerns), model right-sizing, and batching, plus the tools people actually reach for to track and control spend."
 ---
 

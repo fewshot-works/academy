@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+comments: true
 sidebar_label: "RBAC"
 description: "Scoping what a tool is allowed to do based on who's calling it, not just whether it can be called at all -- role-based permission checks and per-role limits (a refund cap, not just a yes/no) on top of Chapter 3's fixed allowlist."
 ---

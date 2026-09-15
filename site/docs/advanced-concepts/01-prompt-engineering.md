@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+comments: true
 description: "A deep dive into what prompt engineering actually covers: trimming, structuring, and grounding a prompt, chain-of-thought's real limit and its fix (self-consistency), prompt chaining, ReAct, self-refine, and DSPy-style automatic optimization, plus the open-source and commercial tools built around each one."
 ---
 

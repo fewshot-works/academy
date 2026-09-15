@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
+import BlogPostGiscus from '@site/src/components/BlogPostGiscus';
 
 import styles from './ai-solutions-architect-presales.module.css';
 
@@ -678,6 +679,7 @@ export default function AiSolutionsArchitectPresales(): ReactNode {
           </div>
         </div>
       </main>
+      <BlogPostGiscus />
     </Layout>
   );
 }

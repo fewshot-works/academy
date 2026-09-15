@@ -1,5 +1,6 @@
 ---
 sidebar_position: 7
+comments: true
 sidebar_label: "Chaos Engineering"
 description: "Deliberately corrupting a tool's return value to see how an agent degrades, instead of only testing the happy path -- fault injection using crash, omission, and value faults as the mental model."
 ---

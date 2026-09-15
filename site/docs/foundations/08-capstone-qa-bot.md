@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+comments: true
 description: The Foundations capstone — combine embeddings, a vector database, and RAG into a working Q&A bot over your own documents.
 ---
 

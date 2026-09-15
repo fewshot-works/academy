@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
+import BlogPostGiscus from '@site/src/components/BlogPostGiscus';
 
 import styles from '../styles.module.css';
 
@@ -84,6 +85,7 @@ export default function TechnicalRoundIndex(): ReactNode {
           </div>
         </div>
       </main>
+      <BlogPostGiscus />
     </Layout>
   );
 }

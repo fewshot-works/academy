@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+comments: true
 sidebar_label: "AI Gateways"
 description: "Build the boundary between an application and multiple model providers, then use it to make deliberate failover decisions."
 ---

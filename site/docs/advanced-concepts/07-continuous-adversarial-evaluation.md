@@ -1,5 +1,6 @@
 ---
 sidebar_position: 8
+comments: true
 sidebar_label: "Continuous Red-Teaming"
 description: "Testing a security defense against a battery of differently-worded attacks instead of just one, why a keyword filter misses phrasings it wasn't trained on while a structural guard doesn't, and why the eval harness itself is also attack surface."
 ---

@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
+import BlogPostGiscus from '@site/src/components/BlogPostGiscus';
 
 import styles from './sre-reliability-engineer.module.css';
 
@@ -682,6 +683,7 @@ export default function SreReliabilityEngineer(): ReactNode {
           </div>
         </div>
       </main>
+      <BlogPostGiscus />
     </Layout>
   );
 }

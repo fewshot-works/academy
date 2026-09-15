@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+comments: true
 description: "The Advanced capstone — the Intermediate capstone's three-tool agent wrapped in an input guardrail and full OpenLLMetry tracing, then measured with precision@k/recall@k and LLM-as-judge against the whole agent, not just retrieval."
 ---
 

@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import Heading from '@theme/Heading';
 import CareerTrackSidebar from '@site/src/components/CareerTrackSidebar';
+import BlogPostGiscus from '@site/src/components/BlogPostGiscus';
 
 import styles from './forward-deployed-engineer.module.css';
 
@@ -664,6 +665,7 @@ export default function ForwardDeployedEngineer(): ReactNode {
           </div>
         </div>
       </main>
+      <BlogPostGiscus />
     </Layout>
   );
 }

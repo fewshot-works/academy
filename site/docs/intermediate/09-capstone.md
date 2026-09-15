@@ -1,5 +1,6 @@
 ---
 sidebar_position: 10
+comments: true
 description: "The Intermediate capstone — one agent, three tools it picks between on its own: a calculator, Wikipedia search, and RAG over your own documents, all with memory across the conversation."
 ---
 

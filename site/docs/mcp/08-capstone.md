@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+comments: true
 description: The capstone for the MCP track, one agent, your own MCP server and a public one, a domain-allowlist guard on the risky tool, memory, and a Streamlit UI.
 ---
 

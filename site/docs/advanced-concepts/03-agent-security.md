@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+comments: true
 description: "Indirect prompt injection: malicious instructions arriving as tool output (a document, an email, a search result) instead of user input, and why the fix is a tool-call guard, not better text detection."
 ---
 
