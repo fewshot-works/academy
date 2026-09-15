@@ -52,6 +52,10 @@ count, page path, and time dimensions for this stream of events. Google may deri
 Cloudflare's outbound queue-consumer request; those attributes describe the worker, not the
 visitor, and should be ignored.
 
+The Measurement Protocol payload never sets `uip` (or any other IP-bearing field) (gh issue #88,
+item 2, verified clean). Google only sees the detached queue consumer's own request, not the
+visitor's IP, so it can at most geolocate the Cloudflare Worker, never the visitor.
+
 The consent preference is stored in the visitor's browser under
 `fewshot-academy:analytics-consent:v1`. Advertising storage, advertising user data, and advertising
 personalization remain denied. Do not restore automatic Docusaurus `gtag` configuration because it
