@@ -6,7 +6,10 @@ Few-Shot Academy separates page counts from optional engagement analytics:
   function puts only that path on a Cloudflare Queue. A detached queue consumer forwards a
   `page_view` to Google Analytics 4 with one shared client ID. The visitor request and its IP
   address, user agent, referrer, cookies, query string, fragment, and browser/device properties do
-  not enter the queue or the Google request. Unknown and 404 paths are not counted.
+  not enter the queue or the Google request. Unknown and 404 paths are not counted. Each forwarded
+  event gets a freshly generated, unstored client ID so GA4 does not collapse every hit into one
+  synthetic user; the ID is not derived from the visitor and is not reused across page views, so it
+  still cannot reconstruct sessions or visitor identity.
 - After a visitor selects **Allow analytics**, the browser loads the Google tag and sends the
   allowlisted engagement events below. The site uses Basic Consent Mode for these optional events:
   the tag does not load before consent or after a visitor declines.
@@ -40,11 +43,14 @@ identity layer. Clearing browser data or changing browsers/devices can therefore
 just as it does for local course progress.
 
 The anonymous page-view relay is intentionally unsuitable for users, sessions, acquisition,
-location, demographics, or device reports. Its fixed `731415926.271828182` client ID means GA4
-cannot distinguish one visitor from another. Use only the `Views` event count, page path, and time
-dimensions for this stream of events. Google may derive attributes from Cloudflare's outbound
-queue-consumer request; those attributes describe the worker, not the visitor, and should be
-ignored.
+location, demographics, or device reports. As of gh issue #88 (item 4), each event carries a
+per-request random client ID (never stored, never tied to a cookie or the visitor) instead of the
+previous fixed `731415926.271828182` constant. This stops GA4 from folding every hit into a single
+synthetic user, so the `Views` count is now meaningful, but a fresh ID per page view still means
+GA4's `Users`/`Sessions` metrics do not reflect real visitor continuity. Use only the `Views` event
+count, page path, and time dimensions for this stream of events. Google may derive attributes from
+Cloudflare's outbound queue-consumer request; those attributes describe the worker, not the
+visitor, and should be ignored.
 
 The consent preference is stored in the visitor's browser under
 `fewshot-academy:analytics-consent:v1`. Advertising storage, advertising user data, and advertising

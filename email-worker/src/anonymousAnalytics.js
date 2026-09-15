@@ -4,9 +4,14 @@ const GOOGLE_ANALYTICS_ENDPOINT = 'https://www.google-analytics.com/mp/collect';
 
 export function createAnonymousPageViewPayload(path) {
   return {
-    // Measurement Protocol requires a client ID. Every request deliberately
-    // shares this constant, so it cannot distinguish visitors or sessions.
-    client_id: '731415926.271828182',
+    // A fresh random client ID per page view (gh issue #88, item 4). It is
+    // generated here, never stored, and never derived from the visitor's IP,
+    // UA, or any cookie, so it stays non-persistent and non-identifying.
+    // Unlike the old shared constant, GA4 no longer collapses all traffic
+    // into a single synthetic user, but since each page view gets its own
+    // ID, GA4's "users"/"sessions" metrics still don't reflect real visitor
+    // continuity; only the Views/page-path/time dimensions are meaningful.
+    client_id: crypto.randomUUID(),
     consent: {
       ad_user_data: 'DENIED',
       ad_personalization: 'DENIED',
